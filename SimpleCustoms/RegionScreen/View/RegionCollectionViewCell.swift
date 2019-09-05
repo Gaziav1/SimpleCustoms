@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UnionCollectionViewCell: UICollectionViewCell {
+class RegionCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageOfUnion: UIImageView!
     @IBOutlet weak var nameOfUnion: UILabel!

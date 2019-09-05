@@ -7,23 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A751DFDE232045330094FAC0 /* UnionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A751DFDD232045330094FAC0 /* UnionCollectionViewCell.swift */; };
+		A751DFDE232045330094FAC0 /* RegionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A751DFDD232045330094FAC0 /* RegionCollectionViewCell.swift */; };
 		A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A68C323203AF4005EAC5A /* AppDelegate.swift */; };
-		A77A68C623203AF4005EAC5A /* UnionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A68C523203AF4005EAC5A /* UnionViewController.swift */; };
+		A77A68C623203AF4005EAC5A /* RegionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A68C523203AF4005EAC5A /* RegionViewController.swift */; };
 		A77A68C923203AF4005EAC5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77A68C723203AF4005EAC5A /* Main.storyboard */; };
 		A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CA23203AF5005EAC5A /* Assets.xcassets */; };
 		A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */; };
+		A7E70DBF2321594300EFD8B0 /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DBE2321594300EFD8B0 /* CountriesViewController.swift */; };
+		A7E70DC5232159CF00EFD8B0 /* CountriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DC4232159CF00EFD8B0 /* CountriesCollectionViewCell.swift */; };
+		A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */; };
+		A7E70DCC232172A000EFD8B0 /* RegionsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DCB232172A000EFD8B0 /* RegionsEnum.swift */; };
+		A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */; };
+		A7E70DD323217FD200EFD8B0 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DD223217FD200EFD8B0 /* CurrencyModel.swift */; };
+		A7E70DD72321803C00EFD8B0 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DD62321803C00EFD8B0 /* LanguageModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A751DFDD232045330094FAC0 /* UnionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UnionCollectionViewCell.swift; path = SimpleCustoms/UnionScreen/View/UnionCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		A751DFDD232045330094FAC0 /* RegionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegionCollectionViewCell.swift; path = SimpleCustoms/RegionScreen/View/RegionCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		A77A68C023203AF4005EAC5A /* SimpleCustoms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCustoms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77A68C323203AF4005EAC5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A77A68C523203AF4005EAC5A /* UnionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionViewController.swift; sourceTree = "<group>"; };
+		A77A68C523203AF4005EAC5A /* RegionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionViewController.swift; sourceTree = "<group>"; };
 		A77A68C823203AF4005EAC5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A77A68CA23203AF5005EAC5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A77A68CD23203AF5005EAC5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A77A68CF23203AF5005EAC5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7E70DBE2321594300EFD8B0 /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
+		A7E70DC4232159CF00EFD8B0 /* CountriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A7E70DCB232172A000EFD8B0 /* RegionsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsEnum.swift; sourceTree = "<group>"; };
+		A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		A7E70DD223217FD200EFD8B0 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
+		A7E70DD62321803C00EFD8B0 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +54,7 @@
 		A751DFDC232044F20094FAC0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A77A68C523203AF4005EAC5A /* UnionViewController.swift */,
+				A77A68C523203AF4005EAC5A /* RegionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -48,7 +62,7 @@
 		A751DFDF2320453A0094FAC0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A751DFDD232045330094FAC0 /* UnionCollectionViewCell.swift */,
+				A751DFDD232045330094FAC0 /* RegionCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -73,8 +87,10 @@
 			isa = PBXGroup;
 			children = (
 				A77A68C323203AF4005EAC5A /* AppDelegate.swift */,
-				A77A68D72320449F005EAC5A /* UnionScreen */,
 				A77A68C723203AF4005EAC5A /* Main.storyboard */,
+				A77A68D72320449F005EAC5A /* RegionScreen */,
+				A7E70DC02321595400EFD8B0 /* Countries */,
+				A7E70DC623215FE900EFD8B0 /* NetworkManager */,
 				A77A68CA23203AF5005EAC5A /* Assets.xcassets */,
 				A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */,
 				A77A68CF23203AF5005EAC5A /* Info.plist */,
@@ -82,13 +98,82 @@
 			path = SimpleCustoms;
 			sourceTree = "<group>";
 		};
-		A77A68D72320449F005EAC5A /* UnionScreen */ = {
+		A77A68D72320449F005EAC5A /* RegionScreen */ = {
 			isa = PBXGroup;
 			children = (
+				A7E70DCA2321728200EFD8B0 /* Model */,
 				A751DFDF2320453A0094FAC0 /* View */,
 				A751DFDC232044F20094FAC0 /* Controller */,
 			);
-			path = UnionScreen;
+			path = RegionScreen;
+			sourceTree = "<group>";
+		};
+		A7E70DC02321595400EFD8B0 /* Countries */ = {
+			isa = PBXGroup;
+			children = (
+				A7E70DCD232177FA00EFD8B0 /* Model */,
+				A7E70DC3232159B600EFD8B0 /* View */,
+				A7E70DC1232159A100EFD8B0 /* Controller */,
+			);
+			path = Countries;
+			sourceTree = "<group>";
+		};
+		A7E70DC1232159A100EFD8B0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A7E70DBE2321594300EFD8B0 /* CountriesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A7E70DC3232159B600EFD8B0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A7E70DC4232159CF00EFD8B0 /* CountriesCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A7E70DC623215FE900EFD8B0 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		A7E70DCA2321728200EFD8B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A7E70DCB232172A000EFD8B0 /* RegionsEnum.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A7E70DCD232177FA00EFD8B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */,
+				A7E70DD52321801900EFD8B0 /* Languages */,
+				A7E70DD423217FE100EFD8B0 /* Currency */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A7E70DD423217FE100EFD8B0 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				A7E70DD223217FD200EFD8B0 /* CurrencyModel.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
+		A7E70DD52321801900EFD8B0 /* Languages */ = {
+			isa = PBXGroup;
+			children = (
+				A7E70DD62321803C00EFD8B0 /* LanguageModel.swift */,
+			);
+			path = Languages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,9 +247,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A77A68C623203AF4005EAC5A /* UnionViewController.swift in Sources */,
+				A7E70DCC232172A000EFD8B0 /* RegionsEnum.swift in Sources */,
+				A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */,
+				A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */,
+				A77A68C623203AF4005EAC5A /* RegionViewController.swift in Sources */,
 				A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */,
-				A751DFDE232045330094FAC0 /* UnionCollectionViewCell.swift in Sources */,
+				A751DFDE232045330094FAC0 /* RegionCollectionViewCell.swift in Sources */,
+				A7E70DBF2321594300EFD8B0 /* CountriesViewController.swift in Sources */,
+				A7E70DD323217FD200EFD8B0 /* CurrencyModel.swift in Sources */,
+				A7E70DC5232159CF00EFD8B0 /* CountriesCollectionViewCell.swift in Sources */,
+				A7E70DD72321803C00EFD8B0 /* LanguageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

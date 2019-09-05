@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UnionViewController: UIViewController {
+class RegionViewController: UIViewController {
 
     @IBOutlet weak var unionsCollectionView: UICollectionView!
    
@@ -22,18 +22,24 @@ class UnionViewController: UIViewController {
 
 }
 
-extension UnionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension RegionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! UnionCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! RegionCollectionViewCell
+        cell.imageOfUnion.image = UIImage(named: "Europe")
+        cell.nameOfUnion.text = "Европа"
         
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        NetworkManager.shared.getCountries(for: .europe)
+        performSegue(withIdentifier: "showCountries", sender: self)
+    }
     
 }
 
