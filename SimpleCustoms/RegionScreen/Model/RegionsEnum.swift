@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum Regions {
-    case americas
-    case asia
-    case europe
-    case oceania
+enum Regions: String, CaseIterable {
+    case americas = "Америка"
+    case asia = "Азия"
+    case europe = "Европа"
+    case oceania = "Океания"
 }

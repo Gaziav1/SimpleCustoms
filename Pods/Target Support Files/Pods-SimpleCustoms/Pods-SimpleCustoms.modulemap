@@ -1,0 +1,6 @@
+framework module Pods_SimpleCustoms {
+  umbrella header "Pods-SimpleCustoms-umbrella.h"
+
+  export *
+  module * { export * }
+}

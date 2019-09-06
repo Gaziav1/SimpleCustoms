@@ -8,33 +8,44 @@
 
 import UIKit
 
-class CountriesViewController: UIViewController {
 
+class CountriesViewController: UIViewController {
+    
     @IBOutlet weak var countriesCollectionView: UICollectionView!
+    private var countries = [Country]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       countriesCollectionView.dataSource = self
+        
+        NetworkManager.shared.getCountries { (countries) in
+            self.countries = countries
+            self.countriesCollectionView.reloadData()
+        }
+        countriesCollectionView.dataSource = self
         countriesCollectionView.delegate = self
     }
-
+    
 }
 
 extension CountriesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return countries.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "countryCell", for: indexPath) as! CountriesCollectionViewCell
-        cell.countryFlagImage.image = UIImage(named: "Finland")
-        cell.countryNameLabel.text = "Финляндия"
+        guard let urlForImage = URL(string: countries[indexPath.row].flag),
+              let data = try? Data(contentsOf: urlForImage) else { print("mistake")
+                return cell }
+        
+        cell.countryNameLabel.text = countries[indexPath.row].name
+        cell.countryFlagImage.image = UIImage(data: data) // Bug svg format
         
         return cell
     }
+    
     
     
 }
