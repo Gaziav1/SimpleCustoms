@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,7 @@
 		A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */; };
 		A7E70DD323217FD200EFD8B0 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DD223217FD200EFD8B0 /* CurrencyModel.swift */; };
 		A7E70DD72321803C00EFD8B0 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DD62321803C00EFD8B0 /* LanguageModel.swift */; };
+		A7FE91392323FAC40052348F /* FlagImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE91382323FAC40052348F /* FlagImage.swift */; };
 		A8DEE70A6A0B4A5A7B751C90 /* Pods_SimpleCustoms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		A7E70DD223217FD200EFD8B0 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		A7E70DD62321803C00EFD8B0 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
+		A7FE91382323FAC40052348F /* FlagImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +64,6 @@
 				0D92F1305BE417653EA07745 /* Pods-SimpleCustoms.debug.xcconfig */,
 				2818C78512A0C001CA6E5E82 /* Pods-SimpleCustoms.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -171,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */,
+				A7FE91372323FAA70052348F /* FlagImage */,
 				A7E70DD52321801900EFD8B0 /* Languages */,
 				A7E70DD423217FE100EFD8B0 /* Currency */,
 			);
@@ -193,6 +195,14 @@
 			path = Languages;
 			sourceTree = "<group>";
 		};
+		A7FE91372323FAA70052348F /* FlagImage */ = {
+			isa = PBXGroup;
+			children = (
+				A7FE91382323FAC40052348F /* FlagImage.swift */,
+			);
+			path = FlagImage;
+			sourceTree = "<group>";
+		};
 		D43198F19DAFDC7FA0E0D43B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +222,7 @@
 				A77A68BC23203AF4005EAC5A /* Sources */,
 				A77A68BD23203AF4005EAC5A /* Frameworks */,
 				A77A68BE23203AF4005EAC5A /* Resources */,
+				63FF78BB1D5B6FDE89261AC6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -291,6 +302,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		63FF78BB1D5B6FDE89261AC6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SimpleCustoms/Pods-SimpleCustoms-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SimpleCustoms/Pods-SimpleCustoms-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SimpleCustoms/Pods-SimpleCustoms-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -304,6 +332,7 @@
 				A77A68C623203AF4005EAC5A /* RegionViewController.swift in Sources */,
 				A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */,
 				A751DFDE232045330094FAC0 /* RegionCollectionViewCell.swift in Sources */,
+				A7FE91392323FAC40052348F /* FlagImage.swift in Sources */,
 				A7E70DBF2321594300EFD8B0 /* CountriesViewController.swift in Sources */,
 				A7E70DD323217FD200EFD8B0 /* CurrencyModel.swift in Sources */,
 				A7E70DC5232159CF00EFD8B0 /* CountriesCollectionViewCell.swift in Sources */,

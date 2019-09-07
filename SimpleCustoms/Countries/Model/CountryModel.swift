@@ -11,7 +11,7 @@ import UIKit
 struct Country: Decodable {
     var name: String
     var capital: String
-    var flag: String
+    var alpha2Code: String
     var languages: [Language]
     var currencies: [Currency]
 }

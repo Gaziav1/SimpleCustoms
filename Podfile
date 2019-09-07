@@ -6,5 +6,5 @@ target 'SimpleCustoms' do
   use_frameworks!
 
   # Pods for SimpleCustoms
-    
+    pod 'lottie-ios'
 end

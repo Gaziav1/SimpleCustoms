@@ -6,7 +6,7 @@
 //  Copyright © 2019 Газияв Исхаков. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
     
@@ -36,6 +36,15 @@ class NetworkManager {
             }.resume()
     }
     
+    func fetchFlagsImages(for countryCode: String) -> UIImage? {
+        
+        guard let urlForFlat = URL(string: "http://www.geognos.com/api/en/countries/flag/\(countryCode).png") else { return nil }
+        let dataForFlatImage = try? Data(contentsOf: urlForFlat)
+        guard let data = dataForFlatImage, let flatImage = UIImage(data: data) else { return nil }
+        let flagImage = flatImage
+        return flagImage
+        
+    }
     
     func createUrl(for region: Regions) {
         switch region {
