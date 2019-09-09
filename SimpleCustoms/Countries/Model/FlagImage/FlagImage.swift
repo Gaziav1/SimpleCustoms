@@ -14,11 +14,10 @@ final class FlagImage {
     
     
     
-    init?(countryCode: String) {
+    init(countryCode: String) {
         
-        DispatchQueue.global().sync {
-            self.flagImage = NetworkManager.shared.fetchFlagsImages(for: countryCode) ?? UIImage(named: "Europe")
-        }
+        self.flagImage = NetworkManager.shared.fetchFlagsImages(for: countryCode)
+        
     }
 }
 

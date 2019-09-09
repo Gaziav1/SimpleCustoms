@@ -13,6 +13,8 @@
 		A77A68C923203AF4005EAC5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77A68C723203AF4005EAC5A /* Main.storyboard */; };
 		A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CA23203AF5005EAC5A /* Assets.xcassets */; };
 		A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */; };
+		A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */; };
+		A797E3DA2326A8ED00A872B8 /* 6056-gradient-loader.json in Resources */ = {isa = PBXBuildFile; fileRef = A797E3D92326A8ED00A872B8 /* 6056-gradient-loader.json */; };
 		A7E70DBF2321594300EFD8B0 /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DBE2321594300EFD8B0 /* CountriesViewController.swift */; };
 		A7E70DC5232159CF00EFD8B0 /* CountriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DC4232159CF00EFD8B0 /* CountriesCollectionViewCell.swift */; };
 		A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */; };
@@ -36,6 +38,8 @@
 		A77A68CA23203AF5005EAC5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A77A68CD23203AF5005EAC5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A77A68CF23203AF5005EAC5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCountryFetcher.swift; sourceTree = "<group>"; };
+		A797E3D92326A8ED00A872B8 /* 6056-gradient-loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "6056-gradient-loader.json"; sourceTree = "<group>"; };
 		A7E70DBE2321594300EFD8B0 /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		A7E70DC4232159CF00EFD8B0 /* CountriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -109,9 +113,7 @@
 				A77A68D72320449F005EAC5A /* RegionScreen */,
 				A7E70DC02321595400EFD8B0 /* Countries */,
 				A7E70DC623215FE900EFD8B0 /* NetworkService */,
-				A77A68CA23203AF5005EAC5A /* Assets.xcassets */,
-				A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */,
-				A77A68CF23203AF5005EAC5A /* Info.plist */,
+				A797E3D72326A8B400A872B8 /* Supporting Files */,
 			);
 			path = SimpleCustoms;
 			sourceTree = "<group>";
@@ -124,6 +126,25 @@
 				A751DFDC232044F20094FAC0 /* Controller */,
 			);
 			path = RegionScreen;
+			sourceTree = "<group>";
+		};
+		A797E3D72326A8B400A872B8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A77A68CA23203AF5005EAC5A /* Assets.xcassets */,
+				A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */,
+				A77A68CF23203AF5005EAC5A /* Info.plist */,
+				A797E3D82326A8BB00A872B8 /* Lottie Animations */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A797E3D82326A8BB00A872B8 /* Lottie Animations */ = {
+			isa = PBXGroup;
+			children = (
+				A797E3D92326A8ED00A872B8 /* 6056-gradient-loader.json */,
+			);
+			path = "Lottie Animations";
 			sourceTree = "<group>";
 		};
 		A7E70DC02321595400EFD8B0 /* Countries */ = {
@@ -156,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */,
+				A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -272,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */,
+				A797E3DA2326A8ED00A872B8 /* 6056-gradient-loader.json in Resources */,
 				A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */,
 				A77A68C923203AF4005EAC5A /* Main.storyboard in Resources */,
 			);
@@ -326,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */,
 				A7E70DCC232172A000EFD8B0 /* RegionsEnum.swift in Sources */,
 				A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */,
 				A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */,
@@ -485,7 +509,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UC886LLHAM;
-				INFOPLIST_FILE = SimpleCustoms/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SimpleCustoms/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -504,7 +528,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UC886LLHAM;
-				INFOPLIST_FILE = SimpleCustoms/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SimpleCustoms/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
