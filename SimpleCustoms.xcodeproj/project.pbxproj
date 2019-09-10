@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A751DFDE232045330094FAC0 /* RegionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A751DFDD232045330094FAC0 /* RegionCollectionViewCell.swift */; };
+		A773D41F232809E1008DA6BF /* MainScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D41E232809E1008DA6BF /* MainScreenTableViewCell.swift */; };
+		A773D4252328255F008DA6BF /* 448-ripple-loading-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = A773D4242328255F008DA6BF /* 448-ripple-loading-animation.json */; };
+		A773D4272328280D008DA6BF /* 6722-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = A773D4262328280D008DA6BF /* 6722-loading.json */; };
+		A773D429232828B7008DA6BF /* 1055-world-locations.json in Resources */ = {isa = PBXBuildFile; fileRef = A773D428232828B7008DA6BF /* 1055-world-locations.json */; };
 		A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A68C323203AF4005EAC5A /* AppDelegate.swift */; };
 		A77A68C623203AF4005EAC5A /* RegionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A68C523203AF4005EAC5A /* RegionViewController.swift */; };
 		A77A68C923203AF4005EAC5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77A68C723203AF4005EAC5A /* Main.storyboard */; };
@@ -30,7 +33,10 @@
 		0D92F1305BE417653EA07745 /* Pods-SimpleCustoms.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleCustoms.debug.xcconfig"; path = "Target Support Files/Pods-SimpleCustoms/Pods-SimpleCustoms.debug.xcconfig"; sourceTree = "<group>"; };
 		2818C78512A0C001CA6E5E82 /* Pods-SimpleCustoms.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleCustoms.release.xcconfig"; path = "Target Support Files/Pods-SimpleCustoms/Pods-SimpleCustoms.release.xcconfig"; sourceTree = "<group>"; };
 		A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleCustoms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A751DFDD232045330094FAC0 /* RegionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegionCollectionViewCell.swift; path = SimpleCustoms/RegionScreen/View/RegionCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		A773D41E232809E1008DA6BF /* MainScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewCell.swift; sourceTree = "<group>"; };
+		A773D4242328255F008DA6BF /* 448-ripple-loading-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "448-ripple-loading-animation.json"; sourceTree = "<group>"; };
+		A773D4262328280D008DA6BF /* 6722-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "6722-loading.json"; sourceTree = "<group>"; };
+		A773D428232828B7008DA6BF /* 1055-world-locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1055-world-locations.json"; sourceTree = "<group>"; };
 		A77A68C023203AF4005EAC5A /* SimpleCustoms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCustoms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77A68C323203AF4005EAC5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A77A68C523203AF4005EAC5A /* RegionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +88,6 @@
 		A751DFDF2320453A0094FAC0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A751DFDD232045330094FAC0 /* RegionCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 			children = (
 				A77A68C323203AF4005EAC5A /* AppDelegate.swift */,
 				A77A68C723203AF4005EAC5A /* Main.storyboard */,
+				A773D41E232809E1008DA6BF /* MainScreenTableViewCell.swift */,
 				A77A68D72320449F005EAC5A /* RegionScreen */,
 				A7E70DC02321595400EFD8B0 /* Countries */,
 				A7E70DC623215FE900EFD8B0 /* NetworkService */,
@@ -143,6 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				A797E3D92326A8ED00A872B8 /* 6056-gradient-loader.json */,
+				A773D4242328255F008DA6BF /* 448-ripple-loading-animation.json */,
+				A773D4262328280D008DA6BF /* 6722-loading.json */,
+				A773D428232828B7008DA6BF /* 1055-world-locations.json */,
 			);
 			path = "Lottie Animations";
 			sourceTree = "<group>";
@@ -293,8 +302,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A773D429232828B7008DA6BF /* 1055-world-locations.json in Resources */,
+				A773D4252328255F008DA6BF /* 448-ripple-loading-animation.json in Resources */,
 				A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */,
 				A797E3DA2326A8ED00A872B8 /* 6056-gradient-loader.json in Resources */,
+				A773D4272328280D008DA6BF /* 6722-loading.json in Resources */,
 				A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */,
 				A77A68C923203AF4005EAC5A /* Main.storyboard in Resources */,
 			);
@@ -350,12 +362,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */,
+				A773D41F232809E1008DA6BF /* MainScreenTableViewCell.swift in Sources */,
 				A7E70DCC232172A000EFD8B0 /* RegionsEnum.swift in Sources */,
 				A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */,
 				A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */,
 				A77A68C623203AF4005EAC5A /* RegionViewController.swift in Sources */,
 				A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */,
-				A751DFDE232045330094FAC0 /* RegionCollectionViewCell.swift in Sources */,
 				A7FE91392323FAC40052348F /* FlagImage.swift in Sources */,
 				A7E70DBF2321594300EFD8B0 /* CountriesViewController.swift in Sources */,
 				A7E70DD323217FD200EFD8B0 /* CurrencyModel.swift in Sources */,
