@@ -13,7 +13,7 @@
         <!--Страны-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="RegionViewController" customModule="SimpleCustoms" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CountryViewController" customModule="SimpleCustoms" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@
                                 <color key="separatorColor" red="0.082352941176470587" green="0.10588235294117647" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="72" id="Cyw-YP-Xns" customClass="MainScreenTableViewCell" customModule="SimpleCustoms" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="72" id="Cyw-YP-Xns" customClass="MainScreenTableViewCell" customModule="SimpleCustoms" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cyw-YP-Xns" id="BvU-GO-8ME">
@@ -103,11 +103,30 @@
                     <connections>
                         <outlet property="loadingAnimation" destination="bDN-rt-FeA" id="VFy-2L-7Ca"/>
                         <outlet property="tableView" destination="UbZ-dA-U4r" id="NOx-Fh-KqY"/>
+                        <segue destination="NNC-4h-as6" kind="show" identifier="showCustomsRules" id="G6g-HD-cl0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+        </scene>
+        <!--Germany-->
+        <scene sceneID="wQF-tA-1xP">
+            <objects>
+                <viewController id="NNC-4h-as6" customClass="CustomsViewController" customModule="SimpleCustoms" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="frZ-wT-YQ4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.12941176469999999" green="0.1764705882" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Ppv-cR-B9s"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Germany" largeTitleDisplayMode="always" id="J4k-r3-TIC">
+                        <barButtonItem key="backBarButtonItem" title="f" id="bxw-zc-Tzk"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z38-Kt-ydu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957.9710144927537" y="138.61607142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nwZ-tz-beV">

@@ -9,11 +9,11 @@
 import UIKit
 import Lottie
 
-class RegionViewController: UIViewController {
+class CountryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingAnimation: AnimationView! 
-        
+    
     
    
     private var countries = [Country]()
@@ -25,9 +25,9 @@ class RegionViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         handleDataDownloading()
-      
-        
     }
+    
+
     
     private func handleDataDownloading() {
         tableView.isHidden = true
@@ -46,12 +46,18 @@ class RegionViewController: UIViewController {
             self.tableView.isHidden = false
             self.loadingAnimation.isHidden = true
         }
-        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showCustomsRules" else { return }
+        let segue = segue.destination as! CustomsViewController
+        guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
+        let title = countries[indexPath.row]
+        segue.navigationItem.title    = title.name
+    }
 }
 
-extension RegionViewController: UITableViewDelegate, UITableViewDataSource {
+extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countries.count
@@ -62,17 +68,24 @@ extension RegionViewController: UITableViewDelegate, UITableViewDataSource {
         cell.countryFlag.image = flagImages[indexPath.row].flatFlagImage
         cell.countryName.text = countries[indexPath.row].name
         tableView.deselectRow(at: indexPath, animated: true)
-        cell.selectionStyle = .default
         return cell
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
         cell.countryFlag.image = flagImages[indexPath.row].shinyflagImage
+        cell.backgroundColor = #colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1)
+        
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
+        cell.countryFlag.image = flagImages[indexPath.row].flatFlagImage
+        cell.backgroundColor = self.tableView.backgroundColor
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showCustomsRules", sender: self)
     }
     
     
