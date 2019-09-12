@@ -53,7 +53,9 @@ class CountryViewController: UIViewController {
         let segue = segue.destination as! CustomsViewController
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
         let title = countries[indexPath.row]
-        segue.navigationItem.title    = title.name
+        let image = flagImages[indexPath.row].flatFlagImage
+        segue.image = image
+        segue.navigationItem.title = title.name
     }
 }
 
@@ -74,7 +76,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
         cell.countryFlag.image = flagImages[indexPath.row].shinyflagImage
-        cell.backgroundColor = #colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1)
+        cell.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         
     }
     

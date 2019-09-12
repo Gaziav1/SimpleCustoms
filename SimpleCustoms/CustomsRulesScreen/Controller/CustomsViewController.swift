@@ -10,6 +10,9 @@ import UIKit
 
 class CustomsViewController: UIViewController {
 
+    @IBOutlet weak var flagImage: UIImageView!
+    @IBOutlet weak var customsRulesTableView: UITableView!
+    var image: UIImage!
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -18,6 +21,7 @@ class CustomsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+        flagImage.image = image
     }
 
     
