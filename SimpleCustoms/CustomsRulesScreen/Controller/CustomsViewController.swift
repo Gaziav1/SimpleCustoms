@@ -21,6 +21,8 @@ class CustomsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+        customsRulesTableView.delegate = self
+        customsRulesTableView.dataSource = self
         flagImage.image = image
     }
 
@@ -35,4 +37,18 @@ class CustomsViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1411764706, green: 0.1882352941, blue: 0.2509803922, alpha: 1)
         self.navigationController?.navigationBar.isTranslucent = true
     }
+}
+
+
+extension CustomsViewController: UITableViewDelegate, UITableViewDataSource {
+   
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customsRulesCell") as! CustomsRulesTableViewCell
+        return cell
+    }
+    
 }

@@ -32,7 +32,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Финляндия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RX5-7G-nhT">
-                                                    <rect key="frame" x="102" y="14" width="705" height="50"/>
+                                                    <rect key="frame" x="102" y="14" width="311" height="50"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="b51-CX-cm3"/>
@@ -118,26 +118,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="52O-d5-gLN">
-                                <rect key="frame" x="0.0" y="219" width="414" height="677"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="357" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="52O-d5-gLN">
+                                <rect key="frame" x="0.0" y="189" width="414" height="707"/>
                                 <color key="backgroundColor" red="0.12740981578826904" green="0.17562764883041382" blue="0.23025548458099365" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="customsRulesCell" rowHeight="239" id="57T-xg-Vvg" customClass="MainScreenTableViewCell" customModule="SimpleCustoms" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="239"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="customsRulesCell" rowHeight="357" id="57T-xg-Vvg" customClass="CustomsRulesTableViewCell" customModule="SimpleCustoms" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="357"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="57T-xg-Vvg" id="8xT-mW-cEK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="238.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="356.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Основные ограничения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRo-pV-QuG">
-                                                    <rect key="frame" x="20" y="0.0" width="394" height="29"/>
-                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="24"/>
-                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vg6-2q-Onu">
-                                                    <rect key="frame" x="18" y="31" width="388" height="197"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vg6-2q-Onu">
+                                                    <rect key="frame" x="20" y="54" width="374" height="261"/>
                                                     <string key="text">Ввоз различных типов телефонного оборудования и иных средств связи осуществляется на основании разрешения. Оборудование, в отношении которого требуется такое разрешение, включает в себя беспроводные телефоны, устройства дистанционного управления для игрушек, радиопередатчики и радиоприемники, не предназначенные для регулярного приема трансляций.
 
 </string>
@@ -145,17 +138,27 @@
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Основные ограничения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRo-pV-QuG">
+                                                    <rect key="frame" x="20" y="19" width="394" height="29"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="24"/>
+                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="JRo-pV-QuG" firstAttribute="leading" secondItem="8xT-mW-cEK" secondAttribute="leading" constant="20" id="Jzg-nK-isl"/>
-                                                <constraint firstItem="vg6-2q-Onu" firstAttribute="leading" secondItem="8xT-mW-cEK" secondAttribute="leading" constant="18" id="Mng-Rt-QnD"/>
-                                                <constraint firstAttribute="bottom" secondItem="vg6-2q-Onu" secondAttribute="bottom" constant="10.666666666666657" id="Sa2-4O-Xs6"/>
-                                                <constraint firstAttribute="trailing" secondItem="vg6-2q-Onu" secondAttribute="trailing" constant="8" id="bP2-Q7-1uv"/>
-                                                <constraint firstAttribute="trailing" secondItem="JRo-pV-QuG" secondAttribute="trailing" id="ivA-cc-Ic8"/>
-                                                <constraint firstItem="JRo-pV-QuG" firstAttribute="top" secondItem="8xT-mW-cEK" secondAttribute="top" id="jYW-bF-HrV"/>
-                                                <constraint firstItem="vg6-2q-Onu" firstAttribute="top" secondItem="JRo-pV-QuG" secondAttribute="bottom" constant="2" id="rzH-oP-kqC"/>
+                                                <constraint firstItem="vg6-2q-Onu" firstAttribute="leading" secondItem="8xT-mW-cEK" secondAttribute="leadingMargin" id="57c-jz-ccx"/>
+                                                <constraint firstAttribute="trailing" secondItem="JRo-pV-QuG" secondAttribute="trailing" id="AXW-hq-hWd"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vg6-2q-Onu" secondAttribute="trailing" id="Bkd-bs-qPs"/>
+                                                <constraint firstItem="JRo-pV-QuG" firstAttribute="leading" secondItem="8xT-mW-cEK" secondAttribute="leading" constant="20" id="cHo-0K-Z5p"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vg6-2q-Onu" secondAttribute="bottom" constant="31" id="eGe-EB-6Pj"/>
+                                                <constraint firstItem="vg6-2q-Onu" firstAttribute="top" secondItem="JRo-pV-QuG" secondAttribute="bottom" constant="6" id="iaO-ty-1y7"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.1282115549" green="0.17691196209999999" blue="0.2332584788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="ruleBody" destination="vg6-2q-Onu" id="R6n-3F-AF0"/>
+                                            <outlet property="ruleHeader" destination="JRo-pV-QuG" id="QrZ-gO-GRz"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -170,7 +173,7 @@
                         <color key="backgroundColor" red="0.12941176469999999" green="0.1764705882" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="52O-d5-gLN" secondAttribute="bottom" id="6GG-4D-dg8"/>
-                            <constraint firstItem="52O-d5-gLN" firstAttribute="top" secondItem="3at-yQ-E8H" secondAttribute="bottom" constant="45" id="9sQ-c1-j5i"/>
+                            <constraint firstItem="52O-d5-gLN" firstAttribute="top" secondItem="3at-yQ-E8H" secondAttribute="bottom" constant="15" id="9sQ-c1-j5i"/>
                             <constraint firstItem="52O-d5-gLN" firstAttribute="trailing" secondItem="Ppv-cR-B9s" secondAttribute="trailing" id="CiI-gA-w4X"/>
                             <constraint firstItem="52O-d5-gLN" firstAttribute="leading" secondItem="Ppv-cR-B9s" secondAttribute="leading" id="Zc0-hY-QzX"/>
                             <constraint firstItem="3at-yQ-E8H" firstAttribute="leading" secondItem="Ppv-cR-B9s" secondAttribute="leading" constant="20" id="oZT-oD-oLN"/>
@@ -178,9 +181,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ppv-cR-B9s"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Germany" largeTitleDisplayMode="always" id="J4k-r3-TIC">
-                        <barButtonItem key="backBarButtonItem" title="f" id="bxw-zc-Tzk"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Germany" largeTitleDisplayMode="always" id="J4k-r3-TIC"/>
                     <connections>
                         <outlet property="customsRulesTableView" destination="52O-d5-gLN" id="ga4-4Q-9yJ"/>
                         <outlet property="flagImage" destination="3at-yQ-E8H" id="eD4-Ff-gyg"/>
@@ -201,7 +202,7 @@
                         <color key="backgroundColor" red="0.14117647058823529" green="0.18823529411764706" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.14117647058823529" green="0.18823529411764706" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="largeTitleTextAttributes">
-                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="34"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="34"/>
                             <color key="textColor" red="0.9371047616" green="0.9371047616" blue="0.95810431240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
