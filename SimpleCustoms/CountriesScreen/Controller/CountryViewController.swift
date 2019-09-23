@@ -54,7 +54,7 @@ class CountryViewController: UIViewController {
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
         let title = countries[indexPath.row]
         let image = flagImages[indexPath.row].flatFlagImage
-        segue.image = image
+        segue.imageFlag.image = image
         segue.navigationItem.title = title.name
     }
 }
