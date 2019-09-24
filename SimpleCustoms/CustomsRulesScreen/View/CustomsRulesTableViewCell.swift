@@ -19,14 +19,7 @@ class CustomsRulesTableViewCell: UITableViewCell {
             customsHeaderView.dropShadow()
         }
     }
-    @IBOutlet weak var rulesLabel: UILabel! {
-        didSet {
-            rulesLabel.text = "lalallalalallala lolololo lalalalalalalalalal oloolo ahohoh ohohohohhohohoh lalallalalallala lolololo lalalalalalalalalal oloolo ahohoh ohohohohhohohoh lalallalalallala lolololo lalalalalalalalalal oloolo ahohoh ohohohohhohohoh lalallalalallala lolololo lalalalalalalalalal oloolo ahohoh ohohohohhohohohlalallalalallala lolololo lalalalalalalalalal oloolo ahohoh ohohohohhohohoh lalallalalallala lolololo lalalalalalalalalal oloolo ahohoh ohohohohhohohoh lalallalalallala lolololo lalalalalalalalalal oloolo ahohoh ohohohohhohohoh lalallalalallala lolololo lalalalalalalalalal oloolo ahohoh ohohohohhohohoh"
-            guard let text = rulesLabel.text else { return }
-            let size = CustomsRulesCellLayout.shared.size(for: text)
-            rulesLabel.frame = size
-        }
-    }
+    @IBOutlet weak var rulesLabel: UILabel!
     @IBOutlet weak var rulesTypeLabel: UILabel!
     @IBOutlet weak var rulesIcon: UIImageView! {
         didSet {

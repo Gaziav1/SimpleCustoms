@@ -51,11 +51,17 @@ class CountryViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showCustomsRules" else { return }
         let segue = segue.destination as! CustomsViewController
+        
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
         let title = countries[indexPath.row]
         let image = flagImages[indexPath.row].flatFlagImage
+        
+        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", title.alpha2Code))
+        
+        segue.rules = customsRule[0]
         segue.imageFlag.image = image
         segue.navigationItem.title = title.name
+        
     }
 }
 

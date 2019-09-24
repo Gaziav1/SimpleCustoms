@@ -20,6 +20,8 @@
 		A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */; };
 		A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */; };
 		A7A50BBE233924C500C8624C /* CellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */; };
+		A7A50BC1233A5BF100C8624C /* CustomsRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BC0233A5BF100C8624C /* CustomsRules.swift */; };
+		A7A50BC3233A6F6700C8624C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BC2233A6F6700C8624C /* RealmManager.swift */; };
 		A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */; };
 		A7E70DCC232172A000EFD8B0 /* RegionsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DCB232172A000EFD8B0 /* RegionsEnum.swift */; };
 		A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */; };
@@ -48,6 +50,8 @@
 		A77A68CF23203AF5005EAC5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCountryFetcher.swift; sourceTree = "<group>"; };
 		A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizeCalculator.swift; sourceTree = "<group>"; };
+		A7A50BC0233A5BF100C8624C /* CustomsRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsRules.swift; sourceTree = "<group>"; };
+		A7A50BC2233A6F6700C8624C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A7E70DCB232172A000EFD8B0 /* RegionsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsEnum.swift; sourceTree = "<group>"; };
 		A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CountryModel.swift; path = ../../Countries/Model/CountryModel.swift; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 		A7261B622329474C00D4854D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A7A50BC0233A5BF100C8624C /* CustomsRules.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 			children = (
 				A7A50BBF2339250000C8624C /* NetworkService */,
 				A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */,
+				A7A50BC2233A6F6700C8624C /* RealmManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -378,8 +384,10 @@
 			files = (
 				A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */,
 				A773D41F232809E1008DA6BF /* MainScreenTableViewCell.swift in Sources */,
+				A7A50BC3233A6F6700C8624C /* RealmManager.swift in Sources */,
 				A7E70DCC232172A000EFD8B0 /* RegionsEnum.swift in Sources */,
 				A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */,
+				A7A50BC1233A5BF100C8624C /* CustomsRules.swift in Sources */,
 				A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */,
 				A77A68C623203AF4005EAC5A /* CountryViewController.swift in Sources */,
 				A7261B662329477200D4854D /* CustomsViewController.swift in Sources */,

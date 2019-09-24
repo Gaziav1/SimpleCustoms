@@ -9,17 +9,13 @@
 import UIKit
 
 
-
-
-
 private struct Constans {
     static let topViewHeight: CGFloat = 47
     static let customsRulesLabelInsets = UIEdgeInsets(top: 8 + Constans.topViewHeight + 13, left: 18, bottom: 10, right: 18)
-    static let customsRulesLabelFont = UIFont.systemFont(ofSize: 20)
+    static let customsRulesLabelFont = UIFont.systemFont(ofSize: 19)
     static var screenWidth: CGFloat {
          return UIScreen.main.bounds.width
      }
-    
 }
 
 class CustomsRulesCellLayout {
@@ -36,6 +32,7 @@ class CustomsRulesCellLayout {
         
         let customsRulesLabelFrame: CGRect = CGRect(origin: CGPoint(x: Constans.customsRulesLabelInsets.left, y: Constans.customsRulesLabelInsets.top), size: CGSize(width: width, height: customsRule.height(width: width, font: Constans.customsRulesLabelFont)))
         
+        print(customsRulesLabelFrame.maxY)
         totalHeight = customsRulesLabelFrame.maxY
         
         return customsRulesLabelFrame

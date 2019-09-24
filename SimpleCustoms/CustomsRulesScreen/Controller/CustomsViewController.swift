@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CustomsViewController: UIViewController {
+    
+    var rules: CustomsRules!
     
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -29,7 +32,6 @@ class CustomsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUIElements()
     }
     
@@ -75,17 +77,20 @@ class CustomsViewController: UIViewController {
 extension CustomsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return rules.customsRule.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomsRulesTableViewCell.reuseIdentifier, for: indexPath) as! CustomsRulesTableViewCell
-    
+        cell.rulesTypeLabel.text = rules.customsRule[indexPath.row].header
+        cell.rulesLabel.text = rules.customsRule[indexPath.row].body
+        cell.rulesLabel.frame = CustomsRulesCellLayout.shared.size(for: cell.rulesLabel.text!)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CustomsRulesCellLayout.shared.totalHeight
+       return CustomsRulesCellLayout.shared.totalHeight
+   
     }
 }
 
