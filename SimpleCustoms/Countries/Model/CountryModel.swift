@@ -12,6 +12,5 @@ struct Country: Decodable {
     var name: String
     var capital: String
     var alpha2Code: String
-    var languages: [Language]
-    var currencies: [Currency]
+   
 }

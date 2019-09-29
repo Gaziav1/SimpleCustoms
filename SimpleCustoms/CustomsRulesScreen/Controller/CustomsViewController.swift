@@ -11,7 +11,7 @@ import RealmSwift
 
 class CustomsViewController: UIViewController {
     
-    var rules: CustomsRules!
+    var rules: CustomsRules?
     
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -28,23 +28,14 @@ class CustomsViewController: UIViewController {
         return imageView
     }()
     
-    private var rulesText = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIElements()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupNavigationBar()
-    }
+ 
     
-    private func setupNavigationBar() {
-        self.navigationController?.navigationBar.barTintColor = self.view.backgroundColor
-        self.navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.shadowImage = UIImage()
-    }
     
     private func setupUIElements() {
         self.view.addSubview(imageFlag)
@@ -67,22 +58,21 @@ class CustomsViewController: UIViewController {
     }
     
     
-    override func willMove(toParent parent: UIViewController?) {
-        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1637933552, green: 0.261087656, blue: 0.3897231221, alpha: 1)
-        self.navigationController?.navigationBar.isTranslucent = true
-    }
 }
 
 
 extension CustomsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let rules = rules else { return 1 }
         return rules.customsRule.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomsRulesTableViewCell.reuseIdentifier, for: indexPath) as! CustomsRulesTableViewCell
+        guard let rules = rules else { return cell }
+        
         cell.rulesTypeLabel.text = rules.customsRule[indexPath.row].header
         
         let text = rules.customsRule[indexPath.row].body.replacingOccurrences(of: "\\n", with: "\n") //обеспечивает начало текста с новой строки при загрузке текста из базы данных

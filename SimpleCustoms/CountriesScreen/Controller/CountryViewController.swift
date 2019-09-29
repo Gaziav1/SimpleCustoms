@@ -22,10 +22,13 @@ class CountryViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        handleDataDownloading()
     }
     
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        handleDataDownloading()
+    }
     
     private func handleDataDownloading() {
         tableView.isHidden = true
@@ -93,10 +96,8 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showCustomsRules", sender: self)
     }
-    
-    
 }
 
-    
+
 
 
