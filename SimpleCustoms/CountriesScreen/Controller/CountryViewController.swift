@@ -12,41 +12,98 @@ import Lottie
 class CountryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var loadingAnimation: AnimationView! 
+    @IBOutlet weak var loadingAnimation: AnimationView! {
+        didSet {
+            let animation = Animation.named("1055-world-locations")
+            loadingAnimation.animation = animation
+            loadingAnimation.animationSpeed = 1
+            loadingAnimation.loopMode = .loop
+            loadingAnimation.contentMode = .scaleAspectFit
+        }
+    }
     
     private var countries = [Country]()
     private var flagImages = [FlagImage]()
-    private var url: URL!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         tableView.separatorColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         tableView.delegate = self
         tableView.dataSource = self
+        handleError()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+       
         handleDataDownloading()
     }
     
-    private func handleDataDownloading() {
+    @objc private func handleDataDownloading() {
         tableView.isHidden = true
-        tableView.separatorColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        let animation = Animation.named("1055-world-locations")
-        loadingAnimation.animation = animation
-        loadingAnimation.animationSpeed = 1
-        loadingAnimation.loopMode = .loop
-        loadingAnimation.contentMode = .scaleAspectFit
+        loadingAnimation.isHidden = false
         loadingAnimation.play()
-        NetworkCountryFetcher.shared.fetchCountries { (country, flagImage) in
-            self.countries = country
-            self.flagImages = flagImage
+        NetworkCountryFetcher.shared.fetchCountries { (country, flagImage, error) in
+            guard error == nil else {
+                return
+            }
+            guard let countries = country, let flagImages = flagImage else {  return }
+            self.countries = countries
+            self.flagImages = flagImages
             self.tableView.reloadData()
             self.loadingAnimation.stop()
             self.tableView.isHidden = false
             self.loadingAnimation.isHidden = true
         }
+    }
+    
+    @objc private func buttonAction() {
+        handleDataDownloading()
+    }
+    
+    private func handleError() {
+       
+        let image = UIImageView()
+        image.image = UIImage(named: "sad2")
+        image.contentMode = .scaleAspectFit
+        
+        let label = UILabel()
+        label.textColor = #colorLiteral(red: 0.5764705882, green: 0.5764705882, blue: 0.5764705882, alpha: 1)
+        label.text = "К сожалению загрузка данных не удалась. Пожалуйста, попытайтесь позднее."
+        label.font = UIFont.systemFont(ofSize: 17)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+       
+        let button = UIButton()
+        button.setTitle("Обновить", for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.1843137255, green: 0.5529411765, blue: 0.7803921569, alpha: 1)
+        button.addTarget(self, action: #selector(handleDataDownloading), for: .touchUpInside)
+        
+        view.addSubview(image)
+        view.addSubview(label)
+        view.addSubview(button)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            image.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
+            image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+         
+            label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 25),
+            label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            
+            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 25),
+            button.centerXAnchor.constraint(equalTo: image.centerXAnchor),
+            button.widthAnchor.constraint(equalToConstant: 300),
+            button.heightAnchor.constraint(equalToConstant: 40)
+        
+        ])
+        
+        button.layer.cornerRadius = 15
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

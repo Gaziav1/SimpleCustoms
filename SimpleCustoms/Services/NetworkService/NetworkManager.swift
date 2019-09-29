@@ -23,23 +23,12 @@ class NetworkManager {
         }
         
         session.dataTask(with: url) { (data, response, error) in
-            
+          
             request(data, error)
-            
-            }.resume()
+        }.resume()
     }
     
-    func fetchFlagsImages(for countryCode: String) -> [UIImage] {
-        var flatFlagImage = UIImage()
-        var shinyFlagImage = UIImage()
-        guard let urlForFlat = URL(string: "https://www.countryflags.io/\(countryCode)/flat/64.png"), let urlForShiny = URL(string: "https://www.countryflags.io/\(countryCode)/shiny/64.png") else { return [UIImage(), UIImage()] }
-        
-        guard let dataForFlatImage = try? Data(contentsOf: urlForFlat),
-            let dataForShinyImage = try? Data(contentsOf: urlForShiny) else { return [UIImage(), UIImage()] }
-        
-        flatFlagImage = UIImage(data: dataForFlatImage)!
-        shinyFlagImage =  UIImage(data: dataForShinyImage)!
-        
-        return [flatFlagImage, shinyFlagImage]
+    func fetchFlagsImages(for countryCode: String) -> [UIImage?] {
+        return WebImageHandler.prepareImages(countryCode: countryCode)
     }
 }

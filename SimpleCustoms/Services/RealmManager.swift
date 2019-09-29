@@ -11,7 +11,7 @@ import RealmSwift
 
 
 
-class RealmManager {
+final class RealmManager {
     
     private var database: Realm
     

@@ -10,15 +10,15 @@ import UIKit
 
 final class FlagImage {
     
-    var shinyflagImage: UIImage
-    var flatFlagImage: UIImage
+    var shinyflagImage: UIImage?
+    var flatFlagImage: UIImage?
     
     
     init(countryCode: String) {
         
        let massiveOfImages = NetworkManager.shared.fetchFlagsImages(for: countryCode)
-        self.flatFlagImage = massiveOfImages[0]
-        self.shinyflagImage = massiveOfImages[1]
+        self.flatFlagImage = massiveOfImages[0] ?? nil
+        self.shinyflagImage = massiveOfImages[1] ?? nil
     
     }
 }

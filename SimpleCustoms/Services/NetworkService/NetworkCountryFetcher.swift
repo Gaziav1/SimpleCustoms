@@ -8,16 +8,25 @@
 
 import Foundation
 
-class NetworkCountryFetcher {
+final class NetworkCountryFetcher {
     
     static var shared = NetworkCountryFetcher()
     
     private init(){}
     
-    func fetchCountries(completionHandler: @escaping ([Country], [FlagImage]) -> Void) {
+    func fetchCountries(completionHandler: @escaping ([Country]?, [FlagImage]?, Error?) -> Void) {
         NetworkManager.shared.getCountries { (data, error) in
             
-            guard let data = data else { return }
+            guard error == nil else {
+                completionHandler(nil, nil, error)
+                return
+            }
+            
+            guard let data = data else {
+                completionHandler(nil, nil, error)
+                return
+            }
+            
             do {
                 let json = try JSONDecoder().decode([Country].self, from: data)
                 var flagImages = [FlagImage]()
@@ -26,9 +35,10 @@ class NetworkCountryFetcher {
                     flagImages.append(imageFlag)
                 }
                 DispatchQueue.main.async {
-                    completionHandler(json, flagImages)
+                    completionHandler(json, flagImages, nil)
                 }
             } catch let error {
+                completionHandler(nil, nil, error)
                 print(error.localizedDescription)
             }
         }
