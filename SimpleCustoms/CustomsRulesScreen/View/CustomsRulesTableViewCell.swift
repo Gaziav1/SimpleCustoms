@@ -19,7 +19,12 @@ class CustomsRulesTableViewCell: UITableViewCell {
             customsHeaderView.dropShadow()
         }
     }
-    @IBOutlet weak var rulesLabel: UILabel!
+    @IBOutlet weak var rulesLabel: UILabel! {
+        didSet {
+        
+        }
+    }
+    
     @IBOutlet weak var rulesTypeLabel: UILabel!
     @IBOutlet weak var rulesIcon: UIImageView! {
         didSet {

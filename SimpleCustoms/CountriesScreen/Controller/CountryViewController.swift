@@ -14,8 +14,6 @@ class CountryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingAnimation: AnimationView! 
     
-    
-   
     private var countries = [Country]()
     private var flagImages = [FlagImage]()
     private var url: URL!
@@ -31,7 +29,7 @@ class CountryViewController: UIViewController {
     
     private func handleDataDownloading() {
         tableView.isHidden = true
-        tableView.separatorColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 0.6863377109)
+        tableView.separatorColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         let animation = Animation.named("1055-world-locations")
         loadingAnimation.animation = animation
         loadingAnimation.animationSpeed = 1
@@ -75,7 +73,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainScreenTableViewCell
         cell.countryFlag.image = flagImages[indexPath.row].flatFlagImage
         cell.countryName.text = countries[indexPath.row].name
-        tableView.deselectRow(at: indexPath, animated: true)
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -89,7 +87,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
         cell.countryFlag.image = flagImages[indexPath.row].flatFlagImage
-        cell.backgroundColor = self.tableView.backgroundColor
+        cell.backgroundColor = #colorLiteral(red: 0.1294117647, green: 0.1764705882, blue: 0.231372549, alpha: 1)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

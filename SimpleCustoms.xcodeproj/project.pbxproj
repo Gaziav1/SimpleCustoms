@@ -22,8 +22,8 @@
 		A7A50BBE233924C500C8624C /* CellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */; };
 		A7A50BC1233A5BF100C8624C /* CustomsRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BC0233A5BF100C8624C /* CustomsRules.swift */; };
 		A7A50BC3233A6F6700C8624C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BC2233A6F6700C8624C /* RealmManager.swift */; };
+		A7B31DF92340D46200FBC4F8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B31DF82340D46200FBC4F8 /* Extensions.swift */; };
 		A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */; };
-		A7E70DCC232172A000EFD8B0 /* RegionsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DCB232172A000EFD8B0 /* RegionsEnum.swift */; };
 		A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */; };
 		A7E70DD323217FD200EFD8B0 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DD223217FD200EFD8B0 /* CurrencyModel.swift */; };
 		A7E70DD72321803C00EFD8B0 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DD62321803C00EFD8B0 /* LanguageModel.swift */; };
@@ -52,8 +52,8 @@
 		A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizeCalculator.swift; sourceTree = "<group>"; };
 		A7A50BC0233A5BF100C8624C /* CustomsRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsRules.swift; sourceTree = "<group>"; };
 		A7A50BC2233A6F6700C8624C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		A7B31DF82340D46200FBC4F8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		A7E70DCB232172A000EFD8B0 /* RegionsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsEnum.swift; sourceTree = "<group>"; };
 		A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CountryModel.swift; path = ../../Countries/Model/CountryModel.swift; sourceTree = "<group>"; };
 		A7E70DD223217FD200EFD8B0 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		A7E70DD62321803C00EFD8B0 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
@@ -186,6 +186,7 @@
 			children = (
 				A77A68CA23203AF5005EAC5A /* Assets.xcassets */,
 				A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */,
+				A7B31DF82340D46200FBC4F8 /* Extensions.swift */,
 				A77A68CF23203AF5005EAC5A /* Info.plist */,
 				A706BFAE232D4318002DA9C4 /* Fonts */,
 				A797E3D82326A8BB00A872B8 /* Lottie Animations */,
@@ -224,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */,
-				A7E70DCB232172A000EFD8B0 /* RegionsEnum.swift */,
 				A7FE91372323FAA70052348F /* FlagImage */,
 				A7E70DD52321801900EFD8B0 /* Languages */,
 				A7E70DD423217FE100EFD8B0 /* Currency */,
@@ -385,7 +385,6 @@
 				A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */,
 				A773D41F232809E1008DA6BF /* MainScreenTableViewCell.swift in Sources */,
 				A7A50BC3233A6F6700C8624C /* RealmManager.swift in Sources */,
-				A7E70DCC232172A000EFD8B0 /* RegionsEnum.swift in Sources */,
 				A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */,
 				A7A50BC1233A5BF100C8624C /* CustomsRules.swift in Sources */,
 				A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */,
@@ -393,6 +392,7 @@
 				A7261B662329477200D4854D /* CustomsViewController.swift in Sources */,
 				A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */,
 				A7FE91392323FAC40052348F /* FlagImage.swift in Sources */,
+				A7B31DF92340D46200FBC4F8 /* Extensions.swift in Sources */,
 				A7E70DD323217FD200EFD8B0 /* CurrencyModel.swift in Sources */,
 				A761CF0F232A8AFF001F67EA /* CustomsRulesTableViewCell.swift in Sources */,
 				A7E70DD72321803C00EFD8B0 /* LanguageModel.swift in Sources */,

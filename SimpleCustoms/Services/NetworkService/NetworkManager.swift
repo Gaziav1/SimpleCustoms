@@ -12,13 +12,12 @@ class NetworkManager {
     
     static let shared = NetworkManager()
     private let session = URLSession(configuration: .default)
-    var url: URL!
+    private var url = URL(string: "https://restcountries.eu/rest/v2/region/europe")
     private init(){}
     
     
     func getCountries(request: @escaping (Data?, Error?) -> Void) {
         
-        createUrl(for: .europe)
         guard let url = url else { print("url is not valid")
             return
         }
@@ -43,19 +42,4 @@ class NetworkManager {
         
         return [flatFlagImage, shinyFlagImage]
     }
-    
-    
-    func createUrl(for region: Regions) {
-        switch region {
-        case .americas:
-            url = URL(string: "https://restcountries.eu/rest/v2/region/americas")
-        case .asia:
-            url = URL(string: "https://restcountries.eu/rest/v2/region/asia")
-        case .europe:
-            url = URL(string: "https://restcountries.eu/rest/v2/region/europe")
-        case .oceania:
-            url = URL(string: "https://restcountries.eu/rest/v2/region/oceania")
-        }
-    }
 }
-
