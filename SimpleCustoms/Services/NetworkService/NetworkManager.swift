@@ -34,7 +34,7 @@ class NetworkManager {
         dataTask.resume()
     }
     
-    func fetchFlagsImages(for countryCode: String, of type: ImageType) -> UIImage? {
+    func fetchFlagsImages(for countryCode: String, of type: ImageType) -> Data? {
         return WebImageHandler.getImage(for: countryCode, of: type)
     }
 }

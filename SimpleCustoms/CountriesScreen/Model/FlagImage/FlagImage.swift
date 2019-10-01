@@ -8,17 +8,16 @@
 
 import UIKit
 
-final class FlagImage {
+struct FlagImage: Decodable {
     
-    var shinyflagImage: UIImage?
-    var flatFlagImage: UIImage?
+    var shinyFlagImage: Data?
+    var flatFlagImage: Data?
     
     
     init(countryCode: String) {
         
-        
         self.flatFlagImage = NetworkManager.shared.fetchFlagsImages(for: countryCode, of: .flat)
-        self.shinyflagImage = NetworkManager.shared.fetchFlagsImages(for: countryCode, of: .shiny)
+        self.shinyFlagImage = NetworkManager.shared.fetchFlagsImages(for: countryCode, of: .shiny)
     
     }
 }

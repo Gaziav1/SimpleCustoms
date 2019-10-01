@@ -27,7 +27,6 @@ class CountryViewController: UIViewController {
     private var isSearching = false
     
     private var countries = [Country]()
-    private var flagImages = [FlagImage]()
     private var isErrorOcurred = false
     
     override func viewDidLoad() {
@@ -52,15 +51,14 @@ class CountryViewController: UIViewController {
         tableView.isHidden = true
         loadingAnimation.isHidden = false
         loadingAnimation.play()
-        NetworkCountryFetcher.shared.fetchCountries { (country, flagImage, error) in
+        NetworkCountryFetcher.shared.fetchCountries { (country, error) in
             guard error == nil else {
                 self.isErrorOcurred = true
                 self.handleError()
                 return
             }
-            guard let countries = country, let flagImages = flagImage else {  return }
+            guard let countries = country else { return }
             self.countries = countries
-            self.flagImages = flagImages
             self.tableView.reloadData()
             self.loadingAnimation.stop()
             self.tableView.isHidden = false
@@ -143,12 +141,10 @@ class CountryViewController: UIViewController {
             country = countries[indexPath.row]
         }
         let title = country
-        let image = flagImages[indexPath.row].flatFlagImage
-        
         let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", title.alpha2Code)) //запрашиваем информацию о таможенных правилах страны по ее коду
-        
-        segue.rules = customsRule[0]
+        guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return }
         segue.imageFlag.image = image
+        segue.rules = customsRule[0]
         segue.navigationItem.title = title.name
     }
 }
@@ -175,23 +171,27 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
             country = countries[indexPath.row]
             
         }
-        
-        cell.countryFlag.image = flagImages[indexPath.row].flatFlagImage
+    
         cell.countryName.text = country.name
-        
+        guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return cell }
+        cell.countryFlag.image = image
         return cell
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
-        cell.countryFlag.image = flagImages[indexPath.row].shinyflagImage
+        let country = countries[indexPath.row]
+        guard let data = country.flagImages?.shinyFlagImage, let image = UIImage(data: data) else { return }
+        cell.countryFlag.image = image
         cell.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         
     }
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
-        cell.countryFlag.image = flagImages[indexPath.row].flatFlagImage
+        let country = countries[indexPath.row]
+        guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return }
+        cell.countryFlag.image = image
         cell.backgroundColor = #colorLiteral(red: 0.1294117647, green: 0.1764705882, blue: 0.231372549, alpha: 1)
     }
     

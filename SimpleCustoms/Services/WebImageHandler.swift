@@ -19,28 +19,27 @@ final class WebImageHandler {
     private init(){}
     private static let defaultImage = UIImage(named: "Europe")
     
-    static func getImage(for countryCode: String, of type: ImageType) -> UIImage? {
+    static func getImage(for countryCode: String, of type: ImageType) -> Data? {
         
-        var image: UIImage?
-        guard let urlForImage = URL(string: "https://www.countryflags.io/\(countryCode)/\(type.rawValue)/64.png") else { return UIImage(named: "Europe") }
+        guard let urlForImage = URL(string: "https://www.countryflags.io/\(countryCode)/\(type.rawValue)/64.png") else { return nil }
+        var dataForImage: Data?
         
         if let cachedImage = URLCache.shared.cachedResponse(for: URLRequest(url: urlForImage)) {
-            image = UIImage(data: cachedImage.data)
-            return image
+            return cachedImage.data
         }
         
         let dataTask = URLSession.shared.dataTask(with: urlForImage) { (data, response, error) in
             DispatchQueue.main.async {
                 if let data = data, let response = response {
-                    image = UIImage(data: data)
+                    dataForImage = data
                     self.handleLoadedImage(data: data, response: response)
                 } else {
-                    image = defaultImage
+                    dataForImage = nil
                 }
             }
         }
         dataTask.resume()
-        return image
+        return dataForImage
     }
     
     private static func handleLoadedImage(data: Data, response: URLResponse ) {
