@@ -15,34 +15,31 @@ final class NetworkCountryFetcher {
     private init(){}
     
     func fetchCountries(completionHandler: @escaping ([Country]?, [FlagImage]?, Error?) -> Void) {
-        NetworkManager.shared.getCountries { (data, error) in
+        NetworkManager.shared.getCountries { (result) in
             
-            guard error == nil else {
+            switch result {
+            case .failure(let error):
                 completionHandler(nil, nil, error)
-                return
-            }
-            
-            guard let data = data else {
-                completionHandler(nil, nil, error)
-                return
-            }
-            
-            do {
-                let json = try JSONDecoder().decode([Country].self, from: data)
-                var flagImages = [FlagImage]()
-                for country in json {
-                    let imageFlag = FlagImage(countryCode: country.alpha2Code)
-                    flagImages.append(imageFlag)
+            case .success(let data):
+                do {
+                    let json = try JSONDecoder().decode([Country].self, from: data)
+                    var flagImages = [FlagImage]()
+                    for country in json {
+                        let imageFlag = FlagImage(countryCode: country.alpha2Code)
+                        flagImages.append(imageFlag)
+                    }
+                    DispatchQueue.main.async {
+                        completionHandler(json, flagImages, nil)
+                    }
+                } catch let error {
+                    completionHandler(nil, nil, error)
                 }
-                DispatchQueue.main.async {
-                    completionHandler(json, flagImages, nil)
-                }
-            } catch let error {
-                completionHandler(nil, nil, error)
-                print(error.localizedDescription)
             }
         }
     }
 }
+
+
+
 
 

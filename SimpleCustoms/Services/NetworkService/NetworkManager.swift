@@ -11,24 +11,30 @@ import UIKit
 class NetworkManager {
     
     static let shared = NetworkManager()
-    private let session = URLSession(configuration: .default)
     private var url = URL(string: "https://restcountries.eu/rest/v2/region/europe")
     private init(){}
     
     
-    func getCountries(request: @escaping (Data?, Error?) -> Void) {
+    func getCountries(request: @escaping (Result<Data, Error>) -> Void) {
         
         guard let url = url else { print("url is not valid")
             return
         }
         
-        session.dataTask(with: url) { (data, response, error) in
-          
-            request(data, error)
-        }.resume()
+        let dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            guard error == nil else {
+                request(.failure(error!))
+                return
+            }
+           
+            request(.success(data!))
+            
+        }
+        dataTask.resume()
     }
     
-    func fetchFlagsImages(for countryCode: String) -> [UIImage?] {
-        return WebImageHandler.prepareImages(countryCode: countryCode)
+    func fetchFlagsImages(for countryCode: String, of type: ImageType) -> UIImage? {
+        return WebImageHandler.getImage(for: countryCode, of: type)
     }
 }

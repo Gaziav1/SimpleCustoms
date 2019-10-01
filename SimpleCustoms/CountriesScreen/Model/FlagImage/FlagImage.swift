@@ -16,9 +16,9 @@ final class FlagImage {
     
     init(countryCode: String) {
         
-       let massiveOfImages = NetworkManager.shared.fetchFlagsImages(for: countryCode)
-        self.flatFlagImage = massiveOfImages[0] ?? nil
-        self.shinyflagImage = massiveOfImages[1] ?? nil
+        
+        self.flatFlagImage = NetworkManager.shared.fetchFlagsImages(for: countryCode, of: .flat)
+        self.shinyflagImage = NetworkManager.shared.fetchFlagsImages(for: countryCode, of: .shiny)
     
     }
 }

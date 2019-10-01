@@ -10,7 +10,5 @@ import UIKit
 
 struct Country: Decodable {
     var name: String
-    var capital: String
     var alpha2Code: String
-   
 }

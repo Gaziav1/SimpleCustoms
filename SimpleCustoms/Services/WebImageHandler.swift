@@ -8,27 +8,44 @@
 
 import UIKit
 
-
+enum ImageType: String {
+    case flat
+    case shiny
+}
 
 
 final class WebImageHandler {
-
-    private init(){}
     
-    static func prepareImages(countryCode: String) -> [UIImage?] {
-  
-        guard let urlForFlat = URL(string: "https://www.countryflags.io/\(countryCode)/flat/64.png"),
-              let urlForShiny = URL(string: "https://www.countryflags.io/\(countryCode)/shiny/64.png") else { return [UIImage(named: "Europe"), nil] }
+    private init(){}
+    private static let defaultImage = UIImage(named: "Europe")
+    
+    static func getImage(for countryCode: String, of type: ImageType) -> UIImage? {
         
-        do {
-            let dataForFlatImage = try Data(contentsOf: urlForFlat)
-            let dataForShinyImage = try Data(contentsOf: urlForShiny)
-            guard let flatFlagImage = UIImage(data: dataForFlatImage), let shinyFlagImage =  UIImage(data: dataForShinyImage) else { return [UIImage(named: "Europe"), nil] }
-            return [flatFlagImage, shinyFlagImage]
+        var image: UIImage?
+        guard let urlForImage = URL(string: "https://www.countryflags.io/\(countryCode)/\(type.rawValue)/64.png") else { return UIImage(named: "Europe") }
         
-        } catch {
-            print(error.localizedDescription)
-            return [UIImage(named: "Europe"), nil]
+        if let cachedImage = URLCache.shared.cachedResponse(for: URLRequest(url: urlForImage)) {
+            image = UIImage(data: cachedImage.data)
+            return image
         }
+        
+        let dataTask = URLSession.shared.dataTask(with: urlForImage) { (data, response, error) in
+            DispatchQueue.main.async {
+                if let data = data, let response = response {
+                    image = UIImage(data: data)
+                    self.handleLoadedImage(data: data, response: response)
+                } else {
+                    image = defaultImage
+                }
+            }
+        }
+        dataTask.resume()
+        return image
+    }
+    
+    private static func handleLoadedImage(data: Data, response: URLResponse ) {
+        guard let responseURL = response.url else { return }
+        let cachedResponse = CachedURLResponse(response: response, data: data)
+        URLCache.shared.storeCachedResponse(cachedResponse, for: URLRequest(url: responseURL))
     }
 }

@@ -22,22 +22,30 @@ class CountryViewController: UIViewController {
         }
     }
     
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var searchResults = [Country]()
+    private var isSearching = false
+    
     private var countries = [Country]()
     private var flagImages = [FlagImage]()
-
+    private var isErrorOcurred = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         tableView.separatorColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        tableView.delegate = self
-        tableView.dataSource = self
-        handleError()
+        setupTableView()
+        setupSearchController()
+        handleDataDownloading()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-       
-        handleDataDownloading()
+    override func viewWillAppear(_ animated: Bool) {
+        isSearching = false
+        tableView.reloadData()
+    }
+    
+    private func setupTableView() {
+        tableView.separatorColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     @objc private func handleDataDownloading() {
@@ -46,6 +54,8 @@ class CountryViewController: UIViewController {
         loadingAnimation.play()
         NetworkCountryFetcher.shared.fetchCountries { (country, flagImage, error) in
             guard error == nil else {
+                self.isErrorOcurred = true
+                self.handleError()
                 return
             }
             guard let countries = country, let flagImages = flagImage else {  return }
@@ -58,12 +68,13 @@ class CountryViewController: UIViewController {
         }
     }
     
-    @objc private func buttonAction() {
-        handleDataDownloading()
+    private func setupSearchController() {
+        self.navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
     }
     
     private func handleError() {
-       
+        
         let image = UIImageView()
         image.image = UIImage(named: "sad2")
         image.contentMode = .scaleAspectFit
@@ -74,11 +85,17 @@ class CountryViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 17)
         label.textAlignment = .center
         label.numberOfLines = 0
-       
+        
         let button = UIButton()
         button.setTitle("Обновить", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.1843137255, green: 0.5529411765, blue: 0.7803921569, alpha: 1)
         button.addTarget(self, action: #selector(handleDataDownloading), for: .touchUpInside)
+        
+        if !isErrorOcurred {
+            should(hide: true, elements: [button, label, image])
+        } else {
+            should(hide: false, elements: [button, label, image])
+        }
         
         view.addSubview(image)
         view.addSubview(label)
@@ -90,7 +107,7 @@ class CountryViewController: UIViewController {
         NSLayoutConstraint.activate([
             image.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
             image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-         
+            
             label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 25),
             label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -99,41 +116,69 @@ class CountryViewController: UIViewController {
             button.centerXAnchor.constraint(equalTo: image.centerXAnchor),
             button.widthAnchor.constraint(equalToConstant: 300),
             button.heightAnchor.constraint(equalToConstant: 40)
-        
+            
         ])
         
-        button.layer.cornerRadius = 15
-        
+        button.layer.cornerRadius = 25
+    }
+    
+    private func should(hide: Bool, elements: [UIView]) {
+        elements.forEach({ $0.isHidden = hide })
+    }
+    
+    @objc private func buttonAction() {
+        handleDataDownloading()
+        isErrorOcurred = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showCustomsRules" else { return }
         let segue = segue.destination as! CustomsViewController
+        let country: Country
         
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
-        let title = countries[indexPath.row]
+        if isSearching {
+            country = searchResults[indexPath.row]
+        } else {
+            country = countries[indexPath.row]
+        }
+        let title = country
         let image = flagImages[indexPath.row].flatFlagImage
         
-        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", title.alpha2Code))
+        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", title.alpha2Code)) //запрашиваем информацию о таможенных правилах страны по ее коду
         
         segue.rules = customsRule[0]
         segue.imageFlag.image = image
         segue.navigationItem.title = title.name
-        
     }
 }
 
 extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countries.count
+        if isSearching {
+            return searchResults.count
+        } else {
+            return countries.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainScreenTableViewCell
-        cell.countryFlag.image = flagImages[indexPath.row].flatFlagImage
-        cell.countryName.text = countries[indexPath.row].name
         cell.selectionStyle = .none
+        let country: Country
+        if isSearching {
+            country = searchResults[indexPath.row]
+            
+        } else {
+            country = countries[indexPath.row]
+            
+        }
+        
+        cell.countryFlag.image = flagImages[indexPath.row].flatFlagImage
+        cell.countryName.text = country.name
+        
         return cell
     }
     
@@ -155,6 +200,17 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
-
-
+extension CountryViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchResults = countries.filter({$0.name.prefix(searchText.count) == searchText})
+        searchController.searchBar.showsCancelButton = true
+        isSearching = true
+        tableView.reloadData()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchController.searchBar.showsCancelButton = false
+        tableView.reloadData()
+    }
+}
