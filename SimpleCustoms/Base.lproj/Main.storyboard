@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mZR-JG-Jgc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qdh-Jg-NCe">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1952.1739130434785" y="138.61607142857142"/>
         </scene>
         <!--Germany-->
         <scene sceneID="wQF-tA-1xP">
@@ -118,12 +118,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z38-Kt-ydu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.9710144927537" y="138.61607142857142"/>
+            <point key="canvasLocation" x="2868.115942028986" y="138.61607142857142"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Страны-->
         <scene sceneID="nwZ-tz-beV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mZR-JG-Jgc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Страны" image="icons8-europe-100" id="HHx-Cb-gy9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="ZSD-nP-7fO">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -143,7 +144,261 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afh-oE-3dG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+        </scene>
+        <!--Декларант-->
+        <scene sceneID="Wne-Jw-7o4">
+            <objects>
+                <tableViewController id="yDy-zm-4Uj" customClass="DeclarantTableViewController" customModule="SimpleCustoms" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kAn-UD-DBt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.12941176470588234" green="0.1764705882352941" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <sections>
+                            <tableViewSection id="Xir-aM-We6">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="353" id="SgZ-Qh-e4X">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="353"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SgZ-Qh-e4X" id="ot9-jt-eI9">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="353"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9mO-qS-s5T">
+                                                    <rect key="frame" x="0.0" y="11" width="414" height="331"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Товары" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pxA-GC-zLz">
+                                                            <rect key="frame" x="8" y="8" width="398" height="35"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="35" id="OJV-4l-Zrc"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="25"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите перевозимый вами товар из перечня" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cs-hu-Jms">
+                                                            <rect key="frame" x="10" y="41" width="396" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="f43-ck-2En"/>
+                                                                <constraint firstAttribute="width" constant="396" id="oCP-S4-x19"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="15"/>
+                                                            <color key="textColor" red="0.60392156862745094" green="0.5725490196078431" blue="0.5725490196078431" alpha="0.41862777990797545" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Результат" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nm0-zL-c5r">
+                                                            <rect key="frame" x="11" y="197" width="395" height="35"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="35" id="9Yv-Pm-tH1"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="395" id="zDV-i8-Jq7"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="25"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Здесь отобразится информация о необходимости декларирования выбранного товара" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YN2-2c-Xtg">
+                                                            <rect key="frame" x="11" y="227" width="395" height="104"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="395" id="Bxk-Ng-9aV"/>
+                                                                <constraint firstAttribute="height" constant="104" id="OKR-Uh-pbn"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="15"/>
+                                                            <color key="textColor" red="0.60392156860000001" green="0.57254901960000004" blue="0.57254901960000004" alpha="0.4186277799" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0Z-5q-oX7">
+                                                            <rect key="frame" x="8" y="78" width="217" height="36"/>
+                                                            <color key="backgroundColor" red="0.51764705882352935" green="0.73725490196078436" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="36" id="Fvg-Hr-iJo"/>
+                                                                <constraint firstAttribute="width" constant="217" id="hX1-yL-L4S"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="15"/>
+                                                            <state key="normal" title="Выбрать товар">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.12549019607843137" green="0.18431372549019609" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="pxA-GC-zLz" secondAttribute="trailing" constant="8" id="4mo-IK-Fpj"/>
+                                                        <constraint firstItem="a0Z-5q-oX7" firstAttribute="leading" secondItem="9mO-qS-s5T" secondAttribute="leading" constant="8" id="4xS-kb-lsA"/>
+                                                        <constraint firstAttribute="trailing" secondItem="nm0-zL-c5r" secondAttribute="trailing" constant="8" id="5NJ-sN-Jpa"/>
+                                                        <constraint firstAttribute="trailing" secondItem="7cs-hu-Jms" secondAttribute="trailing" constant="8" id="6er-p1-sPL"/>
+                                                        <constraint firstItem="pxA-GC-zLz" firstAttribute="leading" secondItem="9mO-qS-s5T" secondAttribute="leading" constant="8" id="Bcg-hU-uhf"/>
+                                                        <constraint firstItem="nm0-zL-c5r" firstAttribute="leading" secondItem="9mO-qS-s5T" secondAttribute="leading" constant="11" id="C94-2X-Dwj"/>
+                                                        <constraint firstItem="a0Z-5q-oX7" firstAttribute="top" secondItem="7cs-hu-Jms" secondAttribute="bottom" constant="14" id="Dno-7v-2uP"/>
+                                                        <constraint firstAttribute="trailing" secondItem="YN2-2c-Xtg" secondAttribute="trailing" constant="8" id="ELZ-Jl-Vdd"/>
+                                                        <constraint firstItem="7cs-hu-Jms" firstAttribute="leading" secondItem="9mO-qS-s5T" secondAttribute="leading" constant="10" id="I0j-Ad-yym"/>
+                                                        <constraint firstItem="pxA-GC-zLz" firstAttribute="top" secondItem="9mO-qS-s5T" secondAttribute="top" constant="8" id="OUP-C9-88v"/>
+                                                        <constraint firstAttribute="bottom" secondItem="nm0-zL-c5r" secondAttribute="bottom" constant="99" id="apn-Tn-FXE"/>
+                                                        <constraint firstItem="YN2-2c-Xtg" firstAttribute="leading" secondItem="9mO-qS-s5T" secondAttribute="leading" constant="11" id="c2S-g7-mXM"/>
+                                                        <constraint firstItem="7cs-hu-Jms" firstAttribute="top" secondItem="9mO-qS-s5T" secondAttribute="top" constant="41" id="dDT-Ev-w5g"/>
+                                                        <constraint firstAttribute="bottom" secondItem="YN2-2c-Xtg" secondAttribute="bottom" id="zJT-1T-vkB"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9mO-qS-s5T" firstAttribute="top" secondItem="ot9-jt-eI9" secondAttribute="top" constant="11" id="F5i-9e-1dn"/>
+                                                <constraint firstAttribute="bottom" secondItem="9mO-qS-s5T" secondAttribute="bottom" constant="11" id="MxD-5v-29c"/>
+                                                <constraint firstItem="9mO-qS-s5T" firstAttribute="leading" secondItem="ot9-jt-eI9" secondAttribute="leading" id="XZU-mK-2cK"/>
+                                                <constraint firstAttribute="trailing" secondItem="9mO-qS-s5T" secondAttribute="trailing" id="jfl-8Z-2nT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.12941176470588234" green="0.1764705882352941" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="341" id="zYF-SW-fwu">
+                                        <rect key="frame" x="0.0" y="381" width="414" height="341"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zYF-SW-fwu" id="g3i-Zn-2SB">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="341"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ah2-5M-dHb">
+                                                    <rect key="frame" x="0.0" y="5" width="414" height="290"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Валюта" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0WI-Np-5hZ">
+                                                            <rect key="frame" x="8" y="8" width="398" height="35"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="35" id="abE-mI-8cY"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="25"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Узнайте, надо ли Вам декларировать валюту" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMd-aA-FT4">
+                                                            <rect key="frame" x="8" y="35" width="398" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="398" id="0aO-MV-YWl"/>
+                                                                <constraint firstAttribute="height" constant="40" id="C8X-h9-zdP"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="16"/>
+                                                            <color key="textColor" red="0.60392156860000001" green="0.57254901960000004" blue="0.57254901960000004" alpha="0.4186277799" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вам необходимо задекларировать валюту" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFO-b4-7zL">
+                                                            <rect key="frame" x="8" y="236" width="398" height="20"/>
+                                                            <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="HKb-cR-isI">
+                                                            <rect key="frame" x="8" y="83" width="342" height="34"/>
+                                                            <subviews>
+                                                                <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите количество валюты" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IvC-hm-Ffa">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="295" height="34"/>
+                                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.15665740030674846" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="295" id="jqY-CW-g4u"/>
+                                                                    </constraints>
+                                                                    <color key="textColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="17"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert" returnKeyType="done"/>
+                                                                </textField>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RUB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wz7-kC-tYY">
+                                                                    <rect key="frame" x="312" y="0.0" width="30" height="34"/>
+                                                                    <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="22"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="lnU-x2-QeI">
+                                                            <rect key="frame" x="8" y="134" width="341" height="20.333333333333343"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMb-X8-Bhn">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="294" height="20.333333333333332"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="294" id="97M-Lj-7DS"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="22"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2F-9N-dC8">
+                                                                    <rect key="frame" x="312" y="0.0" width="29" height="20.333333333333332"/>
+                                                                    <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="22"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancel" translatesAutoresizingMaskIntoConstraints="NO" id="FsA-AB-CTM">
+                                                            <rect key="frame" x="179" y="176" width="56" height="39"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="39" id="bde-Gb-AfK"/>
+                                                                <constraint firstAttribute="width" constant="56" id="lE9-mW-12O"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.12549019610000001" green="0.1843137255" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="RMd-aA-FT4" firstAttribute="top" secondItem="Ah2-5M-dHb" secondAttribute="top" constant="35" id="0Ft-jZ-xZp"/>
+                                                        <constraint firstItem="lnU-x2-QeI" firstAttribute="top" secondItem="HKb-cR-isI" secondAttribute="bottom" constant="17" id="0rO-1K-WpL"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bFO-b4-7zL" secondAttribute="trailing" constant="8" id="1zI-SS-6BX"/>
+                                                        <constraint firstAttribute="trailing" secondItem="RMd-aA-FT4" secondAttribute="trailing" constant="8" id="3fh-YE-27u"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0WI-Np-5hZ" secondAttribute="trailing" constant="8" id="3wq-ZC-0Sx"/>
+                                                        <constraint firstItem="HKb-cR-isI" firstAttribute="top" secondItem="RMd-aA-FT4" secondAttribute="bottom" constant="8" id="4U6-st-pIb"/>
+                                                        <constraint firstItem="bFO-b4-7zL" firstAttribute="top" secondItem="FsA-AB-CTM" secondAttribute="bottom" constant="21" id="53A-3o-brf"/>
+                                                        <constraint firstItem="0WI-Np-5hZ" firstAttribute="leading" secondItem="Ah2-5M-dHb" secondAttribute="leading" constant="8" id="8CK-Rq-w3u"/>
+                                                        <constraint firstAttribute="trailing" secondItem="lnU-x2-QeI" secondAttribute="trailing" constant="65" id="AdV-Bn-AcM"/>
+                                                        <constraint firstItem="bFO-b4-7zL" firstAttribute="leading" secondItem="Ah2-5M-dHb" secondAttribute="leading" constant="8" id="EWN-va-vzJ"/>
+                                                        <constraint firstItem="HKb-cR-isI" firstAttribute="leading" secondItem="Ah2-5M-dHb" secondAttribute="leading" constant="8" id="HKi-u2-Z9j"/>
+                                                        <constraint firstItem="FsA-AB-CTM" firstAttribute="centerX" secondItem="Ah2-5M-dHb" secondAttribute="centerX" id="MAL-0n-DEa"/>
+                                                        <constraint firstAttribute="trailing" secondItem="HKb-cR-isI" secondAttribute="trailing" constant="64" id="Sb9-ge-yEC"/>
+                                                        <constraint firstItem="0WI-Np-5hZ" firstAttribute="top" secondItem="Ah2-5M-dHb" secondAttribute="top" constant="8" id="Zyc-J9-iUa"/>
+                                                        <constraint firstItem="lnU-x2-QeI" firstAttribute="leading" secondItem="Ah2-5M-dHb" secondAttribute="leading" constant="8" id="asQ-4Y-M2X"/>
+                                                        <constraint firstAttribute="bottom" secondItem="bFO-b4-7zL" secondAttribute="bottom" constant="34" id="ikV-UX-BTj"/>
+                                                        <constraint firstItem="RMd-aA-FT4" firstAttribute="leading" secondItem="Ah2-5M-dHb" secondAttribute="leading" constant="8" id="q5d-gW-1Wg"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Ah2-5M-dHb" secondAttribute="bottom" constant="46" id="J32-ej-wRD"/>
+                                                <constraint firstItem="Ah2-5M-dHb" firstAttribute="leading" secondItem="g3i-Zn-2SB" secondAttribute="leading" id="VNO-Er-Ebq"/>
+                                                <constraint firstItem="Ah2-5M-dHb" firstAttribute="top" secondItem="g3i-Zn-2SB" secondAttribute="top" constant="5" id="dnx-2o-yH4"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ah2-5M-dHb" secondAttribute="trailing" id="xBC-qc-2hB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.12941176470588234" green="0.1764705882352941" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="yDy-zm-4Uj" id="cDb-jN-uDt"/>
+                            <outlet property="delegate" destination="yDy-zm-4Uj" id="Nxj-Gn-BmU"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Декларант" image="icons8-customs-50" id="JR2-FA-fVZ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uz6-ub-5fd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="265.21739130434787" y="873.88392857142856"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="2fu-oL-pmK">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="qdh-Jg-NCe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="dFO-7u-TWU">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="mZR-JG-Jgc" kind="relationship" relationship="viewControllers" id="k3B-Pb-K5E"/>
+                        <segue destination="yDy-zm-4Uj" kind="relationship" relationship="viewControllers" id="byM-ME-hnY"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dps-E0-VBX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cancel" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="icons8-customs-50" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="icons8-europe-100" width="33.333332061767578" height="33.333332061767578"/>
+    </resources>
 </document>
