@@ -10,6 +10,13 @@ import UIKit
 
 class CustomsRulesTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var blur: UIVisualEffectView! {
+        didSet {
+            blur.layer.cornerRadius = 25
+            blur.layer.masksToBounds = true
+        }
+    }
+    
     static var reuseIdentifier = "CustomsCell"
     
     @IBOutlet weak var customsHeaderView: UIView! {

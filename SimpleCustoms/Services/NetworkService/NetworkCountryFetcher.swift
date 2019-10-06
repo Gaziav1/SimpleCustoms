@@ -11,15 +11,20 @@ import Foundation
 final class NetworkCountryFetcher {
     
     static var shared = NetworkCountryFetcher()
-    
+    private var url = URL(string: "https://restcountries.eu/rest/v2/region/europe")
     private init(){}
     
     func fetchCountries(completionHandler: @escaping ([Country]?, Error?) -> Void) {
-        NetworkManager.shared.getCountries { (result) in
+        
+        guard let url = url else { return }
+        
+        NetworkManager.shared.makeRequest(url: url) { (result) in
             
             switch result {
             case .failure(let error):
-                completionHandler(nil, error)
+                DispatchQueue.main.async {
+                    completionHandler(nil, error)
+                }
             case .success(let data):
                 do {
                     let json = try JSONDecoder().decode([Country].self, from: data)
@@ -36,11 +41,17 @@ final class NetworkCountryFetcher {
                     }
                     
                 } catch let error {
-                    completionHandler(nil, error)
+                    DispatchQueue.main.async {
+                        completionHandler(nil, error)
+                    }
                 }
             }
         }
     }
+    
+    func fetchFlagsImages(for countryCode: String, of type: ImageType) -> Data? {
+           return WebImageHandler.getImage(for: countryCode, of: type)
+       }
 }
 
 

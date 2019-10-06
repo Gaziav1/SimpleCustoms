@@ -130,15 +130,16 @@ class CountryViewController: UIViewController {
         guard segue.identifier == "showCustomsRules" else { return }
         let segue = segue.destination as! CustomsViewController
         let country: Country
-        
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
+        
         if isSearching {
             country = searchResults[indexPath.row]
         } else {
             country = countries[indexPath.row]
         }
+        
         let title = country
-        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", title.alpha2Code)) //запрашиваем информацию о таможенных правилах страны по ее коду
+        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", title.alpha2Code), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
         guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return }
         segue.imageFlag.image = image
         segue.rules = customsRule[0]
@@ -189,7 +190,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let country = countries[indexPath.row]
         guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return }
         cell.countryFlag.image = image
-        cell.backgroundColor = #colorLiteral(red: 0.1294117647, green: 0.1764705882, blue: 0.231372549, alpha: 1)
+        cell.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

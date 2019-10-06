@@ -20,6 +20,10 @@
 		A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */; };
 		A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */; };
 		A797D0822347B6A400492849 /* DeclarantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D0812347B6A400492849 /* DeclarantTableViewController.swift */; };
+		A797D08A2348EE6C00492849 /* GoodsWithLimitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */; };
+		A797D08C234A22DC00492849 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D08B234A22DC00492849 /* Currency.swift */; };
+		A797D08E234A23E200492849 /* CurrencyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D08D234A23E200492849 /* CurrencyFetcher.swift */; };
+		A797D096234A2C5A00492849 /* CurrencyExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D095234A2C5A00492849 /* CurrencyExchanger.swift */; };
 		A7A50BBE233924C500C8624C /* CellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */; };
 		A7A50BC1233A5BF100C8624C /* CustomsRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BC0233A5BF100C8624C /* CustomsRules.swift */; };
 		A7A50BC3233A6F6700C8624C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BC2233A6F6700C8624C /* RealmManager.swift */; };
@@ -50,6 +54,10 @@
 		A77A68CF23203AF5005EAC5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCountryFetcher.swift; sourceTree = "<group>"; };
 		A797D0812347B6A400492849 /* DeclarantTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclarantTableViewController.swift; sourceTree = "<group>"; };
+		A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsWithLimitations.swift; sourceTree = "<group>"; };
+		A797D08B234A22DC00492849 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		A797D08D234A23E200492849 /* CurrencyFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFetcher.swift; sourceTree = "<group>"; };
+		A797D095234A2C5A00492849 /* CurrencyExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchanger.swift; sourceTree = "<group>"; };
 		A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizeCalculator.swift; sourceTree = "<group>"; };
 		A7A50BC0233A5BF100C8624C /* CustomsRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsRules.swift; sourceTree = "<group>"; };
 		A7A50BC2233A6F6700C8624C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -166,6 +174,7 @@
 				A77A68D72320449F005EAC5A /* CountriesScreen */,
 				A7261B612329473C00D4854D /* CustomsRulesScreen */,
 				A797D0802347B66F00492849 /* DeclarantScreen */,
+				A797D08F234A2BC000492849 /* Helpers */,
 				A7E70DC623215FE900EFD8B0 /* Services */,
 				A797E3D72326A8B400A872B8 /* Supporting Files */,
 			);
@@ -186,8 +195,28 @@
 			isa = PBXGroup;
 			children = (
 				A797D0812347B6A400492849 /* DeclarantTableViewController.swift */,
+				A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */,
+				A797D08B234A22DC00492849 /* Currency.swift */,
 			);
 			path = DeclarantScreen;
+			sourceTree = "<group>";
+		};
+		A797D08F234A2BC000492849 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */,
+				A7B31DF82340D46200FBC4F8 /* Extensions.swift */,
+				A797D095234A2C5A00492849 /* CurrencyExchanger.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A797D091234A2BED00492849 /* DataBaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				A7A50BC2233A6F6700C8624C /* RealmManager.swift */,
+			);
+			path = DataBaseManager;
 			sourceTree = "<group>";
 		};
 		A797E3D72326A8B400A872B8 /* Supporting Files */ = {
@@ -195,7 +224,6 @@
 			children = (
 				A77A68CA23203AF5005EAC5A /* Assets.xcassets */,
 				A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */,
-				A7B31DF82340D46200FBC4F8 /* Extensions.swift */,
 				A77A68CF23203AF5005EAC5A /* Info.plist */,
 				A706BFAE232D4318002DA9C4 /* Fonts */,
 				A797E3D82326A8BB00A872B8 /* Lottie Animations */,
@@ -216,6 +244,8 @@
 			children = (
 				A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */,
 				A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */,
+				A7B7E259234116720090873F /* WebImageHandler.swift */,
+				A797D08D234A23E200492849 /* CurrencyFetcher.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -223,10 +253,8 @@
 		A7E70DC623215FE900EFD8B0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A797D091234A2BED00492849 /* DataBaseManager */,
 				A7A50BBF2339250000C8624C /* NetworkService */,
-				A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */,
-				A7A50BC2233A6F6700C8624C /* RealmManager.swift */,
-				A7B7E259234116720090873F /* WebImageHandler.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -384,9 +412,13 @@
 				A7261B662329477200D4854D /* CustomsViewController.swift in Sources */,
 				A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */,
 				A7FE91392323FAC40052348F /* FlagImage.swift in Sources */,
+				A797D08E234A23E200492849 /* CurrencyFetcher.swift in Sources */,
+				A797D08A2348EE6C00492849 /* GoodsWithLimitations.swift in Sources */,
 				A7B7E25A234116720090873F /* WebImageHandler.swift in Sources */,
 				A7B31DF92340D46200FBC4F8 /* Extensions.swift in Sources */,
+				A797D08C234A22DC00492849 /* Currency.swift in Sources */,
 				A761CF0F232A8AFF001F67EA /* CustomsRulesTableViewCell.swift in Sources */,
+				A797D096234A2C5A00492849 /* CurrencyExchanger.swift in Sources */,
 				A7A50BBE233924C500C8624C /* CellSizeCalculator.swift in Sources */,
 				A797D0822347B6A400492849 /* DeclarantTableViewController.swift in Sources */,
 			);

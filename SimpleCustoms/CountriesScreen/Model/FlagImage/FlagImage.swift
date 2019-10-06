@@ -16,8 +16,8 @@ struct FlagImage: Decodable {
     
     init(countryCode: String) {
         
-        self.flatFlagImage = NetworkManager.shared.fetchFlagsImages(for: countryCode, of: .flat)
-        self.shinyFlagImage = NetworkManager.shared.fetchFlagsImages(for: countryCode, of: .shiny)
+        self.flatFlagImage = NetworkCountryFetcher.shared.fetchFlagsImages(for: countryCode, of: .flat)
+        self.shinyFlagImage = NetworkCountryFetcher.shared.fetchFlagsImages(for: countryCode, of: .shiny)
     
     }
 }

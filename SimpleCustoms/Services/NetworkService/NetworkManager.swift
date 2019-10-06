@@ -11,15 +11,10 @@ import UIKit
 class NetworkManager {
     
     static let shared = NetworkManager()
-    private var url = URL(string: "https://restcountries.eu/rest/v2/region/europe")
     private init(){}
     
     
-    func getCountries(request: @escaping (Result<Data, Error>) -> Void) {
-        
-        guard let url = url else { print("url is not valid")
-            return
-        }
+    func makeRequest(url: URL, request: @escaping (Result<Data, Error>) -> Void) {
         
         let dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
@@ -34,7 +29,5 @@ class NetworkManager {
         dataTask.resume()
     }
     
-    func fetchFlagsImages(for countryCode: String, of type: ImageType) -> Data? {
-        return WebImageHandler.getImage(for: countryCode, of: type)
-    }
+   
 }
