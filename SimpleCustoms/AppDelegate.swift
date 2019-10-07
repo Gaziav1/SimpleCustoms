@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return true }
+        let path = Bundle.main.path(forResource: "default", ofType: "realm")
+        
+        if !FileManager.default.fileExists(atPath: defaultPath), let bundledPath = path {
+            do {
+                try FileManager.default.copyItem(atPath: bundledPath, toPath: defaultPath)
+            } catch {
+                print("Error copying pre-populated Realm \(error)")
+            }
+            
+        }
+        RealmManager.sharedInstance.realmObject = try! Realm()
         return true
     }
 

@@ -10,27 +10,27 @@ import Foundation
 import RealmSwift
 
 
-import Foundation
-import RealmSwift
-
-let realmObject = try! Realm()
 
 class RealmManager: NSObject {
+    
+    var realmObject: Realm?
     
     static let sharedInstance = RealmManager()
     
     func retrieveAllDataForObject(_ T : Object.Type) -> [Object] {
         
         var objects = [Object]()
-        for result in realmObject.objects(T) {
+        guard let realm = realmObject else { return objects }
+        for result in realm.objects(T) {
             objects.append(result)
         }
         return objects
     }
     
     public func filter(_ predicate: NSPredicate, object: Object.Type) -> [Object] {
-       var objects = [Object]()
-        for result in realmObject.objects(object).filter(predicate) {
+        var objects = [Object]()
+        guard let realm = realmObject else { return objects }
+        for result in realm.objects(object).filter(predicate) {
             objects.append(result)
         }
         return objects
@@ -38,16 +38,17 @@ class RealmManager: NSObject {
     
     func add(_ objects : [Object]) {
         
-        try! realmObject.write{
+        guard let realm = realmObject else { return }
+        try! realm.write {
             
-            realmObject.add(objects)
+            realm.add(objects)
         }
     }
     
     func delete(_ objects : [Object]) {
-        
-        try! realmObject.write{
-            realmObject.delete(objects)
+        guard let realm = realmObject else { return  }
+        try! realm.write{
+            realm.delete(objects)
         }
     }
 }

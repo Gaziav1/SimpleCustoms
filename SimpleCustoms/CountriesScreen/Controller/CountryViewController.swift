@@ -34,9 +34,10 @@ class CountryViewController: UIViewController {
         setupTableView()
         setupSearchController()
         handleDataDownloading()
+       
     }
     
-    
+  
     private func setupTableView() {
         tableView.separatorColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         tableView.delegate = self
@@ -178,7 +179,16 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
-        let country = countries[indexPath.row]
+       let country: Country
+        
+        if isSearching {
+            country = searchResults[indexPath.row]
+            
+        } else {
+            country = countries[indexPath.row]
+            
+        }
+        
         guard let data = country.flagImages?.shinyFlagImage, let image = UIImage(data: data) else { return }
         cell.countryFlag.image = image
         cell.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
@@ -187,7 +197,16 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
-        let country = countries[indexPath.row]
+        let country: Country
+        
+        if isSearching {
+            country = searchResults[indexPath.row]
+            
+        } else {
+            country = countries[indexPath.row]
+            
+        }
+        
         guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return }
         cell.countryFlag.image = image
         cell.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)

@@ -10,7 +10,7 @@ import UIKit
 
 class DeclarantTableViewController: UITableViewController {
     
-    private let goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(GoodsWithLimitations.self) as! [GoodsWithLimitations]
+    private var goodsInformation = [GoodsWithLimitations]()
     
     private var currency: Currency?
     
@@ -31,9 +31,14 @@ class DeclarantTableViewController: UITableViewController {
         setupUIElements()
         getData()
         setupPickerView()
-        
-        
+        goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(GoodsWithLimitations.self) as! [GoodsWithLimitations]
+     
     }
+    
+    @objc func dismissKeyboard() {
+          view.endEditing(true)
+      }
+      
     
     private func getData() {
         CurrencyFetcher.shared.getCurrency(completion: { (currencyEx, error) in
@@ -49,6 +54,8 @@ class DeclarantTableViewController: UITableViewController {
         currencyToConvertLabel.font = currencyToConvertLabel.font?.withSize(18)
         resultLabel.isHidden = true
         resultImage.isHidden = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tableView.addGestureRecognizer(tap)
     }
     
     private func setupPickerView() {
@@ -57,9 +64,6 @@ class DeclarantTableViewController: UITableViewController {
         goodsPicker.dataSource = self
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        currencyToConvertLabel.resignFirstResponder()
-    }
 }
 
 extension DeclarantTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -89,7 +93,7 @@ extension DeclarantTableViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        
         return true
     }
     
