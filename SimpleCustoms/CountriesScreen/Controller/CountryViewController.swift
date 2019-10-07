@@ -34,7 +34,6 @@ class CountryViewController: UIViewController {
         setupTableView()
         setupSearchController()
         handleDataDownloading()
-       
     }
     
   
@@ -101,7 +100,7 @@ class CountryViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: view.topAnchor, constant: 250),
+            image.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 25),
@@ -114,8 +113,8 @@ class CountryViewController: UIViewController {
             button.heightAnchor.constraint(equalToConstant: 40)
             
         ])
-        
-        button.layer.cornerRadius = 25
+        loadingAnimation.isHidden = true
+        button.layer.cornerRadius = 15
     }
     
     private func should(hide: Bool, elements: [UIView]) {
@@ -191,6 +190,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let data = country.flagImages?.shinyFlagImage, let image = UIImage(data: data) else { return }
         cell.countryFlag.image = image
+        print(image)
         cell.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         
     }

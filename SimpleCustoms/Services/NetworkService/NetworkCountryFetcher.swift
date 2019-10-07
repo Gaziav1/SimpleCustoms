@@ -35,7 +35,7 @@ final class NetworkCountryFetcher {
                         countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
                         jsonDataWithImages.append(countryCopy)
                     }
-                
+                    
                     DispatchQueue.main.async {
                         completionHandler(jsonDataWithImages, nil)
                     }
@@ -49,9 +49,11 @@ final class NetworkCountryFetcher {
         }
     }
     
-    func fetchFlagsImages(for countryCode: String, of type: ImageType) -> Data? {
-           return WebImageHandler.getImage(for: countryCode, of: type)
-       }
+    func fetchFlagsImages(for countryCode: String, of type: ImageType, completion: @escaping (Data?) -> Void) {
+        return WebImageHandler.getImage(for: countryCode, of: type) { (data) in
+            completion(data)
+        }
+    }
 }
 
 

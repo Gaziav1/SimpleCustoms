@@ -23,15 +23,9 @@ class CustomsRulesTableViewCell: UITableViewCell {
         didSet {
             customsHeaderView.layer.cornerRadius = 25
             customsHeaderView.layer.masksToBounds = true
-            customsHeaderView.dropShadow()
         }
     }
-    @IBOutlet weak var rulesLabel: UILabel! {
-        didSet {
-        
-        }
-    }
-    
+    @IBOutlet weak var rulesLabel: UILabel!
     @IBOutlet weak var rulesTypeLabel: UILabel!
     @IBOutlet weak var rulesIcon: UIImageView! {
         didSet {

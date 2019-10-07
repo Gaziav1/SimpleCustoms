@@ -13,7 +13,8 @@ class CustomsViewController: UIViewController {
     
     var rules: CustomsRules?
     
-    let tableView: UITableView = {
+    
+    private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UINib(nibName: "CustomsRulesTableViewCell", bundle: nil), forCellReuseIdentifier: CustomsRulesTableViewCell.reuseIdentifier)
@@ -28,14 +29,11 @@ class CustomsViewController: UIViewController {
         return imageView
     }()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIElements()
+        navigationController?.navigationBar
     }
-    
- 
-    
     
     private func setupUIElements() {
         self.view.addSubview(imageFlag)
@@ -56,10 +54,7 @@ class CustomsViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 0),
             tableView.trailingAnchor.constraint(equalToSystemSpacingAfter: view.trailingAnchor, multiplier: 0)])
     }
-    
-    
 }
-
 
 extension CustomsViewController: UITableViewDelegate, UITableViewDataSource {
     

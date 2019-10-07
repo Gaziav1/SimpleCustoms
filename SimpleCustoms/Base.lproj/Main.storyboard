@@ -431,8 +431,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cancel" width="85.333335876464844" height="85.333335876464844"/>
-        <image name="icons8-customs-50" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="cancel" width="128" height="128"/>
+        <image name="icons8-customs-50" width="25" height="25"/>
         <image name="icons8-europe-100" width="33.333332061767578" height="33.333332061767578"/>
     </resources>
 </document>
