@@ -22,18 +22,17 @@ class CustomsViewController: UIViewController {
     }()
     
     let imageFlag: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         return imageView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIElements()
-        navigationController?.navigationBar
+        navigationItem.titleView = imageFlag
     }
+    
     
     private func setupUIElements() {
         self.view.addSubview(imageFlag)
@@ -44,12 +43,8 @@ class CustomsViewController: UIViewController {
         tableView.separatorStyle = .none
         
         NSLayoutConstraint.activate([
-            imageFlag.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            imageFlag.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            imageFlag.widthAnchor.constraint(equalToConstant: 64),
-            imageFlag.heightAnchor.constraint(equalToConstant: 64),
             
-            tableView.topAnchor.constraint(equalTo: imageFlag.bottomAnchor, constant: 10),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
             tableView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 0),
             tableView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 0),
             tableView.trailingAnchor.constraint(equalToSystemSpacingAfter: view.trailingAnchor, multiplier: 0)])

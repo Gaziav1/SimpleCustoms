@@ -59,7 +59,7 @@ class DeclarantTableViewController: UITableViewController {
     }
     
     private func setupPickerView() {
-        goodsPicker.setValue(UIColor.white, forKey: "textColor")
+        //goodsPicker.setValue(UIColor.white, forKey: "textColor")
         goodsPicker.delegate = self
         goodsPicker.dataSource = self
     }
@@ -75,6 +75,11 @@ extension DeclarantTableViewController: UIPickerViewDelegate, UIPickerViewDataSo
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         return goodsInformation.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let title = NSAttributedString(string: goodsInformation[row].productName, attributes:  [.foregroundColor:UIColor.white])
+        return title
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

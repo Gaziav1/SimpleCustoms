@@ -190,7 +190,6 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let data = country.flagImages?.shinyFlagImage, let image = UIImage(data: data) else { return }
         cell.countryFlag.image = image
-        print(image)
         cell.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         
     }
