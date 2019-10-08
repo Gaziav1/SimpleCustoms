@@ -129,6 +129,7 @@ class CountryViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showCustomsRules" else { return }
         let segue = segue.destination as! CustomsViewController
+        navigationController?.dismiss(animated: true, completion: nil)
         let country: Country
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
         
