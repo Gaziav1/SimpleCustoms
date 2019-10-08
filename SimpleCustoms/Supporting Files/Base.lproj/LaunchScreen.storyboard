@@ -16,20 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple                                    Customs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyu-Q1-kNm">
-                                <rect key="frame" x="81" y="411" width="252" height="84.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="252" id="xAB-8Z-ovf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="35"/>
-                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple Customs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADd-a0-DO8">
+                                <rect key="frame" x="81" y="431.5" width="252" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="jyu-Q1-kNm" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="9JX-xM-eMl"/>
-                            <constraint firstItem="jyu-Q1-kNm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eH8-rE-Uw6"/>
+                            <constraint firstItem="ADd-a0-DO8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="MBC-xF-YYX"/>
+                            <constraint firstItem="ADd-a0-DO8" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="WmN-Yc-uWm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

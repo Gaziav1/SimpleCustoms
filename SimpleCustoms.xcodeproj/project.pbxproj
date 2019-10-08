@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7019C0F234D24170073DAFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7019C0E234D24170073DAFD /* Colors.swift */; };
 		A706BFB0232D4356002DA9C4 /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = A706BFAF232D4356002DA9C4 /* Roboto */; };
 		A706BFB42333DB06002DA9C4 /* CustomsRulesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A706BFB32333DB06002DA9C4 /* CustomsRulesTableViewCell.xib */; };
 		A7261B662329477200D4854D /* CustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7261B652329477200D4854D /* CustomsViewController.swift */; };
@@ -40,6 +41,7 @@
 		0D92F1305BE417653EA07745 /* Pods-SimpleCustoms.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleCustoms.debug.xcconfig"; path = "Target Support Files/Pods-SimpleCustoms/Pods-SimpleCustoms.debug.xcconfig"; sourceTree = "<group>"; };
 		2818C78512A0C001CA6E5E82 /* Pods-SimpleCustoms.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleCustoms.release.xcconfig"; path = "Target Support Files/Pods-SimpleCustoms/Pods-SimpleCustoms.release.xcconfig"; sourceTree = "<group>"; };
 		A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleCustoms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7019C0E234D24170073DAFD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A706BFAF232D4356002DA9C4 /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
 		A706BFB32333DB06002DA9C4 /* CustomsRulesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomsRulesTableViewCell.xib; sourceTree = "<group>"; };
 		A7261B652329477200D4854D /* CustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */,
 				A7B31DF82340D46200FBC4F8 /* Extensions.swift */,
 				A797D095234A2C5A00492849 /* CurrencyExchanger.swift */,
+				A7019C0E234D24170073DAFD /* Colors.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */,
+				A7019C0F234D24170073DAFD /* Colors.swift in Sources */,
 				A773D41F232809E1008DA6BF /* MainScreenTableViewCell.swift in Sources */,
 				A7A50BC3233A6F6700C8624C /* RealmManager.swift in Sources */,
 				A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */,

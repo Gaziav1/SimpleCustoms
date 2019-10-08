@@ -27,12 +27,6 @@ class CustomsRulesTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var rulesLabel: UILabel!
     @IBOutlet weak var rulesTypeLabel: UILabel!
-    @IBOutlet weak var rulesIcon: UIImageView! {
-        didSet {
-            rulesIcon.contentMode = .scaleAspectFit
-            rulesIcon.image = #imageLiteral(resourceName: "wallet")
-        }
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

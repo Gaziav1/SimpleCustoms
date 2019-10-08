@@ -68,6 +68,7 @@ extension CustomsViewController: UITableViewDelegate, UITableViewDataSource {
         let text = rules.customsRule[indexPath.row].body.replacingOccurrences(of: "\\n", with: "\n") //обеспечивает начало текста с новой строки при загрузке текста из базы данных
         
         cell.rulesLabel.text = text
+        cell.customsHeaderView.backgroundColor = Colors.colors[indexPath.row]
         cell.rulesLabel.frame = CustomsRulesCellLayout.shared.size(for: cell.rulesLabel.text!)
         return cell
     }
