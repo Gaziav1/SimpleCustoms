@@ -78,7 +78,7 @@ extension DeclarantTableViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let title = NSAttributedString(string: goodsInformation[row].productName, attributes:  [.foregroundColor:UIColor.white])
+        let title = NSAttributedString(string: goodsInformation[row].productName, attributes:  [.foregroundColor: UIColor.white])
         return title
     }
     
@@ -89,7 +89,7 @@ extension DeclarantTableViewController: UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         declarationInfoLabel.textColor = .white
-        declarationInfoLabel.font = declarationInfoLabel.font.withSize(17)
+        declarationInfoLabel.font = declarationInfoLabel.font.withSize(19)
         declarationInfoLabel.text = goodsInformation[row].productLimitations
     }
 }
