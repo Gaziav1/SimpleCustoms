@@ -21,7 +21,6 @@ class DeclarantTableViewController: UITableViewController {
     @IBOutlet weak var resultImage: UIImageView!
     @IBOutlet weak var resultLabel: UILabel!
     
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -35,6 +34,10 @@ class DeclarantTableViewController: UITableViewController {
      
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        getData()
+    }
+    
     @objc func dismissKeyboard() {
           view.endEditing(true)
       }
@@ -43,8 +46,10 @@ class DeclarantTableViewController: UITableViewController {
     private func getData() {
         CurrencyFetcher.shared.getCurrency(completion: { (currencyEx, error) in
             guard error == nil else {
-                self.resultLabel.text = "Не удалось получить данные о текущем курсе евро"
+                self.resultLabel.text = "Не удалось получить текущий курс евро"
+                self.resultLabel.fadeIn()
                 return }
+            self.resultLabel.text = ""
             self.currency = currencyEx!
         })
     }
@@ -111,8 +116,8 @@ extension DeclarantTableViewController: UITextFieldDelegate {
         let exchanger = CurrencyExchanger(valueToExchange: recievedCurrency, currency: currentCurrency)
         convertedCurrencyLabel.text = exchanger.resultToShow
        
-        resultLabel.isHidden = false
-        resultImage.isHidden = false
+        resultLabel.fadeIn()
+        resultImage.fadeIn()
         
         if exchanger.getResult() {
             

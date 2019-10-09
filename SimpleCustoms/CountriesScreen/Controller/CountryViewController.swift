@@ -27,16 +27,45 @@ class CountryViewController: UIViewController {
     private var isSearching = false
     
     private var countries = [Country]()
-    private var isErrorOcurred = false
+    
+    private var buttonForError: UIButton = {
+        let button = UIButton()
+        button.setTitle("Обновить", for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.1843137255, green: 0.5529411765, blue: 0.7803921569, alpha: 1)
+        button.isHidden = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var labelForError: UILabel = {
+        let label = UILabel()
+        label.textColor = #colorLiteral(red: 0.5764705882, green: 0.5764705882, blue: 0.5764705882, alpha: 1)
+        label.isHidden = true
+        label.text = "К сожалению загрузка данных не удалась. Пожалуйста, попытайтесь позднее."
+        label.font = UIFont.systemFont(ofSize: 17)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var imageForError: UIImageView = {
+        let image = UIImageView()
+        image.isHidden = true
+        image.image = UIImage(named: "sad2")
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupSearchController()
+        setupUIElementsForError()
         handleDataDownloading()
     }
     
-  
     private func setupTableView() {
         tableView.separatorColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         tableView.delegate = self
@@ -44,21 +73,22 @@ class CountryViewController: UIViewController {
     }
     
     @objc private func handleDataDownloading() {
+        should(hide: true, elements: [imageForError, buttonForError, labelForError])
         tableView.isHidden = true
-        loadingAnimation.isHidden = false
+        loadingAnimation.fadeIn()
         loadingAnimation.play()
         NetworkCountryFetcher.shared.fetchCountries { (country, error) in
             guard error == nil else {
-                self.isErrorOcurred = true
-                self.handleError()
+                self.loadingAnimation.isHidden = true
+                self.should(hide: false, elements: [self.imageForError, self.buttonForError, self.labelForError])
                 return
             }
             guard let countries = country else { return }
             self.countries = countries
             self.tableView.reloadData()
             self.loadingAnimation.stop()
-            self.tableView.isHidden = false
-            self.loadingAnimation.isHidden = true
+            self.tableView.fadeIn()
+            self.loadingAnimation.fadeOut()
         }
     }
     
@@ -68,62 +98,41 @@ class CountryViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
     }
     
-    private func handleError() {
+    private func setupUIElementsForError() {
+        view.addSubview(imageForError)
+        view.addSubview(labelForError)
+        view.addSubview(buttonForError)
         
-        let image = UIImageView()
-        image.image = UIImage(named: "sad2")
-        image.contentMode = .scaleAspectFit
-        
-        let label = UILabel()
-        label.textColor = #colorLiteral(red: 0.5764705882, green: 0.5764705882, blue: 0.5764705882, alpha: 1)
-        label.text = "К сожалению загрузка данных не удалась. Пожалуйста, попытайтесь позднее."
-        label.font = UIFont.systemFont(ofSize: 17)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        
-        let button = UIButton()
-        button.setTitle("Обновить", for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.1843137255, green: 0.5529411765, blue: 0.7803921569, alpha: 1)
-        button.addTarget(self, action: #selector(handleDataDownloading), for: .touchUpInside)
-        
-        if !isErrorOcurred {
-            should(hide: true, elements: [button, label, image])
-        } else {
-            should(hide: false, elements: [button, label, image])
-        }
-        
-        view.addSubview(image)
-        view.addSubview(label)
-        view.addSubview(button)
-        image.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
+        buttonForError.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-            image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageForError.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+            imageForError.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 25),
-            label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            labelForError.topAnchor.constraint(equalTo: imageForError.bottomAnchor, constant: 25),
+            labelForError.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            labelForError.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             
-            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 25),
-            button.centerXAnchor.constraint(equalTo: image.centerXAnchor),
-            button.widthAnchor.constraint(equalToConstant: 300),
-            button.heightAnchor.constraint(equalToConstant: 40)
-            
+            buttonForError.topAnchor.constraint(equalTo: labelForError.bottomAnchor, constant: 25),
+            buttonForError.centerXAnchor.constraint(equalTo: imageForError.centerXAnchor),
+            buttonForError.widthAnchor.constraint(equalToConstant: 300),
+            buttonForError.heightAnchor.constraint(equalToConstant: 40)
         ])
-        loadingAnimation.isHidden = true
-        button.layer.cornerRadius = 15
+        buttonForError.layer.cornerRadius = 15
     }
     
     private func should(hide: Bool, elements: [UIView]) {
-        elements.forEach({ $0.isHidden = hide })
+        
+        guard !hide else {
+            elements.forEach({ $0.fadeOut() })
+            return
+        }
+        
+        elements.forEach({ $0.fadeIn() })
     }
     
     @objc private func buttonAction() {
         handleDataDownloading()
-        isErrorOcurred = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -170,7 +179,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
             country = countries[indexPath.row]
             
         }
-    
+        
         cell.countryName.text = country.name
         guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return cell }
         cell.countryFlag.image = image
@@ -179,7 +188,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
-       let country: Country
+        let country: Country
         
         if isSearching {
             country = searchResults[indexPath.row]
@@ -201,10 +210,8 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         if isSearching {
             country = searchResults[indexPath.row]
-            
         } else {
             country = countries[indexPath.row]
-            
         }
         
         guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return }
