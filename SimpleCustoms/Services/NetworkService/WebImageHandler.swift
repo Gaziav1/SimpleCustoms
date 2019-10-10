@@ -22,18 +22,21 @@ final class WebImageHandler {
     static func getImage(for countryCode: String, of type: ImageType, completion: @escaping (Data?) -> Void) {
         
         guard let urlForImage = URL(string: "https://www.countryflags.io/\(countryCode)/\(type.rawValue)/64.png") else { return }
-    
+        
         if let cachedImage = URLCache.shared.cachedResponse(for: URLRequest(url: urlForImage)) {
             return completion(cachedImage.data)
         }
-        
+        networkCallGroup.enter()
         URLSession.shared.dataTask(with: urlForImage) { (data, response, error) in
-                if let data = data, let response = response {
+            if let data = data, let response = response {
+                DispatchQueue.main.async {
                     completion(data)
                     self.handleLoadedImage(data: data, response: response)
-                } else {
-                    completion(nil)
+                    networkCallGroup.leave()
                 }
+            } else {
+                completion(nil)
+            }
         }.resume()
     }
     

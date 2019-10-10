@@ -8,6 +8,8 @@
 
 import Foundation
 
+let networkCallGroup = DispatchGroup() //нужно для выполнения двух запросов и передачи данных по их окончанию
+
 final class NetworkCountryFetcher {
     
     static var shared = NetworkCountryFetcher()
@@ -18,27 +20,32 @@ final class NetworkCountryFetcher {
         
         guard let url = url else { return }
         
+        networkCallGroup.enter()
         NetworkManager.shared.makeRequest(url: url) { (result) in
-            DispatchQueue.main.async {
-                
-                switch result {
-                case .failure(let error):
-                    completionHandler(nil, error)
-                case .success(let data):
-                    do {
-                        let json = try JSONDecoder().decode([Country].self, from: data)
-                        var jsonDataWithImages = [Country]()
-                 
-                            json.forEach { (country) in
-                                guard let countryCopy = self.filter(country) else { return }
-                                countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
-                           
-                                jsonDataWithImages.append(countryCopy)
-                        }
-                        completionHandler(jsonDataWithImages, nil)
-                    } catch let error {
-                        completionHandler(nil, error)
+            
+            
+            switch result {
+            case .failure(let error):
+                completionHandler(nil, error)
+            case .success(let data):
+                do {
+                    let json = try JSONDecoder().decode([Country].self, from: data)
+                    var jsonDataWithImages = [Country]()
+                    
+                    json.forEach { (country) in
+                        guard let countryCopy = self.filter(country) else { return }
+                        countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
+                        
+                        jsonDataWithImages.append(countryCopy)
                     }
+                    networkCallGroup.leave()
+                    networkCallGroup.notify(queue: .main) {
+                        
+                        completionHandler(jsonDataWithImages, nil)
+                    }
+                    
+                } catch let error {
+                    completionHandler(nil, error)
                 }
             }
         }
