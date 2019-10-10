@@ -28,14 +28,12 @@ final class WebImageHandler {
         }
         
         URLSession.shared.dataTask(with: urlForImage) { (data, response, error) in
-            DispatchQueue.main.async {
                 if let data = data, let response = response {
                     completion(data)
                     self.handleLoadedImage(data: data, response: response)
                 } else {
                     completion(nil)
                 }
-            }
         }.resume()
     }
     

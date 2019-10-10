@@ -19,30 +19,24 @@ final class NetworkCountryFetcher {
         guard let url = url else { return }
         
         NetworkManager.shared.makeRequest(url: url) { (result) in
-            
-            switch result {
-            case .failure(let error):
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                
+                switch result {
+                case .failure(let error):
                     completionHandler(nil, error)
-                }
-            case .success(let data):
-                do {
-                    let json = try JSONDecoder().decode([Country].self, from: data)
-                    var jsonDataWithImages = [Country]()
-                    
-                    json.forEach { (country) in
-                        guard let countryCopy = self.filter(country) else { return }
-                        
-                        countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
-                        jsonDataWithImages.append(countryCopy)
-                    }
-                    
-                    DispatchQueue.main.async {
+                case .success(let data):
+                    do {
+                        let json = try JSONDecoder().decode([Country].self, from: data)
+                        var jsonDataWithImages = [Country]()
+                 
+                            json.forEach { (country) in
+                                guard let countryCopy = self.filter(country) else { return }
+                                countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
+                           
+                                jsonDataWithImages.append(countryCopy)
+                        }
                         completionHandler(jsonDataWithImages, nil)
-                    }
-                    
-                } catch let error {
-                    DispatchQueue.main.async {
+                    } catch let error {
                         completionHandler(nil, error)
                     }
                 }
@@ -51,7 +45,7 @@ final class NetworkCountryFetcher {
     }
     
     func fetchFlagsImages(for countryCode: String, of type: ImageType, completion: @escaping (Data?) -> Void) {
-        return WebImageHandler.getImage(for: countryCode, of: type) { (data) in
+        WebImageHandler.getImage(for: countryCode, of: type) { (data) in
             completion(data)
         }
     }

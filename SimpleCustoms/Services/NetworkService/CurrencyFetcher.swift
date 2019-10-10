@@ -14,28 +14,21 @@ class CurrencyFetcher {
     
     
     func getCurrency(completion: @escaping (Currency?, Error?) -> Void) {
-    
+        
         guard let url = URL(string: "https://api.ratesapi.io/api/latest?symbols=RUB") else { print("no")
             return }
         
         NetworkManager.shared.makeRequest(url: url) { (result) in
-            
-            
-            switch result {
-            case .failure(let error):
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                
+                switch result {
+                case .failure(let error):
                     completion(nil, error)
-                    print("error")
-                }
-            case .success(let data):
-                do {
-                    let json = try JSONDecoder().decode(Currency.self, from: data)
-                    
-                    DispatchQueue.main.async {
+                case .success(let data):
+                    do {
+                        let json = try JSONDecoder().decode(Currency.self, from: data)
                         completion(json, nil)
-                    }
-                } catch let error {
-                    DispatchQueue.main.async {
+                    } catch let error {
                         completion(nil, error)
                     }
                 }

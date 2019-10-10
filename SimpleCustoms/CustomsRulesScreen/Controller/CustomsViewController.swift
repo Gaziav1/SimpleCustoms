@@ -13,7 +13,6 @@ class CustomsViewController: UIViewController {
     
     var rules: CustomsRules?
     
-    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false

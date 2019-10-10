@@ -31,7 +31,6 @@ class DeclarantTableViewController: UITableViewController {
         getData()
         setupPickerView()
         goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(GoodsWithLimitations.self) as! [GoodsWithLimitations]
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -121,12 +120,10 @@ extension DeclarantTableViewController: UIPickerViewDelegate, UIPickerViewDataSo
 
 extension DeclarantTableViewController: UITextFieldDelegate {
     
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         return true
     }
-    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         

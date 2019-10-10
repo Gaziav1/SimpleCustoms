@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 private struct Constans {
     static let topViewHeight: CGFloat = 47
     static let customsRulesLabelInsets = UIEdgeInsets(top: 8 + Constans.topViewHeight + 13, left: 18, bottom: 10, right: 18)

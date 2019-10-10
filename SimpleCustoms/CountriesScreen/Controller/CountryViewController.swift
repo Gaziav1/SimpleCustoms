@@ -61,9 +61,9 @@ class CountryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        handleDataDownloading()
         setupSearchController()
         setupUIElementsForError()
-        handleDataDownloading()
     }
     
     private func setupTableView() {
@@ -72,7 +72,8 @@ class CountryViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    @objc private func handleDataDownloading() {
+    private func handleDataDownloading() {
+        //Метод проигрывает анимацию пока идет загрузка данных, в случае ошибки выводит UI элементы с кнопкой, по тапу на которую метод вызывается снова
         should(hide: true, elements: [imageForError, buttonForError, labelForError])
         tableView.isHidden = true
         loadingAnimation.fadeIn()
@@ -85,10 +86,10 @@ class CountryViewController: UIViewController {
             }
             guard let countries = country else { return }
             self.countries = countries
-            self.tableView.reloadData()
             self.loadingAnimation.stop()
             self.tableView.fadeIn()
             self.loadingAnimation.fadeOut()
+            self.tableView.reloadData()
         }
     }
     
@@ -122,12 +123,10 @@ class CountryViewController: UIViewController {
     }
     
     private func should(hide: Bool, elements: [UIView]) {
-        
         guard !hide else {
             elements.forEach({ $0.fadeOut() })
             return
         }
-        
         elements.forEach({ $0.fadeIn() })
     }
     
@@ -148,12 +147,10 @@ class CountryViewController: UIViewController {
             country = countries[indexPath.row]
         }
         
-        let title = country
-        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", title.alpha2Code), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
+        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.alpha2Code), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
         guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return }
         segue.imageFlag.image = image
         segue.rules = customsRule[0]
-        segue.navigationItem.title = title.name
     }
 }
 
@@ -172,17 +169,14 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainScreenTableViewCell
         cell.selectionStyle = .none
         let country: Country
+        
         if isSearching {
             country = searchResults[indexPath.row]
-            
         } else {
             country = countries[indexPath.row]
-            
         }
-        
         cell.countryName.text = country.name
         guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return cell }
-        print(image)
         cell.countryFlag.image = image
         return cell
     }
@@ -193,10 +187,8 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         if isSearching {
             country = searchResults[indexPath.row]
-            
         } else {
             country = countries[indexPath.row]
-            
         }
         
         guard let data = country.flagImages?.shinyFlagImage, let image = UIImage(data: data) else { return }
