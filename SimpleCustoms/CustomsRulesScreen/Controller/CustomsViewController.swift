@@ -39,7 +39,7 @@ class CustomsViewController: UIViewController {
         self.view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = #colorLiteral(red: 0.1568627451, green: 0.1568627451, blue: 0.1568627451, alpha: 1)
+        tableView.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)
         tableView.separatorStyle = .none
         
         NSLayoutConstraint.activate([

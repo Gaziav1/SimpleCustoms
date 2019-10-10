@@ -31,7 +31,7 @@ class DeclarantTableViewController: UITableViewController {
         getData()
         setupPickerView()
         goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(GoodsWithLimitations.self) as! [GoodsWithLimitations]
-     
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,9 +39,8 @@ class DeclarantTableViewController: UITableViewController {
     }
     
     @objc func dismissKeyboard() {
-          view.endEditing(true)
-      }
-      
+        view.endEditing(true)
+    }
     
     private func getData() {
         CurrencyFetcher.shared.getCurrency(completion: { (currencyEx, error) in
@@ -54,9 +53,30 @@ class DeclarantTableViewController: UITableViewController {
         })
     }
     
+    private func drawLine(of color: [UIColor]) {
+        let aPath = UIBezierPath()
+        let shapeLayer = CAShapeLayer()
+        view.layer.addSublayer(shapeLayer)
+        shapeLayer.frame = view.bounds
+        aPath.move(to: CGPoint(x:0, y: self.declarationInfoLabel.frame.minY + 50))
+        aPath.addLine(to: CGPoint(x: self.declarationInfoLabel.frame.maxX, y: self.declarationInfoLabel.frame.minY + 50))
+        
+        shapeLayer.path = aPath.cgPath
+        shapeLayer.strokeColor = color.randomElement()?.cgColor
+        shapeLayer.lineWidth = 0.9
+        shapeLayer.strokeEnd = 0
+        let animaton = CABasicAnimation()
+        animaton.value(forKey: "strokeEnd")
+        animaton.toValue = 1
+        animaton.duration = 0.3
+        animaton.fillMode = .both
+        animaton.isRemovedOnCompletion = false
+        shapeLayer.add(animaton, forKey: "strokeEnd")
+    }
+    
     private func setupUIElements() {
         currencyToConvertLabel.delegate = self
-        currencyToConvertLabel.font = currencyToConvertLabel.font?.withSize(18)
+        currencyToConvertLabel.font = currencyToConvertLabel.font?.withSize(17)
         resultLabel.isHidden = true
         resultImage.isHidden = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -64,7 +84,6 @@ class DeclarantTableViewController: UITableViewController {
     }
     
     private func setupPickerView() {
-        //goodsPicker.setValue(UIColor.white, forKey: "textColor")
         goodsPicker.delegate = self
         goodsPicker.dataSource = self
     }
@@ -94,6 +113,7 @@ extension DeclarantTableViewController: UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         declarationInfoLabel.textColor = .white
+        drawLine(of: Colors.colors)
         declarationInfoLabel.font = declarationInfoLabel.font.withSize(19)
         declarationInfoLabel.text = goodsInformation[row].productLimitations
     }
@@ -115,7 +135,7 @@ extension DeclarantTableViewController: UITextFieldDelegate {
         
         let exchanger = CurrencyExchanger(valueToExchange: recievedCurrency, currency: currentCurrency)
         convertedCurrencyLabel.text = exchanger.resultToShow
-       
+        
         resultLabel.fadeIn()
         resultImage.fadeIn()
         
