@@ -32,7 +32,7 @@ class CustomsRulesCellLayout {
         
         let customsRulesLabelFrame: CGRect = CGRect(origin: CGPoint(x: Constans.customsRulesLabelInsets.left, y: Constans.customsRulesLabelInsets.top), size: CGSize(width: width, height: customsRule.height(width: width, font: Constans.customsRulesLabelFont)))
         
-        totalHeight = customsRulesLabelFrame.maxY 
+        totalHeight = customsRulesLabelFrame.maxY
         
         return customsRulesLabelFrame
     }

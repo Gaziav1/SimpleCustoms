@@ -69,7 +69,7 @@ class DeclarantTableViewController: UITableViewController {
         animaton.value(forKey: "strokeEnd")
         animaton.toValue = 1
         animaton.duration = 0.3
-        animaton.fillMode = .both
+        animaton.fillMode = .forwards
         animaton.isRemovedOnCompletion = false
         shapeLayer.add(animaton, forKey: "strokeEnd")
     }

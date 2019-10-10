@@ -25,8 +25,6 @@ class CurrencyExchanger {
          }
      }
     
-    
-    
     init(valueToExchange: Int, currency: Currency) {
         self.valueToExchange = valueToExchange
         self.currency = currency

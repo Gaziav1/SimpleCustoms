@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A7019C0F234D24170073DAFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7019C0E234D24170073DAFD /* Colors.swift */; };
-		A706BFB0232D4356002DA9C4 /* Roboto in Resources */ = {isa = PBXBuildFile; fileRef = A706BFAF232D4356002DA9C4 /* Roboto */; };
 		A706BFB42333DB06002DA9C4 /* CustomsRulesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A706BFB32333DB06002DA9C4 /* CustomsRulesTableViewCell.xib */; };
 		A7261B662329477200D4854D /* CustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7261B652329477200D4854D /* CustomsViewController.swift */; };
 		A761CF0F232A8AFF001F67EA /* CustomsRulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A761CF0E232A8AFF001F67EA /* CustomsRulesTableViewCell.swift */; };
@@ -42,7 +41,6 @@
 		2818C78512A0C001CA6E5E82 /* Pods-SimpleCustoms.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleCustoms.release.xcconfig"; path = "Target Support Files/Pods-SimpleCustoms/Pods-SimpleCustoms.release.xcconfig"; sourceTree = "<group>"; };
 		A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleCustoms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7019C0E234D24170073DAFD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		A706BFAF232D4356002DA9C4 /* Roboto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roboto; sourceTree = "<group>"; };
 		A706BFB32333DB06002DA9C4 /* CustomsRulesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomsRulesTableViewCell.xib; sourceTree = "<group>"; };
 		A7261B652329477200D4854D /* CustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsViewController.swift; sourceTree = "<group>"; };
 		A761CF0E232A8AFF001F67EA /* CustomsRulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsRulesTableViewCell.swift; sourceTree = "<group>"; };
@@ -91,14 +89,6 @@
 				2818C78512A0C001CA6E5E82 /* Pods-SimpleCustoms.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		A706BFAE232D4318002DA9C4 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				A706BFAF232D4356002DA9C4 /* Roboto */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		A7261B612329473C00D4854D /* CustomsRulesScreen */ = {
@@ -231,7 +221,6 @@
 				A77A68CA23203AF5005EAC5A /* Assets.xcassets */,
 				A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */,
 				A77A68CF23203AF5005EAC5A /* Info.plist */,
-				A706BFAE232D4318002DA9C4 /* Fonts */,
 				A797E3D82326A8BB00A872B8 /* Lottie Animations */,
 			);
 			path = "Supporting Files";
@@ -350,7 +339,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A706BFB0232D4356002DA9C4 /* Roboto in Resources */,
 				A77656F1234B93AA00F45031 /* default.realm in Resources */,
 				A773D429232828B7008DA6BF /* 1055-world-locations.json in Resources */,
 				A706BFB42333DB06002DA9C4 /* CustomsRulesTableViewCell.xib in Resources */,

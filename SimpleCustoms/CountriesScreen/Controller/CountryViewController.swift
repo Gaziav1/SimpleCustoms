@@ -182,6 +182,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.countryName.text = country.name
         guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return cell }
+        print(image)
         cell.countryFlag.image = image
         return cell
     }

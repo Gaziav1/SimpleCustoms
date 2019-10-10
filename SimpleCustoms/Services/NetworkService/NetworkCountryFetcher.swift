@@ -31,7 +31,8 @@ final class NetworkCountryFetcher {
                     var jsonDataWithImages = [Country]()
                     
                     json.forEach { (country) in
-                        let countryCopy = country
+                        guard let countryCopy = self.filter(country) else { return }
+                        
                         countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
                         jsonDataWithImages.append(countryCopy)
                     }
@@ -52,6 +53,27 @@ final class NetworkCountryFetcher {
     func fetchFlagsImages(for countryCode: String, of type: ImageType, completion: @escaping (Data?) -> Void) {
         return WebImageHandler.getImage(for: countryCode, of: type) { (data) in
             completion(data)
+        }
+    }
+    
+    private func filter(_ country: Country) -> Country? {
+        switch country.alpha2Code {
+        case "UA":
+            return nil
+        case "GB":
+            let countryCopy = country
+            countryCopy.name = "United Kingdom"
+            return countryCopy
+        case "RU":
+            return nil
+        case "SM":
+            return nil
+        case "MK":
+            let countryCopy = country
+            countryCopy.name = "Macedonia"
+            return countryCopy
+        default:
+            return country
         }
     }
 }
