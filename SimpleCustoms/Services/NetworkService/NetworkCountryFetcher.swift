@@ -19,38 +19,39 @@ final class NetworkCountryFetcher {
     func fetchCountries(completionHandler: @escaping ([Country]?, Error?) -> Void) {
         
         guard let url = url else { return }
+        var jsonData = [Country]()
+        var networkError: Error?
         
         networkCallGroup.enter()
         NetworkManager.shared.makeRequest(url: url) { (result) in
             
-            
             switch result {
             case .failure(let error):
-                completionHandler(nil, error)
+                networkError = error
             case .success(let data):
                 do {
                     let json = try JSONDecoder().decode([Country].self, from: data)
-                    var jsonDataWithImages = [Country]()
                     
                     json.forEach { (country) in
                         guard let countryCopy = self.filter(country) else { return }
                         countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
-                        
-                        jsonDataWithImages.append(countryCopy)
+                        jsonData.append(countryCopy)
                     }
-                    networkCallGroup.leave()
-                    networkCallGroup.notify(queue: .main) {
-                        
-                        completionHandler(jsonDataWithImages, nil)
-                    }
-                    
                 } catch let error {
-                    completionHandler(nil, error)
+                    networkError = error
                 }
+            }
+            networkCallGroup.leave()
+        }
+        
+        networkCallGroup.notify(queue: .main) {
+            if networkError == nil {
+                completionHandler(jsonData, nil)
+            } else {
+                completionHandler(nil, networkError)
             }
         }
     }
-    
     func fetchFlagsImages(for countryCode: String, of type: ImageType, completion: @escaping (Data?) -> Void) {
         WebImageHandler.getImage(for: countryCode, of: type) { (data) in
             completion(data)
@@ -67,7 +68,7 @@ final class NetworkCountryFetcher {
             return countryCopy
         case "RU":
             return nil
-        case "SM":
+        case "XK":
             return nil
         case "MK":
             let countryCopy = country

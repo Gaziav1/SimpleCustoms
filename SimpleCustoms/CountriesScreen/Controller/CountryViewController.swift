@@ -60,10 +60,10 @@ class CountryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-        handleDataDownloading()
-        setupSearchController()
         setupUIElementsForError()
+        handleDataDownloading()
+        setupTableView()
+        setupSearchController()
     }
     
     private func setupTableView() {
@@ -74,7 +74,6 @@ class CountryViewController: UIViewController {
     
     private func handleDataDownloading() {
         //Метод проигрывает анимацию пока идет загрузка данных, в случае ошибки выводит UI элементы с кнопкой, по тапу на которую метод вызывается снова
-        should(hide: true, elements: [imageForError, buttonForError, labelForError])
         tableView.isHidden = true
         loadingAnimation.fadeIn()
         loadingAnimation.play()
@@ -124,13 +123,14 @@ class CountryViewController: UIViewController {
     
     private func should(hide: Bool, elements: [UIView]) {
         guard !hide else {
-            elements.forEach({ $0.fadeOut() })
+            elements.forEach({ $0.isHidden = true })
             return
         }
         elements.forEach({ $0.fadeIn() })
     }
     
     @objc private func buttonAction() {
+        should(hide: true, elements: [buttonForError, imageForError, labelForError])
         handleDataDownloading()
     }
     

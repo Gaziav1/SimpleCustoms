@@ -28,15 +28,15 @@ final class WebImageHandler {
         }
         networkCallGroup.enter()
         URLSession.shared.dataTask(with: urlForImage) { (data, response, error) in
-            if let data = data, let response = response {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if let data = data, let response = response {
                     completion(data)
                     self.handleLoadedImage(data: data, response: response)
-                    networkCallGroup.leave()
+                } else {
+                    completion(nil)
                 }
-            } else {
-                completion(nil)
             }
+            networkCallGroup.leave()
         }.resume()
     }
     
