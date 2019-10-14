@@ -52,27 +52,6 @@ class DeclarantTableViewController: UITableViewController {
         })
     }
     
-    private func drawLine(of color: [UIColor]) {
-        let aPath = UIBezierPath()
-        let shapeLayer = CAShapeLayer()
-        view.layer.addSublayer(shapeLayer)
-        shapeLayer.frame = view.bounds
-        aPath.move(to: CGPoint(x:0, y: self.declarationInfoLabel.frame.minY + 50))
-        aPath.addLine(to: CGPoint(x: self.declarationInfoLabel.frame.maxX, y: self.declarationInfoLabel.frame.minY + 50))
-        
-        shapeLayer.path = aPath.cgPath
-        shapeLayer.strokeColor = color.randomElement()?.cgColor
-        shapeLayer.lineWidth = 0.9
-        shapeLayer.strokeEnd = 0
-        let animaton = CABasicAnimation()
-        animaton.value(forKey: "strokeEnd")
-        animaton.toValue = 1
-        animaton.duration = 0.3
-        animaton.fillMode = .forwards
-        animaton.isRemovedOnCompletion = false
-        shapeLayer.add(animaton, forKey: "strokeEnd")
-    }
-    
     private func setupUIElements() {
         currencyToConvertLabel.delegate = self
         currencyToConvertLabel.font = currencyToConvertLabel.font?.withSize(17)
@@ -112,7 +91,6 @@ extension DeclarantTableViewController: UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         declarationInfoLabel.textColor = .white
-        drawLine(of: Colors.colors)
         declarationInfoLabel.font = declarationInfoLabel.font.withSize(19)
         declarationInfoLabel.text = goodsInformation[row].productLimitations
     }

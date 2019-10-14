@@ -126,6 +126,23 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		A7506C1C2354867D0054C463 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A797D0812347B6A400492849 /* DeclarantTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A7506C1D2354868D0054C463 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */,
+				A797D08B234A22DC00492849 /* Currency.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A751DFDC232044F20094FAC0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,9 +206,8 @@
 		A797D0802347B66F00492849 /* DeclarantScreen */ = {
 			isa = PBXGroup;
 			children = (
-				A797D0812347B6A400492849 /* DeclarantTableViewController.swift */,
-				A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */,
-				A797D08B234A22DC00492849 /* Currency.swift */,
+				A7506C1C2354867D0054C463 /* Controller */,
+				A7506C1D2354868D0054C463 /* Model */,
 			);
 			path = DeclarantScreen;
 			sourceTree = "<group>";

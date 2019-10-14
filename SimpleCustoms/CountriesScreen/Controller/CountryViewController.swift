@@ -134,22 +134,37 @@ class CountryViewController: UIViewController {
         handleDataDownloading()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "showCustomsRules" else { return }
-        let segue = segue.destination as! CustomsViewController
-        navigationController?.dismiss(animated: true, completion: nil)
+    private func searchState(indexPath: IndexPath) -> Country {
         let country: Country
-        guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
-        
         if isSearching {
             country = searchResults[indexPath.row]
         } else {
             country = countries[indexPath.row]
         }
+        return country
+    }
+    
+    private func checkImage(country: Country, imageType: ImageType) -> UIImage {
+        switch imageType  {
+        case .flat:
+            guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return UIImage() }
+            return image
+        case .shiny:
+            guard let data = country.flagImages?.shinyFlagImage, let image = UIImage(data: data) else { return UIImage() }
+            return image
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showCustomsRules" else { return }
+        let segue = segue.destination as! CustomsViewController
+        navigationController?.dismiss(animated: true, completion: nil)
+        guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
+        
+        let country = searchState(indexPath: indexPath)
         
         let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.alpha2Code), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
-        guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return }
-        segue.imageFlag.image = image
+        segue.imageFlag.image = checkImage(country: country, imageType: .flat)
         segue.rules = customsRule[0]
     }
 }
@@ -168,47 +183,23 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainScreenTableViewCell
         cell.selectionStyle = .none
-        let country: Country
-        
-        if isSearching {
-            country = searchResults[indexPath.row]
-        } else {
-            country = countries[indexPath.row]
-        }
+        let country = searchState(indexPath: indexPath)
         cell.countryName.text = country.name
-        guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return cell }
-        cell.countryFlag.image = image
+        cell.countryFlag.image = checkImage(country: country, imageType: .flat)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
-        let country: Country
-        
-        if isSearching {
-            country = searchResults[indexPath.row]
-        } else {
-            country = countries[indexPath.row]
-        }
-        
-        guard let data = country.flagImages?.shinyFlagImage, let image = UIImage(data: data) else { return }
-        cell.countryFlag.image = image
+        let country = searchState(indexPath: indexPath)
+        cell.countryFlag.image = checkImage(country: country, imageType: .shiny)
         cell.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-        
     }
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
-        let country: Country
-        
-        if isSearching {
-            country = searchResults[indexPath.row]
-        } else {
-            country = countries[indexPath.row]
-        }
-        
-        guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return }
-        cell.countryFlag.image = image
+        let country = searchState(indexPath: indexPath)
+        cell.countryFlag.image = checkImage(country: country, imageType: .flat)
         cell.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)
     }
     
