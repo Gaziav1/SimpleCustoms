@@ -8,7 +8,7 @@
 
 import Foundation
 
-let networkCallGroup = DispatchGroup() //нужно для выполнения двух запросов и передачи данных по их окончанию
+let networkCallGroup = DispatchGroup() //нужно для выполнения двух запросов последовательно и передачи данных по их окончанию
 
 final class NetworkCountryFetcher {
     

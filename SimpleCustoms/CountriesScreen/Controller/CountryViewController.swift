@@ -28,40 +28,12 @@ class CountryViewController: UIViewController {
     
     private var countries = [Country]()
     
-    private var buttonForError: UIButton = {
-        let button = UIButton()
-        button.setTitle("Обновить", for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.1843137255, green: 0.5529411765, blue: 0.7803921569, alpha: 1)
-        button.isHidden = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private var labelForError: UILabel = {
-        let label = UILabel()
-        label.textColor = #colorLiteral(red: 0.5764705882, green: 0.5764705882, blue: 0.5764705882, alpha: 1)
-        label.isHidden = true
-        label.text = "К сожалению загрузка данных не удалась. Пожалуйста, попытайтесь позднее."
-        label.font = UIFont.systemFont(ofSize: 17)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private var imageForError: UIImageView = {
-        let image = UIImageView()
-        image.isHidden = true
-        image.image = UIImage(named: "sad2")
-        image.contentMode = .scaleAspectFit
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
+    private var errorHandler = ErrorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUIElementsForError()
         handleDataDownloading()
+        setupErrorView()
         setupTableView()
         setupSearchController()
     }
@@ -72,6 +44,19 @@ class CountryViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    private func setupErrorView() {
+        errorHandler.translatesAutoresizingMaskIntoConstraints = false
+        errorHandler.buttonForError.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        view.addSubview(errorHandler)
+        
+        NSLayoutConstraint.activate([
+            errorHandler.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            errorHandler.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorHandler.widthAnchor.constraint(equalTo: view.widthAnchor),
+            errorHandler.heightAnchor.constraint(equalTo: view.heightAnchor, constant: 0.5)
+        ])
+    }
+    
     private func handleDataDownloading() {
         //Метод проигрывает анимацию пока идет загрузка данных, в случае ошибки выводит UI элементы с кнопкой, по тапу на которую метод вызывается снова
         tableView.isHidden = true
@@ -80,7 +65,7 @@ class CountryViewController: UIViewController {
         NetworkCountryFetcher.shared.fetchCountries { (country, error) in
             guard error == nil else {
                 self.loadingAnimation.isHidden = true
-                self.should(hide: false, elements: [self.imageForError, self.buttonForError, self.labelForError])
+                self.errorHandler.fadeIn()
                 return
             }
             guard let countries = country else { return }
@@ -98,39 +83,8 @@ class CountryViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
     }
     
-    private func setupUIElementsForError() {
-        view.addSubview(imageForError)
-        view.addSubview(labelForError)
-        view.addSubview(buttonForError)
-        
-        buttonForError.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
-            imageForError.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
-            imageForError.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            labelForError.topAnchor.constraint(equalTo: imageForError.bottomAnchor, constant: 25),
-            labelForError.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            labelForError.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            
-            buttonForError.topAnchor.constraint(equalTo: labelForError.bottomAnchor, constant: 25),
-            buttonForError.centerXAnchor.constraint(equalTo: imageForError.centerXAnchor),
-            buttonForError.widthAnchor.constraint(equalToConstant: 300),
-            buttonForError.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        buttonForError.layer.cornerRadius = 15
-    }
-    
-    private func should(hide: Bool, elements: [UIView]) {
-        guard !hide else {
-            elements.forEach({ $0.isHidden = true })
-            return
-        }
-        elements.forEach({ $0.fadeIn() })
-    }
-    
     @objc private func buttonAction() {
-        should(hide: true, elements: [buttonForError, imageForError, labelForError])
+        errorHandler.fadeOut()
         handleDataDownloading()
     }
     

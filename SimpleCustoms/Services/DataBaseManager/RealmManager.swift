@@ -9,8 +9,6 @@
 import Foundation
 import RealmSwift
 
-
-
 class RealmManager: NSObject {
     
     var realmObject: Realm?
