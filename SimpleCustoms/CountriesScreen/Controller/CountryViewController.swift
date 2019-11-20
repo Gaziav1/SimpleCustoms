@@ -46,6 +46,7 @@ class CountryViewController: UIViewController {
     
     private func setupErrorView() {
         errorHandler.translatesAutoresizingMaskIntoConstraints = false
+        errorHandler.isHidden = true
         errorHandler.buttonForError.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         view.addSubview(errorHandler)
         
