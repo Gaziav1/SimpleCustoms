@@ -11,7 +11,11 @@ import UIKit
 class MainScreenTableViewCell: UITableViewCell {
 
     @IBOutlet weak var countryFlag: UIImageView!
-    @IBOutlet weak var countryName: UILabel!
+    @IBOutlet weak var countryName: UILabel! {
+        didSet {
+            countryName.font = UIFont.systemFont(ofSize: 18)
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

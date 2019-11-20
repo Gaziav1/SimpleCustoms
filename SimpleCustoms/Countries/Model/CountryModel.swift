@@ -11,5 +11,6 @@ import UIKit
 class Country: Decodable {
     var name: String
     var alpha2Code: String
+    var region: String
     var flagImages: FlagImage?
 }

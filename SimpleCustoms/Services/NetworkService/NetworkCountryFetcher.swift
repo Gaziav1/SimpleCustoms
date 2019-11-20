@@ -13,35 +13,45 @@ let networkCallGroup = DispatchGroup() //нужно для выполнения 
 final class NetworkCountryFetcher {
     
     static var shared = NetworkCountryFetcher()
-    private var url = URL(string: "https://restcountries.eu/rest/v2/region/europe")
+    private var apiPaths = [APIPath(scheme: "https",
+                                    endpoint: "restcountries.eu",
+                                    path: "/rest/v2/region/europe",
+                                    params: nil),
+                            APIPath(scheme: "https",
+                                    endpoint: "restcountries.eu",
+                                    path: "/rest/v2/region/asia",
+                                    params: nil)]
     private init(){}
     
     func fetchCountries(completionHandler: @escaping ([Country]?, Error?) -> Void) {
         
-        guard let url = url else { return }
         var jsonData = [Country]()
         var networkError: Error?
         
-        networkCallGroup.enter()
-        NetworkManager.shared.makeRequest(url: url) { (result) in
+        for region in apiPaths {
+            guard let url = region.fullURL else { return }
             
-            switch result {
-            case .failure(let error):
-                networkError = error
-            case .success(let data):
-                do {
-                    let json = try JSONDecoder().decode([Country].self, from: data)
-                    
-                    json.forEach { (country) in
-                        guard let countryCopy = self.filter(country) else { return }
-                        countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
-                        jsonData.append(countryCopy)
-                    }
-                } catch let error {
+            networkCallGroup.enter()
+            NetworkManager.shared.makeRequest(url: url) { (result) in
+                
+                switch result {
+                case .failure(let error):
                     networkError = error
+                case .success(let data):
+                    do {
+                        let json = try JSONDecoder().decode([Country].self, from: data)
+                        json.forEach { (country) in
+                            print(country.alpha2Code)
+                            guard let countryCopy = self.filter(country) else { return }
+                            countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
+                            jsonData.append(countryCopy)
+                        }
+                    } catch let error {
+                        networkError = error
+                    }
                 }
+                networkCallGroup.leave()
             }
-            networkCallGroup.leave()
         }
         
         networkCallGroup.notify(queue: .main) {
@@ -52,6 +62,7 @@ final class NetworkCountryFetcher {
             }
         }
     }
+    
     func fetchFlagsImages(for countryCode: String, of type: ImageType, completion: @escaping (Data?) -> Void) {
         WebImageHandler.getImage(for: countryCode, of: type) { (data) in
             completion(data)
@@ -74,6 +85,26 @@ final class NetworkCountryFetcher {
             let countryCopy = country
             countryCopy.name = "Macedonia"
             return countryCopy
+        case "AF":
+            return nil
+        case "IQ":
+            return nil
+        case "KZ":
+            return nil
+        case "MO":
+            return nil
+        case "PS":
+            return nil
+        case "SY":
+            return nil
+        case "TJ":
+            return nil
+        case "TL":
+            return nil
+        case "AE":
+            return nil
+        case "YE":
+            return nil
         default:
             return country
         }

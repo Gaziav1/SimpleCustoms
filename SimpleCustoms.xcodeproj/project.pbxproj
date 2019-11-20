@@ -31,6 +31,7 @@
 		A7B31DF92340D46200FBC4F8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B31DF82340D46200FBC4F8 /* Extensions.swift */; };
 		A7B7E25A234116720090873F /* WebImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7E259234116720090873F /* WebImageHandler.swift */; };
 		A7C7CA19238564E300E96B76 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7CA18238564E300E96B76 /* ErrorView.swift */; };
+		A7C984C22385885800936465 /* APIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C984C12385885800936465 /* APIPath.swift */; };
 		A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */; };
 		A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */; };
 		A7FE91392323FAC40052348F /* FlagImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE91382323FAC40052348F /* FlagImage.swift */; };
@@ -67,6 +68,7 @@
 		A7B31DF82340D46200FBC4F8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A7B7E259234116720090873F /* WebImageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageHandler.swift; sourceTree = "<group>"; };
 		A7C7CA18238564E300E96B76 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = SOURCE_ROOT; };
+		A7C984C12385885800936465 /* APIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIPath.swift; path = SimpleCustoms/APIPath.swift; sourceTree = SOURCE_ROOT; };
 		A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CountryModel.swift; path = ../../Countries/Model/CountryModel.swift; sourceTree = "<group>"; };
 		A7FE91382323FAC40052348F /* FlagImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagImage.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */,
 				A7B7E259234116720090873F /* WebImageHandler.swift */,
 				A797D08D234A23E200492849 /* CurrencyFetcher.swift */,
+				A7C984C12385885800936465 /* APIPath.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				A7A50BC1233A5BF100C8624C /* CustomsRules.swift in Sources */,
 				A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */,
 				A77A68C623203AF4005EAC5A /* CountryViewController.swift in Sources */,
+				A7C984C22385885800936465 /* APIPath.swift in Sources */,
 				A7261B662329477200D4854D /* CustomsViewController.swift in Sources */,
 				A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */,
 				A7FE91392323FAC40052348F /* FlagImage.swift in Sources */,
