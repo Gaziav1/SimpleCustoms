@@ -30,6 +30,7 @@ class CustomsViewController: UIViewController {
         super.viewDidLoad()
         setupUIElements()
         navigationItem.titleView = imageFlag
+        
     }
     
     

@@ -11,16 +11,25 @@ import Lottie
 
 class CountryViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var loadingAnimation: AnimationView! {
-        didSet {
-            let animation = Animation.named("1055-world-locations")
-            loadingAnimation.animation = animation
-            loadingAnimation.animationSpeed = 1
-            loadingAnimation.loopMode = .loop
-            loadingAnimation.contentMode = .scaleAspectFit
-        }
-    }
+    private let countriesTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: CountryTableViewCell.reuseId)
+        tableView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        return tableView
+    }()
+    
+    private let loadingAnimation: AnimationView = {
+        let animation = Animation.named("1055-world-locations")
+        var load = AnimationView()
+        load.animation = animation
+        load.animationSpeed = 1
+        load.loopMode = .loop
+        load.contentMode = .scaleAspectFit
+        
+        return load
+    }()
     
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchResults = [Country]()
@@ -39,9 +48,17 @@ class CountryViewController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView.separatorColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        tableView.delegate = self
-        tableView.dataSource = self
+        countriesTableView.delegate = self
+        countriesTableView.dataSource = self
+        view.addSubview(countriesTableView)
+        
+        NSLayoutConstraint.activate([
+            countriesTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            countriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            countriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            countriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+      
     }
     
     private func setupErrorView() {
@@ -60,7 +77,7 @@ class CountryViewController: UIViewController {
     
     private func handleDataDownloading() {
         //Метод проигрывает анимацию пока идет загрузка данных, в случае ошибки выводит UI элементы с кнопкой, по тапу на которую метод вызывается снова
-        tableView.isHidden = true
+        countriesTableView.isHidden = true
         loadingAnimation.fadeIn()
         loadingAnimation.play()
         NetworkCountryFetcher.shared.fetchCountries { (country, error) in
@@ -72,9 +89,9 @@ class CountryViewController: UIViewController {
             guard let countries = country else { return }
             self.countries = countries
             self.loadingAnimation.stop()
-            self.tableView.fadeIn()
+            self.countriesTableView.fadeIn()
             self.loadingAnimation.fadeOut()
-            self.tableView.reloadData()
+            self.countriesTableView.reloadData()
         }
     }
     
@@ -114,10 +131,10 @@ class CountryViewController: UIViewController {
         guard segue.identifier == "showCustomsRules" else { return }
         let segue = segue.destination as! CustomsViewController
         navigationController?.dismiss(animated: true, completion: nil)
-        guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
+        guard let indexPath = self.countriesTableView.indexPathForSelectedRow else { return }
         
         let country = searchState(indexPath: indexPath)
-        
+
         let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.alpha2Code), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
         segue.imageFlag.image = checkImage(country: country, imageType: .flat)
         segue.rules = customsRule[0]
@@ -136,30 +153,36 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainScreenTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseId) as! CountryTableViewCell
         cell.selectionStyle = .none
         let country = searchState(indexPath: indexPath)
         cell.countryName.text = country.name
-        cell.countryFlag.image = checkImage(country: country, imageType: .flat)
+        cell.flagImage.image = checkImage(country: country, imageType: .flat)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
         let country = searchState(indexPath: indexPath)
-        cell.countryFlag.image = checkImage(country: country, imageType: .shiny)
-        cell.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        cell.flagImage.image = checkImage(country: country, imageType: .shiny)
+        cell.countryName.textColor = .white
+        cell.countryView.backgroundColor =  #colorLiteral(red: 0.1490196078, green: 0.8156862745, blue: 0.4862745098, alpha: 1)
     }
     
-    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! MainScreenTableViewCell
+   func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
         let country = searchState(indexPath: indexPath)
-        cell.countryFlag.image = checkImage(country: country, imageType: .flat)
-        cell.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)
+        cell.flagImage.image = checkImage(country: country, imageType: .flat)
+        cell.countryName.textColor = .black
+        cell.countryView.backgroundColor =  #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9450980392, alpha: 1)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showCustomsRules", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
 }
 
@@ -169,11 +192,11 @@ extension CountryViewController: UISearchBarDelegate {
         searchResults = countries.filter({$0.name.prefix(searchText.count) == searchText})
         searchController.searchBar.showsCancelButton = true
         isSearching = true
-        tableView.reloadData()
+        countriesTableView.reloadData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
         searchController.searchBar.showsCancelButton = false
-        tableView.reloadData()
+        countriesTableView.reloadData()
     }
 }

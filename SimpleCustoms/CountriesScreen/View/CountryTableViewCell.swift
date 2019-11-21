@@ -8,14 +8,21 @@
 
 import UIKit
 
-class MainScreenTableViewCell: UITableViewCell {
+class CountryTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var countryFlag: UIImageView!
-    @IBOutlet weak var countryName: UILabel! {
-        didSet {
-            countryName.font = UIFont.systemFont(ofSize: 18)
-        }
-    }
+    static let reuseId = "CountryCell"
+
+    @IBOutlet weak var flagImage: UIImageView! 
+    @IBOutlet weak var countryName: UILabel!
+    
+    @IBOutlet weak var countryView: UIView!
+    
+    override var isSelected: Bool {
+           didSet {
+               countryView.backgroundColor = isHighlighted ? #colorLiteral(red: 0.1490196078, green: 0.8156862745, blue: 0.4862745098, alpha: 1) : #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9450980392, alpha: 1)
+           }
+       }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,7 +30,7 @@ class MainScreenTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        countryFlag.image = nil
+        flagImage.image = nil
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -25,7 +25,7 @@ class RealmManager: NSObject {
         return objects
     }
     
-    public func filter(_ predicate: NSPredicate, object: Object.Type) -> [Object] {
+    func filter(_ predicate: NSPredicate, object: Object.Type) -> [Object] {
         var objects = [Object]()
         guard let realm = realmObject else { return objects }
         for result in realm.objects(object).filter(predicate) {
@@ -48,6 +48,35 @@ class RealmManager: NSObject {
         try! realm.write{
             realm.delete(objects)
         }
+    }
+    
+    func updateOrCreateDB() {
+        // Загрузка предварительно заполненной базы данных
+             guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return } //определяем путь до незаполненной базы данных
+             let path = Bundle.main.path(forResource: "default", ofType: "realm") //определяем путь до заполненной базы данных, которая находится в нашем бандле
+           
+             if !FileManager.default.fileExists(atPath: defaultPath), let bundledPath = path {
+                 do {
+                     //проверяем наличие файла по данному пути, в случае его отсутствия копируем туда предварительно заполненною базу данных
+                     UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
+                     try FileManager.default.copyItem(atPath: bundledPath, toPath: defaultPath)
+                 } catch {
+                     print("Error copying pre-populated Realm \(error)")
+                 }
+             }
+             
+             //Обновление уже сущещствующей у юзера базы данных
+             if !UserDefaults.standard.bool(forKey: "isDataBaseUpdated"), let bundledPath = path {
+                 do {
+                     UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
+                     try FileManager.default.removeItem(atPath: defaultPath)
+                     try FileManager.default.copyItem(atPath: bundledPath, toPath: defaultPath)
+                 } catch  {
+                     print("Error")
+                 }
+             }
+             
+             RealmManager.sharedInstance.realmObject = try! Realm()
     }
 }
 
