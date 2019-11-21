@@ -12,11 +12,10 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let navigationController = UINavigationController(rootViewController: CountryViewController())
         navigationController.navigationBar.isTranslucent = true
         navigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
-        navigationController.hidesBarsOnSwipe = true
+        
         viewControllers = [navigationController, DeclarantTableViewController()]
     }
     

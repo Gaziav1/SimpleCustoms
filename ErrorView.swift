@@ -15,7 +15,6 @@ class ErrorView: UIView {
         let button = UIButton()
         button.setTitle("Обновить", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.1843137255, green: 0.5529411765, blue: 0.7803921569, alpha: 1)
-        button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -23,7 +22,6 @@ class ErrorView: UIView {
     private let labelForError: UILabel = {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 0.5764705882, green: 0.5764705882, blue: 0.5764705882, alpha: 1)
-        label.isHidden = true
         label.text = "К сожалению загрузка данных не удалась. Пожалуйста, попытайтесь позднее."
         label.font = UIFont.systemFont(ofSize: 17)
         label.textAlignment = .center
@@ -34,7 +32,6 @@ class ErrorView: UIView {
     
     private let imageForError: UIImageView = {
         let image = UIImageView()
-        image.isHidden = true
         image.image = UIImage(named: "sad2")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false

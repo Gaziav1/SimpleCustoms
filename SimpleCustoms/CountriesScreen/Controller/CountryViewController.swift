@@ -58,7 +58,6 @@ class CountryViewController: UIViewController {
             countriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             countriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-      
     }
     
     private func setupErrorView() {
@@ -127,22 +126,10 @@ class CountryViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "showCustomsRules" else { return }
-        let segue = segue.destination as! CustomsViewController
-        navigationController?.dismiss(animated: true, completion: nil)
-        guard let indexPath = self.countriesTableView.indexPathForSelectedRow else { return }
-        
-        let country = searchState(indexPath: indexPath)
-
-        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.alpha2Code), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
-        segue.imageFlag.image = checkImage(country: country, imageType: .flat)
-        segue.rules = customsRule[0]
-    }
 }
 
 extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
-    
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearching {
             return searchResults.count
@@ -169,7 +156,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.countryView.backgroundColor =  #colorLiteral(red: 0.1490196078, green: 0.8156862745, blue: 0.4862745098, alpha: 1)
     }
     
-   func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
         let country = searchState(indexPath: indexPath)
         cell.flagImage.image = checkImage(country: country, imageType: .flat)
@@ -177,8 +164,15 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.countryView.backgroundColor =  #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9450980392, alpha: 1)
     }
     
-   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showCustomsRules", sender: self)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = CustomsViewController()
+        navigationController?.dismiss(animated: true, completion: nil)
+        
+        let country = searchState(indexPath: indexPath)
+        
+        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.alpha2Code), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
+        vc.rules = customsRule[0]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
