@@ -23,6 +23,7 @@ class CustomsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        navigationController?.navigationBar.prefersLargeTitles = true
         setupUIElements()
     }
     

@@ -172,6 +172,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.alpha2Code), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
         vc.rules = customsRule[0]
+        vc.navigationItem.title = country.name
         navigationController?.pushViewController(vc, animated: true)
     }
     
