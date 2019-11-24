@@ -16,10 +16,15 @@ class MainTabBarController: UITabBarController {
         navigationController.navigationBar.isTranslucent = true
         navigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         
-        viewControllers = [navigationController, DeclarantTableViewController()]
+        let dc = DeclarantTableViewController()
+        dc.tabBarItem.image = UIImage(named: "Declarant")
+        dc.tabBarItem.title = "Декларант"
+        navigationController.tabBarItem.image = UIImage(named: "Globe")
+        navigationController.tabBarItem.title = "Страны"
+        tabBar.tintColor = .systemPurple
+        viewControllers = [navigationController, dc]
     }
     
-
     /*
     // MARK: - Navigation
 

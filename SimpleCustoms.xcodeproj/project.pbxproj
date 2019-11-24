@@ -16,11 +16,14 @@
 		A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */; };
 		A773D429232828B7008DA6BF /* 1055-world-locations.json in Resources */ = {isa = PBXBuildFile; fileRef = A773D428232828B7008DA6BF /* 1055-world-locations.json */; };
 		A77656F1234B93AA00F45031 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = A77656EB234B8E7300F45031 /* default.realm */; };
+		A7790323238AC03C00CD8FFE /* CountryDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7790322238AC03C00CD8FFE /* CountryDescriptionView.swift */; };
 		A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A68C323203AF4005EAC5A /* AppDelegate.swift */; };
 		A77A68C623203AF4005EAC5A /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A68C523203AF4005EAC5A /* CountryViewController.swift */; };
 		A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CA23203AF5005EAC5A /* Assets.xcassets */; };
 		A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */; };
 		A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */; };
+		A7941127238AD8970001B402 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */; };
+		A7941129238AD8EA0001B402 /* DescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */; };
 		A797D0822347B6A400492849 /* DeclarantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D0812347B6A400492849 /* DeclarantTableViewController.swift */; };
 		A797D08A2348EE6C00492849 /* GoodsWithLimitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */; };
 		A797D08C234A22DC00492849 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D08B234A22DC00492849 /* Currency.swift */; };
@@ -52,6 +55,7 @@
 		A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		A773D428232828B7008DA6BF /* 1055-world-locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1055-world-locations.json"; sourceTree = "<group>"; };
 		A77656EB234B8E7300F45031 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
+		A7790322238AC03C00CD8FFE /* CountryDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CountryDescriptionView.swift; path = SimpleCustoms/CustomsRulesScreen/CountryDescriptionView.swift; sourceTree = SOURCE_ROOT; };
 		A77A68C023203AF4005EAC5A /* SimpleCustoms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCustoms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77A68C323203AF4005EAC5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A77A68C523203AF4005EAC5A /* CountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 		A77A68CD23203AF5005EAC5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A77A68CF23203AF5005EAC5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCountryFetcher.swift; sourceTree = "<group>"; };
+		A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DescriptionTableViewCell.swift; path = SimpleCustoms/DescriptionTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DescriptionTableViewCell.xib; path = SimpleCustoms/CustomsRulesScreen/DescriptionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		A797D0812347B6A400492849 /* DeclarantTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclarantTableViewController.swift; sourceTree = "<group>"; };
 		A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsWithLimitations.swift; sourceTree = "<group>"; };
 		A797D08B234A22DC00492849 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -120,6 +126,8 @@
 			children = (
 				A761CF0E232A8AFF001F67EA /* CustomsRulesTableViewCell.swift */,
 				A706BFB32333DB06002DA9C4 /* CustomsRulesTableViewCell.xib */,
+				A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */,
+				A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -128,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				A7261B652329477200D4854D /* CustomsViewController.swift */,
+				A7790322238AC03C00CD8FFE /* CountryDescriptionView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -369,6 +378,7 @@
 				A773D429232828B7008DA6BF /* 1055-world-locations.json in Resources */,
 				A706BFB42333DB06002DA9C4 /* CustomsRulesTableViewCell.xib in Resources */,
 				A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */,
+				A7941129238AD8EA0001B402 /* DescriptionTableViewCell.xib in Resources */,
 				A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,8 +443,10 @@
 				A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */,
 				A77A68C623203AF4005EAC5A /* CountryViewController.swift in Sources */,
 				A7C984C22385885800936465 /* APIPath.swift in Sources */,
+				A7941127238AD8970001B402 /* DescriptionTableViewCell.swift in Sources */,
 				A7261B662329477200D4854D /* CustomsViewController.swift in Sources */,
 				A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */,
+				A7790323238AC03C00CD8FFE /* CountryDescriptionView.swift in Sources */,
 				A7FE91392323FAC40052348F /* FlagImage.swift in Sources */,
 				A797D08E234A23E200492849 /* CurrencyFetcher.swift in Sources */,
 				A797D08A2348EE6C00492849 /* GoodsWithLimitations.swift in Sources */,
