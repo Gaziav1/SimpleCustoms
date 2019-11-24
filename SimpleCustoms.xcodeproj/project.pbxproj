@@ -15,6 +15,9 @@
 		A761CF0F232A8AFF001F67EA /* CustomsRulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A761CF0E232A8AFF001F67EA /* CustomsRulesTableViewCell.swift */; };
 		A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */; };
 		A773D429232828B7008DA6BF /* 1055-world-locations.json in Resources */ = {isa = PBXBuildFile; fileRef = A773D428232828B7008DA6BF /* 1055-world-locations.json */; };
+		A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743AF8238B15530076A87D /* CustomsRulesView.swift */; };
+		A7743AFC238B18010076A87D /* RulesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743AFA238B18010076A87D /* RulesCollectionViewCell.swift */; };
+		A7743AFD238B18010076A87D /* RulesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7743AFB238B18010076A87D /* RulesCollectionViewCell.xib */; };
 		A77656F1234B93AA00F45031 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = A77656EB234B8E7300F45031 /* default.realm */; };
 		A7790323238AC03C00CD8FFE /* CountryDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7790322238AC03C00CD8FFE /* CountryDescriptionView.swift */; };
 		A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A68C323203AF4005EAC5A /* AppDelegate.swift */; };
@@ -54,8 +57,11 @@
 		A761CF0E232A8AFF001F67EA /* CustomsRulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsRulesTableViewCell.swift; sourceTree = "<group>"; };
 		A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		A773D428232828B7008DA6BF /* 1055-world-locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1055-world-locations.json"; sourceTree = "<group>"; };
+		A7743AF8238B15530076A87D /* CustomsRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomsRulesView.swift; path = SimpleCustoms/CustomsRulesView.swift; sourceTree = SOURCE_ROOT; };
+		A7743AFA238B18010076A87D /* RulesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesCollectionViewCell.swift; sourceTree = "<group>"; };
+		A7743AFB238B18010076A87D /* RulesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RulesCollectionViewCell.xib; sourceTree = "<group>"; };
 		A77656EB234B8E7300F45031 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
-		A7790322238AC03C00CD8FFE /* CountryDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CountryDescriptionView.swift; path = SimpleCustoms/CustomsRulesScreen/CountryDescriptionView.swift; sourceTree = SOURCE_ROOT; };
+		A7790322238AC03C00CD8FFE /* CountryDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CountryDescriptionView.swift; path = SimpleCustoms/CustomsRulesScreen/View/Description/CountryDescriptionView.swift; sourceTree = SOURCE_ROOT; };
 		A77A68C023203AF4005EAC5A /* SimpleCustoms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCustoms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77A68C323203AF4005EAC5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A77A68C523203AF4005EAC5A /* CountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
@@ -63,8 +69,8 @@
 		A77A68CD23203AF5005EAC5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A77A68CF23203AF5005EAC5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCountryFetcher.swift; sourceTree = "<group>"; };
-		A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DescriptionTableViewCell.swift; path = SimpleCustoms/DescriptionTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DescriptionTableViewCell.xib; path = SimpleCustoms/CustomsRulesScreen/DescriptionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DescriptionTableViewCell.swift; path = SimpleCustoms/CustomsRulesScreen/View/Description/DescriptionTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DescriptionTableViewCell.xib; path = SimpleCustoms/CustomsRulesScreen/View/Description/DescriptionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		A797D0812347B6A400492849 /* DeclarantTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclarantTableViewController.swift; sourceTree = "<group>"; };
 		A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsWithLimitations.swift; sourceTree = "<group>"; };
 		A797D08B234A22DC00492849 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -126,8 +132,10 @@
 			children = (
 				A761CF0E232A8AFF001F67EA /* CustomsRulesTableViewCell.swift */,
 				A706BFB32333DB06002DA9C4 /* CustomsRulesTableViewCell.xib */,
-				A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */,
-				A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */,
+				A7981A80238B12A10093DE28 /* Description */,
+				A7743AF8238B15530076A87D /* CustomsRulesView.swift */,
+				A7743AFA238B18010076A87D /* RulesCollectionViewCell.swift */,
+				A7743AFB238B18010076A87D /* RulesCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -136,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				A7261B652329477200D4854D /* CustomsViewController.swift */,
-				A7790322238AC03C00CD8FFE /* CountryDescriptionView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -267,6 +274,16 @@
 			path = "Lottie Animations";
 			sourceTree = "<group>";
 		};
+		A7981A80238B12A10093DE28 /* Description */ = {
+			isa = PBXGroup;
+			children = (
+				A7790322238AC03C00CD8FFE /* CountryDescriptionView.swift */,
+				A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */,
+				A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */,
+			);
+			path = Description;
+			sourceTree = "<group>";
+		};
 		A7A50BBF2339250000C8624C /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +396,7 @@
 				A706BFB42333DB06002DA9C4 /* CustomsRulesTableViewCell.xib in Resources */,
 				A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */,
 				A7941129238AD8EA0001B402 /* DescriptionTableViewCell.xib in Resources */,
+				A7743AFD238B18010076A87D /* RulesCollectionViewCell.xib in Resources */,
 				A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +463,7 @@
 				A7C984C22385885800936465 /* APIPath.swift in Sources */,
 				A7941127238AD8970001B402 /* DescriptionTableViewCell.swift in Sources */,
 				A7261B662329477200D4854D /* CustomsViewController.swift in Sources */,
+				A7743AFC238B18010076A87D /* RulesCollectionViewCell.swift in Sources */,
 				A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */,
 				A7790323238AC03C00CD8FFE /* CountryDescriptionView.swift in Sources */,
 				A7FE91392323FAC40052348F /* FlagImage.swift in Sources */,
@@ -453,6 +472,7 @@
 				A7B7E25A234116720090873F /* WebImageHandler.swift in Sources */,
 				A7B31DF92340D46200FBC4F8 /* Extensions.swift in Sources */,
 				A797D08C234A22DC00492849 /* Currency.swift in Sources */,
+				A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */,
 				A761CF0F232A8AFF001F67EA /* CustomsRulesTableViewCell.swift in Sources */,
 				A797D096234A2C5A00492849 /* CurrencyExchanger.swift in Sources */,
 				A7A50BBE233924C500C8624C /* CellSizeCalculator.swift in Sources */,

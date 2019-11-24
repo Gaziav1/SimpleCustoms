@@ -27,7 +27,7 @@ class CustomsViewController: UIViewController {
         let label = UILabel()
         label.text = "Канада славится своими практически нетронутыми природными ландшафтами, а также уникальной мозаичной культурой, составленной из самых разных традиций, привнесенных эмигрантами из всех уголков мира."
         label.textColor = .black
-        label.font = UIFont(name: "AppleSDGothicNeo-UltraLight", size: 17.5)
+        label.font = UIFont(name: "AppleSDGothicNeo-UltraLight", size: 19)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
@@ -39,12 +39,32 @@ class CustomsViewController: UIViewController {
         return view
     }()
     
+    let rulesView: CustomsRulesView = {
+        let view = CustomsRulesView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
         setupImage()
         setupDescriptionView()
         setupCountryDescription()
+        setupRulesView()
+    }
+    
+    private func setupRulesView() {
+        view.addSubview(rulesView)
+        
+        NSLayoutConstraint.activate([
+            
+            rulesView.topAnchor.constraint(equalTo: countryDescription.bottomAnchor, constant: 30),
+            rulesView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 15),
+            rulesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            rulesView.heightAnchor.constraint(equalToConstant: view.frame.height / 2)
+        
+        ])
     }
     
     private func setupNavigationController() {
