@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -17,33 +17,49 @@
                 <rect key="frame" x="0.0" y="0.0" width="387" height="287"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dnf-P8-hB3">
-                        <rect key="frame" x="8" y="27" width="370" height="253"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dnf-P8-hB3">
+                        <rect key="frame" x="5" y="15" width="377" height="267"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Товары для личного пользования" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y89-aJ-8xl">
-                                <rect key="frame" x="14" y="1" width="294" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Товары для личного пользования" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y89-aJ-8xl">
+                                <rect key="frame" x="14" y="15" width="284" height="57.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-money-100" translatesAutoresizingMaskIntoConstraints="NO" id="1Jt-4o-WJC">
-                                <rect key="frame" x="306" y="6" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-money-100" translatesAutoresizingMaskIntoConstraints="NO" id="1Jt-4o-WJC">
+                                <rect key="frame" x="313" y="5" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="1s2-aQ-YNp"/>
+                                    <constraint firstAttribute="height" constant="60" id="x3s-58-Aof"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxf-O0-HPy">
-                                <rect key="frame" x="14" y="66" width="348" height="161"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxf-O0-HPy">
+                                <rect key="frame" x="14" y="88" width="355" height="181"/>
                                 <string key="text">Вывозить китайскую валюту запрещено. Ввоз национальной валюты ограничен суммой в 6000 CNY. Ввоз и вывоз иностранной валюты неограничен. Но подлежит декларированию ввозимая сумма иностранной валюты в эквиваленте 5 000 USD. </string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wxf-O0-HPy" firstAttribute="leading" secondItem="Dnf-P8-hB3" secondAttribute="leading" constant="14" id="1gl-1q-dLg"/>
+                            <constraint firstItem="y89-aJ-8xl" firstAttribute="leading" secondItem="Dnf-P8-hB3" secondAttribute="leading" constant="14" id="TD6-Eb-3Ev"/>
+                            <constraint firstItem="y89-aJ-8xl" firstAttribute="top" secondItem="Dnf-P8-hB3" secondAttribute="top" constant="15" id="kFc-ec-Fcu"/>
+                            <constraint firstItem="wxf-O0-HPy" firstAttribute="top" secondItem="y89-aJ-8xl" secondAttribute="bottom" constant="15" id="lH0-Cd-3r7"/>
+                            <constraint firstItem="1Jt-4o-WJC" firstAttribute="top" secondItem="Dnf-P8-hB3" secondAttribute="top" constant="5" id="lke-b6-ebB"/>
+                            <constraint firstAttribute="trailing" secondItem="1Jt-4o-WJC" secondAttribute="trailing" constant="4" id="mfu-y3-V8E"/>
+                            <constraint firstAttribute="trailing" secondItem="wxf-O0-HPy" secondAttribute="trailing" constant="8" id="pZp-eL-1BU"/>
+                            <constraint firstItem="1Jt-4o-WJC" firstAttribute="leading" secondItem="y89-aJ-8xl" secondAttribute="trailing" constant="15" id="sOH-yZ-sMf"/>
+                        </constraints>
                     </view>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.85882352939999995" green="0.8862745098" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Dnf-P8-hB3" secondAttribute="trailing" constant="5" id="5eM-Ad-Oh7"/>
+                <constraint firstItem="Dnf-P8-hB3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="JB9-0O-5z6"/>
+                <constraint firstItem="Dnf-P8-hB3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Msv-bZ-IjW"/>
+                <constraint firstAttribute="bottom" secondItem="Dnf-P8-hB3" secondAttribute="bottom" constant="5" id="mgA-wc-pg7"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="387" height="287"/>
             <connections>

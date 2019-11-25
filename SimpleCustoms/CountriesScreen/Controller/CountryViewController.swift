@@ -16,7 +16,11 @@ class CountryViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: CountryTableViewCell.reuseId)
-        tableView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        if #available(iOS 13.0, *) {
+            tableView.backgroundColor = .secondarySystemBackground
+        } else {
+            tableView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        }
         return tableView
     }()
     
@@ -152,11 +156,12 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
         let country = searchState(indexPath: indexPath)
         cell.flagImage.image = checkImage(country: country, imageType: .shiny)
-        cell.countryName.textColor = .white
         
         if #available(iOS 13.0, *) {
             cell.countryView.backgroundColor = .systemIndigo
+            cell.countryName.textColor = .label
         } else {
+            cell.countryName.textColor = .white
             cell.countryView.backgroundColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
         }
     }
@@ -165,8 +170,14 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
         let country = searchState(indexPath: indexPath)
         cell.flagImage.image = checkImage(country: country, imageType: .flat)
-        cell.countryName.textColor = .black
-        cell.countryView.backgroundColor =  #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9450980392, alpha: 1)
+        
+             if #available(iOS 13.0, *) {
+                cell.countryView.backgroundColor = .tertiarySystemBackground
+                cell.countryName.textColor = .label
+           } else {
+                cell.countryName.textColor = .black
+                cell.contentView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+           }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

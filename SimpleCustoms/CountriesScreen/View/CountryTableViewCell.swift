@@ -17,12 +17,6 @@ class CountryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var countryView: UIView!
     
-    override var isSelected: Bool {
-           didSet {
-               countryView.backgroundColor = isHighlighted ? #colorLiteral(red: 0.1490196078, green: 0.8156862745, blue: 0.4862745098, alpha: 1) : #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9450980392, alpha: 1)
-           }
-       }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

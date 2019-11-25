@@ -27,7 +27,11 @@ class CustomsRulesView: UIView {
         let page = UIPageControl()
         page.currentPage = 0
         page.numberOfPages = 5
-        page.currentPageIndicatorTintColor = .systemPurple
+        if #available(iOS 13.0, *) {
+            page.currentPageIndicatorTintColor = .systemIndigo
+        } else {
+            page.currentPageIndicatorTintColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
+        }
         page.pageIndicatorTintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return page
     }()
@@ -99,7 +103,7 @@ class CustomsRulesView: UIView {
             rightDirectionImage.centerYAnchor.constraint(equalTo: pageControl.centerYAnchor),
             rightDirectionImage.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-           
+            
             leftDirectionImage.centerYAnchor.constraint(equalTo: pageControl.centerYAnchor),
             leftDirectionImage.leadingAnchor.constraint(equalTo: leadingAnchor)
             

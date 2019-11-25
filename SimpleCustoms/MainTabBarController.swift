@@ -14,7 +14,10 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         let navigationController = UINavigationController(rootViewController: CountryViewController())
         navigationController.navigationBar.isTranslucent = true
-        navigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        
+        
+        
+        
         
         let dc = DeclarantTableViewController()
         dc.tabBarItem.image = UIImage(named: "Declarant")
@@ -23,8 +26,10 @@ class MainTabBarController: UITabBarController {
         navigationController.tabBarItem.title = "Страны"
         if #available(iOS 13.0, *) {
             tabBar.tintColor = .systemIndigo
+            navigationController.navigationBar.barTintColor = .secondarySystemBackground
         } else {
             tabBar.tintColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
+            navigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         }
         viewControllers = [navigationController, dc]
     }

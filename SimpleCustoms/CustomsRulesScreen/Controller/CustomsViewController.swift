@@ -27,8 +27,14 @@ class CustomsViewController: UIViewController {
     let countryDescription: UILabel = {
         let label = UILabel()
         label.text = "Канада славится своими практически нетронутыми природными ландшафтами, а также уникальной мозаичной культурой, составленной из самых разных традиций, привнесенных эмигрантами из всех уголков мира."
-        label.textColor = .black
-        label.font = UIFont(name: "AppleSDGothicNeo-UltraLight", size: 19)
+        
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        } else {
+            label.textColor = .black
+        }
+        
+        label.font = UIFont(name: "AppleSDGothicNeo-UltraLight", size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
@@ -64,12 +70,17 @@ class CustomsViewController: UIViewController {
             rulesView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 15),
             rulesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             rulesView.heightAnchor.constraint(equalToConstant: view.frame.height / 2)
-        
+            
         ])
     }
     
     private func setupNavigationController() {
-        view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .secondarySystemBackground
+        } else {
+            view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        }
+        
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.topItem?.title = ""

@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A7019C0F234D24170073DAFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7019C0E234D24170073DAFD /* Colors.swift */; };
-		A706BFB42333DB06002DA9C4 /* CustomsRulesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A706BFB32333DB06002DA9C4 /* CustomsRulesTableViewCell.xib */; };
 		A7261B662329477200D4854D /* CustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7261B652329477200D4854D /* CustomsViewController.swift */; };
 		A75596C82386C2CF00DB3D26 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */; };
 		A75596CA2386E8AB00DB3D26 /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */; };
-		A761CF0F232A8AFF001F67EA /* CustomsRulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A761CF0E232A8AFF001F67EA /* CustomsRulesTableViewCell.swift */; };
 		A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */; };
 		A773D429232828B7008DA6BF /* 1055-world-locations.json in Resources */ = {isa = PBXBuildFile; fileRef = A773D428232828B7008DA6BF /* 1055-world-locations.json */; };
 		A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743AF8238B15530076A87D /* CustomsRulesView.swift */; };
@@ -50,11 +48,9 @@
 		2818C78512A0C001CA6E5E82 /* Pods-SimpleCustoms.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleCustoms.release.xcconfig"; path = "Target Support Files/Pods-SimpleCustoms/Pods-SimpleCustoms.release.xcconfig"; sourceTree = "<group>"; };
 		A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleCustoms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7019C0E234D24170073DAFD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		A706BFB32333DB06002DA9C4 /* CustomsRulesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomsRulesTableViewCell.xib; sourceTree = "<group>"; };
 		A7261B652329477200D4854D /* CustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsViewController.swift; sourceTree = "<group>"; };
 		A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
-		A761CF0E232A8AFF001F67EA /* CustomsRulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsRulesTableViewCell.swift; sourceTree = "<group>"; };
 		A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		A773D428232828B7008DA6BF /* 1055-world-locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1055-world-locations.json"; sourceTree = "<group>"; };
 		A7743AF8238B15530076A87D /* CustomsRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomsRulesView.swift; path = SimpleCustoms/CustomsRulesView.swift; sourceTree = SOURCE_ROOT; };
@@ -130,8 +126,6 @@
 		A7261B632329475200D4854D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A761CF0E232A8AFF001F67EA /* CustomsRulesTableViewCell.swift */,
-				A706BFB32333DB06002DA9C4 /* CustomsRulesTableViewCell.xib */,
 				A7981A80238B12A10093DE28 /* Description */,
 				A7743AF8238B15530076A87D /* CustomsRulesView.swift */,
 				A7743AFA238B18010076A87D /* RulesCollectionViewCell.swift */,
@@ -393,7 +387,6 @@
 				A75596CA2386E8AB00DB3D26 /* CountryTableViewCell.xib in Resources */,
 				A77656F1234B93AA00F45031 /* default.realm in Resources */,
 				A773D429232828B7008DA6BF /* 1055-world-locations.json in Resources */,
-				A706BFB42333DB06002DA9C4 /* CustomsRulesTableViewCell.xib in Resources */,
 				A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */,
 				A7941129238AD8EA0001B402 /* DescriptionTableViewCell.xib in Resources */,
 				A7743AFD238B18010076A87D /* RulesCollectionViewCell.xib in Resources */,
@@ -473,7 +466,6 @@
 				A7B31DF92340D46200FBC4F8 /* Extensions.swift in Sources */,
 				A797D08C234A22DC00492849 /* Currency.swift in Sources */,
 				A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */,
-				A761CF0F232A8AFF001F67EA /* CustomsRulesTableViewCell.swift in Sources */,
 				A797D096234A2C5A00492849 /* CurrencyExchanger.swift in Sources */,
 				A7A50BBE233924C500C8624C /* CellSizeCalculator.swift in Sources */,
 				A797D0822347B6A400492849 /* DeclarantTableViewController.swift in Sources */,

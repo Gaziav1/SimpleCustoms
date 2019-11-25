@@ -43,7 +43,7 @@ class CountryDescriptionView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         setupTableView()
     }
     
@@ -74,6 +74,13 @@ extension CountryDescriptionView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.reuseId, for: indexPath) as! DescriptionTableViewCell
+        
+        if #available(iOS 13.0, *) {
+            cell.backgroundColor = .secondarySystemBackground
+        } else {
+            cell.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        }
+        
         return cell
     }
     
