@@ -145,6 +145,8 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseId) as! CountryTableViewCell
+        
+        cell.backgroundColor = .clear
         cell.selectionStyle = .none
         let country = searchState(indexPath: indexPath)
         cell.countryName.text = country.name
@@ -159,7 +161,6 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         if #available(iOS 13.0, *) {
             cell.countryView.backgroundColor = .systemIndigo
-            cell.countryName.textColor = .label
         } else {
             cell.countryName.textColor = .white
             cell.countryView.backgroundColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
@@ -173,10 +174,9 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
              if #available(iOS 13.0, *) {
                 cell.countryView.backgroundColor = .tertiarySystemBackground
-                cell.countryName.textColor = .label
            } else {
                 cell.countryName.textColor = .black
-                cell.contentView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+                cell.countryView.backgroundColor = .white
            }
     }
     

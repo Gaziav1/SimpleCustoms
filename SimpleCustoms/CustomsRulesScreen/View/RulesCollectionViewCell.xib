@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -18,37 +18,28 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dnf-P8-hB3">
-                        <rect key="frame" x="5" y="15" width="377" height="267"/>
+                        <rect key="frame" x="5" y="20" width="377" height="262"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Товары для личного пользования" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y89-aJ-8xl">
-                                <rect key="frame" x="14" y="15" width="284" height="57.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-money-100" translatesAutoresizingMaskIntoConstraints="NO" id="1Jt-4o-WJC">
-                                <rect key="frame" x="313" y="5" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="1s2-aQ-YNp"/>
-                                    <constraint firstAttribute="height" constant="60" id="x3s-58-Aof"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxf-O0-HPy">
-                                <rect key="frame" x="14" y="88" width="355" height="181"/>
+                                <rect key="frame" x="14" y="78" width="355" height="181"/>
                                 <string key="text">Вывозить китайскую валюту запрещено. Ввоз национальной валюты ограничен суммой в 6000 CNY. Ввоз и вывоз иностранной валюты неограничен. Но подлежит декларированию ввозимая сумма иностранной валюты в эквиваленте 5 000 USD. </string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Товары для личного пользования" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y89-aJ-8xl">
+                                <rect key="frame" x="14" y="10" width="355" height="57.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemFillColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.50196078430000002" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wxf-O0-HPy" firstAttribute="leading" secondItem="Dnf-P8-hB3" secondAttribute="leading" constant="14" id="1gl-1q-dLg"/>
-                            <constraint firstItem="y89-aJ-8xl" firstAttribute="leading" secondItem="Dnf-P8-hB3" secondAttribute="leading" constant="14" id="TD6-Eb-3Ev"/>
-                            <constraint firstItem="y89-aJ-8xl" firstAttribute="top" secondItem="Dnf-P8-hB3" secondAttribute="top" constant="15" id="kFc-ec-Fcu"/>
-                            <constraint firstItem="wxf-O0-HPy" firstAttribute="top" secondItem="y89-aJ-8xl" secondAttribute="bottom" constant="15" id="lH0-Cd-3r7"/>
-                            <constraint firstItem="1Jt-4o-WJC" firstAttribute="top" secondItem="Dnf-P8-hB3" secondAttribute="top" constant="5" id="lke-b6-ebB"/>
-                            <constraint firstAttribute="trailing" secondItem="1Jt-4o-WJC" secondAttribute="trailing" constant="4" id="mfu-y3-V8E"/>
+                            <constraint firstItem="y89-aJ-8xl" firstAttribute="top" secondItem="Dnf-P8-hB3" secondAttribute="top" constant="10" id="FEd-uH-ING"/>
+                            <constraint firstItem="wxf-O0-HPy" firstAttribute="top" secondItem="y89-aJ-8xl" secondAttribute="bottom" constant="10" id="HS5-JT-Ivw"/>
+                            <constraint firstItem="y89-aJ-8xl" firstAttribute="leading" secondItem="Dnf-P8-hB3" secondAttribute="leading" constant="14" id="fBG-Js-zDO"/>
                             <constraint firstAttribute="trailing" secondItem="wxf-O0-HPy" secondAttribute="trailing" constant="8" id="pZp-eL-1BU"/>
-                            <constraint firstItem="1Jt-4o-WJC" firstAttribute="leading" secondItem="y89-aJ-8xl" secondAttribute="trailing" constant="15" id="sOH-yZ-sMf"/>
+                            <constraint firstAttribute="trailing" secondItem="y89-aJ-8xl" secondAttribute="trailing" constant="8" id="rbK-3u-Pu2"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -56,7 +47,7 @@
             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Dnf-P8-hB3" secondAttribute="trailing" constant="5" id="5eM-Ad-Oh7"/>
-                <constraint firstItem="Dnf-P8-hB3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="JB9-0O-5z6"/>
+                <constraint firstItem="Dnf-P8-hB3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="JB9-0O-5z6"/>
                 <constraint firstItem="Dnf-P8-hB3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Msv-bZ-IjW"/>
                 <constraint firstAttribute="bottom" secondItem="Dnf-P8-hB3" secondAttribute="bottom" constant="5" id="mgA-wc-pg7"/>
             </constraints>
@@ -66,12 +57,8 @@
                 <outlet property="body" destination="wxf-O0-HPy" id="zlV-Lv-Qqd"/>
                 <outlet property="containerView" destination="Dnf-P8-hB3" id="XdD-zq-eAl"/>
                 <outlet property="header" destination="y89-aJ-8xl" id="iJP-MJ-uDe"/>
-                <outlet property="ruleIcon" destination="1Jt-4o-WJC" id="Tdc-i5-0DE"/>
             </connections>
             <point key="canvasLocation" x="384.78260869565219" y="210.60267857142856"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="icons8-money-100" width="50" height="50"/>
-    </resources>
 </document>

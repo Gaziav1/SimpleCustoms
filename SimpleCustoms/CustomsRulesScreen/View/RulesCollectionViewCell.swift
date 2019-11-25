@@ -12,11 +12,11 @@ class RulesCollectionViewCell: UICollectionViewCell {
    
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var body: UILabel!
-    @IBOutlet weak var ruleIcon: UIImageView!
     @IBOutlet weak var containerView: UIView! {
         didSet {
             containerView.layer.cornerRadius = 15
             contentView.layer.masksToBounds = true
+            backgroundColor = .clear
         }
     }
     
