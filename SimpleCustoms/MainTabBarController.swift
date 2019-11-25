@@ -21,7 +21,11 @@ class MainTabBarController: UITabBarController {
         dc.tabBarItem.title = "Декларант"
         navigationController.tabBarItem.image = UIImage(named: "Globe")
         navigationController.tabBarItem.title = "Страны"
-        tabBar.tintColor = .systemPurple
+        if #available(iOS 13.0, *) {
+            tabBar.tintColor = .systemIndigo
+        } else {
+            tabBar.tintColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
+        }
         viewControllers = [navigationController, dc]
     }
     

@@ -13,7 +13,7 @@ class Colors {
     static var colors = [UIColor(red: 82/255, green: 150/255, blue: 190/255, alpha: 1),
                          UIColor(red: 82/255, green: 146/255, blue: 125/255, alpha: 1),
                          UIColor(red: 200/255, green: 99/255, blue: 146/255, alpha: 1),
-                         UIColor.orange,
+                         #colorLiteral(red: 0.7882352941, green: 0.2156862745, blue: 0.337254902, alpha: 1),
                          UIColor(red: 177/255, green: 150/255, blue: 200/255, alpha: 1),
                          UIColor.cyan,
                          UIColor.red,

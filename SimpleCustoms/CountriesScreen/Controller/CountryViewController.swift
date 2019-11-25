@@ -153,7 +153,12 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let country = searchState(indexPath: indexPath)
         cell.flagImage.image = checkImage(country: country, imageType: .shiny)
         cell.countryName.textColor = .white
-        cell.countryView.backgroundColor = .systemPurple
+        
+        if #available(iOS 13.0, *) {
+            cell.countryView.backgroundColor = .systemIndigo
+        } else {
+            cell.countryView.backgroundColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
+        }
     }
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {

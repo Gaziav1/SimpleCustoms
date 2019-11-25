@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CustomsRulesView: UIView {
     
@@ -51,6 +52,12 @@ class CustomsRulesView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
+    var rules = List<CustomsRuleDescription>() {
+        didSet {
+            pageControl.numberOfPages = rules.count 
+        }
+    }
     
     private var lastPoint: Int?
     
@@ -116,10 +123,11 @@ class CustomsRulesView: UIView {
 extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RulesCollectionViewCell.reuseId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RulesCollectionViewCell.reuseId, for: indexPath) as! RulesCollectionViewCell
         
         lastPoint = indexPath.last ?? nil
-        
+        cell.header.text = rules[indexPath.row].header
+        cell.body.text = rules[indexPath.row].body.replacingOccurrences(of: "\\n", with: "\n")
         return cell
     }
     

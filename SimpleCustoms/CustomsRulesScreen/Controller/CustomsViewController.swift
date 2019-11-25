@@ -11,9 +11,10 @@ import RealmSwift
 
 class CustomsViewController: UIViewController {
     
-    var rules: CustomsRules? {
+    var rules = CustomsRules() {
         didSet {
-            flagImage.image = UIImage(named: rules?.forCountryCode?.lowercased() ?? "fr")
+            flagImage.image = UIImage(named: rules.forCountryCode?.lowercased() ?? "fr")
+            rulesView.rules = rules.customsRule
         }
     }
     
@@ -33,13 +34,13 @@ class CustomsViewController: UIViewController {
         return label
     }()
     
-    let descriptionView: CountryDescriptionView = {
+    private let descriptionView: CountryDescriptionView = {
         let view = CountryDescriptionView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    let rulesView: CustomsRulesView = {
+    private let rulesView: CustomsRulesView = {
         let view = CustomsRulesView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
