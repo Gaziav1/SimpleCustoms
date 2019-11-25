@@ -52,23 +52,48 @@ class CustomsViewController: UIViewController {
         return view
     }()
     
+    private let containterView = UIView()
+    
+    private let scrollView = UIScrollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupScrollView()
+        setupUIElementsInView()
         setupNavigationController()
-        setupImage()
-        setupDescriptionView()
-        setupCountryDescription()
-        setupRulesView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+ 
+    }
+    
+    private func setupScrollView() {
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+    
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    
     }
     
     private func setupRulesView() {
-        view.addSubview(rulesView)
+        containterView.addSubview(rulesView)
         
         NSLayoutConstraint.activate([
             
             rulesView.topAnchor.constraint(equalTo: countryDescription.bottomAnchor, constant: 30),
-            rulesView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 15),
-            rulesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            rulesView.leadingAnchor.constraint(equalTo: containterView.leadingAnchor,constant: 15),
+            rulesView.trailingAnchor.constraint(equalTo: containterView.trailingAnchor, constant: -15),
             rulesView.heightAnchor.constraint(equalToConstant: view.frame.height / 2)
             
         ])
@@ -86,13 +111,30 @@ class CustomsViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
     }
     
+    private func setupUIElementsInView() {
+        containterView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(containterView)
+        
+        containterView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        containterView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        containterView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        containterView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        containterView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        containterView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
+        
+        setupImage()
+        setupDescriptionView()
+        setupCountryDescription()
+        setupRulesView()
+    }
+    
     private func setupImage() {
-        view.addSubview(flagImage)
+        containterView.addSubview(flagImage)
         
         NSLayoutConstraint.activate([
             
-            flagImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            flagImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
+            flagImage.topAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.topAnchor, constant: 8),
+            flagImage.leadingAnchor.constraint(equalTo: containterView.leadingAnchor, constant: 18),
             flagImage.widthAnchor.constraint(equalToConstant: 215),
             flagImage.heightAnchor.constraint(equalToConstant: 150)])
         
@@ -101,53 +143,24 @@ class CustomsViewController: UIViewController {
     }
     
     private func setupDescriptionView() {
-        view.addSubview(descriptionView)
+        containterView.addSubview(descriptionView)
         
         NSLayoutConstraint.activate([
-            descriptionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            descriptionView.trailingAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.trailingAnchor),
             descriptionView.leadingAnchor.constraint(equalTo: flagImage.safeAreaLayoutGuide.trailingAnchor),
-            descriptionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            descriptionView.topAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.topAnchor, constant: 10),
             descriptionView.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
     
     private func setupCountryDescription() {
-        view.addSubview(countryDescription)
+        containterView.addSubview(countryDescription)
         NSLayoutConstraint.activate([
             countryDescription.topAnchor.constraint(equalTo: flagImage.bottomAnchor, constant: 30),
-            countryDescription.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            countryDescription.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)])
+            countryDescription.leadingAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            countryDescription.trailingAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.trailingAnchor, constant: -20)])
     }
     
 }
-
-//extension CustomsViewController: UITableViewDelegate, UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        guard let rules = rules else { return 1 }
-//        return rules.customsRule.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: CustomsRulesTableViewCell.reuseIdentifier, for: indexPath) as! CustomsRulesTableViewCell
-//        guard let rules = rules else { return cell }
-//
-//        cell.rulesTypeLabel.text = rules.customsRule[indexPath.row].header
-//
-//        let text = rules.customsRule[indexPath.row].body.replacingOccurrences(of: "\\n", with: "\n") //обеспечивает начало текста с новой строки при загрузке текста из базы данных
-//
-//        cell.rulesLabel.text = text
-//        cell.customsHeaderView.backgroundColor = Colors.colors[indexPath.row]
-//        cell.rulesLabel.frame = CustomsRulesCellLayout.shared.size(for: cell.rulesLabel.text!)
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//       return CustomsRulesCellLayout.shared.totalHeight
-//
-//    }
-//}
-
 
 
