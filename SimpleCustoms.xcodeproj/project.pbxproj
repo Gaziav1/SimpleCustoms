@@ -30,6 +30,8 @@
 		A797D08C234A22DC00492849 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D08B234A22DC00492849 /* Currency.swift */; };
 		A797D08E234A23E200492849 /* CurrencyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D08D234A23E200492849 /* CurrencyFetcher.swift */; };
 		A797D096234A2C5A00492849 /* CurrencyExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D095234A2C5A00492849 /* CurrencyExchanger.swift */; };
+		A79FA05B238D9CF5008F8076 /* RegionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79FA05A238D9CF5008F8076 /* RegionView.swift */; };
+		A79FA05D238D9D9D008F8076 /* RegionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79FA05C238D9D9D008F8076 /* RegionCollectionViewCell.swift */; };
 		A7A50BBE233924C500C8624C /* CellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */; };
 		A7A50BC1233A5BF100C8624C /* CustomsRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BC0233A5BF100C8624C /* CustomsRules.swift */; };
 		A7A50BC3233A6F6700C8624C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A50BC2233A6F6700C8624C /* RealmManager.swift */; };
@@ -72,6 +74,8 @@
 		A797D08B234A22DC00492849 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		A797D08D234A23E200492849 /* CurrencyFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFetcher.swift; sourceTree = "<group>"; };
 		A797D095234A2C5A00492849 /* CurrencyExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchanger.swift; sourceTree = "<group>"; };
+		A79FA05A238D9CF5008F8076 /* RegionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegionView.swift; path = SimpleCustoms/RegionView.swift; sourceTree = SOURCE_ROOT; };
+		A79FA05C238D9D9D008F8076 /* RegionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegionCollectionViewCell.swift; path = SimpleCustoms/CountriesScreen/RegionCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizeCalculator.swift; sourceTree = "<group>"; };
 		A7A50BC0233A5BF100C8624C /* CustomsRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsRules.swift; sourceTree = "<group>"; };
 		A7A50BC2233A6F6700C8624C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -172,6 +176,8 @@
 			children = (
 				A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */,
 				A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */,
+				A79FA05A238D9CF5008F8076 /* RegionView.swift */,
+				A79FA05C238D9D9D008F8076 /* RegionCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -458,10 +464,12 @@
 				A7261B662329477200D4854D /* CustomsViewController.swift in Sources */,
 				A7743AFC238B18010076A87D /* RulesCollectionViewCell.swift in Sources */,
 				A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */,
+				A79FA05B238D9CF5008F8076 /* RegionView.swift in Sources */,
 				A7790323238AC03C00CD8FFE /* CountryDescriptionView.swift in Sources */,
 				A7FE91392323FAC40052348F /* FlagImage.swift in Sources */,
 				A797D08E234A23E200492849 /* CurrencyFetcher.swift in Sources */,
 				A797D08A2348EE6C00492849 /* GoodsWithLimitations.swift in Sources */,
+				A79FA05D238D9D9D008F8076 /* RegionCollectionViewCell.swift in Sources */,
 				A7B7E25A234116720090873F /* WebImageHandler.swift in Sources */,
 				A7B31DF92340D46200FBC4F8 /* Extensions.swift in Sources */,
 				A797D08C234A22DC00492849 /* Currency.swift in Sources */,

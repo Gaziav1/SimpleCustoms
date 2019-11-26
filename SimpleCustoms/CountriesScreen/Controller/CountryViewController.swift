@@ -35,6 +35,8 @@ class CountryViewController: UIViewController {
         return load
     }()
     
+    private let regionChooser = RegionView()
+    
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchResults = [Country]()
     private var isSearching = false
@@ -46,6 +48,7 @@ class CountryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         handleDataDownloading()
+        setupRegionChooser()
         setupErrorView()
         setupTableView()
         setupSearchController()
@@ -53,6 +56,22 @@ class CountryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = false
+        extendedLayoutIncludesOpaqueBars = true
+        if #available(iOS 13.0, *) {
+            navigationController?.view.backgroundColor = .tertiarySystemBackground
+        } else {
+            navigationController?.view.backgroundColor = .white
+        }
+    }
+    
+    private func setupRegionChooser() {
+        regionChooser.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(regionChooser)
+        regionChooser.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        regionChooser.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        regionChooser.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        regionChooser.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
     }
     
     private func setupTableView() {
@@ -61,7 +80,7 @@ class CountryViewController: UIViewController {
         view.addSubview(countriesTableView)
         
         NSLayoutConstraint.activate([
-            countriesTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            countriesTableView.topAnchor.constraint(equalTo: regionChooser.bottomAnchor),
             countriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             countriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             countriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

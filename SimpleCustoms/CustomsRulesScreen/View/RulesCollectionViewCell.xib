@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="377" height="55"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Товары для личного пользования" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y89-aJ-8xl">
-                                        <rect key="frame" x="11" y="2" width="344" height="51"/>
+                                        <rect key="frame" x="16" y="2" width="344" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -37,7 +37,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxf-O0-HPy">
-                                <rect key="frame" x="14" y="70" width="358" height="181.5"/>
+                                <rect key="frame" x="19" y="70" width="350" height="181.5"/>
                                 <string key="text">Вывозить китайскую валюту запрещено. Ввоз национальной валюты ограничен суммой в 6000 CNY. Ввоз и вывоз иностранной валюты неограничен. Но подлежит декларированию ввозимая сумма иностранной валюты в эквиваленте 5 000 USD. </string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
                                 <nil key="highlightedColor"/>
@@ -45,13 +45,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wxf-O0-HPy" firstAttribute="leading" secondItem="Dnf-P8-hB3" secondAttribute="leading" constant="14" id="1gl-1q-dLg"/>
+                            <constraint firstItem="wxf-O0-HPy" firstAttribute="leading" secondItem="Dnf-P8-hB3" secondAttribute="leading" constant="19" id="1gl-1q-dLg"/>
                             <constraint firstItem="y9z-bC-4kv" firstAttribute="top" secondItem="Dnf-P8-hB3" secondAttribute="top" id="5GG-YE-bMI"/>
                             <constraint firstAttribute="trailing" secondItem="y9z-bC-4kv" secondAttribute="trailing" id="ExA-NJ-1tL"/>
                             <constraint firstItem="y9z-bC-4kv" firstAttribute="leading" secondItem="Dnf-P8-hB3" secondAttribute="leading" id="FnK-KR-2N0"/>
                             <constraint firstAttribute="bottom" secondItem="wxf-O0-HPy" secondAttribute="bottom" constant="20" symbolic="YES" id="VNr-ZW-P9h"/>
                             <constraint firstItem="wxf-O0-HPy" firstAttribute="top" secondItem="y9z-bC-4kv" secondAttribute="bottom" constant="15" id="isj-SB-tvu"/>
-                            <constraint firstAttribute="trailing" secondItem="wxf-O0-HPy" secondAttribute="trailing" constant="5" id="pZp-eL-1BU"/>
+                            <constraint firstAttribute="trailing" secondItem="wxf-O0-HPy" secondAttribute="trailing" constant="8" id="pZp-eL-1BU"/>
                         </constraints>
                     </view>
                 </subviews>

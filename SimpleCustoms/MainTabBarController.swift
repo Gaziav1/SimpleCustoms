@@ -13,12 +13,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let navigationController = UINavigationController(rootViewController: CountryViewController())
-        navigationController.navigationBar.isTranslucent = true
-        
-        
-        
-        
-        
+
         let dc = DeclarantTableViewController()
         dc.tabBarItem.image = UIImage(named: "Declarant")
         dc.tabBarItem.title = "Декларант"
