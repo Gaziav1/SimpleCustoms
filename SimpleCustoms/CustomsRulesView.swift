@@ -43,8 +43,6 @@ class CustomsRulesView: UIView {
         }
     }
     
-    private var lastPoint: Int?
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCollectionView()
@@ -73,20 +71,15 @@ class CustomsRulesView: UIView {
         rulesCollection.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         rulesCollection.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     }
-
     
-//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        let x = targetContentOffset.pointee.x
-//        // x отражает нашу текущую позицию в скролл вью
-//
-//        let point = Int(x / frame.width)
-//
-//        leftDirectionImage.isHidden = point == 0 ? true : false
-//        rightDirectionImage.isHidden = point == lastPoint ? true : false
-//
-//        pageControl.currentPage = Int(x / frame.width)
-//
-//    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let x = targetContentOffset.pointee.x
+        // x отражает нашу текущую позицию в скролл вью
+        
+        let point = Int(x / frame.width)
+        
+        pageControl.currentPage = point
+    }
 }
 
 extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
@@ -94,14 +87,15 @@ extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RulesCollectionViewCell.reuseId, for: indexPath) as! RulesCollectionViewCell
         
-        lastPoint = indexPath.last ?? nil
         cell.header.text = rules[indexPath.row].header
         cell.body.text = rules[indexPath.row].body.replacingOccurrences(of: "\\n", with: "\n")
+        print(cell.frame.height)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return rules.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -111,10 +105,6 @@ extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        self.pageControl.currentPage = indexPath.item
     }
     
 }

@@ -51,6 +51,10 @@ class CountryViewController: UIViewController {
         setupSearchController()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     private func setupTableView() {
         countriesTableView.delegate = self
         countriesTableView.dataSource = self

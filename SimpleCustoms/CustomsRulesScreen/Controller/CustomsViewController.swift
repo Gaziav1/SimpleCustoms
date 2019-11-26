@@ -34,7 +34,7 @@ class CustomsViewController: UIViewController {
             label.textColor = .black
         }
         
-        label.font = UIFont(name: "AppleSDGothicNeo-UltraLight", size: 20)
+        label.font = UIFont(name: "AppleSDGothicNeo-Light", size: 17.5)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
@@ -69,7 +69,9 @@ class CustomsViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-       
+        scrollView.layoutIfNeeded()
+        
+        scrollView.contentSize.height = descriptionView.frame.height + rulesView.frame.height + countryDescription.frame.height + flagImage.frame.height
     }
     
     private func setupScrollView() {
@@ -94,7 +96,7 @@ class CustomsViewController: UIViewController {
             rulesView.topAnchor.constraint(equalTo: countryDescription.bottomAnchor, constant: 30),
             rulesView.leadingAnchor.constraint(equalTo: containterView.leadingAnchor,constant: 15),
             rulesView.trailingAnchor.constraint(equalTo: containterView.trailingAnchor, constant: -15),
-            rulesView.heightAnchor.constraint(equalToConstant: view.frame.height / 2)
+            rulesView.heightAnchor.constraint(equalToConstant: view.frame.height)
             
         ])
     }
