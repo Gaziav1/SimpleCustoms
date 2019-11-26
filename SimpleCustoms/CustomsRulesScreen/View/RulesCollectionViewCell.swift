@@ -17,10 +17,16 @@ class RulesCollectionViewCell: UICollectionViewCell {
             containerView.layer.cornerRadius = 15
             contentView.layer.masksToBounds = true
             backgroundColor = .clear
+            dropShadow(shadowOffset: CGSize(width: 1, height: 1))
         }
     }
     
-    
+    @IBOutlet weak var headerContainer: UIView!  {
+        didSet {
+             containerView.layer.cornerRadius = 13
+             containerView.layer.masksToBounds = true
+        }
+    }
     static let reuseId = "RulesCell"
     
     override func awakeFromNib() {

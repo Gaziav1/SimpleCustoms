@@ -25,8 +25,7 @@ class CustomsRulesView: UIView {
     
     private let pageControl: UIPageControl = {
         let page = UIPageControl()
-        page.currentPage = 0
-        page.numberOfPages = 5
+     
         if #available(iOS 13.0, *) {
             page.currentPageIndicatorTintColor = .systemIndigo
         } else {
@@ -36,30 +35,11 @@ class CustomsRulesView: UIView {
         return page
     }()
     
-    private let rightDirectionImage: UIImageView = {
-        let image = UIImage(named: "icons8-right-100")
-        let imageView = UIImageView(image: image)
-        
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.alpha = 0.1
-        return imageView
-    }()
-    
-    private let leftDirectionImage: UIImageView = {
-        let image = UIImage(named: "icons8-left-100")
-        let imageView = UIImageView(image: image)
-        
-        imageView.contentMode = .scaleAspectFit
-        imageView.alpha = 0.1
-        imageView.isHidden = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
     var rules = List<CustomsRuleDescription>() {
         didSet {
-            pageControl.numberOfPages = rules.count 
+            pageControl.numberOfPages = rules.count
+            pageControl.currentPage = 0
+            
         }
     }
     
@@ -69,7 +49,6 @@ class CustomsRulesView: UIView {
         super.init(frame: frame)
         setupCollectionView()
         setupPageControl()
-        setupDirectionButtons()
     }
     
     required init?(coder: NSCoder) {
@@ -94,37 +73,23 @@ class CustomsRulesView: UIView {
         rulesCollection.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         rulesCollection.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     }
+
     
-    func setupDirectionButtons() {
-        addSubview(rightDirectionImage)
-        addSubview(leftDirectionImage)
-        
-        NSLayoutConstraint.activate([
-            rightDirectionImage.centerYAnchor.constraint(equalTo: pageControl.centerYAnchor),
-            rightDirectionImage.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            
-            leftDirectionImage.centerYAnchor.constraint(equalTo: pageControl.centerYAnchor),
-            leftDirectionImage.leadingAnchor.constraint(equalTo: leadingAnchor)
-            
-        ])
-    }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let x = targetContentOffset.pointee.x
-        // x отражает нашу текущую позицию в скролл вью
-        
-        let point = Int(x / frame.width)
-        
-        leftDirectionImage.isHidden = point == 0 ? true : false
-        rightDirectionImage.isHidden = point == lastPoint ? true : false
-        
-        pageControl.currentPage = Int(x / frame.width)
-        
-    }
+//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//        let x = targetContentOffset.pointee.x
+//        // x отражает нашу текущую позицию в скролл вью
+//
+//        let point = Int(x / frame.width)
+//
+//        leftDirectionImage.isHidden = point == 0 ? true : false
+//        rightDirectionImage.isHidden = point == lastPoint ? true : false
+//
+//        pageControl.currentPage = Int(x / frame.width)
+//
+//    }
 }
 
-extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RulesCollectionViewCell.reuseId, for: indexPath) as! RulesCollectionViewCell
@@ -147,4 +112,9 @@ extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.pageControl.currentPage = indexPath.item
+    }
+    
 }
