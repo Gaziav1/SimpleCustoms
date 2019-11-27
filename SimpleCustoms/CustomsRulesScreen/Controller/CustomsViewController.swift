@@ -34,7 +34,7 @@ class CustomsViewController: UIViewController {
             label.textColor = .black
         }
         
-        label.font = UIFont(name: "AppleSDGothicNeo-Light", size: 17.5)
+        label.font = UIFont(name: "AppleSDGothicNeo-Light", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label

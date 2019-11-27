@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol RegionChooseDelegate: class {
+    func userDidChooseRegion(_ region: String)
+}
+
 class RegionView: UIView {
     
     private let regionCollection: UICollectionView = {
@@ -26,10 +30,16 @@ class RegionView: UIView {
             flowLayout.scrollDirection = .horizontal
         }
         
-        collectionView.dropShadow(scale: true, shadowOffset: CGSize(width: 0, height: 1), opacity: 0.1, radius: 1)
+        collectionView.dropShadow(scale: true, shadowOffset: CGSize(width: 0, height: 2), opacity: 0.2, radius: 1)
         
         return collectionView
     }()
+    
+    weak var delegate: RegionChooseDelegate?
+    
+    private var regions = ["Все страны", "Европа", "Азия"]
+    
+    private var alignment: CGFloat = 1/3
     
     private var horizontalBarAnchor: NSLayoutConstraint?
     
@@ -76,8 +86,19 @@ class RegionView: UIView {
         horizontalBarAnchor?.isActive = true
         
         selectionBar.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        selectionBar.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3).isActive = true
+        selectionBar.widthAnchor.constraint(equalTo: widthAnchor, multiplier: alignment).isActive = true
         selectionBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
+    }
+    
+    private func playAnimation(for item: IndexPath) {
+        let width = frame.width / 3
+        let x = CGFloat(item.item) * width
+        
+        horizontalBarAnchor?.constant = x
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.layoutIfNeeded()
+        }, completion: nil)
     }
     
     
@@ -89,6 +110,8 @@ extension RegionView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RegionCollectionViewCell.reuseId, for: indexPath) as! RegionCollectionViewCell
         
+        cell.regionName.text = regions[indexPath.row]
+        
         return cell
     }
     
@@ -97,15 +120,9 @@ extension RegionView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let width = frame.width / 3
-        let x = CGFloat(indexPath.item) * width
-        
-        horizontalBarAnchor?.constant = x
-        
-        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
-            self.layoutIfNeeded()
-        }, completion: nil)
-        
+        playAnimation(for: indexPath)
+        print(regions[indexPath.row])
+        delegate?.userDidChooseRegion(regions[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

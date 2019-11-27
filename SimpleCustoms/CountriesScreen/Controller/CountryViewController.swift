@@ -66,6 +66,7 @@ class CountryViewController: UIViewController {
     
     private func setupRegionChooser() {
         regionChooser.translatesAutoresizingMaskIntoConstraints = false
+        regionChooser.delegate = self
         view.addSubview(regionChooser)
         regionChooser.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         regionChooser.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -233,4 +234,25 @@ extension CountryViewController: UISearchBarDelegate {
         searchController.searchBar.showsCancelButton = false
         countriesTableView.reloadData()
     }
+}
+
+extension CountryViewController: RegionChooseDelegate {
+    
+    func userDidChooseRegion(_ region: String) {
+        switch region {
+        case "Все страны":
+            searchResults = countries
+            countriesTableView.reloadData()
+        case "Европа":
+            searchResults = countries.filter({ $0.region == "Europe" })
+            isSearching = true
+            countriesTableView.reloadData()
+        case "Азия":
+            searchResults = countries.filter({ $0.region == "Asia"})
+            countriesTableView.reloadData()
+        default:
+            break
+        }
+    }
+    
 }
