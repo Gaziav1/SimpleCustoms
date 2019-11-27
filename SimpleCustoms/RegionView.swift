@@ -30,8 +30,6 @@ class RegionView: UIView {
             flowLayout.scrollDirection = .horizontal
         }
         
-        collectionView.dropShadow(scale: true, shadowOffset: CGSize(width: 0, height: 2), opacity: 0.2, radius: 1)
-        
         return collectionView
     }()
     
@@ -66,7 +64,7 @@ class RegionView: UIView {
         regionCollection.register(UINib(nibName: "RulesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: RulesCollectionViewCell.reuseId)
         
         regionCollection.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        regionCollection.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1).isActive = true
+        regionCollection.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         regionCollection.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         regionCollection.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     }

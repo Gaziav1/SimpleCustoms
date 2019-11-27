@@ -48,10 +48,10 @@ class CountryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         handleDataDownloading()
-        setupRegionChooser()
         setupErrorView()
-        setupTableView()
         setupSearchController()
+        setupTableView()
+        setupRegionChooser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +62,10 @@ class CountryViewController: UIViewController {
         } else {
             navigationController?.view.backgroundColor = .white
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        regionChooser.dropShadow(scale: true, shadowOffset: CGSize(width: 0, height: 2), opacity: 0.25, radius: 0.8)
     }
     
     private func setupRegionChooser() {
@@ -81,7 +85,7 @@ class CountryViewController: UIViewController {
         view.addSubview(countriesTableView)
         
         NSLayoutConstraint.activate([
-            countriesTableView.topAnchor.constraint(equalTo: regionChooser.bottomAnchor),
+            countriesTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             countriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             countriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             countriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
