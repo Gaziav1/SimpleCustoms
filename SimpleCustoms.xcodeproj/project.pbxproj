@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A7019C0F234D24170073DAFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7019C0E234D24170073DAFD /* Colors.swift */; };
 		A7261B662329477200D4854D /* CustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7261B652329477200D4854D /* CustomsViewController.swift */; };
+		A73EC1BC2390552700CA9DB5 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EC1BB2390552700CA9DB5 /* DataHandler.swift */; };
 		A75596C82386C2CF00DB3D26 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */; };
 		A75596CA2386E8AB00DB3D26 /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */; };
 		A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */; };
@@ -51,6 +52,7 @@
 		A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleCustoms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7019C0E234D24170073DAFD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A7261B652329477200D4854D /* CustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsViewController.swift; sourceTree = "<group>"; };
+		A73EC1BB2390552700CA9DB5 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
 		A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				A77A68C523203AF4005EAC5A /* CountryViewController.swift */,
+				A73EC1BB2390552700CA9DB5 /* DataHandler.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 			files = (
 				A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */,
 				A7019C0F234D24170073DAFD /* Colors.swift in Sources */,
+				A73EC1BC2390552700CA9DB5 /* DataHandler.swift in Sources */,
 				A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */,
 				A7A50BC3233A6F6700C8624C /* RealmManager.swift in Sources */,
 				A7C7CA19238564E300E96B76 /* ErrorView.swift in Sources */,

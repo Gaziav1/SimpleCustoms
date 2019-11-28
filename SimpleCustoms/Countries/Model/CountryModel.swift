@@ -14,3 +14,9 @@ class Country: Decodable {
     var region: String
     var flagImages: FlagImage?
 }
+
+enum Regions: String, CaseIterable {
+    case all = "All Countries"
+    case europe = "Europe"
+    case asia = "Asia"
+}

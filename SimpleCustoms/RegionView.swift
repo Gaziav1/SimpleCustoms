@@ -9,7 +9,7 @@
 import UIKit
 
 protocol RegionChooseDelegate: class {
-    func userDidChooseRegion(_ region: String)
+    func userDidChooseRegion(_ region: Regions)
 }
 
 class RegionView: UIView {
@@ -37,7 +37,7 @@ class RegionView: UIView {
     
     weak var delegate: RegionChooseDelegate?
     
-    private var regions = ["Все страны", "Европа", "Азия"]
+    private var regions: [Regions] = [.all, .europe, .asia]
     
     private var alignment: CGFloat = 1/3
     
@@ -45,6 +45,7 @@ class RegionView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         if #available(iOS 13.0, *) {
             backgroundColor = .tertiarySystemBackground
         } else {
@@ -114,18 +115,17 @@ extension RegionView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RegionCollectionViewCell.reuseId, for: indexPath) as! RegionCollectionViewCell
         
-        cell.regionName.text = regions[indexPath.row]
+        cell.regionName.text = regions[indexPath.row].rawValue
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return regions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         playAnimation(for: indexPath)
-        print(regions[indexPath.row])
         delegate?.userDidChooseRegion(regions[indexPath.row])
     }
     

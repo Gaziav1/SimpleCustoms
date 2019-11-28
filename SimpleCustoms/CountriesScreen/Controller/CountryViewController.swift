@@ -38,10 +38,9 @@ class CountryViewController: UIViewController {
     private let regionChooser = RegionView()
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private var searchResults = [Country]()
-    private var isSearching = false
     
-    private var countries = [Country]()
+    private var dataHandler = DataHandler()
+    
     
     private var errorHandler = ErrorView()
     
@@ -71,7 +70,7 @@ class CountryViewController: UIViewController {
         regionChooser.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         regionChooser.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         regionChooser.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        regionChooser.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        regionChooser.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
     }
     
@@ -81,7 +80,7 @@ class CountryViewController: UIViewController {
         view.addSubview(countriesTableView)
         
         NSLayoutConstraint.activate([
-            countriesTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45),
+            countriesTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 42),
             countriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             countriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             countriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -114,7 +113,7 @@ class CountryViewController: UIViewController {
                 return
             }
             guard let countries = country else { return }
-            self.countries = countries
+            self.dataHandler.setCountries(countries)
             self.loadingAnimation.stop()
             self.countriesTableView.fadeIn()
             self.loadingAnimation.fadeOut()
@@ -133,16 +132,6 @@ class CountryViewController: UIViewController {
         handleDataDownloading()
     }
     
-    private func searchState(indexPath: IndexPath) -> Country {
-        let country: Country
-        if isSearching {
-            country = searchResults[indexPath.row]
-        } else {
-            country = countries[indexPath.row]
-        }
-        return country
-    }
-    
     private func checkImage(country: Country, imageType: ImageType) -> UIImage {
         switch imageType  {
         case .flat:
@@ -159,11 +148,7 @@ class CountryViewController: UIViewController {
 extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isSearching {
-            return searchResults.count
-        } else {
-            return countries.count
-        }
+        return dataHandler.currentData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -172,7 +157,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
-        let country = searchState(indexPath: indexPath)
+        let country = dataHandler.currentData[indexPath.row]
         cell.countryName.text = country.name
         cell.flagImage.image = checkImage(country: country, imageType: .flat)
         return cell
@@ -180,7 +165,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
-        let country = searchState(indexPath: indexPath)
+        let country = dataHandler.currentData[indexPath.row]
         cell.flagImage.image = checkImage(country: country, imageType: .shiny)
         
         if #available(iOS 13.0, *) {
@@ -193,7 +178,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
-        let country = searchState(indexPath: indexPath)
+        let country = dataHandler.currentData[indexPath.row]
         cell.flagImage.image = checkImage(country: country, imageType: .flat)
         
              if #available(iOS 13.0, *) {
@@ -208,7 +193,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = CustomsViewController()
         navigationController?.dismiss(animated: true, completion: nil)
         
-        let country = searchState(indexPath: indexPath)
+        let country = dataHandler.currentData[indexPath.row]
         
         let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.alpha2Code), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
         vc.rules = customsRule[0]
@@ -224,13 +209,12 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
 extension CountryViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchResults = countries.filter({$0.name.prefix(searchText.count) == searchText})
+        dataHandler.startSearching(searchText)
         searchController.searchBar.showsCancelButton = true
-        isSearching = true
         countriesTableView.reloadData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        isSearching = false
+        dataHandler.stopSearching()
         searchController.searchBar.showsCancelButton = false
         countriesTableView.reloadData()
     }
@@ -238,20 +222,9 @@ extension CountryViewController: UISearchBarDelegate {
 
 extension CountryViewController: RegionChooseDelegate {
     
-    func userDidChooseRegion(_ region: String) {
-        switch region {
-        case "Все страны":
-            searchResults = countries
-            countriesTableView.reloadData()
-        case "Европа":
-            searchResults = countries.filter({ $0.region == "Europe" })
-            countriesTableView.reloadData()
-        case "Азия":
-            searchResults = countries.filter({ $0.region == "Asia"})
-            countriesTableView.reloadData()
-        default:
-            break
-        }
+    func userDidChooseRegion(_ region: Regions) {
+        dataHandler.currentRegion = region
+        countriesTableView.reloadData()
     }
     
 }
