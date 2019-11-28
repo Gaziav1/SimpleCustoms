@@ -30,6 +30,8 @@ class RegionView: UIView {
             flowLayout.scrollDirection = .horizontal
         }
         
+        collectionView.isScrollEnabled = false
+        
         return collectionView
     }()
     
@@ -50,6 +52,10 @@ class RegionView: UIView {
         }
         setupCollectionView()
         setupSelectionBar()
+        dropShadow(scale: true, shadowOffset: CGSize(width: 0, height: 3), opacity: 0.15, radius: 2)
+        
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        regionCollection.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
     }
     
     required init?(coder: NSCoder) {
@@ -85,7 +91,7 @@ class RegionView: UIView {
         
         selectionBar.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         selectionBar.widthAnchor.constraint(equalTo: widthAnchor, multiplier: alignment).isActive = true
-        selectionBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
+        selectionBar.heightAnchor.constraint(equalToConstant: 3).isActive = true
     }
     
     private func playAnimation(for item: IndexPath) {

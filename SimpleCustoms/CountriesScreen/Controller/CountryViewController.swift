@@ -64,10 +64,6 @@ class CountryViewController: UIViewController {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        regionChooser.dropShadow(scale: true, shadowOffset: CGSize(width: 0, height: 2), opacity: 0.25, radius: 0.8)
-    }
-    
     private func setupRegionChooser() {
         regionChooser.translatesAutoresizingMaskIntoConstraints = false
         regionChooser.delegate = self
@@ -75,7 +71,7 @@ class CountryViewController: UIViewController {
         regionChooser.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         regionChooser.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         regionChooser.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        regionChooser.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        regionChooser.heightAnchor.constraint(equalToConstant: 45).isActive = true
         
     }
     
@@ -85,7 +81,7 @@ class CountryViewController: UIViewController {
         view.addSubview(countriesTableView)
         
         NSLayoutConstraint.activate([
-            countriesTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            countriesTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45),
             countriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             countriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             countriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -249,7 +245,6 @@ extension CountryViewController: RegionChooseDelegate {
             countriesTableView.reloadData()
         case "Европа":
             searchResults = countries.filter({ $0.region == "Europe" })
-            isSearching = true
             countriesTableView.reloadData()
         case "Азия":
             searchResults = countries.filter({ $0.region == "Asia"})
