@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		A7019C0F234D24170073DAFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7019C0E234D24170073DAFD /* Colors.swift */; };
 		A7261B662329477200D4854D /* CustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7261B652329477200D4854D /* CustomsViewController.swift */; };
+		A72EBA63239160F2002DA3F0 /* 3003-bouncy-balls.json in Resources */ = {isa = PBXBuildFile; fileRef = A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */; };
 		A73EC1BC2390552700CA9DB5 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EC1BB2390552700CA9DB5 /* DataHandler.swift */; };
 		A75596C82386C2CF00DB3D26 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */; };
 		A75596CA2386E8AB00DB3D26 /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */; };
 		A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */; };
-		A773D429232828B7008DA6BF /* 1055-world-locations.json in Resources */ = {isa = PBXBuildFile; fileRef = A773D428232828B7008DA6BF /* 1055-world-locations.json */; };
 		A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743AF8238B15530076A87D /* CustomsRulesView.swift */; };
 		A7743AFC238B18010076A87D /* RulesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743AFA238B18010076A87D /* RulesCollectionViewCell.swift */; };
 		A7743AFD238B18010076A87D /* RulesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7743AFB238B18010076A87D /* RulesCollectionViewCell.xib */; };
@@ -52,11 +52,11 @@
 		A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleCustoms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7019C0E234D24170073DAFD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A7261B652329477200D4854D /* CustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsViewController.swift; sourceTree = "<group>"; };
+		A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "3003-bouncy-balls.json"; sourceTree = "<group>"; };
 		A73EC1BB2390552700CA9DB5 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
 		A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
-		A773D428232828B7008DA6BF /* 1055-world-locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1055-world-locations.json"; sourceTree = "<group>"; };
 		A7743AF8238B15530076A87D /* CustomsRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomsRulesView.swift; path = SimpleCustoms/CustomsRulesView.swift; sourceTree = SOURCE_ROOT; };
 		A7743AFA238B18010076A87D /* RulesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesCollectionViewCell.swift; sourceTree = "<group>"; };
 		A7743AFB238B18010076A87D /* RulesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RulesCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 		A797E3D82326A8BB00A872B8 /* Lottie Animations */ = {
 			isa = PBXGroup;
 			children = (
-				A773D428232828B7008DA6BF /* 1055-world-locations.json */,
+				A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */,
 			);
 			path = "Lottie Animations";
 			sourceTree = "<group>";
@@ -395,10 +395,10 @@
 			files = (
 				A75596CA2386E8AB00DB3D26 /* CountryTableViewCell.xib in Resources */,
 				A77656F1234B93AA00F45031 /* default.realm in Resources */,
-				A773D429232828B7008DA6BF /* 1055-world-locations.json in Resources */,
 				A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */,
 				A7941129238AD8EA0001B402 /* DescriptionTableViewCell.xib in Resources */,
 				A7743AFD238B18010076A87D /* RulesCollectionViewCell.xib in Resources */,
+				A72EBA63239160F2002DA3F0 /* 3003-bouncy-balls.json in Resources */,
 				A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

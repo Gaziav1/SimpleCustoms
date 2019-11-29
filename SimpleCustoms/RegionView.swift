@@ -72,8 +72,8 @@ class RegionView: UIView {
         
         regionCollection.topAnchor.constraint(equalTo: topAnchor).isActive = true
         regionCollection.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        regionCollection.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        regionCollection.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        regionCollection.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        regionCollection.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
     }
     
     private func setupSelectionBar() {
@@ -87,16 +87,16 @@ class RegionView: UIView {
         }
         selectionBar.translatesAutoresizingMaskIntoConstraints = false
         
-        horizontalBarAnchor = selectionBar.leadingAnchor.constraint(equalTo: leadingAnchor)
+        horizontalBarAnchor = selectionBar.leadingAnchor.constraint(equalTo: regionCollection.leadingAnchor)
         horizontalBarAnchor?.isActive = true
         
         selectionBar.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        selectionBar.widthAnchor.constraint(equalTo: widthAnchor, multiplier: alignment).isActive = true
+        selectionBar.widthAnchor.constraint(equalTo: regionCollection.widthAnchor, multiplier: alignment).isActive = true
         selectionBar.heightAnchor.constraint(equalToConstant: 3).isActive = true
     }
     
     private func playAnimation(for item: IndexPath) {
-        let width = frame.width / 3
+        let width = regionCollection.frame.width / 3
         let x = CGFloat(item.item) * width
         
         horizontalBarAnchor?.constant = x
@@ -130,7 +130,7 @@ extension RegionView: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 3, height: regionCollection.frame.height)
+        return CGSize(width: regionCollection.frame.width / 3, height: regionCollection.frame.height)
         
     }
     

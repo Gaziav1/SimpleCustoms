@@ -25,13 +25,13 @@ class CountryViewController: UIViewController {
     }()
     
     private let loadingAnimation: AnimationView = {
-        let animation = Animation.named("1055-world-locations")
+        let animation = Animation.named("3003-bouncy-balls")
         var load = AnimationView()
         load.animation = animation
         load.animationSpeed = 1
         load.loopMode = .loop
         load.contentMode = .scaleAspectFit
-        
+        load.translatesAutoresizingMaskIntoConstraints = false
         return load
     }()
     
@@ -51,6 +51,7 @@ class CountryViewController: UIViewController {
         setupSearchController()
         setupTableView()
         setupRegionChooser()
+        setupAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +73,15 @@ class CountryViewController: UIViewController {
         regionChooser.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         regionChooser.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
+    }
+    
+    private func setupAnimation() {
+        view.addSubview(loadingAnimation)
+        
+        loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loadingAnimation.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        loadingAnimation.widthAnchor.constraint(equalToConstant: 75).isActive = true
     }
     
     private func setupTableView() {
