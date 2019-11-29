@@ -46,22 +46,18 @@ class CountryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        if #available(iOS 13.0, *) {
+            navigationController?.view.backgroundColor = .tertiarySystemBackground
+        }
+        
+        self.navigationItem.largeTitleDisplayMode = .never
         handleDataDownloading()
         setupErrorView()
         setupSearchController()
         setupTableView()
         setupRegionChooser()
         setupAnimation()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.prefersLargeTitles = false
-        extendedLayoutIncludesOpaqueBars = true
-        if #available(iOS 13.0, *) {
-            navigationController?.view.backgroundColor = .tertiarySystemBackground
-        } else {
-            navigationController?.view.backgroundColor = .white
-        }
     }
     
     private func setupRegionChooser() {
@@ -132,8 +128,9 @@ class CountryViewController: UIViewController {
     }
     
     private func setupSearchController() {
-        self.navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
+        self.navigationItem.searchController = searchController
+        self.definesPresentationContext = true
         searchController.obscuresBackgroundDuringPresentation = false
     }
     
@@ -220,13 +217,18 @@ extension CountryViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         dataHandler.startSearching(searchText)
-        searchController.searchBar.showsCancelButton = true
+        
         countriesTableView.reloadData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         dataHandler.stopSearching()
         searchController.searchBar.showsCancelButton = false
         countriesTableView.reloadData()
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchController.searchBar.showsCancelButton = true
+        return true
     }
 }
 

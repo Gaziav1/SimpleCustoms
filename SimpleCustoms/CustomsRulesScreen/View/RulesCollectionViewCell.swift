@@ -17,7 +17,7 @@ class RulesCollectionViewCell: UICollectionViewCell {
             containerView.layer.cornerRadius = 15
             contentView.layer.masksToBounds = true
             backgroundColor = .clear
-            dropShadow(scale: true, shadowOffset: CGSize(width: 1, height: 3), opacity: 0.4, radius: 3)
+            dropShadow(scale: true, shadowOffset: CGSize(width: 1.5, height: 3), opacity: 0.3, radius: 2.5)
         }
     }
     

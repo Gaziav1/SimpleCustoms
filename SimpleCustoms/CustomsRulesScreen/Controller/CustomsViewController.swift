@@ -58,16 +58,15 @@ class CustomsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        setupNavigationController()
+        self.navigationItem.largeTitleDisplayMode = .always
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupScrollView()
         setupUIElementsInView()
-        setupNavigationController()
     }
-    
+
     override func viewDidLayoutSubviews() {
         scrollView.layoutIfNeeded()
         
@@ -107,9 +106,8 @@ class CustomsViewController: UIViewController {
         } else {
             view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         }
-        
-        navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.topItem?.title = ""
     }
     
@@ -140,7 +138,7 @@ class CustomsViewController: UIViewController {
             flagImage.widthAnchor.constraint(equalToConstant: 215),
             flagImage.heightAnchor.constraint(equalToConstant: 150)])
         
-        flagImage.layer.cornerRadius = 20
+        flagImage.layer.cornerRadius = 10
         flagImage.layer.masksToBounds = true
     }
     
