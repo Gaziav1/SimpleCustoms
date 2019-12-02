@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="51" id="KGk-i7-Jjw" customClass="GoodsTableViewCell" customModule="SimpleCustoms" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="51" id="KGk-i7-Jjw" customClass="CountryChooserTableViewCell" customModule="SimpleCustoms">
             <rect key="frame" x="0.0" y="0.0" width="321" height="51"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -39,7 +38,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Китай" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lme-wP-WH9">
-                        <rect key="frame" x="86" y="15" width="161" height="22"/>
+                        <rect key="frame" x="83" y="15" width="161" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="161" id="IJE-QV-yum"/>
                         </constraints>
@@ -57,7 +56,7 @@
                     <constraint firstAttribute="trailing" secondItem="wod-S3-f14" secondAttribute="trailing" constant="9" id="hhP-Nj-TPK"/>
                     <constraint firstItem="wod-S3-f14" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="1" id="jMI-7l-C57"/>
                     <constraint firstAttribute="bottom" secondItem="lme-wP-WH9" secondAttribute="bottom" constant="14" id="maG-s9-GZL"/>
-                    <constraint firstItem="obt-he-lG2" firstAttribute="leading" secondItem="lme-wP-WH9" secondAttribute="trailing" constant="6" id="oQ6-XL-u6y"/>
+                    <constraint firstItem="obt-he-lG2" firstAttribute="leading" secondItem="lme-wP-WH9" secondAttribute="trailing" constant="9" id="oQ6-XL-u6y"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

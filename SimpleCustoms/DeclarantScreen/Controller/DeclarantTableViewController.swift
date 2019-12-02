@@ -19,7 +19,8 @@ class DeclarantTableViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
         
-        tableView.register(UINib(nibName: "GoodsTableViewCell", bundle: nil), forCellReuseIdentifier: GoodsTableViewCell.cellId)
+        tableView.register(UINib(nibName: "CountryChooserTableViewCell", bundle: nil), forCellReuseIdentifier: CountryChooserTableViewCell.cellId)
+        tableView.register(UINib(nibName: "GoodsChooserTableViewCell", bundle: nil), forCellReuseIdentifier: GoodsChooserTableViewCell.cellId)
         return tableView
     }()
     
@@ -56,10 +57,11 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-        let cell = tableView.dequeueReusableCell(withIdentifier: GoodsTableViewCell.cellId, for: indexPath) as! GoodsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CountryChooserTableViewCell.cellId, for: indexPath) as! CountryChooserTableViewCell
         return cell
         } else {
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: GoodsChooserTableViewCell.cellId, for: indexPath) as! GoodsChooserTableViewCell
+            return cell
         }
         
     }
@@ -69,14 +71,14 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            self.present(TableViewController(), animated: true, completion: nil)
-        //case 1:
-            
-        default:
-            return
-        }
+//        switch indexPath.row {
+//        case 0:
+//           // self.present(TableViewController(), animated: true, completion: nil)
+//        //case 1:
+//            
+//        default:
+//            return
+//        }
     }
 }
 

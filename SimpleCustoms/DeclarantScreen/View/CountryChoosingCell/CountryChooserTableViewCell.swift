@@ -8,9 +8,9 @@
 
 import UIKit
 
-class GoodsTableViewCell: UITableViewCell {
+class CountryChooserTableViewCell: UITableViewCell {
     
-    static let cellId = "GoodsCell"
+    static let cellId = "CountryCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()
