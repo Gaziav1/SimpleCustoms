@@ -41,8 +41,6 @@
 		A7B9308E23954E3B00011BDA /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */; };
 		A7B9308F23954E4400011BDA /* DescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */; };
 		A7B9309023954E5200011BDA /* RulesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7743AFB238B18010076A87D /* RulesCollectionViewCell.xib */; };
-		A7B930972395511600011BDA /* GoodsChooserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B930952395511600011BDA /* GoodsChooserTableViewCell.swift */; };
-		A7B930982395511600011BDA /* GoodsChooserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B930962395511600011BDA /* GoodsChooserTableViewCell.xib */; };
 		A7C7CA19238564E300E96B76 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7CA18238564E300E96B76 /* ErrorView.swift */; };
 		A7C984C22385885800936465 /* APIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C984C12385885800936465 /* APIPath.swift */; };
 		A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */; };
@@ -91,8 +89,6 @@
 		A7A50BC2233A6F6700C8624C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		A7B31DF82340D46200FBC4F8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A7B7E259234116720090873F /* WebImageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageHandler.swift; sourceTree = "<group>"; };
-		A7B930952395511600011BDA /* GoodsChooserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoodsChooserTableViewCell.swift; path = SimpleCustoms/DeclarantScreen/View/GoodsChooserTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		A7B930962395511600011BDA /* GoodsChooserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GoodsChooserTableViewCell.xib; path = SimpleCustoms/DeclarantScreen/View/GoodsChooserTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		A7C7CA18238564E300E96B76 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorView.swift; path = SimpleCustoms/Helpers/ErrorView.swift; sourceTree = SOURCE_ROOT; };
 		A7C984C12385885800936465 /* APIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIPath.swift; path = SimpleCustoms/Services/NetworkService/APIPath.swift; sourceTree = SOURCE_ROOT; };
 		A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -302,7 +298,6 @@
 		A798F7392393EF25006842AC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A7B93092239550CD00011BDA /* GoodsChooserCell */,
 				A7B93091239550B800011BDA /* CountryChoosingCell */,
 			);
 			path = View;
@@ -327,15 +322,6 @@
 				A798F7412393F072006842AC /* CountryChooserTableViewCell.xib */,
 			);
 			path = CountryChoosingCell;
-			sourceTree = "<group>";
-		};
-		A7B93092239550CD00011BDA /* GoodsChooserCell */ = {
-			isa = PBXGroup;
-			children = (
-				A7B930952395511600011BDA /* GoodsChooserTableViewCell.swift */,
-				A7B930962395511600011BDA /* GoodsChooserTableViewCell.xib */,
-			);
-			path = GoodsChooserCell;
 			sourceTree = "<group>";
 		};
 		A7E70DC623215FE900EFD8B0 /* Services */ = {
@@ -439,7 +425,6 @@
 				A77656F1234B93AA00F45031 /* default.realm in Resources */,
 				A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */,
 				A72EBA63239160F2002DA3F0 /* 3003-bouncy-balls.json in Resources */,
-				A7B930982395511600011BDA /* GoodsChooserTableViewCell.xib in Resources */,
 				A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,7 +490,6 @@
 				A798F7422393F072006842AC /* CountryChooserTableViewCell.swift in Sources */,
 				A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */,
 				A77A68C623203AF4005EAC5A /* CountryViewController.swift in Sources */,
-				A7B930972395511600011BDA /* GoodsChooserTableViewCell.swift in Sources */,
 				A7C984C22385885800936465 /* APIPath.swift in Sources */,
 				A7941127238AD8970001B402 /* DescriptionTableViewCell.swift in Sources */,
 				A7261B662329477200D4854D /* CustomsViewController.swift in Sources */,

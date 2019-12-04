@@ -69,7 +69,7 @@ class CountryViewController: UIViewController {
         regionChooser.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         regionChooser.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         regionChooser.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        regionChooser.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        regionChooser.heightAnchor.constraint(equalToConstant: 46).isActive = true
         
     }
     

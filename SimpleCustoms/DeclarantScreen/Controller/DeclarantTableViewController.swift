@@ -18,11 +18,14 @@ class DeclarantTableViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
-        
+        tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "CountryChooserTableViewCell", bundle: nil), forCellReuseIdentifier: CountryChooserTableViewCell.cellId)
-        tableView.register(UINib(nibName: "GoodsChooserTableViewCell", bundle: nil), forCellReuseIdentifier: GoodsChooserTableViewCell.cellId)
+        tableView.estimatedRowHeight = 115
+        tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
+    
+    private var rowNumber = 1
     
     
     override func viewDidLoad() {
@@ -34,9 +37,10 @@ class DeclarantTableViewController: UIViewController {
         }
         
         setupGoodsView()
+        
     }
     
-    func setupGoodsView() {
+    private func setupGoodsView() {
         goodsTableView.translatesAutoresizingMaskIntoConstraints = false
         goodsTableView.delegate = self
         goodsTableView.dataSource = self
@@ -44,30 +48,50 @@ class DeclarantTableViewController: UIViewController {
         
         goodsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         goodsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        goodsTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        goodsTableView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
+        goodsTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        goodsTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
     }
 }
 
 extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return rowNumber + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CountryChooserTableViewCell.cellId, for: indexPath) as! CountryChooserTableViewCell
-        return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: GoodsChooserTableViewCell.cellId, for: indexPath) as! GoodsChooserTableViewCell
+         let cell = tableView.dequeueReusableCell(withIdentifier: CountryChooserTableViewCell.cellId, for: indexPath) as! CountryChooserTableViewCell
+        
+        switch indexPath.row {
+   
+        case 1:
+            cell.choosenEntity.isHidden = true
+            cell.flagImage?.isHidden = true
+            cell.trailingChoosenGoods.isActive = true
+        case 2:
+            cell.chevron.isHidden = true
+            cell.choosenEntity.isHidden = true
+            cell.flagImage?.isHidden = true
+            cell.trailingChoosenGoods.isActive = true
+            cell.trailingChoosenGoods.constant = 5
+            cell.superViewHeight.isActive = false
+            cell.bottomConstraint.isActive = true
+            cell.type.textColor = .darkGray
+            cell.type.text = "Домашние животные (одно животное на одного человека) ввозятся только при наличии ветеринарного сертификата международного образца и свидетельства о прививке от бешенства, сделанной не ранее, чем за 12 месяцев до пересечения границы и действительной как минимум 30 дней после въезда в Китай (карантин для кошек и собак - 7 дней). "
+        default:
             return cell
         }
-        
+        cell.number.text = String(indexPath.row + 1)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        switch indexPath.row {
+        case 2:
+            return UITableView.automaticDimension
+        default:
+            return 150
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
