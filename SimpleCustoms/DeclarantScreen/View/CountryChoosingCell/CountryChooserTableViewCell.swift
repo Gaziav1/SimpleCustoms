@@ -10,10 +10,11 @@ import UIKit
 
 class CountryChooserTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var titleOfLabel: UILabel!
     @IBOutlet weak var number: UILabel!
     @IBOutlet weak var type: UILabel!
     @IBOutlet weak var choosenEntity: UILabel!
-    @IBOutlet weak var flagImage: UIImageView?
+    @IBOutlet weak var flagImage: UIImageView!
     @IBOutlet weak var chevron: UIImageView!
     @IBOutlet weak var containerView: UIView! {
         didSet {
@@ -21,50 +22,119 @@ class CountryChooserTableViewCell: UITableViewCell {
             containerView.layer.masksToBounds = true
         }
     }
-
-    @IBOutlet weak var trailingChoosenGoods: NSLayoutConstraint!
-    @IBOutlet weak var superViewHeight: NSLayoutConstraint!
-    
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var heightContainer: NSLayoutConstraint!
+    
+    var isReloaded = false
+    
+    var indexPath = 0 {
+        didSet {
+            defineContentForCell()
+        }
+    }
+    
     static let cellId = "CountryCell"
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        animationHandler()
+        animateCircles()
     }
     
-    func animationHandler() {
-          
-          let aPath = UIBezierPath()
-          
-          aPath.move(to: CGPoint(x: 25.5, y: 43))
-          
-          aPath.addLine(to: CGPoint(x: 25.5, y: 145))
-          
-          aPath.close()
-
-          let shapeLayer = CAShapeLayer()
-          shapeLayer.path = aPath.cgPath
-          shapeLayer.strokeColor = UIColor.lightGray.cgColor
-          shapeLayer.lineWidth = 1.0
+    func animatedLine() {
+        let aPath = UIBezierPath()
+        aPath.move(to: CGPoint(x: 25.5, y: 46))
         
-          let circleLayer = CAShapeLayer();
-        circleLayer.path = UIBezierPath(ovalIn: CGRect(x: 5.5, y: 0, width: 40, height: 40)).cgPath
-          if #available(iOS 13.0, *) {
-            circleLayer.fillColor = UIColor.systemIndigo.cgColor
-          } else {
-            circleLayer.fillColor = UIColor.black.cgColor
-          }
-          
-          contentView.layer.addSublayer(shapeLayer)
-          contentView.layer.insertSublayer(circleLayer, at: 0)
-      }
-
+        if indexPath == 2 {
+            aPath.addLine(to: CGPoint(x: 25.5, y: 250))
+        } else {
+            aPath.addLine(to: CGPoint(x: 25.5, y: 144))
+        }
+        
+        aPath.close()
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = aPath.cgPath
+        shapeLayer.strokeEnd = 0
+        shapeLayer.strokeColor = UIColor.lightGray.cgColor
+        shapeLayer.lineWidth = 2
+        
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.toValue = 1
+        animation.timingFunction = CAMediaTimingFunction(name: .easeIn)
+        animation.fillMode = .both
+        animation.isRemovedOnCompletion = false
+        animation.duration = 0.3
+        shapeLayer.add(animation, forKey: "strokeEnd")
+        
+        contentView.layer.addSublayer(shapeLayer)
+    }
+    
+    func animateCircles() {
+        
+        let circleLayer = CAShapeLayer()
+        let circlePath = UIBezierPath(ovalIn: CGRect(x: 5.5, y: 2, width: 40, height: 40)).cgPath
+        circleLayer.path = circlePath
+        circleLayer.fillColor = UIColor.white.cgColor
+        if #available(iOS 13.0, *) {
+            circleLayer.strokeColor = UIColor.systemIndigo.cgColor
+        } else {
+            circleLayer.strokeColor = UIColor.black.cgColor
+        }
+        circleLayer.strokeEnd = 0
+        circleLayer.lineWidth = 2
+        
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.toValue = 1
+        animation.timingFunction = CAMediaTimingFunction(name: .linear)
+        animation.fillMode = .both
+        animation.isRemovedOnCompletion = false
+        animation.duration = 0.2
+        animation.delegate = self
+        circleLayer.add(animation, forKey: "strokeEnd")
+        
+        contentView.layer.insertSublayer(circleLayer, at: 0)
+    }
+    
+    func defineContentForCell() {
+        
+        if isReloaded {
+            return
+        }
+        switch indexPath {
+        case 1:
+            type.fadeIn()
+            titleOfLabel.fadeIn()
+            containerView.fadeIn()
+            chevron.fadeIn()
+        case 2:
+            type.fadeIn()
+            titleOfLabel.fadeIn()
+            containerView.fadeIn()
+            type.textColor = .darkGray
+            type.text = "Домашние животные (одно животное на одного человека) ввозятся только при наличии ветеринарного сертификата международного образца и свидетельства о прививке от бешенства, сделанной не ранее, чем за 12 месяцев до пересечения границы и действительной как минимум 30 дней после въезда в Китай (карантин для кошек и собак - 7 дней). "
+        default:
+            type.fadeIn()
+            titleOfLabel.fadeIn()
+            containerView.fadeIn()
+            flagImage.fadeIn()
+            chevron.fadeIn()
+            choosenEntity.fadeIn()
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
+}
+
+extension CountryChooserTableViewCell: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        animatedLine()
+        
+    }
 }

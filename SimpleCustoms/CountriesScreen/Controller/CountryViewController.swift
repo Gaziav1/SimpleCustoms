@@ -9,6 +9,10 @@
 import UIKit
 import Lottie
 
+protocol CountryChooseDelegate: class {
+    func didChooseCountry(_ name: String, imageData: Data)
+}
+
 class CountryViewController: UIViewController {
     
     private let countriesTableView: UITableView = {
@@ -23,7 +27,6 @@ class CountryViewController: UIViewController {
         }
         return tableView
     }()
-    
     private let loadingAnimation: AnimationView = {
         let animation = Animation.named("3003-bouncy-balls")
         var load = AnimationView()
@@ -34,15 +37,12 @@ class CountryViewController: UIViewController {
         load.translatesAutoresizingMaskIntoConstraints = false
         return load
     }()
-    
     private let regionChooser = RegionView()
-    
     private let searchController = UISearchController(searchResultsController: nil)
-    
     private var dataHandler = DataHandler()
-    
-    
     private var errorHandler = ErrorView()
+    
+    weak var delegate: CountryChooseDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -208,6 +208,8 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         vc.rules = customsRule[0]
         vc.navigationItem.title = country.name
         navigationController?.pushViewController(vc, animated: true)
+        
+        delegate?.didChooseCountry(country.name, imageData: country.flagImages?.flatFlagImage ?? Data())
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

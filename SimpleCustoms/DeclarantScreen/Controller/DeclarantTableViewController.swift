@@ -14,7 +14,7 @@ class DeclarantTableViewController: UIViewController {
     
     //private var currency: Currency?
     
-    let goodsTableView: UITableView = {
+    private let goodsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
@@ -26,7 +26,8 @@ class DeclarantTableViewController: UIViewController {
     }()
     
     private var rowNumber = 1
-    
+    private var flagImage = UIImage()
+    private var choosenCountry = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,35 +57,30 @@ class DeclarantTableViewController: UIViewController {
 extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rowNumber + 2
+        return rowNumber
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: CountryChooserTableViewCell.cellId, for: indexPath) as! CountryChooserTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CountryChooserTableViewCell.cellId, for: indexPath) as! CountryChooserTableViewCell
+        
+        cell.number.text = String(indexPath.row + 1)
+        cell.indexPath = indexPath.row
         
         switch indexPath.row {
-   
-        case 1:
-            cell.choosenEntity.isHidden = true
-            cell.flagImage?.isHidden = true
-            cell.trailingChoosenGoods.isActive = true
+        case 0:
+            cell.choosenEntity.text = choosenCountry
+            cell.flagImage.image = flagImage
         case 2:
-            cell.chevron.isHidden = true
-            cell.choosenEntity.isHidden = true
-            cell.flagImage?.isHidden = true
-            cell.trailingChoosenGoods.isActive = true
-            cell.trailingChoosenGoods.constant = 5
-            cell.superViewHeight.isActive = false
+            cell.isUserInteractionEnabled = false
             cell.bottomConstraint.isActive = true
-            cell.type.textColor = .darkGray
-            cell.type.text = "Домашние животные (одно животное на одного человека) ввозятся только при наличии ветеринарного сертификата международного образца и свидетельства о прививке от бешенства, сделанной не ранее, чем за 12 месяцев до пересечения границы и действительной как минимум 30 дней после въезда в Китай (карантин для кошек и собак - 7 дней). "
-        default:
-            return cell
+            cell.heightContainer.isActive = false
+        default: print("dick")
         }
-        cell.number.text = String(indexPath.row + 1)
+        
+        cell.isReloaded = true
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 2:
@@ -93,17 +89,36 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
             return 150
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        switch indexPath.row {
-//        case 0:
-//           // self.present(TableViewController(), animated: true, completion: nil)
-//        //case 1:
-//            
-//        default:
-//            return
-//        }
+        
+        let vc = CountryViewController()
+        
+        switch indexPath.row {
+        case 0:
+            vc.delegate = self
+            self.present(vc, animated: true, completion: nil)
+        case 1: return
+        case 2: return
+        default: return
+        }
+    
     }
+}
+
+extension DeclarantTableViewController: CountryChooseDelegate {
+    
+    func didChooseCountry(_ name: String, imageData: Data) {
+        self.choosenCountry = name
+        
+        guard let dataForImage = UIImage(data: imageData) else { return }
+        flagImage = dataForImage
+        
+        self.dismiss(animated: true, completion: nil)
+        rowNumber = 2
+        goodsTableView.reloadData()
+    }
+    
 }
 
 
