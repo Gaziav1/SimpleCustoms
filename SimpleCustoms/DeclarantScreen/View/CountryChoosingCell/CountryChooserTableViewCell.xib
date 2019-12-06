@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ux-HG-wOG">
-                        <rect key="frame" x="52" y="48" width="312" height="44"/>
+                        <rect key="frame" x="55" y="48" width="312" height="44"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Страна" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ras-ZT-9mc">
                                 <rect key="frame" x="8" y="11.5" width="299" height="21.5"/>
@@ -52,7 +52,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="obt-he-lG2" firstAttribute="centerY" secondItem="5ux-HG-wOG" secondAttribute="centerY" id="1bS-Xc-erD"/>
                             <constraint firstItem="lme-wP-WH9" firstAttribute="centerY" secondItem="5ux-HG-wOG" secondAttribute="centerY" id="24s-uG-ZXI"/>
@@ -73,7 +73,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите страну следования" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIZ-jT-HOv">
-                        <rect key="frame" x="52" y="12" width="238" height="21"/>
+                        <rect key="frame" x="55" y="12" width="238" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="238" id="ry2-yT-X25"/>
                             <constraint firstAttribute="height" constant="21" id="vAX-TF-eUr"/>
@@ -85,11 +85,11 @@
                 <constraints>
                     <constraint firstItem="LIZ-jT-HOv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="3vV-dQ-BDv"/>
                     <constraint firstItem="h5g-5H-cgW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="51m-fV-VQX"/>
-                    <constraint firstAttribute="trailing" secondItem="5ux-HG-wOG" secondAttribute="trailing" constant="15" id="JTg-p8-Tkf"/>
+                    <constraint firstAttribute="trailing" secondItem="5ux-HG-wOG" secondAttribute="trailing" constant="12" id="JTg-p8-Tkf"/>
                     <constraint firstAttribute="bottom" secondItem="5ux-HG-wOG" secondAttribute="bottom" constant="18" id="KYo-n5-6Nx"/>
-                    <constraint firstItem="LIZ-jT-HOv" firstAttribute="leading" secondItem="h5g-5H-cgW" secondAttribute="trailing" constant="22" id="Z8F-2r-Ebn"/>
+                    <constraint firstItem="LIZ-jT-HOv" firstAttribute="leading" secondItem="h5g-5H-cgW" secondAttribute="trailing" constant="25" id="Z8F-2r-Ebn"/>
                     <constraint firstItem="h5g-5H-cgW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="bFk-wi-ZVb"/>
-                    <constraint firstItem="5ux-HG-wOG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="52" id="k42-st-ohq"/>
+                    <constraint firstItem="5ux-HG-wOG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="55" id="k42-st-ohq"/>
                     <constraint firstItem="5ux-HG-wOG" firstAttribute="top" secondItem="LIZ-jT-HOv" secondAttribute="bottom" constant="15" id="ypQ-CK-yE1"/>
                 </constraints>
                 <variation key="default">

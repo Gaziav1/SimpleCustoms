@@ -26,7 +26,7 @@ class CountryChooserTableViewCell: UITableViewCell {
     
     @IBOutlet weak var heightContainer: NSLayoutConstraint!
     
-    var isReloaded = false
+    var isReloaded = false // необходимо чтобы не воспроизводилась анимация каждый раз при обновлении tableView
     
     var indexPath = 0 {
         didSet {
@@ -39,18 +39,23 @@ class CountryChooserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        if #available(iOS 13.0, *) {
+            backgroundColor = .secondarySystemBackground
+        } else {
+            backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        }
         animateCircles()
     }
     
     func animatedLine() {
-        let aPath = UIBezierPath()
-        aPath.move(to: CGPoint(x: 25.5, y: 46))
         
         if indexPath == 2 {
-            aPath.addLine(to: CGPoint(x: 25.5, y: 250))
-        } else {
-            aPath.addLine(to: CGPoint(x: 25.5, y: 144))
+            return
         }
+        
+        let aPath = UIBezierPath()
+        aPath.move(to: CGPoint(x: 25.5, y: 46))
+        aPath.addLine(to: CGPoint(x: 25.5, y: 144))
         
         aPath.close()
         
@@ -76,9 +81,9 @@ class CountryChooserTableViewCell: UITableViewCell {
         let circleLayer = CAShapeLayer()
         let circlePath = UIBezierPath(ovalIn: CGRect(x: 5.5, y: 2, width: 40, height: 40)).cgPath
         circleLayer.path = circlePath
-        circleLayer.fillColor = UIColor.white.cgColor
+        circleLayer.fillColor = .none
         if #available(iOS 13.0, *) {
-            circleLayer.strokeColor = UIColor.systemIndigo.cgColor
+            circleLayer.strokeColor = UIColor.label.cgColor
         } else {
             circleLayer.strokeColor = UIColor.black.cgColor
         }

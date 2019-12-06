@@ -13,11 +13,24 @@ class DeclarantTableViewController: UIViewController {
     //private var goodsInformation = [GoodsWithLimitations]()
     
     //private var currency: Currency?
+
+     lazy private var goodsAlert: GoodsChoosingAlert = {
+         var viewAlert = GoodsChoosingAlert()
+         viewAlert = Bundle.main.loadNibNamed("GoodsChoosingAlert", owner: self, options: nil)?.first as! GoodsChoosingAlert
+         viewAlert.alpha = 0
+         viewAlert.delegate = self
+        return viewAlert
+     }()
     
     private let goodsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
+        if #available(iOS 13.0, *) {
+            tableView.backgroundColor = .secondarySystemBackground
+        } else {
+            tableView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        }
         tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "CountryChooserTableViewCell", bundle: nil), forCellReuseIdentifier: CountryChooserTableViewCell.cellId)
         tableView.estimatedRowHeight = 115
@@ -25,9 +38,24 @@ class DeclarantTableViewController: UIViewController {
         return tableView
     }()
     
+    let visualEffectView: UIVisualEffectView = {
+        let blurEffect: UIBlurEffect
+        if #available(iOS 13.0, *) {
+            blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+        } else {
+            blurEffect = UIBlurEffect(style: .dark)
+        }
+        
+        let effect = UIVisualEffectView(effect: blurEffect)
+        effect.translatesAutoresizingMaskIntoConstraints = false
+        effect.alpha = 0
+        return effect
+    }()
+    
     private var rowNumber = 1
     private var flagImage = UIImage()
     private var choosenCountry = ""
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +66,15 @@ class DeclarantTableViewController: UIViewController {
         }
         
         setupGoodsView()
+        setupVisualEffectView()
+    }
+    
+    private func setupVisualEffectView() {
+        view.addSubview(visualEffectView)
+        visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        visualEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
     }
     
@@ -47,10 +84,19 @@ class DeclarantTableViewController: UIViewController {
         goodsTableView.dataSource = self
         view.addSubview(goodsTableView)
         
-        goodsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        goodsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         goodsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        goodsTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        goodsTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
         goodsTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
+    }
+    
+    private func animateIn() {
+        goodsAlert.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        goodsAlert.fadeIn()
+        visualEffectView.fadeIn()
+        UIView.animate(withDuration: 0.3) {
+            self.goodsAlert.transform = CGAffineTransform.identity
+        }
     }
 }
 
@@ -80,7 +126,7 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
         cell.isReloaded = true
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 2:
@@ -89,7 +135,7 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
             return 150
         }
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let vc = CountryViewController()
@@ -97,13 +143,21 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
         switch indexPath.row {
         case 0:
             vc.delegate = self
-            self.present(vc, animated: true, completion: nil)
-        case 1: return
+            self.present(vc, animated: true) {
+                self.rowNumber = 1
+                self.goodsTableView.reloadData()
+            }
+        case 1:
+            view.addSubview(goodsAlert)
+            goodsAlert.center = view.center
+            animateIn()
+    
         case 2: return
         default: return
         }
-    
+        
     }
+    
 }
 
 extension DeclarantTableViewController: CountryChooseDelegate {
@@ -113,12 +167,22 @@ extension DeclarantTableViewController: CountryChooseDelegate {
         
         guard let dataForImage = UIImage(data: imageData) else { return }
         flagImage = dataForImage
-        
-        self.dismiss(animated: true, completion: nil)
-        rowNumber = 2
+        self.rowNumber = 2
         goodsTableView.reloadData()
+        dismiss(animated: true)
+    }
+}
+
+extension DeclarantTableViewController: GoodsChoosingDelegate {
+    func cancelButtonTapped() {
+        goodsAlert.removeFromSuperview()
+        visualEffectView.fadeOut()
     }
     
+    func doneButtonTapped() {
+        goodsAlert.removeFromSuperview()
+        visualEffectView.fadeOut()
+    }
 }
 
 

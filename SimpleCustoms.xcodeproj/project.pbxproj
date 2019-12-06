@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A7019C0F234D24170073DAFD /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7019C0E234D24170073DAFD /* Colors.swift */; };
+		A71C84EE239AADD800EDFA67 /* GoodsChoosingAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = A71C84ED239AADD800EDFA67 /* GoodsChoosingAlert.xib */; };
+		A71C84F2239AB86A00EDFA67 /* GoodsChoosingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C84F1239AB86A00EDFA67 /* GoodsChoosingAlert.swift */; };
 		A7261B662329477200D4854D /* CustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7261B652329477200D4854D /* CustomsViewController.swift */; };
 		A72EBA63239160F2002DA3F0 /* 3003-bouncy-balls.json in Resources */ = {isa = PBXBuildFile; fileRef = A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */; };
 		A73EC1BC2390552700CA9DB5 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EC1BB2390552700CA9DB5 /* DataHandler.swift */; };
@@ -54,6 +56,8 @@
 		2818C78512A0C001CA6E5E82 /* Pods-SimpleCustoms.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleCustoms.release.xcconfig"; path = "Target Support Files/Pods-SimpleCustoms/Pods-SimpleCustoms.release.xcconfig"; sourceTree = "<group>"; };
 		A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleCustoms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7019C0E234D24170073DAFD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		A71C84ED239AADD800EDFA67 /* GoodsChoosingAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GoodsChoosingAlert.xib; path = SimpleCustoms/DeclarantScreen/GoodsChoosingAlert.xib; sourceTree = SOURCE_ROOT; };
+		A71C84F1239AB86A00EDFA67 /* GoodsChoosingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsChoosingAlert.swift; sourceTree = "<group>"; };
 		A7261B652329477200D4854D /* CustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsViewController.swift; sourceTree = "<group>"; };
 		A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "3003-bouncy-balls.json"; sourceTree = "<group>"; };
 		A73EC1BB2390552700CA9DB5 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 			isa = PBXGroup;
 			children = (
 				A7B93091239550B800011BDA /* CountryChoosingCell */,
+				A71C84ED239AADD800EDFA67 /* GoodsChoosingAlert.xib */,
+				A71C84F1239AB86A00EDFA67 /* GoodsChoosingAlert.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -418,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A71C84EE239AADD800EDFA67 /* GoodsChoosingAlert.xib in Resources */,
 				A7B9309023954E5200011BDA /* RulesCollectionViewCell.xib in Resources */,
 				A7B9308F23954E4400011BDA /* DescriptionTableViewCell.xib in Resources */,
 				A7B9308E23954E3B00011BDA /* CountryTableViewCell.xib in Resources */,
@@ -479,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */,
+				A71C84F2239AB86A00EDFA67 /* GoodsChoosingAlert.swift in Sources */,
 				A7019C0F234D24170073DAFD /* Colors.swift in Sources */,
 				A73EC1BC2390552700CA9DB5 /* DataHandler.swift in Sources */,
 				A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */,
