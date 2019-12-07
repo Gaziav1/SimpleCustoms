@@ -22,6 +22,13 @@ class DeclarantTableViewController: UIViewController {
         return viewAlert
      }()
     
+    private let segmentedTypeControl: UISegmentedControl = {
+       let sc = UISegmentedControl(items: ["Товары", "Валюта"])
+        sc.translatesAutoresizingMaskIntoConstraints = false
+        sc.selectedSegmentIndex = 0
+        return sc
+    }()
+    
     private let goodsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +71,7 @@ class DeclarantTableViewController: UIViewController {
         } else {
             view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         }
-        
+        setupSegmentedControl()
         setupGoodsView()
         setupVisualEffectView()
     }
@@ -78,6 +85,15 @@ class DeclarantTableViewController: UIViewController {
         
     }
     
+    private func setupSegmentedControl() {
+        view.addSubview(segmentedTypeControl)
+        segmentedTypeControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        segmentedTypeControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        segmentedTypeControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
+        segmentedTypeControl.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        segmentedTypeControl.addTarget(self, action: #selector(segmentedControlSelection), for: .valueChanged)
+    }
+    
     private func setupGoodsView() {
         goodsTableView.translatesAutoresizingMaskIntoConstraints = false
         goodsTableView.delegate = self
@@ -86,7 +102,7 @@ class DeclarantTableViewController: UIViewController {
         
         goodsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         goodsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        goodsTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        goodsTableView.topAnchor.constraint(equalTo: segmentedTypeControl.bottomAnchor, constant: 35).isActive = true
         goodsTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
     }
     
@@ -96,6 +112,14 @@ class DeclarantTableViewController: UIViewController {
         visualEffectView.fadeIn()
         UIView.animate(withDuration: 0.3) {
             self.goodsAlert.transform = CGAffineTransform.identity
+        }
+    }
+    
+    @objc private func segmentedControlSelection(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0: goodsTableView.fadeIn()
+        case 1: goodsTableView.fadeOut()
+        default: print("fag")
         }
     }
 }
@@ -155,9 +179,7 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
         case 2: return
         default: return
         }
-        
     }
-    
 }
 
 extension DeclarantTableViewController: CountryChooseDelegate {
@@ -181,6 +203,8 @@ extension DeclarantTableViewController: GoodsChoosingDelegate {
     
     func doneButtonTapped() {
         goodsAlert.removeFromSuperview()
+        rowNumber = 3
+        goodsTableView.reloadData()
         visualEffectView.fadeOut()
     }
 }
