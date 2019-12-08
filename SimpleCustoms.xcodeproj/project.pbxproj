@@ -14,6 +14,8 @@
 		A72EBA63239160F2002DA3F0 /* 3003-bouncy-balls.json in Resources */ = {isa = PBXBuildFile; fileRef = A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */; };
 		A73EC1BC2390552700CA9DB5 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EC1BB2390552700CA9DB5 /* DataHandler.swift */; };
 		A75596C82386C2CF00DB3D26 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */; };
+		A75B350E239D3EDC00F1EA8F /* CurrencyChoosingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B350D239D3EDC00F1EA8F /* CurrencyChoosingView.swift */; };
+		A75B3510239D68A300F1EA8F /* 4964-check-mark-success-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = A75B350F239D68A200F1EA8F /* 4964-check-mark-success-animation.json */; };
 		A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */; };
 		A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743AF8238B15530076A87D /* CustomsRulesView.swift */; };
 		A7743AFC238B18010076A87D /* RulesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743AFA238B18010076A87D /* RulesCollectionViewCell.swift */; };
@@ -63,6 +65,8 @@
 		A73EC1BB2390552700CA9DB5 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
+		A75B350D239D3EDC00F1EA8F /* CurrencyChoosingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyChoosingView.swift; sourceTree = "<group>"; };
+		A75B350F239D68A200F1EA8F /* 4964-check-mark-success-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4964-check-mark-success-animation.json"; sourceTree = "<group>"; };
 		A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		A7743AF8238B15530076A87D /* CustomsRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomsRulesView.swift; path = SimpleCustoms/CustomsRulesScreen/View/CustomsRulesView.swift; sourceTree = SOURCE_ROOT; };
 		A7743AFA238B18010076A87D /* RulesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -196,6 +200,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A75B350C239D3EBC00F1EA8F /* CurrencyChoosingView */ = {
+			isa = PBXGroup;
+			children = (
+				A75B350D239D3EDC00F1EA8F /* CurrencyChoosingView.swift */,
+			);
+			path = CurrencyChoosingView;
+			sourceTree = "<group>";
+		};
 		A77A68B723203AF4005EAC5A = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +296,7 @@
 		A797E3D82326A8BB00A872B8 /* Lottie Animations */ = {
 			isa = PBXGroup;
 			children = (
+				A75B350F239D68A200F1EA8F /* 4964-check-mark-success-animation.json */,
 				A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */,
 			);
 			path = "Lottie Animations";
@@ -302,6 +315,7 @@
 		A798F7392393EF25006842AC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A75B350C239D3EBC00F1EA8F /* CurrencyChoosingView */,
 				A7B93091239550B800011BDA /* CountryChoosingCell */,
 				A71C84ED239AADD800EDFA67 /* GoodsChoosingAlert.xib */,
 				A71C84F1239AB86A00EDFA67 /* GoodsChoosingAlert.swift */,
@@ -431,6 +445,7 @@
 				A7B9308D23954E2400011BDA /* CountryChooserTableViewCell.xib in Resources */,
 				A77656F1234B93AA00F45031 /* default.realm in Resources */,
 				A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */,
+				A75B3510239D68A300F1EA8F /* 4964-check-mark-success-animation.json in Resources */,
 				A72EBA63239160F2002DA3F0 /* 3003-bouncy-balls.json in Resources */,
 				A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */,
 			);
@@ -512,6 +527,7 @@
 				A79FA05D238D9D9D008F8076 /* RegionCollectionViewCell.swift in Sources */,
 				A7B7E25A234116720090873F /* WebImageHandler.swift in Sources */,
 				A7B31DF92340D46200FBC4F8 /* Extensions.swift in Sources */,
+				A75B350E239D3EDC00F1EA8F /* CurrencyChoosingView.swift in Sources */,
 				A797D08C234A22DC00492849 /* Currency.swift in Sources */,
 				A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */,
 				A797D096234A2C5A00492849 /* CurrencyExchanger.swift in Sources */,

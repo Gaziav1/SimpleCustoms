@@ -23,6 +23,13 @@ class DeclarantTableViewController: UIViewController {
         return viewAlert
      }()
     
+    private var currencyView: CurrencyChoosingView = {
+        var view = CurrencyChoosingView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        return view
+    }()
+    
     private let segmentedTypeControl: UISegmentedControl = {
        let sc = UISegmentedControl(items: ["Товары", "Валюта"])
         sc.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +81,7 @@ class DeclarantTableViewController: UIViewController {
         }
         setupSegmentedControl()
         setupGoodsView()
+        setupCurrencyView()
         setupVisualEffectView()
     }
     
@@ -103,6 +111,18 @@ class DeclarantTableViewController: UIViewController {
         goodsTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
     }
     
+    private func setupCurrencyView() {
+        view.addSubview(currencyView)
+        if #available(iOS 13.0, *) {
+            currencyView.backgroundColor = .quaternarySystemFill
+        } else {
+            currencyView.backgroundColor = .white
+        }
+        
+        currencyView.edgesToSuperview(excluding: .bottom, insets: .top(100) + .right(10) + .left(10), usingSafeArea: true)
+        currencyView.height(view.frame.height / 2)
+    }
+    
     private func animateIn() {
         goodsAlert.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
         goodsAlert.fadeIn()
@@ -114,8 +134,12 @@ class DeclarantTableViewController: UIViewController {
     
     @objc private func segmentedControlSelection(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
-        case 0: goodsTableView.fadeIn()
-        case 1: goodsTableView.fadeOut()
+        case 0:
+        goodsTableView.fadeIn()
+        currencyView.fadeOut()
+        case 1:
+        goodsTableView.fadeOut()
+        currencyView.fadeIn()
         default: print("fag")
         }
     }
