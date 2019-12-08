@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TinyConstraints
 
 protocol RegionChooseDelegate: class {
     func userDidChooseRegion(_ region: Regions)
@@ -19,28 +20,22 @@ class RegionView: UIView {
         collectionView.register(RegionCollectionViewCell.self, forCellWithReuseIdentifier: RegionCollectionViewCell.reuseId)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
-        
         if #available(iOS 13.0, *) {
             collectionView.backgroundColor = .tertiarySystemBackground
         } else {
             collectionView.backgroundColor = .white
         }
-        
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
         }
-        
         collectionView.isScrollEnabled = false
-        
         return collectionView
     }()
     
     weak var delegate: RegionChooseDelegate?
     
     private var regions: [Regions] = [.all, .europe, .asia]
-    
     private var alignment: CGFloat = 1/3
-    
     private var horizontalBarAnchor: NSLayoutConstraint?
     
     override init(frame: CGRect) {
@@ -70,10 +65,7 @@ class RegionView: UIView {
         regionCollection.dataSource = self
         regionCollection.register(UINib(nibName: "RulesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: RulesCollectionViewCell.reuseId)
         
-        regionCollection.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        regionCollection.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        regionCollection.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        regionCollection.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        regionCollection.edgesToSuperview(insets: .right(10) + .left(10))
     }
     
     private func setupSelectionBar() {
@@ -106,9 +98,7 @@ class RegionView: UIView {
         }, completion: nil)
     }
     
-    
 }
-
 
 extension RegionView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     

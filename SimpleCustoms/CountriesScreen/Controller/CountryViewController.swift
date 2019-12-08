@@ -8,6 +8,7 @@
 
 import UIKit
 import Lottie
+import TinyConstraints
 
 protocol CountryChooseDelegate: class {
     func didChooseCountry(_ name: String, imageData: Data)
@@ -66,20 +67,16 @@ class CountryViewController: UIViewController {
         regionChooser.translatesAutoresizingMaskIntoConstraints = false
         regionChooser.delegate = self
         view.addSubview(regionChooser)
-        regionChooser.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        regionChooser.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        regionChooser.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        regionChooser.heightAnchor.constraint(equalToConstant: 46).isActive = true
-        
+
+        regionChooser.edgesToSuperview(excluding: .bottom, usingSafeArea: true)
+        regionChooser.height(46)
     }
     
     private func setupAnimation() {
         view.addSubview(loadingAnimation)
-        
-        loadingAnimation.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        loadingAnimation.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loadingAnimation.heightAnchor.constraint(equalToConstant: 75).isActive = true
-        loadingAnimation.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        loadingAnimation.center(in: view)
+        loadingAnimation.height(75)
+        loadingAnimation.width(75)
     }
     
     private func setupTableView() {
@@ -87,12 +84,9 @@ class CountryViewController: UIViewController {
         countriesTableView.dataSource = self
         view.addSubview(countriesTableView)
         
-        NSLayoutConstraint.activate([
-            countriesTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 42),
-            countriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            countriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            countriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        countriesTableView.top(to: view.safeAreaLayoutGuide, offset: 45)
+        countriesTableView.edgesToSuperview(excluding: .top)
+        
     }
     
     private func setupErrorView() {
@@ -101,12 +95,9 @@ class CountryViewController: UIViewController {
         errorHandler.buttonForError.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         view.addSubview(errorHandler)
         
-        NSLayoutConstraint.activate([
-            errorHandler.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            errorHandler.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            errorHandler.widthAnchor.constraint(equalTo: view.widthAnchor),
-            errorHandler.heightAnchor.constraint(equalTo: view.heightAnchor, constant: 0.5)
-        ])
+        errorHandler.center(in: view)
+        errorHandler.widthToSuperview()
+        errorHandler.heightToSuperview(view.heightAnchor, multiplier: 0.5)
     }
     
     private func handleDataDownloading() {

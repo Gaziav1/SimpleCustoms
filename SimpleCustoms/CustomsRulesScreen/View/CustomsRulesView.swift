@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import TinyConstraints
 
 class CustomsRulesView: UIView {
     
@@ -66,10 +67,7 @@ class CustomsRulesView: UIView {
         rulesCollection.dataSource = self
         rulesCollection.register(UINib(nibName: "RulesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: RulesCollectionViewCell.reuseId)
         
-        rulesCollection.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        rulesCollection.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        rulesCollection.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        rulesCollection.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        rulesCollection.edgesToSuperview()
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {

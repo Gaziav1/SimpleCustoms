@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TinyConstraints
 
 class DeclarantTableViewController: UIViewController {
     
@@ -78,11 +79,7 @@ class DeclarantTableViewController: UIViewController {
     
     private func setupVisualEffectView() {
         view.addSubview(visualEffectView)
-        visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        visualEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
+        visualEffectView.edgesToSuperview()
     }
     
     private func setupSegmentedControl() {
@@ -161,13 +158,14 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let vc = CountryViewController()
-        
+        let nc = UINavigationController(rootViewController: vc)
+        vc.title = "Выберите страну"
+ 
         switch indexPath.row {
         case 0:
             vc.delegate = self
-            self.present(vc, animated: true) {
+            self.present(nc, animated: true) {
                 self.rowNumber = 1
                 self.goodsTableView.reloadData()
             }

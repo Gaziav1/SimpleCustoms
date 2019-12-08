@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TinyConstraints
 
 class RegionCollectionViewCell: UICollectionViewCell {
     
@@ -45,8 +46,7 @@ class RegionCollectionViewCell: UICollectionViewCell {
     private func setupLabel() {
         contentView.addSubview(regionName)
         
-        regionName.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        regionName.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        regionName.center(in: contentView)
     }
     
 }
