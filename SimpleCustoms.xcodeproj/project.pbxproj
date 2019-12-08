@@ -203,9 +203,17 @@
 		A75B350C239D3EBC00F1EA8F /* CurrencyChoosingView */ = {
 			isa = PBXGroup;
 			children = (
+				A75B3511239D8ADA00F1EA8F /* CurrencyChoosingCell */,
 				A75B350D239D3EDC00F1EA8F /* CurrencyChoosingView.swift */,
 			);
 			path = CurrencyChoosingView;
+			sourceTree = "<group>";
+		};
+		A75B3511239D8ADA00F1EA8F /* CurrencyChoosingCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CurrencyChoosingCell;
 			sourceTree = "<group>";
 		};
 		A77A68B723203AF4005EAC5A = {

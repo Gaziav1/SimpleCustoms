@@ -34,6 +34,8 @@ class DeclarantTableViewController: UIViewController {
        let sc = UISegmentedControl(items: ["Товары", "Валюта"])
         sc.translatesAutoresizingMaskIntoConstraints = false
         sc.selectedSegmentIndex = 0
+        let font = UIFont.systemFont(ofSize: 16)
+        sc.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         return sc
     }()
     
@@ -95,7 +97,7 @@ class DeclarantTableViewController: UIViewController {
         segmentedTypeControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
         segmentedTypeControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
         segmentedTypeControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
-        segmentedTypeControl.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        segmentedTypeControl.heightAnchor.constraint(equalToConstant: 40).isActive = true
         segmentedTypeControl.addTarget(self, action: #selector(segmentedControlSelection), for: .valueChanged)
     }
     

@@ -44,6 +44,7 @@ class CurrencyChoosingView: UIView {
         let tf = UITextField()
         tf.placeholder = "Кол-во перевозимой валюты"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.keyboardType = .numberPad
         tf.borderStyle = .roundedRect
         if #available(iOS 13.0, *) {
             tf.backgroundColor = .systemFill
@@ -62,6 +63,7 @@ class CurrencyChoosingView: UIView {
         } else {
             tf.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         }
+        tf.keyboardType = .numberPad
         tf.placeholder = "Кол-во иностранной валюты"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.borderStyle = .roundedRect
@@ -108,7 +110,11 @@ class CurrencyChoosingView: UIView {
         addSubview(doneAnimation)
         addSubview(resultLabel)
         
-        doneAnimation.edgesToSuperview(excluding: .top, insets: .bottom(100) + .left(15) + .right(15))
+        doneAnimation.centerX(to: self)
+        doneAnimation.topToBottom(of: choosenCurrencyField, offset: 35)
+        doneAnimation.height(60)
+        doneAnimation.width(60)
+        
         resultLabel.topToBottom(of: doneAnimation, offset: 15)
         resultLabel.centerX(to: self)
        
@@ -123,11 +129,11 @@ class CurrencyChoosingView: UIView {
         
         rubTextField.left(to: self, offset: 20)
         rubTextField.top(to: titleLabel, offset: 55)
-        rubTextField.rightToLeft(of: rubLabel, offset: -10)
+        rubTextField.rightToLeft(of: rubLabel, offset: -15)
         rubTextField.height(43)
         
         rubLabel.centerY(to: rubTextField)
-        rubLabel.right(to: self, offset: -30)
+        rubLabel.right(to: self, offset: -20)
         
     }
     
@@ -135,11 +141,11 @@ class CurrencyChoosingView: UIView {
         addSubview(choosenCurrencyField)
         addSubview(currencyChoosingButton)
         
-        currencyChoosingButton.right(to: self, offset: -30)
+        currencyChoosingButton.right(to: self, offset: -20)
         
         choosenCurrencyField.left(to: self, offset: 20)
         choosenCurrencyField.topToBottom(of: rubTextField, offset: 38)
-        choosenCurrencyField.rightToLeft(of: currencyChoosingButton, offset: -9.5)
+        choosenCurrencyField.rightToLeft(of: currencyChoosingButton, offset: -14.5)
         choosenCurrencyField.height(to: rubTextField)
         
         currencyChoosingButton.centerY(to: choosenCurrencyField)
