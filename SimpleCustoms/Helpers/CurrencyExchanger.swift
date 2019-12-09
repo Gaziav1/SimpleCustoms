@@ -11,7 +11,7 @@ import Foundation
 class CurrencyExchanger {
     
    private var valueToExchange: Int
-   private var currency: Currency
+   private var currency: CurrencyToFetch
 
    private var permissibleValue: Int {
         get {
@@ -25,13 +25,13 @@ class CurrencyExchanger {
          }
      }
     
-    init(valueToExchange: Int, currency: Currency) {
+    init(valueToExchange: Int, currency: CurrencyToFetch) {
         self.valueToExchange = valueToExchange
         self.currency = currency
     }
     
     
-    private func exchange(_ value: Int, to currency: Currency) -> Int {
+    private func exchange(_ value: Int, to currency: CurrencyToFetch) -> Int {
         
         let exchagedValue = value / Int(currency.rates.RUB)
         return exchagedValue

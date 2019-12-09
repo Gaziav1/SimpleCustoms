@@ -46,6 +46,7 @@ final class NetworkCountryFetcher {
                             jsonData.append(countryCopy)
                         }
                     } catch let error {
+        
                         networkError = error
                     }
                 }

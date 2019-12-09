@@ -53,19 +53,20 @@ class RealmManager: NSObject {
     }
     
     func realmMigrate(to version: UInt64) {
+        print(configuration.schemaVersion)
        configuration = Realm.Configuration(
             schemaVersion: version,
             migrationBlock: { migration, oldSchemaVersion in
                 if oldSchemaVersion < version {
                     UserDefaults.standard.set(false, forKey: "isDataBaseUpdated")
-                    print("hreuy")
+                    print(version)
                 }
         })
     }
     
     func updateOrCreateDB() {
         // Загрузка предварительно заполненной базы данных
-             guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return } //определяем путь до незаполненной базы данных
+        guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return } //определяем путь до незаполненной базы данных
         guard let path = Bundle.main.path(forResource: "default", ofType: "realm") else { return } //определяем путь до заполненной базы данных, которая находится в нашем бандле
            
              if !FileManager.default.fileExists(atPath: defaultPath) {

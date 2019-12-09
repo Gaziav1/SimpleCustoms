@@ -12,7 +12,13 @@ class Country: Decodable {
     var name: String
     var alpha2Code: String
     var region: String
+    var currencies: [Currencies]
     var flagImages: FlagImage?
+}
+
+class Currencies: Decodable {
+    var code: String?
+    var name: String?
 }
 
 enum Regions: String, CaseIterable {

@@ -245,17 +245,24 @@ extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingData
     }
 }
 
-extension DeclarantTableViewController: CurrencySelectorDelegate {
+extension DeclarantTableViewController: CurrencySelectorDelegate, ChooseCurrencyDelegate {
     func didSelectCurrencyButton() {
-        let nc = UINavigationController(rootViewController: TableViewController())
+        let tableCurrency = TableViewController()
+        tableCurrency.delegate = self
+        let nc = UINavigationController(rootViewController: tableCurrency)
         nc.navigationBar.isTranslucent = false
         nc.navigationBar.barTintColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
         nc.navigationBar.tintColor = .white
-        nc.navigationItem.title = "Выберите валюту"
-        nc.title = "Выберите валюту"
+
         self.present(nc, animated: true, completion: nil)
     }
+    
+    func userDidChooseCurrency(_ currency: Currency) {
+        
+        currencyView.currencyChoosingButton.setTitle(currency.symbol, for: .normal)
+    }
 }
+
 
 //        goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(GoodsWithLimitations.self) as! [GoodsWithLimitations]
 //    override func viewDidAppear(_ animated: Bool) {

@@ -43,6 +43,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="countryName" destination="etb-rD-cJk" id="hzf-mn-y27"/>
+                <outlet property="currencyName" destination="9wn-wi-bZ5" id="CPF-Vr-xlj"/>
+                <outlet property="flagImage" destination="8Bt-O6-R4v" id="Pyk-Fb-gG9"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="155.35714285714286"/>
         </tableViewCell>
     </objects>

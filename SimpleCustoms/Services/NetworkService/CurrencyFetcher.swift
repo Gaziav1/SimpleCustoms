@@ -13,7 +13,7 @@ class CurrencyFetcher {
     static var shared = CurrencyFetcher()
     
     
-    func getCurrency(currency: String, completion: @escaping (Currency?, Error?) -> Void) {
+    func getCurrency(currency: String, completion: @escaping (CurrencyToFetch?, Error?) -> Void) {
         
         let urlPath = APIPath(scheme: "https", endpoint: "api.ratesapi.io", path: "/api/latest", params: ["base": currency,
             "symbols": "RUB"])
@@ -28,7 +28,7 @@ class CurrencyFetcher {
                     completion(nil, error)
                 case .success(let data):
                     do {
-                        let json = try JSONDecoder().decode(Currency.self, from: data)
+                        let json = try JSONDecoder().decode(CurrencyToFetch.self, from: data)
                         completion(json, nil)
                     } catch let error {
                         completion(nil, error)

@@ -81,7 +81,7 @@ class CurrencyChoosingView: UIView {
         return label
     }()
     
-    private let currencyChoosingButton: UIButton = {
+    let currencyChoosingButton: UIButton = {
         let button = UIButton()
         button.setTitle("EUR", for: .normal)
         button.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
