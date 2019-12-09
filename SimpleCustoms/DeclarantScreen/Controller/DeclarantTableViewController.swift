@@ -23,8 +23,9 @@ class DeclarantTableViewController: UIViewController {
         return viewAlert
      }()
     
-    private var currencyView: CurrencyChoosingView = {
+    lazy private var currencyView: CurrencyChoosingView = {
         var view = CurrencyChoosingView()
+        view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
@@ -233,6 +234,17 @@ extension DeclarantTableViewController: GoodsChoosingDelegate {
     }
 }
 
+extension DeclarantTableViewController: CurrencySelectorDelegate {
+    func didSelectCurrencyButton() {
+        let nc = UINavigationController(rootViewController: TableViewController())
+        nc.navigationBar.isTranslucent = false
+        nc.navigationBar.barTintColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
+        nc.navigationBar.tintColor = .white
+        nc.navigationItem.title = "Выберите валюту"
+        nc.title = "Выберите валюту"
+        self.present(nc, animated: true, completion: nil)
+    }
+}
 
 //        goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(GoodsWithLimitations.self) as! [GoodsWithLimitations]
 //    override func viewDidAppear(_ animated: Bool) {

@@ -10,6 +10,10 @@ import UIKit
 import Lottie
 import TinyConstraints
 
+protocol CurrencySelectorDelegate: class {
+    func didSelectCurrencyButton()
+}
+
 class CurrencyChoosingView: UIView {
     
     private let titleLabel: UILabel = {
@@ -85,6 +89,8 @@ class CurrencyChoosingView: UIView {
         return button
     }()
     
+    weak var delegate: CurrencySelectorDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 15
@@ -100,16 +106,18 @@ class CurrencyChoosingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc private func currencySelector() {
+        delegate?.didSelectCurrencyButton()
+    }
+    
     private func setupLabel() {
         addSubview(titleLabel)
-        
         titleLabel.edgesToSuperview(excluding: .bottom, insets: .top(10) + .left(20))
     }
     
     private func setupAnimation() {
         addSubview(doneAnimation)
         addSubview(resultLabel)
-        
         doneAnimation.centerX(to: self)
         doneAnimation.topToBottom(of: choosenCurrencyField, offset: 35)
         doneAnimation.height(60)
@@ -149,5 +157,7 @@ class CurrencyChoosingView: UIView {
         choosenCurrencyField.height(to: rubTextField)
         
         currencyChoosingButton.centerY(to: choosenCurrencyField)
+        
+        currencyChoosingButton.addTarget(self, action: #selector(currencySelector), for: .touchUpInside)
     }
 }
