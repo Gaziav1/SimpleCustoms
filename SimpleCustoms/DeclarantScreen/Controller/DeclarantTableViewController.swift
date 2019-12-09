@@ -8,10 +8,11 @@
 
 import UIKit
 import TinyConstraints
+import RealmSwift
 
 class DeclarantTableViewController: UIViewController {
     
-    //private var goodsInformation = [GoodsWithLimitations]()
+    private var goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
     
     //private var currency: Currency?
 
@@ -20,6 +21,7 @@ class DeclarantTableViewController: UIViewController {
          viewAlert = Bundle.main.loadNibNamed("GoodsChoosingAlert", owner: self, options: nil)?.first as! GoodsChoosingAlert
          viewAlert.alpha = 0
          viewAlert.delegate = self
+         viewAlert.dataSource = self
         return viewAlert
      }()
     
@@ -56,12 +58,12 @@ class DeclarantTableViewController: UIViewController {
         return tableView
     }()
     
-    let visualEffectView: UIVisualEffectView = {
+    private let visualEffectView: UIVisualEffectView = {
         let blurEffect: UIBlurEffect
         if #available(iOS 13.0, *) {
             blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
         } else {
-            blurEffect = UIBlurEffect(style: .dark)
+            blurEffect = UIBlurEffect(style: .extraLight)
         }
         
         let effect = UIVisualEffectView(effect: blurEffect)
@@ -70,11 +72,12 @@ class DeclarantTableViewController: UIViewController {
         return effect
     }()
     
+    private var choosenGoods: String = ""
+    
     private var rowNumber = 1
     private var flagImage = UIImage()
-    private var choosenCountry = ""
+    private var choosenCountry = [String: String]()
  
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -82,6 +85,7 @@ class DeclarantTableViewController: UIViewController {
         } else {
             view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         }
+        goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
         setupSegmentedControl()
         setupGoodsView()
         setupCurrencyView()
@@ -162,12 +166,13 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
         
         switch indexPath.row {
         case 0:
-            cell.choosenEntity.text = choosenCountry
+            cell.choosenEntity.text = choosenCountry["name"]
             cell.flagImage.image = flagImage
         case 2:
             cell.isUserInteractionEnabled = false
             cell.bottomConstraint.isActive = true
             cell.heightContainer.isActive = false
+            cell.type.text = choosenGoods
         default: print("dick")
         }
         
@@ -200,8 +205,7 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
             view.addSubview(goodsAlert)
             goodsAlert.center = view.center
             animateIn()
-    
-        case 2: return
+
         default: return
         }
     }
@@ -209,8 +213,9 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
 
 extension DeclarantTableViewController: CountryChooseDelegate {
     
-    func didChooseCountry(_ name: String, imageData: Data) {
-        self.choosenCountry = name
+    func didChooseCountry(_ name: String, code: String, imageData: Data) {
+        self.choosenCountry["name"] = name
+        self.choosenCountry["countryCode"] = code
         
         guard let dataForImage = UIImage(data: imageData) else { return }
         flagImage = dataForImage
@@ -220,17 +225,23 @@ extension DeclarantTableViewController: CountryChooseDelegate {
     }
 }
 
-extension DeclarantTableViewController: GoodsChoosingDelegate {
+extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingDataSource {
     func cancelButtonTapped() {
         goodsAlert.removeFromSuperview()
         visualEffectView.fadeOut()
     }
     
-    func doneButtonTapped() {
+    func doneButtonTapped(_ entity: String) {
+        choosenGoods = entity
         goodsAlert.removeFromSuperview()
         rowNumber = 3
         goodsTableView.reloadData()
         visualEffectView.fadeOut()
+    }
+    
+    func goodsToShow() -> List<GoodsWithLimitations> {
+        
+        return goodsInformation.first(where: { $0.forCountryCode == choosenCountry["countryCode"] })?.goodsLimitations ?? List<GoodsWithLimitations>()
     }
 }
 

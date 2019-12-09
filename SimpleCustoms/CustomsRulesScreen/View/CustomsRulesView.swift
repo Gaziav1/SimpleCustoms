@@ -87,7 +87,7 @@ extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource
         
         cell.header.text = rules[indexPath.row].header
         cell.body.text = rules[indexPath.row].body.replacingOccurrences(of: "\\n", with: "\n")
-        print(cell.frame.height)
+        
         
         return cell
     }

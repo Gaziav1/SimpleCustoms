@@ -13,6 +13,8 @@ class RealmManager: NSObject {
     
     var realmObject: Realm?
     
+    private var configuration: Realm.Configuration = .defaultConfiguration
+    
     static let sharedInstance = RealmManager()
     
     func retrieveAllDataForObject(_ T : Object.Type) -> [Object] {
@@ -50,33 +52,44 @@ class RealmManager: NSObject {
         }
     }
     
+    func realmMigrate(to version: UInt64) {
+       configuration = Realm.Configuration(
+            schemaVersion: version,
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < version {
+                    UserDefaults.standard.set(false, forKey: "isDataBaseUpdated")
+                    print("hreuy")
+                }
+        })
+    }
+    
     func updateOrCreateDB() {
         // Загрузка предварительно заполненной базы данных
              guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return } //определяем путь до незаполненной базы данных
-             let path = Bundle.main.path(forResource: "default", ofType: "realm") //определяем путь до заполненной базы данных, которая находится в нашем бандле
+        guard let path = Bundle.main.path(forResource: "default", ofType: "realm") else { return } //определяем путь до заполненной базы данных, которая находится в нашем бандле
            
-             if !FileManager.default.fileExists(atPath: defaultPath), let bundledPath = path {
+             if !FileManager.default.fileExists(atPath: defaultPath) {
                  do {
                      //проверяем наличие файла по данному пути, в случае его отсутствия копируем туда предварительно заполненною базу данных
                      UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
-                     try FileManager.default.copyItem(atPath: bundledPath, toPath: defaultPath)
+                     try FileManager.default.copyItem(atPath: path, toPath: defaultPath)
                  } catch {
                      print("Error copying pre-populated Realm \(error)")
                  }
              }
              
              //Обновление уже сущещствующей у юзера базы данных
-             if !UserDefaults.standard.bool(forKey: "isDataBaseUpdated"), let bundledPath = path {
+             if !UserDefaults.standard.bool(forKey: "isDataBaseUpdated")  {
                  do {
                      UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
                      try FileManager.default.removeItem(atPath: defaultPath)
-                     try FileManager.default.copyItem(atPath: bundledPath, toPath: defaultPath)
+                     try FileManager.default.copyItem(atPath: path, toPath: defaultPath)
                  } catch  {
                      print("Error")
                  }
              }
              
-             RealmManager.sharedInstance.realmObject = try! Realm()
+            realmObject = try! Realm(configuration: configuration)
     }
 }
 

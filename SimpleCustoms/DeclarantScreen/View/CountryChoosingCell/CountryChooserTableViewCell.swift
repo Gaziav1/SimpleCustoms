@@ -102,7 +102,7 @@ class CountryChooserTableViewCell: UITableViewCell {
         contentView.layer.insertSublayer(circleLayer, at: 0)
     }
     
-    func defineContentForCell() {
+    private func defineContentForCell() {
         
         if isReloaded {
             return
@@ -118,7 +118,6 @@ class CountryChooserTableViewCell: UITableViewCell {
             titleOfLabel.fadeIn()
             containerView.fadeIn()
             type.textColor = .darkGray
-            type.text = "Домашние животные (одно животное на одного человека) ввозятся только при наличии ветеринарного сертификата международного образца и свидетельства о прививке от бешенства, сделанной не ранее, чем за 12 месяцев до пересечения границы и действительной как минимум 30 дней после въезда в Китай (карантин для кошек и собак - 7 дней). "
         default:
             type.fadeIn()
             titleOfLabel.fadeIn()

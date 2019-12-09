@@ -11,7 +11,7 @@ import Lottie
 import TinyConstraints
 
 protocol CountryChooseDelegate: class {
-    func didChooseCountry(_ name: String, imageData: Data)
+    func didChooseCountry(_ name: String, code: String, imageData: Data)
 }
 
 class CountryViewController: UIViewController {
@@ -200,7 +200,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         vc.navigationItem.title = country.name
         navigationController?.pushViewController(vc, animated: true)
         
-        delegate?.didChooseCountry(country.name, imageData: country.flagImages?.flatFlagImage ?? Data())
+        delegate?.didChooseCountry(country.name, code: country.alpha2Code, imageData: country.flagImages?.flatFlagImage ?? Data())
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
