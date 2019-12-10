@@ -13,17 +13,23 @@ class RealmManager: NSObject {
     
     var realmObject: Realm?
     
-    private var configuration: Realm.Configuration = .defaultConfiguration
-    
+    lazy private var configuration = Realm.Configuration(fileURL: URL(string: path))
+    private var path: String {
+        get {
+            guard let specificPath = Bundle.main.path(forResource: "default", ofType: "realm") else { return "" }
+            return specificPath
+        }
+    }
     static let sharedInstance = RealmManager()
     
     func retrieveAllDataForObject(_ T : Object.Type) -> [Object] {
-        
+    
         var objects = [Object]()
         guard let realm = realmObject else { return objects }
         for result in realm.objects(T) {
             objects.append(result)
         }
+    
         return objects
     }
     
@@ -53,20 +59,20 @@ class RealmManager: NSObject {
     }
     
     func realmMigrate(to version: UInt64) {
-       configuration = Realm.Configuration(
-            schemaVersion: version,
-            migrationBlock: { migration, oldSchemaVersion in
-                if oldSchemaVersion < version {
-                    UserDefaults.standard.set(false, forKey: "isDataBaseUpdated")
-                }
+        print(configuration.schemaVersion)
+        configuration = Realm.Configuration(schemaVersion: version, migrationBlock: { (_, oldVersion) in
+            if oldVersion < version {
+                 UserDefaults.standard.set(false, forKey: "isDataBaseUpdated")
+
+            }
+        
         })
     }
     
     func updateOrCreateDB() {
         // Загрузка предварительно заполненной базы данных
         guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return } //определяем путь до незаполненной базы данных
-        guard let path = Bundle.main.path(forResource: "default", ofType: "realm") else { return } //определяем путь до заполненной базы данных, которая находится в нашем бандле
-           
+       
              if !FileManager.default.fileExists(atPath: defaultPath) {
                  do {
                      //проверяем наличие файла по данному пути, в случае его отсутствия копируем туда предварительно заполненною базу данных

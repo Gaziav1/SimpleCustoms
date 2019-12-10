@@ -9,6 +9,7 @@
 import UIKit
 import Lottie
 import TinyConstraints
+import RealmSwift
 
 protocol CountryChooseDelegate: class {
     func didChooseCountry(_ name: String, code: String, imageData: Data)
@@ -112,6 +113,14 @@ class CountryViewController: UIViewController {
                 return
             }
             guard let countries = country else { return }
+            let realmObjects = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
+            for someEntity in countries {
+                if let realmObject = realmObjects.first(where: { $0.forCountryCode == someEntity.alpha2Code }) {
+                    try! RealmManager.sharedInstance.realmObject?.write {
+                    realmObject.forCountryCode = someEntity.name
+                    }
+                }
+            }
             self.dataHandler.setCountries(countries)
             self.loadingAnimation.stop()
             self.countriesTableView.fadeIn()
@@ -195,7 +204,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         let country = dataHandler.currentData[indexPath.row]
         
-        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.alpha2Code), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
+        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.name), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
         vc.rules = customsRule[0]
         vc.navigationItem.title = country.name
         navigationController?.pushViewController(vc, animated: true)
