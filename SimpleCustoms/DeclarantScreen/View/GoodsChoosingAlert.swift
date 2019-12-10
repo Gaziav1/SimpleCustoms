@@ -62,7 +62,7 @@ extension GoodsChoosingAlert: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            
+
             choosenEntity = dataSource?.goodsToShow()[row].productLimitations ?? "Информация не найдена"
         }
 }

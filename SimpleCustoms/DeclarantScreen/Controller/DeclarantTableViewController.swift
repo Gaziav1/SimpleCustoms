@@ -12,18 +12,18 @@ import RealmSwift
 
 class DeclarantTableViewController: UIViewController {
     
-    private var goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
+    private var goodsInformation = [CustomsRules]()
     
     //private var currency: Currency?
-
-     lazy private var goodsAlert: GoodsChoosingAlert = {
-         var viewAlert = GoodsChoosingAlert()
-         viewAlert = Bundle.main.loadNibNamed("GoodsChoosingAlert", owner: self, options: nil)?.first as! GoodsChoosingAlert
-         viewAlert.alpha = 0
-         viewAlert.delegate = self
-         viewAlert.dataSource = self
+    
+    lazy private var goodsAlert: GoodsChoosingAlert = {
+        var viewAlert = GoodsChoosingAlert()
+        viewAlert = Bundle.main.loadNibNamed("GoodsChoosingAlert", owner: self, options: nil)?.first as! GoodsChoosingAlert
+        viewAlert.alpha = 0
+        viewAlert.delegate = self
+        viewAlert.dataSource = self
         return viewAlert
-     }()
+    }()
     
     lazy private var currencyView: CurrencyChoosingView = {
         var view = CurrencyChoosingView()
@@ -34,7 +34,7 @@ class DeclarantTableViewController: UIViewController {
     }()
     
     private let segmentedTypeControl: UISegmentedControl = {
-       let sc = UISegmentedControl(items: ["Товары", "Валюта"])
+        let sc = UISegmentedControl(items: ["Товары", "Валюта"])
         sc.translatesAutoresizingMaskIntoConstraints = false
         sc.selectedSegmentIndex = 0
         let font = UIFont.systemFont(ofSize: 16)
@@ -63,7 +63,7 @@ class DeclarantTableViewController: UIViewController {
         if #available(iOS 13.0, *) {
             blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
         } else {
-            blurEffect = UIBlurEffect(style: .extraLight)
+            blurEffect = UIBlurEffect(style: .light)
         }
         
         let effect = UIVisualEffectView(effect: blurEffect)
@@ -73,11 +73,10 @@ class DeclarantTableViewController: UIViewController {
     }()
     
     private var choosenGoods: String = ""
-    
     private var rowNumber = 1
     private var flagImage = UIImage()
-    private var choosenCountry = [String: String]()
- 
+    private var choosenCountry = [String: String]() //словарь так как необходимо название страны и ее код
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -99,10 +98,12 @@ class DeclarantTableViewController: UIViewController {
     
     private func setupSegmentedControl() {
         view.addSubview(segmentedTypeControl)
-        segmentedTypeControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-        segmentedTypeControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
-        segmentedTypeControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
-        segmentedTypeControl.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        segmentedTypeControl.left(to: view, offset: 15)
+        segmentedTypeControl.right(to: view, offset: -15)
+        segmentedTypeControl.top(to: view.safeAreaLayoutGuide, offset: 25)
+        segmentedTypeControl.height(37)
+        
         segmentedTypeControl.addTarget(self, action: #selector(segmentedControlSelection), for: .valueChanged)
     }
     
@@ -112,10 +113,10 @@ class DeclarantTableViewController: UIViewController {
         goodsTableView.dataSource = self
         view.addSubview(goodsTableView)
         
-        goodsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
-        goodsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        goodsTableView.topAnchor.constraint(equalTo: segmentedTypeControl.bottomAnchor, constant: 35).isActive = true
-        goodsTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
+        goodsTableView.right(to: view, offset: 5)
+        goodsTableView.left(to: view)
+        goodsTableView.topToBottom(of: segmentedTypeControl, offset: 35)
+        goodsTableView.height(to: view)
     }
     
     private func setupCurrencyView() {
@@ -142,11 +143,11 @@ class DeclarantTableViewController: UIViewController {
     @objc private func segmentedControlSelection(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-        goodsTableView.fadeIn()
-        currencyView.fadeOut()
+            goodsTableView.fadeIn()
+            currencyView.fadeOut()
         case 1:
-        goodsTableView.fadeOut()
-        currencyView.fadeIn()
+            goodsTableView.fadeOut()
+            currencyView.fadeIn()
         default: print("fag")
         }
     }
@@ -171,9 +172,9 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
         case 2:
             cell.isUserInteractionEnabled = false
             cell.bottomConstraint.isActive = true
-            cell.heightContainer.isActive = false
+            cell.heightContainer.priority = UILayoutPriority(rawValue: 249)
             cell.type.text = choosenGoods
-        default: print("dick")
+        default: break
         }
         
         cell.isReloaded = true
@@ -193,7 +194,7 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
         let vc = CountryViewController()
         let nc = UINavigationController(rootViewController: vc)
         vc.title = "Выберите страну"
- 
+        
         switch indexPath.row {
         case 0:
             vc.delegate = self
@@ -205,7 +206,7 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
             view.addSubview(goodsAlert)
             goodsAlert.center = view.center
             animateIn()
-
+            
         default: return
         }
     }
@@ -233,7 +234,6 @@ extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingData
     
     func doneButtonTapped(_ entity: String) {
         choosenGoods = entity
-        print(entity)
         goodsAlert.removeFromSuperview()
         rowNumber = 3
         goodsTableView.reloadData()
@@ -241,7 +241,6 @@ extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingData
     }
     
     func goodsToShow() -> List<GoodsWithLimitations> {
-        
         return goodsInformation.first(where: { $0.forCountryCode == choosenCountry["countryCode"] })?.goodsLimitations ?? List<GoodsWithLimitations>()
     }
 }
@@ -254,7 +253,7 @@ extension DeclarantTableViewController: CurrencySelectorDelegate, ChooseCurrency
         nc.navigationBar.isTranslucent = false
         nc.navigationBar.barTintColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
         nc.navigationBar.tintColor = .white
-
+        
         self.present(nc, animated: true, completion: nil)
     }
     

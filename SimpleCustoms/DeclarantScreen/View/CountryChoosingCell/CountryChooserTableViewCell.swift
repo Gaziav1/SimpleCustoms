@@ -109,11 +109,15 @@ class CountryChooserTableViewCell: UITableViewCell {
         }
         switch indexPath {
         case 1:
+            type.text = "Товар"
+            titleOfLabel.text = "Выберите товар"
             type.fadeIn()
             titleOfLabel.fadeIn()
             containerView.fadeIn()
             chevron.fadeIn()
         case 2:
+            titleOfLabel.text = "Результат"
+            titleOfLabel.font = UIFont.systemFont(ofSize: 22)
             type.fadeIn()
             titleOfLabel.fadeIn()
             containerView.fadeIn()

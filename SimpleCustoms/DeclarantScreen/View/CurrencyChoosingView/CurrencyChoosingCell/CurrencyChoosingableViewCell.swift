@@ -9,7 +9,7 @@
 import UIKit
 
 class CurrencyChoosingableViewCell: UITableViewCell {
-    @IBOutlet weak var flagImage: UIImageView!
+    
     @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var currencyName: UILabel!
     
