@@ -58,15 +58,16 @@ class RealmManager: NSObject {
         }
     }
     
-    func realmMigrate(to version: UInt64) {
-        print(configuration.schemaVersion)
+    func realmMigrateIfNeeded(to version: UInt64) {
+        
         configuration = Realm.Configuration(schemaVersion: version, migrationBlock: { (_, oldVersion) in
             if oldVersion < version {
                  UserDefaults.standard.set(false, forKey: "isDataBaseUpdated")
-
+                 self.configuration.deleteRealmIfMigrationNeeded = true
+              
             }
-        
         })
+        
     }
     
     func updateOrCreateDB() {
@@ -75,6 +76,7 @@ class RealmManager: NSObject {
        
              if !FileManager.default.fileExists(atPath: defaultPath) {
                  do {
+                    print("hello there")
                      //проверяем наличие файла по данному пути, в случае его отсутствия копируем туда предварительно заполненною базу данных
                      UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
                      try FileManager.default.copyItem(atPath: path, toPath: defaultPath)
@@ -84,16 +86,17 @@ class RealmManager: NSObject {
              }
              
              //Обновление уже сущещствующей у юзера базы данных
-             if !UserDefaults.standard.bool(forKey: "isDataBaseUpdated")  {
-                 do {
-                     UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
-                     try FileManager.default.removeItem(atPath: defaultPath)
-                     try FileManager.default.copyItem(atPath: path, toPath: defaultPath)
-                 } catch  {
-                     print("Error")
-                 }
-             }
-             
+//             if !UserDefaults.standard.bool(forKey: "isDataBaseUpdated")  {
+//                 do {
+//                     UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
+//                     try FileManager.default.removeItem(atPath: defaultPath)
+//                     try FileManager.default.copyItem(atPath: path, toPath: defaultPath)
+//                 } catch  {
+//                     print("Error")
+//                 }
+//             }
+//
+
             realmObject = try! Realm(configuration: configuration)
     }
 }

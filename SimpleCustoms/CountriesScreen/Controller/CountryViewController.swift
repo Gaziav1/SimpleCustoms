@@ -113,14 +113,18 @@ class CountryViewController: UIViewController {
                 return
             }
             guard let countries = country else { return }
-            let realmObjects = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
-            for someEntity in countries {
-                if let realmObject = realmObjects.first(where: { $0.forCountryCode == someEntity.alpha2Code }) {
-                    try! RealmManager.sharedInstance.realmObject?.write {
-                    realmObject.forCountryCode = someEntity.name
-                    }
-                }
-            }
+//            let realmObjects = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
+//            for someEntity in countries {
+//                if let realmObject = realmObjects.first(where: { $0.forCountryCode == someEntity.name }) {
+//                    let currency = Currency()
+//                    currency.name = someEntity.currencies[0].name
+//                    currency.symbol = someEntity.currencies[0].code
+//                    
+//                    try! RealmManager.sharedInstance.realmObject?.write {
+//                        realmObject.currency = currency
+//                    }
+//                }
+//            }
             self.dataHandler.setCountries(countries)
             self.loadingAnimation.stop()
             self.countriesTableView.fadeIn()

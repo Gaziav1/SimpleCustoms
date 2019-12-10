@@ -13,11 +13,7 @@ class CurrencyExchanger {
    private var valueToExchange: Int
    private var currency: CurrencyToFetch
 
-   private var permissibleValue: Int {
-        get {
-            return 10000
-        }
-    }
+   private var permissibleValue: Int
     
     public var resultToShow: String {
          get {
@@ -25,9 +21,10 @@ class CurrencyExchanger {
          }
      }
     
-    init(valueToExchange: Int, currency: CurrencyToFetch) {
+    init(valueToExchange: Int, permissibleValue: Int, currency: CurrencyToFetch) {
         self.valueToExchange = valueToExchange
         self.currency = currency
+        self.permissibleValue = permissibleValue
     }
     
     
@@ -41,10 +38,7 @@ class CurrencyExchanger {
         
         let exchangedCurrency = exchange(valueToExchange, to: currency)
         
-        if exchangedCurrency <= permissibleValue {
-            return true
-        } else {
-            return false
-        }
+        return exchangedCurrency <= permissibleValue ? true : false
+    
     }
 }

@@ -16,11 +16,11 @@ protocol ChooseCurrencyDelegate: class {
 class TableViewController: UITableViewController {
 
     weak var delegate: ChooseCurrencyDelegate?
-    private var currenciesToShow = [Currency]()
+    private var currenciesToShow = [CustomsRules]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currenciesToShow = RealmManager.sharedInstance.retrieveAllDataForObject(Currency.self) as! [Currency]
+        currenciesToShow = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
         
         self.tableView.register(UINib(nibName: "CurrencyChoosingableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyChoosing")
         self.title = "Выберите валюту"
@@ -35,17 +35,17 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyChoosing", for: indexPath) as! CurrencyChoosingableViewCell
-        cell.currencyName.text = currenciesToShow[indexPath.row].name
+        cell.currencyName.text = currenciesToShow[indexPath.row].currency?.name
+        cell.countryName.text = currenciesToShow[indexPath.row].forCountryCode
         return cell
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 75
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.userDidChooseCurrency(currenciesToShow[indexPath.row])
-        self.dismiss(animated: true, completion: nil)
+        delegate?.userDidChooseCurrency(currenciesToShow[indexPath.row].currency ?? Currency())
     }
 
 }

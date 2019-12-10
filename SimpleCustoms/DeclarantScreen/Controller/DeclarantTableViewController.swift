@@ -33,6 +33,8 @@ class DeclarantTableViewController: UIViewController {
         return view
     }()
     
+    private var currentExchangeRates: Float = 0
+    
     private let segmentedTypeControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Товары", "Валюта"])
         sc.translatesAutoresizingMaskIntoConstraints = false
@@ -79,6 +81,12 @@ class DeclarantTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        CurrencyFetcher.shared.getCurrency(currency: "EUR") { (curr, error) in
+            guard error == nil else { return }
+            self.currentExchangeRates = curr?.rates.RUB ?? 0
+        }
+        
         if #available(iOS 13.0, *) {
             view.backgroundColor = .secondarySystemBackground
         } else {
@@ -241,7 +249,7 @@ extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingData
     }
     
     func goodsToShow() -> List<GoodsWithLimitations> {
-        return goodsInformation.first(where: { $0.forCountryCode == choosenCountry["countryCode"] })?.goodsLimitations ?? List<GoodsWithLimitations>()
+        return goodsInformation.first(where: { $0.forCountryCode == choosenCountry["name"] })?.goodsLimitations ?? List<GoodsWithLimitations>()
     }
 }
 
@@ -258,6 +266,12 @@ extension DeclarantTableViewController: CurrencySelectorDelegate, ChooseCurrency
     }
     
     func userDidChooseCurrency(_ currency: Currency) {
+        dismiss(animated: true, completion: nil)
+        CurrencyFetcher.shared.getCurrency(currency: currency.symbol!) { (currentCurrency, error) in
+            guard error == nil else { return }
+            self.currentExchangeRates = currentCurrency?.rates.RUB ?? 0
+            
+        }
         
         currencyView.currencyChoosingButton.setTitle(currency.symbol, for: .normal)
     }

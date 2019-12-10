@@ -11,8 +11,8 @@ import RealmSwift
 
 class Currency: Object {
     
-    @objc dynamic var symbol = ""
-    @objc dynamic var limit = 0
-    @objc dynamic var name = ""
+    @objc dynamic var symbol: String?
+    @objc dynamic var limit: Int = 0
+    @objc dynamic var name: String?
     
 }

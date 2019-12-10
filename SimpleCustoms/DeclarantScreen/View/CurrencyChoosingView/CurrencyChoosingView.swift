@@ -134,6 +134,7 @@ class CurrencyChoosingView: UIView {
     private func setupRub() {
         addSubview(rubTextField)
         addSubview(rubLabel)
+        rubTextField.delegate = self
         
         rubTextField.left(to: self, offset: 20)
         rubTextField.top(to: titleLabel, offset: 55)
@@ -148,6 +149,7 @@ class CurrencyChoosingView: UIView {
     private func setupButton() {
         addSubview(choosenCurrencyField)
         addSubview(currencyChoosingButton)
+        choosenCurrencyField.delegate = self
         
         currencyChoosingButton.right(to: self, offset: -20)
         
@@ -159,5 +161,11 @@ class CurrencyChoosingView: UIView {
         currencyChoosingButton.centerY(to: choosenCurrencyField)
         
         currencyChoosingButton.addTarget(self, action: #selector(currencySelector), for: .touchUpInside)
+    }
+}
+
+extension CurrencyChoosingView: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        <#code#>
     }
 }
