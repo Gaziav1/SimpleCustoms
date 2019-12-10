@@ -53,13 +53,11 @@ class RealmManager: NSObject {
     }
     
     func realmMigrate(to version: UInt64) {
-        print(configuration.schemaVersion)
        configuration = Realm.Configuration(
             schemaVersion: version,
             migrationBlock: { migration, oldSchemaVersion in
                 if oldSchemaVersion < version {
                     UserDefaults.standard.set(false, forKey: "isDataBaseUpdated")
-                    print(version)
                 }
         })
     }

@@ -30,6 +30,7 @@ class GoodsChoosingAlert: UIView {
     override func awakeFromNib() {
         goodsPickerView.delegate = self
         goodsPickerView.dataSource = self
+    
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 15
         layer.masksToBounds = true
@@ -50,15 +51,11 @@ extension GoodsChoosingAlert: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     
         func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    
+            choosenEntity = dataSource?.goodsToShow()[0].productLimitations ?? "Информация не найдена"
             return dataSource?.goodsToShow().count ?? 0
         }
     
-//        func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//            let title = NSAttributedString(string: goodsInformation[row].productName, attributes:  [.foregroundColor: UIColor.white])
-//            return title
-//        }
-//
+
         func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     
             return dataSource?.goodsToShow()[row].productName

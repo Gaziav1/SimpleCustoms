@@ -233,6 +233,7 @@ extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingData
     
     func doneButtonTapped(_ entity: String) {
         choosenGoods = entity
+        print(entity)
         goodsAlert.removeFromSuperview()
         rowNumber = 3
         goodsTableView.reloadData()
