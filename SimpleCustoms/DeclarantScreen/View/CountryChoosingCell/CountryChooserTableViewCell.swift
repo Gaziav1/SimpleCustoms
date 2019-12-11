@@ -50,8 +50,8 @@ class CountryChooserTableViewCell: UITableViewCell {
         }
         
         let aPath = UIBezierPath()
-        aPath.move(to: CGPoint(x: 25.5, y: 46))
-        aPath.addLine(to: CGPoint(x: 25.5, y: 144))
+        aPath.move(to: CGPoint(x: 25.5, y: 44))
+        aPath.addLine(to: CGPoint(x: 25.5, y: contentView.frame.maxY))
         
         aPath.close()
         
