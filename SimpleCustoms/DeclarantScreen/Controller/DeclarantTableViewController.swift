@@ -23,6 +23,7 @@ class DeclarantTableViewController: UIViewController {
         viewAlert.alpha = 0
         viewAlert.delegate = self
         viewAlert.dataSource = self
+        viewAlert.translatesAutoresizingMaskIntoConstraints = false
         return viewAlert
     }()
     
@@ -94,10 +95,20 @@ class DeclarantTableViewController: UIViewController {
             view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         }
         goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
+
         setupSegmentedControl()
         setupGoodsView()
         setupCurrencyView()
         setupVisualEffectView()
+    }
+    
+    
+    private func setupGoodsAlert() {
+        view.addSubview(goodsAlert)
+        
+        goodsAlert.center(in: view)
+        goodsAlert.width(view.frame.width - 10)
+        goodsAlert.height(view.frame.height / 2.5)
     }
     
     private func setupVisualEffectView() {
@@ -212,12 +223,15 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
                 self.goodsTableView.reloadData()
             }
         case 1:
-            view.addSubview(goodsAlert)
-            goodsAlert.center = view.center
+            setupGoodsAlert()
             animateIn()
             
         default: return
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 }
 
@@ -252,16 +266,18 @@ extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingData
     }
     
     func goodsToShow() -> List<GoodsWithLimitations> {
+
         // источник данных для показа элементов в пикервью алерта выбора товаров
         return goodsInformation.first(where: { $0.forCountryCode == choosenCountry["name"] })?.goodsLimitations ?? List<GoodsWithLimitations>()
     }
 }
 
 extension DeclarantTableViewController: CurrencyDelegate, ChooseCurrencyDelegate {
-    func didTypeCurrencyValue(_ value: Int) {
+    func didTypeCurrencyValue(_ value: Int) -> String {
         //срабатывает при вводе количества валюты в текстфилд
         currencyExchanger?.setValueToExchange(value)
         currencyView.playSpecificAnimation((currencyExchanger?.getResult())!)
+        return currencyExchanger?.resultToShow ?? ""
     }
     
     func didSelectCurrencyButton() {
@@ -280,8 +296,11 @@ extension DeclarantTableViewController: CurrencyDelegate, ChooseCurrencyDelegate
         //срабатывает при выборе определенной валюты в тейбл вью
         dismiss(animated: true, completion: nil)
         CurrencyFetcher.shared.getCurrency(currency: currency.symbol!) { (currentCurrency, error) in
-            guard currentCurrency != nil else { return }
+            guard currentCurrency != nil else {
+                print("fuck off")
+                return }
             self.currencyExchanger?.setCurrentRates(currentCurrency!)
+            print(currency.limit)
             self.currencyExchanger?.setPermissibleValue(currency.limit)
         }
         

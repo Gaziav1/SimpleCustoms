@@ -12,7 +12,7 @@ import TinyConstraints
 
 protocol CurrencyDelegate: class {
     func didSelectCurrencyButton()
-    func didTypeCurrencyValue(_ value: Int)
+    func didTypeCurrencyValue(_ value: Int) -> String
 }
 
 class CurrencyChoosingView: UIView {
@@ -38,7 +38,7 @@ class CurrencyChoosingView: UIView {
         let animation = Animation.named("4964-check-mark-success-animation")
         var load = AnimationView()
         load.animation = animation
-        load.animationSpeed = 1
+        load.animationSpeed = 2
         load.loopMode = .playOnce
         load.contentMode = .scaleAspectFit
         load.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +48,7 @@ class CurrencyChoosingView: UIView {
     private let rubTextField: UITextField = {
         let tf = UITextField()
         tf.textAlignment = .center
+        tf.clearButtonMode = .whileEditing
         tf.placeholder = "Кол-во перевозимой валюты"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.keyboardType = .numberPad
@@ -69,6 +70,7 @@ class CurrencyChoosingView: UIView {
         } else {
             tf.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         }
+        tf.clearButtonMode = .whileEditing
         tf.textAlignment = .center
         tf.keyboardType = .numberPad
         tf.placeholder = "Кол-во иностранной валюты"
@@ -181,7 +183,7 @@ extension CurrencyChoosingView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
 
         guard let text = textField.text else { return }
-        delegate?.didTypeCurrencyValue(Int(text) ?? 0)
-       
+        choosenCurrencyField.text = delegate?.didTypeCurrencyValue(Int(text) ?? 0)
     }
+    
 }

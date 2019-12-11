@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
     
-        RealmManager.sharedInstance.realmMigrateIfNeeded(to: 11)
+        RealmManager.sharedInstance.realmMigrateIfNeeded(to: 12)
         RealmManager.sharedInstance.updateOrCreateDB()
 
         return true
