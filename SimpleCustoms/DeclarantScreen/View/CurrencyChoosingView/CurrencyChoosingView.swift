@@ -48,6 +48,7 @@ class CurrencyChoosingView: UIView {
     private let rubTextField: UITextField = {
         let tf = UITextField()
         tf.textAlignment = .center
+        tf.clearsOnBeginEditing = true
         tf.clearButtonMode = .whileEditing
         tf.placeholder = "Кол-во перевозимой валюты"
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +71,7 @@ class CurrencyChoosingView: UIView {
         } else {
             tf.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         }
+        tf.clearsOnBeginEditing = true
         tf.clearButtonMode = .whileEditing
         tf.textAlignment = .center
         tf.keyboardType = .numberPad
