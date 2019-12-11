@@ -22,12 +22,8 @@ class CountryChooserTableViewCell: UITableViewCell {
             containerView.layer.masksToBounds = true
         }
     }
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var heightContainer: NSLayoutConstraint!
-    
-    var isReloaded = false // необходимо чтобы не воспроизводилась анимация каждый раз при обновлении tableView
-    
+
+        var isReloaded = false // необходимо чтобы не воспроизводилась анимация каждый раз при обновлении tableView
     var indexPath = 0 {
         didSet {
             defineContentForCell()

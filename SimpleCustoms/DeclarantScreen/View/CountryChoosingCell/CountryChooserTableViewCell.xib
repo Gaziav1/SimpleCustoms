@@ -42,10 +42,9 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Китай" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lme-wP-WH9">
-                                <rect key="frame" x="83" y="3" width="161" height="38"/>
+                                <rect key="frame" x="83" y="12.5" width="161" height="19.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="161" id="HJv-TG-L0o"/>
-                                    <constraint firstAttribute="height" constant="38" id="cpi-AJ-9e3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
@@ -58,7 +57,6 @@
                             <constraint firstItem="lme-wP-WH9" firstAttribute="centerY" secondItem="5ux-HG-wOG" secondAttribute="centerY" id="24s-uG-ZXI"/>
                             <constraint firstItem="obt-he-lG2" firstAttribute="leading" secondItem="lme-wP-WH9" secondAttribute="trailing" constant="7" id="3bC-jl-RZJ"/>
                             <constraint firstItem="wod-S3-f14" firstAttribute="leading" secondItem="obt-he-lG2" secondAttribute="trailing" constant="5" id="Ha5-xz-R3Y"/>
-                            <constraint firstAttribute="height" constant="44" id="Mby-0N-du8"/>
                             <constraint firstAttribute="trailing" secondItem="Ras-ZT-9mc" secondAttribute="trailing" constant="5" id="SR0-zF-nFp"/>
                             <constraint firstItem="Ras-ZT-9mc" firstAttribute="top" secondItem="5ux-HG-wOG" secondAttribute="top" constant="11.5" id="Ty0-ZI-ylP"/>
                             <constraint firstItem="wod-S3-f14" firstAttribute="centerY" secondItem="5ux-HG-wOG" secondAttribute="centerY" id="U5i-wh-89N"/>
@@ -76,36 +74,28 @@
                         <rect key="frame" x="55" y="12" width="238" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="238" id="ry2-yT-X25"/>
-                            <constraint firstAttribute="height" constant="21" id="vAX-TF-eUr"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="5ux-HG-wOG" secondAttribute="bottom" constant="18" id="1Nm-28-SlX"/>
                     <constraint firstItem="LIZ-jT-HOv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="3vV-dQ-BDv"/>
                     <constraint firstItem="h5g-5H-cgW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="51m-fV-VQX"/>
                     <constraint firstAttribute="trailing" secondItem="5ux-HG-wOG" secondAttribute="trailing" constant="12" id="JTg-p8-Tkf"/>
-                    <constraint firstAttribute="bottom" secondItem="5ux-HG-wOG" secondAttribute="bottom" constant="18" id="KYo-n5-6Nx"/>
+                    <constraint firstItem="5ux-HG-wOG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="48" id="W4i-6J-5ex"/>
                     <constraint firstItem="LIZ-jT-HOv" firstAttribute="leading" secondItem="h5g-5H-cgW" secondAttribute="trailing" constant="25" id="Z8F-2r-Ebn"/>
                     <constraint firstItem="h5g-5H-cgW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="bFk-wi-ZVb"/>
                     <constraint firstItem="5ux-HG-wOG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="55" id="k42-st-ohq"/>
-                    <constraint firstItem="5ux-HG-wOG" firstAttribute="top" secondItem="LIZ-jT-HOv" secondAttribute="bottom" constant="15" id="ypQ-CK-yE1"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="KYo-n5-6Nx"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="bottomConstraint" destination="KYo-n5-6Nx" id="cMt-NN-t2e"/>
                 <outlet property="chevron" destination="wod-S3-f14" id="anR-Gb-AIz"/>
                 <outlet property="choosenEntity" destination="lme-wP-WH9" id="fcW-6S-gdu"/>
                 <outlet property="containerView" destination="5ux-HG-wOG" id="gcq-ON-tvk"/>
                 <outlet property="flagImage" destination="obt-he-lG2" id="q2s-aL-7Ws"/>
-                <outlet property="heightContainer" destination="Mby-0N-du8" id="g1e-ZO-TZi"/>
                 <outlet property="number" destination="h5g-5H-cgW" id="ezF-9l-wdN"/>
                 <outlet property="titleOfLabel" destination="LIZ-jT-HOv" id="FLv-1b-dI2"/>
                 <outlet property="type" destination="Ras-ZT-9mc" id="Lf0-5b-7FW"/>

@@ -136,7 +136,7 @@ class DeclarantTableViewController: UIViewController {
         goodsTableView.right(to: view, offset: 5)
         goodsTableView.left(to: view)
         goodsTableView.topToBottom(of: segmentedTypeControl, offset: 35)
-        goodsTableView.height(to: view)
+        goodsTableView.bottom(to: view)
     }
     
     private func setupCurrencyView() {
@@ -191,23 +191,12 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
             cell.flagImage.image = flagImage
         case 2:
             cell.isUserInteractionEnabled = false
-            cell.bottomConstraint.isActive = true
-            cell.heightContainer.priority = UILayoutPriority(rawValue: 249)
-            cell.type.text = choosenGoods
+            cell.type.text = "sdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdagsdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdagsdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdagsdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdagsdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdagsdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdag"
         default: break
         }
         
         cell.isReloaded = true
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 2:
-            return UITableView.automaticDimension
-        default:
-            return 150
-        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
