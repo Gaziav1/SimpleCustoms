@@ -20,6 +20,15 @@ protocol GoodsChoosingDataSource: class {
 
 class GoodsChoosingAlert: UIView {
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var blurEffect: UIVisualEffectView! {
+        didSet {
+            if #available(iOS 13.0, *) {
+                blurEffect.effect = UIBlurEffect(style: .systemChromeMaterial)
+            } else {
+                blurEffect.effect = UIBlurEffect(style: .prominent)
+            }
+        }
+    }
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var goodsPickerView: UIPickerView!
     private var choosenEntity = ""
