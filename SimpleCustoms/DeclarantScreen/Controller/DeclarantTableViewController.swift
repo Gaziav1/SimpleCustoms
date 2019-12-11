@@ -8,13 +8,14 @@
 
 import UIKit
 import TinyConstraints
+import Lottie
 import RealmSwift
 
 class DeclarantTableViewController: UIViewController {
     
     private var goodsInformation = [CustomsRules]()
     
-    //private var currency: Currency?
+    private var currencyExchanger: CurrencyExchanger?
     
     lazy private var goodsAlert: GoodsChoosingAlert = {
         var viewAlert = GoodsChoosingAlert()
@@ -83,8 +84,8 @@ class DeclarantTableViewController: UIViewController {
         super.viewDidLoad()
         
         CurrencyFetcher.shared.getCurrency(currency: "EUR") { (curr, error) in
-            guard error == nil else { return }
-            self.currentExchangeRates = curr?.rates.RUB ?? 0
+            guard curr != nil else { return }
+            self.currencyExchanger = CurrencyExchanger(currency: curr!)
         }
         
         if #available(iOS 13.0, *) {
@@ -236,11 +237,13 @@ extension DeclarantTableViewController: CountryChooseDelegate {
 
 extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingDataSource {
     func cancelButtonTapped() {
+        //срабатывает при нажатии на кнопку отмены в алерте выбора товаров
         goodsAlert.removeFromSuperview()
         visualEffectView.fadeOut()
     }
     
     func doneButtonTapped(_ entity: String) {
+        //срабатывает при нажатии на кнопку готово в алерте выбора товаров
         choosenGoods = entity
         goodsAlert.removeFromSuperview()
         rowNumber = 3
@@ -249,12 +252,20 @@ extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingData
     }
     
     func goodsToShow() -> List<GoodsWithLimitations> {
+        // источник данных для показа элементов в пикервью алерта выбора товаров
         return goodsInformation.first(where: { $0.forCountryCode == choosenCountry["name"] })?.goodsLimitations ?? List<GoodsWithLimitations>()
     }
 }
 
-extension DeclarantTableViewController: CurrencySelectorDelegate, ChooseCurrencyDelegate {
+extension DeclarantTableViewController: CurrencyDelegate, ChooseCurrencyDelegate {
+    func didTypeCurrencyValue(_ value: Int) {
+        //срабатывает при вводе количества валюты в текстфилд
+        currencyExchanger?.setValueToExchange(value)
+        currencyView.playSpecificAnimation((currencyExchanger?.getResult())!)
+    }
+    
     func didSelectCurrencyButton() {
+        //срабатывает при нажатии на кнопку валюты
         let tableCurrency = TableViewController()
         tableCurrency.delegate = self
         let nc = UINavigationController(rootViewController: tableCurrency)
@@ -266,11 +277,12 @@ extension DeclarantTableViewController: CurrencySelectorDelegate, ChooseCurrency
     }
     
     func userDidChooseCurrency(_ currency: Currency) {
+        //срабатывает при выборе определенной валюты в тейбл вью
         dismiss(animated: true, completion: nil)
         CurrencyFetcher.shared.getCurrency(currency: currency.symbol!) { (currentCurrency, error) in
-            guard error == nil else { return }
-            self.currentExchangeRates = currentCurrency?.rates.RUB ?? 0
-            
+            guard currentCurrency != nil else { return }
+            self.currencyExchanger?.setCurrentRates(currentCurrency!)
+            self.currencyExchanger?.setPermissibleValue(currency.limit)
         }
         
         currencyView.currencyChoosingButton.setTitle(currency.symbol, for: .normal)

@@ -21,12 +21,23 @@ class CurrencyExchanger {
          }
      }
     
-    init(valueToExchange: Int, permissibleValue: Int, currency: CurrencyToFetch) {
+    init(valueToExchange: Int = 0, permissibleValue: Int = 0, currency: CurrencyToFetch) {
         self.valueToExchange = valueToExchange
         self.currency = currency
         self.permissibleValue = permissibleValue
     }
     
+    func setCurrentRates(_ currency: CurrencyToFetch) {
+        self.currency = currency
+    }
+    
+    func setPermissibleValue(_ value: Int) {
+        self.permissibleValue = value
+    }
+    
+    func setValueToExchange(_ value: Int) {
+        self.valueToExchange = value
+    }
     
     private func exchange(_ value: Int, to currency: CurrencyToFetch) -> Int {
         

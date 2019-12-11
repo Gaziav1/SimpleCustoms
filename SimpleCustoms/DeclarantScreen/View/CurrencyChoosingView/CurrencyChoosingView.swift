@@ -10,8 +10,9 @@ import UIKit
 import Lottie
 import TinyConstraints
 
-protocol CurrencySelectorDelegate: class {
+protocol CurrencyDelegate: class {
     func didSelectCurrencyButton()
+    func didTypeCurrencyValue(_ value: Int)
 }
 
 class CurrencyChoosingView: UIView {
@@ -33,7 +34,7 @@ class CurrencyChoosingView: UIView {
         return label
     }()
     
-    private let doneAnimation: AnimationView = {
+    let doneAnimation: AnimationView = {
         let animation = Animation.named("4964-check-mark-success-animation")
         var load = AnimationView()
         load.animation = animation
@@ -46,6 +47,7 @@ class CurrencyChoosingView: UIView {
     
     private let rubTextField: UITextField = {
         let tf = UITextField()
+        tf.textAlignment = .center
         tf.placeholder = "Кол-во перевозимой валюты"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.keyboardType = .numberPad
@@ -67,6 +69,7 @@ class CurrencyChoosingView: UIView {
         } else {
             tf.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         }
+        tf.textAlignment = .center
         tf.keyboardType = .numberPad
         tf.placeholder = "Кол-во иностранной валюты"
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +92,7 @@ class CurrencyChoosingView: UIView {
         return button
     }()
     
-    weak var delegate: CurrencySelectorDelegate?
+    weak var delegate: CurrencyDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -104,6 +107,16 @@ class CurrencyChoosingView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func playSpecificAnimation(_ passed: Bool) {
+        if passed {
+            doneAnimation.animation = Animation.named("4964-check-mark-success-animation")
+            doneAnimation.play()
+        } else {
+            doneAnimation.animation = Animation.named("1174-warning")
+            doneAnimation.play()
+        }
     }
     
     @objc private func currencySelector() {
@@ -165,7 +178,10 @@ class CurrencyChoosingView: UIView {
 }
 
 extension CurrencyChoosingView: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        <#code#>
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+
+        guard let text = textField.text else { return }
+        delegate?.didTypeCurrencyValue(Int(text) ?? 0)
+       
     }
 }
