@@ -25,13 +25,13 @@ class RealmManager: NSObject {
     static let sharedInstance = RealmManager()
     
     func retrieveAllDataForObject(_ T : Object.Type) -> [Object] {
-    
+        
         var objects = [Object]()
         guard let realm = realmObject else { return objects }
         for result in realm.objects(T) {
             objects.append(result)
         }
-    
+        
         return objects
     }
     
@@ -61,51 +61,46 @@ class RealmManager: NSObject {
     }
     
     func realmMigrateIfNeeded(to version: UInt64) {
-    
-     var config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
+        
+        let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < version {
-                 UserDefaults.standard.set(false, forKey: "isDataBaseUpdated")
-                 print("General Kenobi")
-//                migration.renameProperty(onType: "CustomsRules", from: "forCountryCode", to: "countryName")
+                //UserDefaults.standard.set(true, forKey: <#T##String#>)
+                //                migration.renameProperty(onType: "CustomsRules", from: "forCountryCode", to: "countryName"
             }
         })
-        //config.deleteRealmIfMigrationNeeded = true
-        Realm.Configuration.defaultConfiguration = config
-        updateOrCreateDB()
-        realmObject = try! Realm()
         
+        Realm.Configuration.defaultConfiguration = config
+        openRealm()
+        realmObject = try! Realm()
     }
     
-    func updateOrCreateDB() {
-        // Загрузка предварительно заполненной базы данных
-        guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return } //определяем путь до незаполненной базы данных
-       
-             if !FileManager.default.fileExists(atPath: defaultPath) {
-                 do {
-                    print("hello there")
-                     //проверяем наличие файла по данному пути, в случае его отсутствия копируем туда предварительно заполненною базу данных
-                     UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
-                     try FileManager.default.copyItem(atPath: path, toPath: defaultPath)
-                 } catch {
-                     print("Error copying pre-populated Realm \(error)")
-                 }
-             }
-             
-             //Обновление уже сущещствующей у юзера базы данных
-//             if !UserDefaults.standard.bool(forKey: "isDataBaseUpdated")  {
-//                 do {
-//                    print("cocksucker")
-//                     UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
-//                     try FileManager.default.removeItem(atPath: defaultPath)
-//                     try FileManager.default.copyItem(atPath: path, toPath: defaultPath)
-//                 } catch  {
-//                     print("Error")
-//                 }
-//             }
-
-
-            //realmObject = try! Realm()
+    func openRealm() {
+        let bundlePath = Bundle.main.path(forResource: "default", ofType: "realm")!
+        guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return }
+        let fileManager = FileManager.default
+        
+        // Only need to copy the prepopulated `.realm` file if it doesn't exist yet
+        if !fileManager.fileExists(atPath: defaultPath) {
+            print("use pre-populated database")
+            do {
+                UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
+                try fileManager.copyItem(atPath: bundlePath, toPath: defaultPath)
+                print("Copied")
+            } catch {
+                print(error)
+            }
+        }
+        
+        if UserDefaults.standard.bool(forKey: "isDataBaseUpdated") {
+            do {
+                print("ur motha")
+                UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
+                try fileManager.removeItem(atPath: defaultPath)
+                try fileManager.copyItem(atPath: bundlePath, toPath: defaultPath)
+            } catch {
+                print(error)
+            }
+        }
     }
 }
-
 
