@@ -191,7 +191,7 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
             cell.flagImage.image = flagImage
         case 2:
             cell.isUserInteractionEnabled = false
-            cell.type.text = "sdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdagsdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdagsdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdagsdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdagsdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdagsdaffdsfsfafdasfsadfsadfsadfasdfsadfsafsafddsfasfdsfasfdsafsadfasdfasdfsafasdfsafdfasdfasdfasdfasdfsadfasdfsafasdfasfdsafasdfsadfasffsdvfdbdnrnsrhadfgasfgdagfdag"
+            cell.type.text = choosenGoods
         default: break
         }
         
@@ -262,11 +262,15 @@ extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingData
 }
 
 extension DeclarantTableViewController: CurrencyDelegate, ChooseCurrencyDelegate {
-    func didTypeCurrencyValue(_ value: Int) -> String {
+
+    func didTypeCurrencyValue(reverse: Bool, value: Int) -> String {
         //срабатывает при вводе количества валюты в текстфилд
+        print(value)
         currencyExchanger?.setValueToExchange(value)
-        currencyView.playSpecificAnimation((currencyExchanger?.getResult())!)
-        return currencyExchanger?.resultToShow ?? ""
+        let exchangedValue = (currencyExchanger?.exchange(reverse, value: value))!
+        currencyView.playSpecificAnimation(!currencyExchanger!.isDeclarationNeeded)
+       
+        return exchangedValue
     }
     
     func didSelectCurrencyButton() {
@@ -289,7 +293,6 @@ extension DeclarantTableViewController: CurrencyDelegate, ChooseCurrencyDelegate
                 print("fuck off")
                 return }
             self.currencyExchanger?.setCurrentRates(currentCurrency!)
-            print(currency.limit)
             self.currencyExchanger?.setPermissibleValue(currency.limit)
         }
         

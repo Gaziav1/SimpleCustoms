@@ -8,18 +8,20 @@
 
 import Foundation
 
-class CurrencyExchanger {
+final class CurrencyExchanger {
     
    private var valueToExchange: Int
    private var currency: CurrencyToFetch
-
    private var permissibleValue: Int
     
-    public var resultToShow: String {
-         get {
-             return String(exchange(valueToExchange, to: currency))
-         }
-     }
+   private var declarantValue: Int = 0
+    
+    public var isDeclarationNeeded: Bool {
+        get {
+            return declarantValue > permissibleValue
+        }
+    }
+    
     
     init(valueToExchange: Int = 0, permissibleValue: Int = 10000, currency: CurrencyToFetch) {
         self.valueToExchange = valueToExchange
@@ -39,17 +41,17 @@ class CurrencyExchanger {
         self.valueToExchange = value
     }
     
-    private func exchange(_ value: Int, to currency: CurrencyToFetch) -> Int {
+    func exchange(_ reverse: Bool = false, value: Int) -> String {
         
-        let exchagedValue = value / Int(currency.rates.RUB)
-        return exchagedValue
+        var exchangedValue: Int
+        
+        if reverse {
+            exchangedValue = value * Int(currency.rates.RUB)
+        } else {
+            exchangedValue = value / Int(currency.rates.RUB)
+        }
+        declarantValue = exchangedValue
+        return String(exchangedValue)
     }
     
-    func getResult() -> Bool {
-        
-        let exchangedCurrency = exchange(valueToExchange, to: currency)
-        
-        return exchangedCurrency <= permissibleValue ? true : false
-    
-    }
 }

@@ -12,7 +12,7 @@ import TinyConstraints
 
 protocol CurrencyDelegate: class {
     func didSelectCurrencyButton()
-    func didTypeCurrencyValue(_ value: Int) -> String
+    func didTypeCurrencyValue(reverse exchange: Bool, value: Int) -> String
 }
 
 class CurrencyChoosingView: UIView {
@@ -27,10 +27,9 @@ class CurrencyChoosingView: UIView {
     
     private let resultLabel: UILabel = {
         let label = UILabel()
-        label.text = "Вам не надо декларировать валюту"
+        label.isHidden = true
         label.font = UIFont.systemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.isHidden = true
         return label
     }()
     
@@ -38,6 +37,7 @@ class CurrencyChoosingView: UIView {
         let animation = Animation.named("4964-check-mark-success-animation")
         var load = AnimationView()
         load.animation = animation
+        load.isHidden = true
         load.animationSpeed = 2
         load.loopMode = .playOnce
         load.contentMode = .scaleAspectFit
@@ -49,7 +49,6 @@ class CurrencyChoosingView: UIView {
         let tf = UITextField()
         tf.textAlignment = .center
         tf.clearsOnBeginEditing = true
-        tf.clearButtonMode = .whileEditing
         tf.placeholder = "Кол-во перевозимой валюты"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.keyboardType = .numberPad
@@ -72,7 +71,6 @@ class CurrencyChoosingView: UIView {
             tf.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         }
         tf.clearsOnBeginEditing = true
-        tf.clearButtonMode = .whileEditing
         tf.textAlignment = .center
         tf.keyboardType = .numberPad
         tf.placeholder = "Кол-во иностранной валюты"
@@ -114,12 +112,19 @@ class CurrencyChoosingView: UIView {
     }
     
     func playSpecificAnimation(_ passed: Bool) {
+        doneAnimation.isHidden = false
         if passed {
+            resultLabel.text = "Вам не надо декларировать валюту"
             doneAnimation.animation = Animation.named("4964-check-mark-success-animation")
             doneAnimation.play()
+            resultLabel.fadeIn()
+            
         } else {
+            resultLabel.text = "Вам необходимо декларировать валюту"
             doneAnimation.animation = Animation.named("1174-warning")
             doneAnimation.play()
+            resultLabel.fadeIn()
+            
         }
     }
     
@@ -142,7 +147,7 @@ class CurrencyChoosingView: UIView {
         
         resultLabel.topToBottom(of: doneAnimation, offset: 15)
         resultLabel.centerX(to: self)
-       
+        
         doneAnimation.play { (_) in
             self.resultLabel.isHidden = false
         }
@@ -183,9 +188,12 @@ class CurrencyChoosingView: UIView {
 
 extension CurrencyChoosingView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-
-        guard let text = textField.text else { return }
-        choosenCurrencyField.text = delegate?.didTypeCurrencyValue(Int(text) ?? 0)
+        guard let text = textField.text, let value = Int(text) else { return }
+        
+        if textField == self.rubTextField {
+            choosenCurrencyField.text = delegate?.didTypeCurrencyValue(reverse: false, value: value)
+        } else {
+            rubTextField.text = delegate?.didTypeCurrencyValue(reverse: true, value: value)
+        }
     }
-    
 }

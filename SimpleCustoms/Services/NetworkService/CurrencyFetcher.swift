@@ -19,7 +19,7 @@ class CurrencyFetcher {
             "symbols": "RUB"])
         
         guard let completeURL = urlPath.fullURL else { return }
-        
+        print(completeURL)
         NetworkManager.shared.makeRequest(url: completeURL) { (result) in
             DispatchQueue.main.async {
                 
