@@ -13,10 +13,12 @@ class RealmManager: NSObject {
     
     var realmObject: Realm?
     
-    lazy private var configuration = Realm.Configuration(fileURL: URL(string: path))
     private var path: String {
         get {
-            guard let specificPath = Bundle.main.path(forResource: "default", ofType: "realm") else { return "" }
+            guard let specificPath = Bundle.main.path(forResource: "default", ofType: "realm") else {
+                print("cock sucker")
+                return "" }
+            print(specificPath)
             return specificPath
         }
     }
@@ -59,14 +61,18 @@ class RealmManager: NSObject {
     }
     
     func realmMigrateIfNeeded(to version: UInt64) {
-        
-        configuration = Realm.Configuration(schemaVersion: version, migrationBlock: { (_, oldVersion) in
+    
+     var config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < version {
                  UserDefaults.standard.set(false, forKey: "isDataBaseUpdated")
-                 self.configuration.deleteRealmIfMigrationNeeded = true
-              
+                 print("General Kenobi")
+//                migration.renameProperty(onType: "CustomsRules", from: "forCountryCode", to: "countryName")
             }
         })
+        //config.deleteRealmIfMigrationNeeded = true
+        Realm.Configuration.defaultConfiguration = config
+        updateOrCreateDB()
+        realmObject = try! Realm()
         
     }
     
@@ -88,6 +94,7 @@ class RealmManager: NSObject {
              //Обновление уже сущещствующей у юзера базы данных
 //             if !UserDefaults.standard.bool(forKey: "isDataBaseUpdated")  {
 //                 do {
+//                    print("cocksucker")
 //                     UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
 //                     try FileManager.default.removeItem(atPath: defaultPath)
 //                     try FileManager.default.copyItem(atPath: path, toPath: defaultPath)
@@ -95,9 +102,9 @@ class RealmManager: NSObject {
 //                     print("Error")
 //                 }
 //             }
-//
 
-            realmObject = try! Realm(configuration: configuration)
+
+            //realmObject = try! Realm()
     }
 }
 
