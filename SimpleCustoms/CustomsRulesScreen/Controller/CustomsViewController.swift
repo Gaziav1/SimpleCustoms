@@ -109,8 +109,8 @@ class CustomsViewController: UIViewController {
         
         flagImage.top(to: containterView.safeAreaLayoutGuide, offset: 8)
         flagImage.leading(to: containterView, offset: 18)
-        flagImage.trailing(to: containterView, offset: -18)
-        flagImage.height(225)
+        flagImage.trailing(to: containterView, offset: -30)
+        flagImage.height(200)
     
         flagImage.layer.cornerRadius = 10
         flagImage.layer.masksToBounds = true

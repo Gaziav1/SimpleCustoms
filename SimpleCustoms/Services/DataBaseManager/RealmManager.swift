@@ -80,7 +80,6 @@ class RealmManager: NSObject {
         guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return }
         let fileManager = FileManager.default
      
-        // Only need to copy the prepopulated `.realm` file if it doesn't exist yet
         if !fileManager.fileExists(atPath: defaultPath) {
             print("use pre-populated database")
             do {

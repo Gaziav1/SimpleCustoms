@@ -20,12 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
     
-        if let text = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
-            print(text)
-        }
-        RealmManager.sharedInstance.realmMigrateIfNeeded(to: 34)
-        //RealmManager.sharedInstance.updateOrCreateDB()
-
+        
+         RealmManager.sharedInstance.realmMigrateIfNeeded(to: 2)
+        
         return true
     }
     
