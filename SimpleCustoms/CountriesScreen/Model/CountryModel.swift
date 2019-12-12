@@ -8,13 +8,7 @@
 
 import UIKit
 
-protocol ShortDescriptionOfCountry {
-    var currencies: String { get }
-    var capital: String { get }
-    var languages: String { get }
-}
-
-struct Country: Decodable, ShortDescriptionOfCountry {
+struct Country: Decodable {
     var name: String
     var alpha2Code: String
     var region: String
