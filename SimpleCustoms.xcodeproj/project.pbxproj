@@ -31,7 +31,7 @@
 		A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */; };
 		A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */; };
 		A7941127238AD8970001B402 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */; };
-		A797D0822347B6A400492849 /* DeclarantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D0812347B6A400492849 /* DeclarantTableViewController.swift */; };
+		A797D0822347B6A400492849 /* DeclarantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D0812347B6A400492849 /* DeclarantViewController.swift */; };
 		A797D08A2348EE6C00492849 /* GoodsWithLimitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */; };
 		A797D08C234A22DC00492849 /* CurrencyToFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D08B234A22DC00492849 /* CurrencyToFetch.swift */; };
 		A797D08E234A23E200492849 /* CurrencyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D08D234A23E200492849 /* CurrencyFetcher.swift */; };
@@ -92,7 +92,7 @@
 		A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCountryFetcher.swift; sourceTree = "<group>"; };
 		A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DescriptionTableViewCell.swift; path = SimpleCustoms/CustomsRulesScreen/View/Description/DescriptionTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DescriptionTableViewCell.xib; path = SimpleCustoms/CustomsRulesScreen/View/Description/DescriptionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		A797D0812347B6A400492849 /* DeclarantTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclarantTableViewController.swift; sourceTree = "<group>"; };
+		A797D0812347B6A400492849 /* DeclarantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclarantViewController.swift; sourceTree = "<group>"; };
 		A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsWithLimitations.swift; sourceTree = "<group>"; };
 		A797D08B234A22DC00492849 /* CurrencyToFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyToFetch.swift; sourceTree = "<group>"; };
 		A797D08D234A23E200492849 /* CurrencyFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFetcher.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 		A7506C1C2354867D0054C463 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A797D0812347B6A400492849 /* DeclarantTableViewController.swift */,
+				A797D0812347B6A400492849 /* DeclarantViewController.swift */,
 				A798F7442394016A006842AC /* TableViewController.swift */,
 			);
 			path = Controller;
@@ -579,7 +579,7 @@
 				A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */,
 				A797D096234A2C5A00492849 /* CurrencyExchanger.swift in Sources */,
 				A7A50BBE233924C500C8624C /* CellSizeCalculator.swift in Sources */,
-				A797D0822347B6A400492849 /* DeclarantTableViewController.swift in Sources */,
+				A797D0822347B6A400492849 /* DeclarantViewController.swift in Sources */,
 				A75B3514239D8B1300F1EA8F /* CurrencyChoosingableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,7 +11,7 @@ import TinyConstraints
 import Lottie
 import RealmSwift
 
-class DeclarantTableViewController: UIViewController {
+class DeclarantViewController: UIViewController {
     
     private var goodsInformation = [CustomsRules]()
     
@@ -168,12 +168,12 @@ class DeclarantTableViewController: UIViewController {
         case 1:
             goodsTableView.fadeOut()
             currencyView.fadeIn()
-        default: print("fag")
+        default: print("hello there")
         }
     }
 }
 
-extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension DeclarantViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rowNumber
@@ -229,7 +229,7 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
     }
 }
 
-extension DeclarantTableViewController: CountryChooseDelegate {
+extension DeclarantViewController: CountryChooseDelegate {
     
     func didChooseCountry(_ name: String, code: String, imageData: Data) {
         self.choosenCountry["name"] = name
@@ -243,7 +243,7 @@ extension DeclarantTableViewController: CountryChooseDelegate {
     }
 }
 
-extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingDataSource {
+extension DeclarantViewController: GoodsChoosingDelegate, GoodsChoosingDataSource {
     func doneButtonTapped(choosen goods: String, limitations: String) {
         choosenGoods["goods"] = goods
         choosenGoods["limitations"] = limitations
@@ -267,7 +267,7 @@ extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingData
     }
 }
 
-extension DeclarantTableViewController: CurrencyDelegate, ChooseCurrencyDelegate {
+extension DeclarantViewController: CurrencyDelegate, ChooseCurrencyDelegate {
     
     func didTypeCurrencyValue(reverse: Bool, value: Int) -> String {
         //срабатывает при вводе количества валюты в текстфилд
@@ -295,7 +295,7 @@ extension DeclarantTableViewController: CurrencyDelegate, ChooseCurrencyDelegate
         dismiss(animated: true, completion: nil)
         CurrencyFetcher.shared.getCurrency(currency: currency.symbol!) { (currentCurrency, error) in
             guard currentCurrency != nil else {
-                print("fuck off")
+
                 return }
             self.currencyExchanger?.setCurrentRates(currentCurrency!)
             self.currencyExchanger?.setPermissibleValue(currency.limit)
@@ -306,96 +306,3 @@ extension DeclarantTableViewController: CurrencyDelegate, ChooseCurrencyDelegate
 }
 
 
-//        goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(GoodsWithLimitations.self) as! [GoodsWithLimitations]
-//    override func viewDidAppear(_ animated: Bool) {
-//        getData()
-//    }
-//
-//    @objc func dismissKeyboard() {
-//        view.endEditing(true)
-//    }
-//
-//    private func getData() {
-//        CurrencyFetcher.shared.getCurrency(completion: { (currencyEx, error) in
-//            guard error == nil else {
-//                self.resultLabel.text = "Не удалось получить текущий курс евро"
-//                self.resultLabel.fadeIn()
-//                return }
-//            self.resultLabel.text = ""
-//            self.currency = currencyEx!
-//        })
-//    }
-//
-//    private func setupUIElements() {
-//        currencyToConvertLabel.delegate = self
-//        currencyToConvertLabel.font = currencyToConvertLabel.font?.withSize(17)
-//        resultLabel.isHidden = true
-//        resultImage.isHidden = true
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//        tableView.addGestureRecognizer(tap)
-//    }
-//
-//    private func setupPickerView() {
-//        goodsPicker.delegate = self
-//        goodsPicker.dataSource = self
-//    }
-//
-//}
-//
-//extension DeclarantTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-//
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//
-//        return goodsInformation.count
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//        let title = NSAttributedString(string: goodsInformation[row].productName, attributes:  [.foregroundColor: UIColor.white])
-//        return title
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//
-//        return goodsInformation[row].productName
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        declarationInfoLabel.textColor = .white
-//        declarationInfoLabel.font = declarationInfoLabel.font.withSize(19)
-//        declarationInfoLabel.text = goodsInformation[row].productLimitations
-//    }
-//}
-//
-//extension DeclarantTableViewController: UITextFieldDelegate {
-//
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//        return true
-//    }
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//
-//        guard let text = textField.text, let recievedCurrency = Int(text) else { return }
-//        guard let currentCurrency = currency else { return }
-//
-//        let exchanger = CurrencyExchanger(valueToExchange: recievedCurrency, currency: currentCurrency)
-//        convertedCurrencyLabel.text = exchanger.resultToShow
-//
-//        resultLabel.fadeIn()
-//        resultImage.fadeIn()
-//
-//        if exchanger.getResult() {
-//
-//            resultImage.image = UIImage(named: "checked")
-//            resultLabel.text = "Вам не нужно декларировать валюту"
-//        } else {
-//            resultImage.image = UIImage(named: "cancel")
-//            resultLabel.text = "Вам необходимо задекларировать валюту"
-//        }
-//    }
-//}
-//

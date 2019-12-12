@@ -14,7 +14,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         let navigationController = UINavigationController(rootViewController: CountryViewController())
 
-        let dc = DeclarantTableViewController()
+        let dc = DeclarantViewController()
         dc.tabBarItem.image = UIImage(named: "Declarant")
         dc.tabBarItem.title = "Декларант"
         navigationController.tabBarItem.image = UIImage(named: "Globe")

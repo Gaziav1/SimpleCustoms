@@ -22,7 +22,7 @@ class CountryChooserTableViewCell: UITableViewCell {
             containerView.layer.masksToBounds = true
         }
     }
-
+    
     var indexPath = 0 {
         didSet {
             defineContentForCell()
@@ -99,7 +99,6 @@ class CountryChooserTableViewCell: UITableViewCell {
     
     private func defineContentForCell() {
         
-       
         switch indexPath {
         case 1:
             type.text = "Товар"
@@ -117,7 +116,7 @@ class CountryChooserTableViewCell: UITableViewCell {
             if #available(iOS 13.0, *) {
                 type.textColor = .label
             } else {
-                type.textColor = .white
+                type.textColor = .black
             }
         default:
             type.fadeIn()
