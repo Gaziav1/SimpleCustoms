@@ -19,6 +19,7 @@ class CountryViewController: UIViewController {
     
     private let countriesTableView: UITableView = {
         let tableView = UITableView()
+        tableView.isHidden = true
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "CountryTableViewCell", bundle: nil), forCellReuseIdentifier: CountryTableViewCell.reuseId)
@@ -68,7 +69,7 @@ class CountryViewController: UIViewController {
         regionChooser.translatesAutoresizingMaskIntoConstraints = false
         regionChooser.delegate = self
         view.addSubview(regionChooser)
-
+        
         regionChooser.edgesToSuperview(excluding: .bottom, usingSafeArea: true)
         regionChooser.height(46)
     }
@@ -102,9 +103,8 @@ class CountryViewController: UIViewController {
     }
     
     private func handleDataDownloading() {
-        //Метод проигрывает анимацию пока идет загрузка данных, в случае ошибки выводит UI элементы с кнопкой, по тапу на которую метод вызывается снова
-        countriesTableView.isHidden = true
-        loadingAnimation.fadeIn()
+        
+        loadingAnimation.isHidden = false
         loadingAnimation.play()
         NetworkCountryFetcher.shared.fetchCountries { (country, error) in
             guard error == nil else {
@@ -113,22 +113,22 @@ class CountryViewController: UIViewController {
                 return
             }
             guard let countries = country else { return }
-//            let realmObjects = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
-//            for someEntity in countries {
-//                if let realmObject = realmObjects.first(where: { $0.forCountryCode == someEntity.name }) {
-//                    let currency = Currency()
-//                    currency.name = someEntity.currencies[0].name
-//                    currency.symbol = someEntity.currencies[0].code
-//                    
-//                    try! RealmManager.sharedInstance.realmObject?.write {
-//                        realmObject.currency = currency
-//                    }
-//                }
-//            }
+            //            let realmObjects = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
+            //            for someEntity in countries {
+            //                if let realmObject = realmObjects.first(where: { $0.forCountryCode == someEntity.name }) {
+            //                    let currency = Currency()
+            //                    currency.name = someEntity.currencies[0].name
+            //                    currency.symbol = someEntity.currencies[0].code
+            //
+            //                    try! RealmManager.sharedInstance.realmObject?.write {
+            //                        realmObject.currency = currency
+            //                    }
+            //                }
+            //            }
             self.dataHandler.setCountries(countries)
             self.loadingAnimation.stop()
             self.countriesTableView.fadeIn()
-            self.loadingAnimation.fadeOut()
+            self.loadingAnimation.isHidden = true
             self.countriesTableView.reloadData()
         }
     }
@@ -144,22 +144,11 @@ class CountryViewController: UIViewController {
         errorHandler.fadeOut()
         handleDataDownloading()
     }
-    
-    private func checkImage(country: Country, imageType: ImageType) -> UIImage {
-        switch imageType  {
-        case .flat:
-            guard let data = country.flagImages?.flatFlagImage, let image = UIImage(data: data) else { return UIImage() }
-            return image
-        case .shiny:
-            guard let data = country.flagImages?.shinyFlagImage, let image = UIImage(data: data) else { return UIImage() }
-            return image
-        }
-    }
-    
+
 }
 
 extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
-   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataHandler.currentData.count
     }
@@ -167,54 +156,45 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseId) as! CountryTableViewCell
+        let cellInfo = CountryScreenModel(country: dataHandler.currentData[indexPath.row])
         
-        cell.backgroundColor = .clear
-        cell.selectionStyle = .none
-        let country = dataHandler.currentData[indexPath.row]
-        cell.countryName.text = country.name
-        cell.flagImage.image = checkImage(country: country, imageType: .flat)
+        cell.fillCell(with: cellInfo)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
-        let country = dataHandler.currentData[indexPath.row]
-        cell.flagImage.image = checkImage(country: country, imageType: .shiny)
         
-        if #available(iOS 13.0, *) {
-            cell.countryView.backgroundColor = .systemIndigo
-        } else {
-            cell.countryName.textColor = .white
-            cell.countryView.backgroundColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
+        UIView.animate(withDuration: 0.2) {
+            let scale: CGFloat = 0.9
+            cell.transform = CGAffineTransform(scaleX: scale, y: scale)
         }
+        
     }
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
-        let country = dataHandler.currentData[indexPath.row]
-        cell.flagImage.image = checkImage(country: country, imageType: .flat)
-        
-             if #available(iOS 13.0, *) {
-                cell.countryView.backgroundColor = .tertiarySystemBackground
-           } else {
-                cell.countryName.textColor = .black
-                cell.countryView.backgroundColor = .white
-           }
+     
+        UIView.animate(withDuration: 0.2) {
+            cell.transform = CGAffineTransform.identity
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = CustomsViewController()
         navigationController?.dismiss(animated: true, completion: nil)
+    
+        let country = CountryScreenModel(country: dataHandler.currentData[indexPath.row])
         
-        let country = dataHandler.currentData[indexPath.row]
+        let countryInformation = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.countryName), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее названию
         
-        let customsRule = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.name), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее коду
-        vc.rules = customsRule[0]
-        vc.countryCode = country.alpha2Code
-        vc.navigationItem.title = country.name
+        let customsRules = CustomsRulesScreenModel(about: countryInformation[0].countryDescription, country: country, rules: countryInformation[0].customsRule)
+        
+        vc.rules = customsRules
+        vc.navigationItem.title = country.countryName
         navigationController?.pushViewController(vc, animated: true)
         
-        delegate?.didChooseCountry(country.name, code: country.alpha2Code, imageData: country.flagImages?.flatFlagImage ?? Data())
+        delegate?.didChooseCountry(country.countryName, code: country.countryCode, imageData: country.imageData)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -229,6 +209,7 @@ extension CountryViewController: UISearchBarDelegate {
         
         countriesTableView.reloadData()
     }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         dataHandler.stopSearching()
         searchController.searchBar.showsCancelButton = false

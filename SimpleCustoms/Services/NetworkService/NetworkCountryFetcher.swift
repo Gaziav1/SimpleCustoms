@@ -41,6 +41,7 @@ final class NetworkCountryFetcher {
                     do {
                         let json = try JSONDecoder().decode([Country].self, from: data)
                         json.forEach { (country) in
+                            
                             guard var countryCopy = self.filter(country) else { return }
                             countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
                             jsonData.append(countryCopy)

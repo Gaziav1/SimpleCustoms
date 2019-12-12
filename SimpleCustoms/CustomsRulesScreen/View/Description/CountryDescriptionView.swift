@@ -7,31 +7,11 @@
 //
 
 import UIKit
+import TinyConstraints
 
 class CountryDescriptionView: UIView {
     
-    var capitalCity: UILabel = {
-        var label = UILabel()
-        label.text = "London"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    var language: UILabel = {
-        var label = UILabel()
-        label.text = "English"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    var currency: UILabel = {
-        var label = UILabel()
-        label.text = "Pounds"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    var containterTableView: UITableView = {
+    private var containterTableView: UITableView = {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
@@ -40,6 +20,7 @@ class CountryDescriptionView: UIView {
         return tableView
     }()
     
+    var infoForCell: CountryInfoForCell?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,16 +32,30 @@ class CountryDescriptionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func fillCell(with info: CountryInfoForCell, cell: DescriptionTableViewCell, at indexPath: IndexPath) {
+        
+        switch indexPath.row {
+        case 0:
+            cell.titleDescription.text = "Столица"
+            cell.descriptionAnswer.text = info.capital
+        case 1:
+            cell.titleDescription.text = "Валюта"
+            cell.descriptionAnswer.text = info.currency
+        case 2:
+            cell.titleDescription.text = "Язык"
+            cell.descriptionAnswer.text = info.language
+        default:
+            print("hello there")
+        }
+    }
+    
     
     private func setupTableView() {
         addSubview(containterTableView)
         containterTableView.delegate = self
         containterTableView.dataSource = self
         
-        containterTableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        containterTableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        containterTableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        containterTableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        containterTableView.edgesToSuperview()
         
         containterTableView.register(UINib(nibName: "DescriptionTableViewCell", bundle: nil), forCellReuseIdentifier: DescriptionTableViewCell.reuseId)
     }
@@ -74,6 +69,10 @@ extension CountryDescriptionView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.reuseId, for: indexPath) as! DescriptionTableViewCell
+        
+        if let info = infoForCell {
+            fillCell(with: info, cell: cell, at: indexPath)
+        }
         
         if #available(iOS 13.0, *) {
             cell.backgroundColor = .secondarySystemBackground

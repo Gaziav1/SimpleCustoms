@@ -53,6 +53,8 @@
 		A7C984C22385885800936465 /* APIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C984C12385885800936465 /* APIPath.swift */; };
 		A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */; };
 		A7E70DCF2321780A00EFD8B0 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */; };
+		A7FD31B023A271BD00124EAE /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FD31AF23A271BD00124EAE /* CellModel.swift */; };
+		A7FD31B323A27E6700124EAE /* CustomsRulesScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FD31B223A27E6700124EAE /* CustomsRulesScreenModel.swift */; };
 		A7FE91392323FAC40052348F /* FlagImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE91382323FAC40052348F /* FlagImage.swift */; };
 		A8DEE70A6A0B4A5A7B751C90 /* Pods_SimpleCustoms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */; };
 /* End PBXBuildFile section */
@@ -98,17 +100,19 @@
 		A798F7402393F072006842AC /* CountryChooserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryChooserTableViewCell.swift; sourceTree = "<group>"; };
 		A798F7412393F072006842AC /* CountryChooserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryChooserTableViewCell.xib; sourceTree = "<group>"; };
 		A798F7442394016A006842AC /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = SimpleCustoms/TableViewController.swift; sourceTree = SOURCE_ROOT; };
-		A79FA05A238D9CF5008F8076 /* RegionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegionView.swift; path = SimpleCustoms/CountriesScreen/View/RegionView.swift; sourceTree = SOURCE_ROOT; };
-		A79FA05C238D9D9D008F8076 /* RegionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegionCollectionViewCell.swift; path = SimpleCustoms/CountriesScreen/View/RegionCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		A79FA05A238D9CF5008F8076 /* RegionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegionView.swift; path = SimpleCustoms/CountriesScreen/View/Region/RegionView.swift; sourceTree = SOURCE_ROOT; };
+		A79FA05C238D9D9D008F8076 /* RegionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegionCollectionViewCell.swift; path = SimpleCustoms/CountriesScreen/View/Region/RegionCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		A7A50BBD233924C500C8624C /* CellSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSizeCalculator.swift; sourceTree = "<group>"; };
 		A7A50BC0233A5BF100C8624C /* CustomsRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsRules.swift; sourceTree = "<group>"; };
 		A7A50BC2233A6F6700C8624C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		A7B31DF82340D46200FBC4F8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A7B7E259234116720090873F /* WebImageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageHandler.swift; sourceTree = "<group>"; };
-		A7C7CA18238564E300E96B76 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorView.swift; path = SimpleCustoms/Helpers/ErrorView.swift; sourceTree = SOURCE_ROOT; };
+		A7C7CA18238564E300E96B76 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorView.swift; path = SimpleCustoms/CountriesScreen/View/ErrorView.swift; sourceTree = SOURCE_ROOT; };
 		A7C984C12385885800936465 /* APIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIPath.swift; path = SimpleCustoms/Services/NetworkService/APIPath.swift; sourceTree = SOURCE_ROOT; };
 		A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		A7FD31AF23A271BD00124EAE /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		A7FD31B223A27E6700124EAE /* CustomsRulesScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsRulesScreenModel.swift; sourceTree = "<group>"; };
 		A7FE91382323FAC40052348F /* FlagImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				A7A50BC0233A5BF100C8624C /* CustomsRules.swift */,
+				A7FD31B223A27E6700124EAE /* CustomsRulesScreenModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -201,10 +206,9 @@
 		A751DFDF2320453A0094FAC0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */,
-				A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */,
-				A79FA05A238D9CF5008F8076 /* RegionView.swift */,
-				A79FA05C238D9D9D008F8076 /* RegionCollectionViewCell.swift */,
+				A7FE1B1923A26E5E009768D1 /* CountryTableViewCell */,
+				A7FE1B1A23A26EAD009768D1 /* Region */,
+				A7C7CA18238564E300E96B76 /* ErrorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,7 +292,6 @@
 				A7B31DF82340D46200FBC4F8 /* Extensions.swift */,
 				A797D095234A2C5A00492849 /* CurrencyExchanger.swift */,
 				A7019C0E234D24170073DAFD /* Colors.swift */,
-				A7C7CA18238564E300E96B76 /* ErrorView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -378,8 +381,27 @@
 			children = (
 				A7E70DCE2321780A00EFD8B0 /* CountryModel.swift */,
 				A7FE91372323FAA70052348F /* FlagImage */,
+				A7FD31AF23A271BD00124EAE /* CellModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A7FE1B1923A26E5E009768D1 /* CountryTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */,
+				A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */,
+			);
+			path = CountryTableViewCell;
+			sourceTree = "<group>";
+		};
+		A7FE1B1A23A26EAD009768D1 /* Region */ = {
+			isa = PBXGroup;
+			children = (
+				A79FA05A238D9CF5008F8076 /* RegionView.swift */,
+				A79FA05C238D9D9D008F8076 /* RegionCollectionViewCell.swift */,
+			);
+			path = Region;
 			sourceTree = "<group>";
 		};
 		A7FE91372323FAA70052348F /* FlagImage */ = {
@@ -545,6 +567,7 @@
 				A7790323238AC03C00CD8FFE /* CountryDescriptionView.swift in Sources */,
 				A7FE91392323FAC40052348F /* FlagImage.swift in Sources */,
 				A797D08E234A23E200492849 /* CurrencyFetcher.swift in Sources */,
+				A7FD31B023A271BD00124EAE /* CellModel.swift in Sources */,
 				A797D08A2348EE6C00492849 /* GoodsWithLimitations.swift in Sources */,
 				A79FA05D238D9D9D008F8076 /* RegionCollectionViewCell.swift in Sources */,
 				A7B7E25A234116720090873F /* WebImageHandler.swift in Sources */,
@@ -552,6 +575,7 @@
 				A7B31DF92340D46200FBC4F8 /* Extensions.swift in Sources */,
 				A75B350E239D3EDC00F1EA8F /* CurrencyChoosingView.swift in Sources */,
 				A797D08C234A22DC00492849 /* CurrencyToFetch.swift in Sources */,
+				A7FD31B323A27E6700124EAE /* CustomsRulesScreenModel.swift in Sources */,
 				A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */,
 				A797D096234A2C5A00492849 /* CurrencyExchanger.swift in Sources */,
 				A7A50BBE233924C500C8624C /* CellSizeCalculator.swift in Sources */,

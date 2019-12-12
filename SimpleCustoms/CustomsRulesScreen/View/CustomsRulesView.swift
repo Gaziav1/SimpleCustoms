@@ -10,6 +10,10 @@ import UIKit
 import RealmSwift
 import TinyConstraints
 
+protocol RulesCellDataSource: class {
+    func defineContentForCell() -> List<CustomsRuleDescription>
+}
+
 class CustomsRulesView: UIView {
     
     private let rulesCollection: UICollectionView = {
@@ -36,11 +40,10 @@ class CustomsRulesView: UIView {
         return page
     }()
     
-    var rules = List<CustomsRuleDescription>() {
+    weak var dataSource: RulesCellDataSource? {
         didSet {
-            pageControl.numberOfPages = rules.count
             pageControl.currentPage = 0
-            
+            pageControl.numberOfPages = dataSource?.defineContentForCell().count ?? 0
         }
     }
     
@@ -85,6 +88,8 @@ extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RulesCollectionViewCell.reuseId, for: indexPath) as! RulesCollectionViewCell
         
+        guard let rules = dataSource?.defineContentForCell() else { return cell }
+        
         cell.header.text = rules[indexPath.row].header
         cell.body.text = rules[indexPath.row].body.replacingOccurrences(of: "\\n", with: "\n")
         
@@ -93,7 +98,7 @@ extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return rules.count
+        return dataSource?.defineContentForCell().count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

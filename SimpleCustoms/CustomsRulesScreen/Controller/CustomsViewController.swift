@@ -12,29 +12,23 @@ import TinyConstraints
 
 class CustomsViewController: UIViewController {
     
-    var rules = CustomsRules() {
+    var rules: CustomsRulesScreenModel! {
         didSet {
-            flagImage.image = UIImage(named: rules.forCountryCode?.lowercased() ?? "fr")
-            rulesView.rules = rules.customsRule
+            flagImage.image = UIImage(named: rules.countryCode.lowercased())
+            countryDescription.text = rules.desription
+            descriptionView.infoForCell = rules
         }
     }
-    
-    var countryCode = "" {
-        didSet {
-            flagImage.image = UIImage(named: countryCode.lowercased())
-        }
-    }
-    
+ 
     private var flagImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    let countryDescription: UILabel = {
+    private let countryDescription: UILabel = {
         let label = UILabel()
-        label.text = "Канада славится своими практически нетронутыми природными ландшафтами, а также уникальной мозаичной культурой, составленной из самых разных традиций, привнесенных эмигрантами из всех уголков мира."
-        
+       
         if #available(iOS 13.0, *) {
             label.textColor = .label
         } else {
@@ -85,17 +79,12 @@ class CustomsViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
     
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    
+        scrollView.edgesToSuperview()
     }
     
     private func setupRulesView() {
         containterView.addSubview(rulesView)
+        rulesView.dataSource = self
         
         NSLayoutConstraint.activate([
             
@@ -121,14 +110,9 @@ class CustomsViewController: UIViewController {
     private func setupUIElementsInView() {
         containterView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(containterView)
-        
-        containterView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        containterView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        containterView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        containterView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        containterView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        containterView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
-        
+        containterView.edgesToSuperview()
+        containterView.centerInSuperview()
+
         setupImage()
         setupDescriptionView()
         setupCountryDescription()
@@ -137,13 +121,13 @@ class CustomsViewController: UIViewController {
     
     private func setupImage() {
         containterView.addSubview(flagImage)
-        
+    
         NSLayoutConstraint.activate([
             
             flagImage.topAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.topAnchor, constant: 8),
             flagImage.leadingAnchor.constraint(equalTo: containterView.leadingAnchor, constant: 18),
-            flagImage.widthAnchor.constraint(equalToConstant: 215),
-            flagImage.heightAnchor.constraint(equalToConstant: 150)])
+            flagImage.widthAnchor.constraint(equalToConstant: 205),
+            flagImage.heightAnchor.constraint(equalToConstant: 140)])
         
         flagImage.layer.cornerRadius = 10
         flagImage.layer.masksToBounds = true
@@ -154,8 +138,8 @@ class CustomsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             descriptionView.trailingAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.trailingAnchor),
-            descriptionView.leadingAnchor.constraint(equalTo: flagImage.safeAreaLayoutGuide.trailingAnchor),
-            descriptionView.topAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.topAnchor, constant: 10),
+            descriptionView.leadingAnchor.constraint(equalTo: flagImage.safeAreaLayoutGuide.trailingAnchor, constant: 13),
+            descriptionView.topAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.topAnchor, constant: 6),
             descriptionView.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
@@ -167,7 +151,11 @@ class CustomsViewController: UIViewController {
             countryDescription.leadingAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             countryDescription.trailingAnchor.constraint(equalTo: containterView.safeAreaLayoutGuide.trailingAnchor, constant: -20)])
     }
-    
 }
 
+extension CustomsViewController: RulesCellDataSource {
+    func defineContentForCell() -> List<CustomsRuleDescription> {
+        return rules.customsRules
+    }
+}
 
