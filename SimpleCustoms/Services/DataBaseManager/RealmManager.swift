@@ -94,7 +94,7 @@ class RealmManager: NSObject {
         
         if !UserDefaults.standard.bool(forKey: "isDataBaseUpdated") {
             do {
-                print("ur motha")
+        
                 UserDefaults.standard.set(true, forKey: "isDataBaseUpdated")
                 try fileManager.removeItem(atPath: defaultPath)
                 try fileManager.copyItem(atPath: bundlePath, toPath: defaultPath)

@@ -113,18 +113,24 @@ class CountryViewController: UIViewController {
                 return
             }
             guard let countries = country else { return }
-            //            let realmObjects = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
-            //            for someEntity in countries {
-            //                if let realmObject = realmObjects.first(where: { $0.forCountryCode == someEntity.name }) {
-            //                    let currency = Currency()
-            //                    currency.name = someEntity.currencies[0].name
-            //                    currency.symbol = someEntity.currencies[0].code
-            //
-            //                    try! RealmManager.sharedInstance.realmObject?.write {
-            //                        realmObject.currency = currency
-            //                    }
-            //                }
-            //            }
+            let realmObjects = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
+            for someEntity in countries {
+                if let realmObject = realmObjects.first(where: { $0.forCountryCode == someEntity.name }) {
+                    countryDescription
+                    if realmObject.forCountryCode == "Åland Islands" {
+                        let countryDescirpiton = realmObject.goodsLimitations
+                        if someEntity.region == "Europe" {
+                           try! RealmManager.sharedInstance.realmObject?.write {
+                            realmObject
+                        }
+                        }
+                    }
+                    
+//                    try! RealmManager.sharedInstance.realmObject?.write {
+//                        realmObject.currency = currency
+//                    }
+                }
+            }
             self.dataHandler.setCountries(countries)
             self.loadingAnimation.stop()
             self.countriesTableView.fadeIn()
@@ -188,7 +194,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         let countryInformation = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.countryName), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее названию
         
-        let customsRules = CustomsRulesScreenModel(about: countryInformation[0].countryDescription, country: country, rules: countryInformation[0].customsRule)
+        let customsRules = CustomsRulesScreenModel(country: country, rules: countryInformation[0].customsRule)
         
         vc.rules = customsRules
         vc.navigationItem.title = country.countryName

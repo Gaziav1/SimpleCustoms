@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let text = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
             print(text)
         }
-        RealmManager.sharedInstance.realmMigrateIfNeeded(to: 33)
+        RealmManager.sharedInstance.realmMigrateIfNeeded(to: 34)
         //RealmManager.sharedInstance.updateOrCreateDB()
 
         return true

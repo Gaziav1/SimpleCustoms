@@ -17,7 +17,6 @@ protocol CountryInfoForCell {
 
 protocol CountryInfo {
     var countryCode: String { get }
-    var desription: String { get }
     var customsRules: List<CustomsRuleDescription> { get }
 }
 
@@ -27,14 +26,13 @@ struct CustomsRulesScreenModel: CountryInfo, CountryInfoForCell {
     var countryCode: String
     var capital: String
     var language: String
-    var desription: String
     var customsRules: List<CustomsRuleDescription>
     
-    init(about description: String, country: ShortCountryDescription, rules: List<CustomsRuleDescription>) {
+    init(country: ShortCountryDescription, rules: List<CustomsRuleDescription>) {
         self.currency = country.currency
         self.capital = country.capital
         self.countryCode = country.countryCode
-        self.desription = description
+        
         self.language = country.language
         self.customsRules = rules
     }
