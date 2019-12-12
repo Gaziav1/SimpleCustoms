@@ -11,7 +11,7 @@ import RealmSwift
 
 protocol GoodsChoosingDelegate: class {
     func cancelButtonTapped()
-    func doneButtonTapped(_ entity: String)
+    func doneButtonTapped(choosen goods: String, limitations: String)
 }
 
 protocol GoodsChoosingDataSource: class {
@@ -31,8 +31,8 @@ class GoodsChoosingAlert: UIView {
     }
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var goodsPickerView: UIPickerView!
-    private var choosenEntity = ""
-    
+    private var limitations = ""
+    private var choosenGoods = ""
     weak var delegate: GoodsChoosingDelegate?
     weak var dataSource: GoodsChoosingDataSource?
     
@@ -45,7 +45,7 @@ class GoodsChoosingAlert: UIView {
         layer.masksToBounds = true
     }
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        delegate?.doneButtonTapped(choosenEntity)
+        delegate?.doneButtonTapped(choosen: choosenGoods, limitations: limitations)
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
@@ -60,7 +60,9 @@ extension GoodsChoosingAlert: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     
         func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            choosenEntity = dataSource?.goodsToShow()[0].productLimitations ?? "Информация не найдена"
+            guard let data = dataSource?.goodsToShow()[0] else { return 0 }
+            choosenGoods = data.productName
+            limitations = data.productLimitations
             return dataSource?.goodsToShow().count ?? 0
         }
     
@@ -71,8 +73,9 @@ extension GoodsChoosingAlert: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
-            choosenEntity = dataSource?.goodsToShow()[row].productLimitations ?? "Информация не найдена"
+            guard let data = dataSource?.goodsToShow()[row] else { return }
+            choosenGoods = data.productName
+            limitations = data.productLimitations
         }
 }
 

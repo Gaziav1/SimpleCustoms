@@ -23,7 +23,6 @@ class CountryChooserTableViewCell: UITableViewCell {
         }
     }
 
-        var isReloaded = false // необходимо чтобы не воспроизводилась анимация каждый раз при обновлении tableView
     var indexPath = 0 {
         didSet {
             defineContentForCell()
@@ -100,9 +99,7 @@ class CountryChooserTableViewCell: UITableViewCell {
     
     private func defineContentForCell() {
         
-        if isReloaded {
-            return
-        }
+       
         switch indexPath {
         case 1:
             type.text = "Товар"
@@ -117,7 +114,11 @@ class CountryChooserTableViewCell: UITableViewCell {
             type.fadeIn()
             titleOfLabel.fadeIn()
             containerView.fadeIn()
-            type.textColor = .darkGray
+            if #available(iOS 13.0, *) {
+                type.textColor = .label
+            } else {
+                type.textColor = .white
+            }
         default:
             type.fadeIn()
             titleOfLabel.fadeIn()

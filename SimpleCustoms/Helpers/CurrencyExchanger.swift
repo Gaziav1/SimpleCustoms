@@ -47,10 +47,12 @@ final class CurrencyExchanger {
         
         if reverse {
             exchangedValue = value * Int(currency.rates.RUB)
+            declarantValue = value
         } else {
             exchangedValue = value / Int(currency.rates.RUB)
+            declarantValue = exchangedValue
         }
-        declarantValue = exchangedValue
+      
         return String(exchangedValue)
     }
     

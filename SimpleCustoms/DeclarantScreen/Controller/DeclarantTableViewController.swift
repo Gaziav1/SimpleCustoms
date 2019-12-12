@@ -76,7 +76,7 @@ class DeclarantTableViewController: UIViewController {
         return effect
     }()
     
-    private var choosenGoods: String = ""
+    private var choosenGoods = [String: String]()
     private var rowNumber = 1
     private var flagImage = UIImage()
     private var choosenCountry = [String: String]() //словарь так как необходимо название страны и ее код
@@ -95,7 +95,7 @@ class DeclarantTableViewController: UIViewController {
             view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         }
         goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
-
+        
         setupSegmentedControl()
         setupGoodsView()
         setupCurrencyView()
@@ -189,13 +189,18 @@ extension DeclarantTableViewController: UITableViewDelegate, UITableViewDataSour
         case 0:
             cell.choosenEntity.text = choosenCountry["name"]
             cell.flagImage.image = flagImage
+        case 1:
+            if let goods = choosenGoods["goods"] {
+                cell.type.text = goods
+            }
         case 2:
             cell.isUserInteractionEnabled = false
-            cell.type.text = choosenGoods
+            if let limitations = choosenGoods["limitations"] {
+                cell.type.text = limitations
+            }
         default: break
         }
         
-        cell.isReloaded = true
         return cell
     }
     
@@ -239,37 +244,37 @@ extension DeclarantTableViewController: CountryChooseDelegate {
 }
 
 extension DeclarantTableViewController: GoodsChoosingDelegate, GoodsChoosingDataSource {
-    func cancelButtonTapped() {
-        //срабатывает при нажатии на кнопку отмены в алерте выбора товаров
-        goodsAlert.removeFromSuperview()
-        visualEffectView.fadeOut()
-    }
-    
-    func doneButtonTapped(_ entity: String) {
-        //срабатывает при нажатии на кнопку готово в алерте выбора товаров
-        choosenGoods = entity
+    func doneButtonTapped(choosen goods: String, limitations: String) {
+        choosenGoods["goods"] = goods
+        choosenGoods["limitations"] = limitations
         goodsAlert.removeFromSuperview()
         rowNumber = 3
         goodsTableView.reloadData()
         visualEffectView.fadeOut()
     }
     
+    func cancelButtonTapped() {
+        //срабатывает при нажатии на кнопку отмены в алерте выбора товаров
+        goodsAlert.removeFromSuperview()
+        visualEffectView.fadeOut()
+    }
+    
+    
     func goodsToShow() -> List<GoodsWithLimitations> {
-
+        
         // источник данных для показа элементов в пикервью алерта выбора товаров
         return goodsInformation.first(where: { $0.forCountryCode == choosenCountry["name"] })?.goodsLimitations ?? List<GoodsWithLimitations>()
     }
 }
 
 extension DeclarantTableViewController: CurrencyDelegate, ChooseCurrencyDelegate {
-
+    
     func didTypeCurrencyValue(reverse: Bool, value: Int) -> String {
         //срабатывает при вводе количества валюты в текстфилд
-        print(value)
         currencyExchanger?.setValueToExchange(value)
         let exchangedValue = (currencyExchanger?.exchange(reverse, value: value))!
         currencyView.playSpecificAnimation(!currencyExchanger!.isDeclarationNeeded)
-       
+        
         return exchangedValue
     }
     

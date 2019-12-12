@@ -19,7 +19,13 @@ class CustomsViewController: UIViewController {
         }
     }
     
-    var flagImage: UIImageView = {
+    var countryCode = "" {
+        didSet {
+            flagImage.image = UIImage(named: countryCode.lowercased())
+        }
+    }
+    
+    private var flagImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView

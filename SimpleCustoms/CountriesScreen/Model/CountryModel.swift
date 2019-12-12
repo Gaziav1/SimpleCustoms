@@ -8,17 +8,29 @@
 
 import UIKit
 
-class Country: Decodable {
+protocol ShortDescriptionOfCountry {
+    var currencies: String { get }
+    var capital: String { get }
+    var languages: String { get }
+}
+
+struct Country: Decodable, ShortDescriptionOfCountry {
     var name: String
     var alpha2Code: String
     var region: String
     var currencies: [Currencies]
+    var capital: String
+    var languages: [Languages]
     var flagImages: FlagImage?
 }
 
-class Currencies: Decodable {
+struct Currencies: Decodable {
     var code: String?
     var name: String?
+}
+
+struct Languages: Decodable {
+    var name: String
 }
 
 enum Regions: String, CaseIterable {

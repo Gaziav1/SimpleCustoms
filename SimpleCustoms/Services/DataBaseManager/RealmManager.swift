@@ -66,6 +66,7 @@ class RealmManager: NSObject {
             if oldVersion < version {
                 //UserDefaults.standard.set(true, forKey: <#T##String#>)
                 //                migration.renameProperty(onType: "CustomsRules", from: "forCountryCode", to: "countryName"
+    
             }
         })
         
@@ -78,7 +79,7 @@ class RealmManager: NSObject {
         let bundlePath = Bundle.main.path(forResource: "default", ofType: "realm")!
         guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return }
         let fileManager = FileManager.default
-        
+     
         // Only need to copy the prepopulated `.realm` file if it doesn't exist yet
         if !fileManager.fileExists(atPath: defaultPath) {
             print("use pre-populated database")

@@ -41,7 +41,7 @@ final class NetworkCountryFetcher {
                     do {
                         let json = try JSONDecoder().decode([Country].self, from: data)
                         json.forEach { (country) in
-                            guard let countryCopy = self.filter(country) else { return }
+                            guard var countryCopy = self.filter(country) else { return }
                             countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
                             jsonData.append(countryCopy)
                         }
@@ -74,7 +74,7 @@ final class NetworkCountryFetcher {
         case "UA":
             return nil
         case "GB":
-            let countryCopy = country
+            var countryCopy = country
             countryCopy.name = "United Kingdom"
             return countryCopy
         case "RU":
@@ -82,7 +82,7 @@ final class NetworkCountryFetcher {
         case "XK":
             return nil
         case "MK":
-            let countryCopy = country
+            var countryCopy = country
             countryCopy.name = "Macedonia"
             return countryCopy
         case "AF":
@@ -108,11 +108,11 @@ final class NetworkCountryFetcher {
         case "HK":
             return nil
         case "KP":
-            let countryCopy = country
+            var countryCopy = country
             countryCopy.name = "North Korea"
             return countryCopy
         case "KR":
-            let countryCopy = country
+            var countryCopy = country
             countryCopy.name = "South Korea"
             return countryCopy
         default:
