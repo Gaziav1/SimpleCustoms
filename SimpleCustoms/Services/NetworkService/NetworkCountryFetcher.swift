@@ -64,8 +64,8 @@ final class NetworkCountryFetcher {
         }
     }
     
-    func fetchFlagsImages(for countryCode: String, of type: ImageType, completion: @escaping (Data?) -> Void) {
-        WebImageHandler.getImage(for: countryCode, of: type) { (data) in
+    func fetchFlagsImages(for countryCode: String, completion: @escaping (Data?) -> Void) {
+        WebImageHandler.getImage(for: countryCode) { (data) in
             completion(data)
         }
     }
