@@ -94,7 +94,7 @@ class CountryViewController: UIViewController {
     
     private func setupErrorView() {
         errorHandler.translatesAutoresizingMaskIntoConstraints = false
-        errorHandler.isHidden = false
+        errorHandler.isHidden = true
         view.addSubview(errorHandler)
         errorHandler.top(to: view.safeAreaLayoutGuide, offset: 55)
         errorHandler.centerX(to: view)
