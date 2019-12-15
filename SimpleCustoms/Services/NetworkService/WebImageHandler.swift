@@ -8,24 +8,21 @@
 
 import UIKit
 
-enum ImageType: String {
-    case flat
-    case shiny
-}
-
-
 final class WebImageHandler {
     
     private init(){}
     private static let defaultImage = UIImage(named: "Europe")
     
-    static func getImage(for countryCode: String, of type: ImageType, completion: @escaping (Data?) -> Void) {
+    static func getImage(for countryCode: String, completion: @escaping (Data?) -> Void) {
         
-        guard let urlForImage = URL(string: "https://www.countryflags.io/\(countryCode)/\(type.rawValue)/64.png") else { return }
+        let path = APIPath(scheme: "https", endpoint: "countryflags.io", path: "/\(countryCode)/flat/64.png", params: nil)
+        
+        guard let urlForImage = path.fullURL else { return }
         
         if let cachedImage = URLCache.shared.cachedResponse(for: URLRequest(url: urlForImage)) {
             return completion(cachedImage.data)
         }
+        
         networkCallGroup.enter()
         URLSession.shared.dataTask(with: urlForImage) { (data, response, error) in
             DispatchQueue.main.async {

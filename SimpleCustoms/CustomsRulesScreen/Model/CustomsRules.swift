@@ -14,7 +14,8 @@ class CustomsRules: Object {
     
     @objc dynamic var forCountryCode: String?
     var customsRule = List<CustomsRuleDescription>()
-    
+    var goodsLimitations = List<GoodsWithLimitations>()
+    @objc dynamic var currency: Currency?
 }
 
 class CustomsRuleDescription: Object {

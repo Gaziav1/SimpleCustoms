@@ -8,4 +8,5 @@ target 'SimpleCustoms' do
   # Pods for SimpleCustoms
     pod 'lottie-ios'
     pod 'RealmSwift'
+    pod 'TinyConstraints'
 end

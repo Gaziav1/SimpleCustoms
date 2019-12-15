@@ -8,43 +8,52 @@
 
 import Foundation
 
-class CurrencyExchanger {
+final class CurrencyExchanger {
     
    private var valueToExchange: Int
-   private var currency: Currency
-
-   private var permissibleValue: Int {
+   private var currency: CurrencyToFetch
+   private var permissibleValue: Int
+    
+   private var declarantValue: Int = 0
+    
+    public var isDeclarationNeeded: Bool {
         get {
-            return 10000
+            return declarantValue > permissibleValue
         }
     }
     
-    public var resultToShow: String {
-         get {
-             return String(exchange(valueToExchange, to: currency))
-         }
-     }
     
-    init(valueToExchange: Int, currency: Currency) {
+    init(valueToExchange: Int = 0, permissibleValue: Int = 10000, currency: CurrencyToFetch) {
         self.valueToExchange = valueToExchange
+        self.currency = currency
+        self.permissibleValue = permissibleValue
+    }
+    
+    func setCurrentRates(_ currency: CurrencyToFetch) {
         self.currency = currency
     }
     
-    
-    private func exchange(_ value: Int, to currency: Currency) -> Int {
-        
-        let exchagedValue = value / Int(currency.rates.RUB)
-        return exchagedValue
+    func setPermissibleValue(_ value: Int) {
+        self.permissibleValue = value
     }
     
-    func getResult() -> Bool {
+    func setValueToExchange(_ value: Int) {
+        self.valueToExchange = value
+    }
+    
+    func exchange(_ reverse: Bool = false, value: Int) -> String {
         
-        let exchangedCurrency = exchange(valueToExchange, to: currency)
+        var exchangedValue: Int
         
-        if exchangedCurrency <= permissibleValue {
-            return true
+        if reverse {
+            exchangedValue = value * Int(currency.rates.RUB)
+            declarantValue = value
         } else {
-            return false
+            exchangedValue = value / Int(currency.rates.RUB)
+            declarantValue = exchangedValue
         }
+      
+        return String(exchangedValue)
     }
+    
 }

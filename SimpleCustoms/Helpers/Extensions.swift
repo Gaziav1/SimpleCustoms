@@ -21,12 +21,12 @@ extension String {
 }
 
 extension UIView {
-    func dropShadow(scale: Bool = true) {
+    func dropShadow(scale: Bool = true, shadowOffset: CGSize, opacity: Float = 0.4, radius: CGFloat = 2 ) {
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = .zero
-        layer.shadowRadius = 1
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = shadowOffset
+        layer.shadowRadius = radius
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }

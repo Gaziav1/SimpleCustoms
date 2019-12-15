@@ -8,75 +8,127 @@
 
 import UIKit
 import RealmSwift
+import TinyConstraints
 
 class CustomsViewController: UIViewController {
     
-    var rules: CustomsRules?
+    var rules: CustomsRulesScreenModel! {
+        didSet {
+            flagImage.image = UIImage(named: rules.countryCode.lowercased())
     
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UINib(nibName: "CustomsRulesTableViewCell", bundle: nil), forCellReuseIdentifier: CustomsRulesTableViewCell.reuseIdentifier)
-        return tableView
-    }()
-    
-    let imageFlag: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        imageView.contentMode = .scaleAspectFit
+            descriptionView.infoForCell = rules
+        }
+    }
+ 
+    private var flagImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
+    
+    private let descriptionView: CountryDescriptionView = {
+        let view = CountryDescriptionView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let rulesView: CustomsRulesView = {
+        let view = CustomsRulesView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let containterView = UIView()
+    
+    private let scrollView = UIScrollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUIElements()
-        navigationItem.titleView = imageFlag
+        setupNavigationController()
+        self.navigationItem.largeTitleDisplayMode = .always
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setupScrollView()
+        setupUIElementsInView()
+    }
+
+    override func viewDidLayoutSubviews() {
+        scrollView.layoutIfNeeded()
+        
+        scrollView.contentSize.height = descriptionView.frame.height + rulesView.frame.height + flagImage.frame.height + 75
+    }
     
-    private func setupUIElements() {
-        self.view.addSubview(imageFlag)
-        self.view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)
-        tableView.separatorStyle = .none
+    private func setupScrollView() {
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+    
+        scrollView.edgesToSuperview()
+    }
+    
+    private func setupRulesView() {
+        containterView.addSubview(rulesView)
+        rulesView.dataSource = self
         
         NSLayoutConstraint.activate([
             
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-            tableView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 0),
-            tableView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 0),
-            tableView.trailingAnchor.constraint(equalToSystemSpacingAfter: view.trailingAnchor, multiplier: 0)])
+            rulesView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: 30),
+            rulesView.leadingAnchor.constraint(equalTo: containterView.leadingAnchor,constant: 15),
+            rulesView.trailingAnchor.constraint(equalTo: containterView.trailingAnchor, constant: -15),
+            rulesView.heightAnchor.constraint(equalToConstant: view.frame.height)
+            
+        ])
+    }
+    
+    private func setupNavigationController() {
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .secondarySystemBackground
+        } else {
+            view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
+        }
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.topItem?.title = ""
+    }
+    
+    private func setupUIElementsInView() {
+        containterView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(containterView)
+        containterView.edgesToSuperview()
+        containterView.centerInSuperview()
+
+        setupImage()
+        setupDescriptionView()
+        setupRulesView()
+    }
+    
+    private func setupImage() {
+        containterView.addSubview(flagImage)
+        
+        flagImage.top(to: containterView.safeAreaLayoutGuide, offset: 8)
+        flagImage.leading(to: containterView, offset: 18)
+        flagImage.width(250)
+        flagImage.height(170)
+    
+        flagImage.layer.cornerRadius = 10
+        flagImage.layer.masksToBounds = true
+    }
+    
+    private func setupDescriptionView() {
+        containterView.addSubview(descriptionView)
+        
+        descriptionView.leading(to: containterView, offset: 25)
+        descriptionView.topToBottom(of: flagImage, offset: 15)
+        descriptionView.trailing(to: containterView, offset: -25)
+        descriptionView.height(150)
     }
 }
-
-extension CustomsViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let rules = rules else { return 1 }
-        return rules.customsRule.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomsRulesTableViewCell.reuseIdentifier, for: indexPath) as! CustomsRulesTableViewCell
-        guard let rules = rules else { return cell }
-        
-        cell.rulesTypeLabel.text = rules.customsRule[indexPath.row].header
-        
-        let text = rules.customsRule[indexPath.row].body.replacingOccurrences(of: "\\n", with: "\n") //обеспечивает начало текста с новой строки при загрузке текста из базы данных
-        
-        cell.rulesLabel.text = text
-        cell.customsHeaderView.backgroundColor = Colors.colors[indexPath.row]
-        cell.rulesLabel.frame = CustomsRulesCellLayout.shared.size(for: cell.rulesLabel.text!)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       return CustomsRulesCellLayout.shared.totalHeight 
-   
+extension CustomsViewController: RulesCellDataSource {
+    func defineContentForCell() -> List<CustomsRuleDescription> {
+        return rules.customsRules
     }
 }
-
-
 
