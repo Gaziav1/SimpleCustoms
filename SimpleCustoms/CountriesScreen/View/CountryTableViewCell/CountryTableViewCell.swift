@@ -15,16 +15,6 @@ class CountryTableViewCell: UITableViewCell {
     @IBOutlet weak var flagImage: UIImageView! 
     @IBOutlet weak var countryName: UILabel!
     
-    override var isHighlighted: Bool {
-      didSet {
-        UIView.animate(withDuration: 0.5) {
-          let scale: CGFloat = 0.9
-          self.transform = self.isHighlighted ? CGAffineTransform(scaleX: scale, y: scale) : .identity
-            print(self.isHighlighted)
-        }
-      }
-    }
-    
     @IBOutlet weak var countryView: UIView!
     
     override func awakeFromNib() {

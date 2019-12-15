@@ -21,6 +21,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currenciesToShow = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
+        currenciesToShow.removeAll(where: { $0.currency == nil })
         
         self.tableView.register(UINib(nibName: "CurrencyChoosingableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyChoosing")
         self.title = "Выберите валюту"
@@ -35,7 +36,8 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyChoosing", for: indexPath) as! CurrencyChoosingableViewCell
-        cell.currencyName.text = currenciesToShow[indexPath.row].currency?.name
+        guard let currency = currenciesToShow[indexPath.row].currency?.name else { return cell }
+        cell.currencyName.text = currency
         cell.countryName.text = currenciesToShow[indexPath.row].forCountryCode
         return cell
     }

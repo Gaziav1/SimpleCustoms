@@ -16,9 +16,7 @@ class RealmManager: NSObject {
     private var path: String {
         get {
             guard let specificPath = Bundle.main.path(forResource: "default", ofType: "realm") else {
-                print("cock sucker")
                 return "" }
-            print(specificPath)
             return specificPath
         }
     }
@@ -64,9 +62,7 @@ class RealmManager: NSObject {
         
         let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < version {
-                //UserDefaults.standard.set(true, forKey: <#T##String#>)
-                //                migration.renameProperty(onType: "CustomsRules", from: "forCountryCode", to: "countryName"
-    
+             
             }
         })
         

@@ -12,14 +12,13 @@ class CurrencyFetcher {
     
     static var shared = CurrencyFetcher()
     
-    
     func getCurrency(currency: String, completion: @escaping (CurrencyToFetch?, Error?) -> Void) {
         
         let urlPath = APIPath(scheme: "https", endpoint: "api.ratesapi.io", path: "/api/latest", params: ["base": currency,
             "symbols": "RUB"])
         
         guard let completeURL = urlPath.fullURL else { return }
-        print(completeURL)
+
         NetworkManager.shared.makeRequest(url: completeURL) { (result) in
             DispatchQueue.main.async {
                 

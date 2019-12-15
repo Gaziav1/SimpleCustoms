@@ -234,7 +234,8 @@ extension DeclarantViewController: CountryChooseDelegate {
     func didChooseCountry(_ name: String, code: String, imageData: Data) {
         self.choosenCountry["name"] = name
         self.choosenCountry["countryCode"] = code
-        
+        self.choosenGoods["goods"] = "Товары"
+        self.choosenGoods["limitations"] = ""
         guard let dataForImage = UIImage(data: imageData) else { return }
         flagImage = dataForImage
         self.rowNumber = 2
@@ -294,9 +295,7 @@ extension DeclarantViewController: CurrencyDelegate, ChooseCurrencyDelegate {
         //срабатывает при выборе определенной валюты в тейбл вью
         dismiss(animated: true, completion: nil)
         CurrencyFetcher.shared.getCurrency(currency: currency.symbol!) { (currentCurrency, error) in
-            guard currentCurrency != nil else {
-
-                return }
+            guard currentCurrency != nil else { return }
             self.currencyExchanger?.setCurrentRates(currentCurrency!)
             self.currencyExchanger?.setPermissibleValue(currency.limit)
         }

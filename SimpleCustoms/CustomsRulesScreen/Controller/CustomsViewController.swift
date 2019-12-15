@@ -57,7 +57,7 @@ class CustomsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         scrollView.layoutIfNeeded()
         
-        scrollView.contentSize.height = descriptionView.frame.height + rulesView.frame.height + flagImage.frame.height 
+        scrollView.contentSize.height = descriptionView.frame.height + rulesView.frame.height + flagImage.frame.height + 75
     }
     
     private func setupScrollView() {
@@ -109,8 +109,8 @@ class CustomsViewController: UIViewController {
         
         flagImage.top(to: containterView.safeAreaLayoutGuide, offset: 8)
         flagImage.leading(to: containterView, offset: 18)
-        flagImage.trailing(to: containterView, offset: -30)
-        flagImage.height(200)
+        flagImage.width(250)
+        flagImage.height(170)
     
         flagImage.layer.cornerRadius = 10
         flagImage.layer.masksToBounds = true

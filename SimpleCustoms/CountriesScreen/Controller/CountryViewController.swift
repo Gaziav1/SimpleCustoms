@@ -63,6 +63,7 @@ class CountryViewController: UIViewController {
         setupTableView()
         setupRegionChooser()
         setupAnimation()
+        
     }
     
     private func setupRegionChooser() {
@@ -113,7 +114,6 @@ class CountryViewController: UIViewController {
                 return
             }
             guard let countries = country else { return }
-
             self.dataHandler.setCountries(countries)
             self.loadingAnimation.stop()
             self.countriesTableView.fadeIn()
@@ -124,6 +124,7 @@ class CountryViewController: UIViewController {
     
     private func setupSearchController() {
         searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Искать страну"
         self.navigationItem.searchController = searchController
         self.definesPresentationContext = true
         searchController.obscuresBackgroundDuringPresentation = false
@@ -133,7 +134,7 @@ class CountryViewController: UIViewController {
         errorHandler.fadeOut()
         handleDataDownloading()
     }
-
+    
 }
 
 extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
@@ -163,7 +164,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
-     
+        
         UIView.animate(withDuration: 0.2) {
             cell.transform = CGAffineTransform.identity
         }
@@ -172,7 +173,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = CustomsViewController()
         navigationController?.dismiss(animated: true, completion: nil)
-    
+        
         let country = CountryScreenModel(country: dataHandler.currentData[indexPath.row])
         
         let countryInformation = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.countryName), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее названию
