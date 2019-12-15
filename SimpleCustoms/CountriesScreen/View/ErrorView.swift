@@ -11,7 +11,7 @@ import UIKit
 
 class ErrorView: UIView {
     
-    let buttonForError: UIButton = {
+    var buttonForError: UIButton = {
         let button = UIButton()
         button.setTitle("Обновить", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.1843137255, green: 0.5529411765, blue: 0.7803921569, alpha: 1)
@@ -38,25 +38,24 @@ class ErrorView: UIView {
         return image
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupElements()
+
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private func setupElements() {
-        
+
       addSubview(imageForError)
       addSubview(labelForError)
       addSubview(buttonForError)
         
         NSLayoutConstraint.activate([
-            imageForError.topAnchor.constraint(equalTo: topAnchor, constant: 200),
+            imageForError.topAnchor.constraint(equalTo: topAnchor, constant: 50),
             imageForError.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             labelForError.topAnchor.constraint(equalTo: imageForError.bottomAnchor, constant: 25),
@@ -68,6 +67,7 @@ class ErrorView: UIView {
             buttonForError.widthAnchor.constraint(equalToConstant: 300),
             buttonForError.heightAnchor.constraint(equalToConstant: 40)
         ])
-        buttonForError.layer.cornerRadius = 15
+        buttonForError.layer.cornerRadius = 10
+        buttonForError.layer.masksToBounds = true
     }
 }

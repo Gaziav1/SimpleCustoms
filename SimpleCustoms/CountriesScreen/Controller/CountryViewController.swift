@@ -55,16 +55,16 @@ class CountryViewController: UIViewController {
         } else {
             view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         }
-        
+
         self.navigationItem.largeTitleDisplayMode = .never
         handleDataDownloading()
-        setupErrorView()
         setupSearchController()
         setupTableView()
         setupRegionChooser()
         setupAnimation()
-        
+        setupErrorView()
     }
+    
     
     private func setupRegionChooser() {
         regionChooser.translatesAutoresizingMaskIntoConstraints = false
@@ -94,13 +94,14 @@ class CountryViewController: UIViewController {
     
     private func setupErrorView() {
         errorHandler.translatesAutoresizingMaskIntoConstraints = false
-        errorHandler.isHidden = true
-        errorHandler.buttonForError.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        errorHandler.isHidden = false
         view.addSubview(errorHandler)
-        
-        errorHandler.center(in: view)
+        errorHandler.top(to: view.safeAreaLayoutGuide, offset: 55)
+        errorHandler.centerX(to: view)
         errorHandler.widthToSuperview()
         errorHandler.heightToSuperview(view.heightAnchor, multiplier: 0.5)
+        
+        errorHandler.buttonForError.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     private func handleDataDownloading() {

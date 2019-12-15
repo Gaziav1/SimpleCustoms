@@ -10,14 +10,11 @@ import UIKit
 
 class FlagImage: Decodable {
     
-    var shinyFlagImage: Data?
     var flatFlagImage: Data?
-    
-    
+   
     init(countryCode: String) {
-        
-        NetworkCountryFetcher.shared.fetchFlagsImages(for: countryCode, of: .flat, completion: { self.flatFlagImage = $0 })
-        NetworkCountryFetcher.shared.fetchFlagsImages(for: countryCode, of: .shiny, completion: { self.shinyFlagImage = $0 })
+    
+        NetworkCountryFetcher.shared.fetchFlagsImages(for: countryCode, completion: { self.flatFlagImage = $0 })
     }
 }
 
