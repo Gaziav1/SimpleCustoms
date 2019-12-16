@@ -2,15 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "tg.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "tg.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "tg-1.png",
       "scale" : "3x"
     }
   ],
