@@ -46,10 +46,10 @@ final class CurrencyExchanger {
         var exchangedValue: Int
         
         if reverse {
-            exchangedValue = value * Int(currency.rates.RUB)
+            exchangedValue = Int(Float(value) * Float(currency.rates.RUB))
             declarantValue = value
         } else {
-            exchangedValue = value / Int(currency.rates.RUB)
+            exchangedValue = Int(Float(value) * Float(currency.rates.RUB))
             declarantValue = exchangedValue
         }
       
