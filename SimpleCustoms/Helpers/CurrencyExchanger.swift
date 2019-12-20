@@ -49,7 +49,7 @@ final class CurrencyExchanger {
             exchangedValue = Int(Float(value) * Float(currency.rates.RUB))
             declarantValue = value
         } else {
-            exchangedValue = Int(Float(value) * Float(currency.rates.RUB))
+            exchangedValue = Int(Float(value) / Float(currency.rates.RUB))
             declarantValue = exchangedValue
         }
       
