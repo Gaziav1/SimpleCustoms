@@ -148,7 +148,7 @@ class DeclarantViewController: UIViewController {
         }
         
         currencyView.edgesToSuperview(excluding: .bottom, insets: .top(100) + .right(10) + .left(10), usingSafeArea: true)
-        currencyView.height(view.frame.height / 2)
+        currencyView.height(view.frame.height / 1.5)
     }
     
     private func animateIn() {
@@ -291,7 +291,7 @@ extension DeclarantViewController: CurrencyDelegate, ChooseCurrencyDelegate {
         self.present(nc, animated: true, completion: nil)
     }
     
-    func userDidChooseCurrency(_ currency: Currency) {
+    func userDidChooseCurrency(_ currency: Currency, for country: String) {
         //срабатывает при выборе определенной валюты в тейбл вью
         dismiss(animated: true, completion: nil)
         CurrencyFetcher.shared.getCurrency(currency: currency.symbol!) { (currentCurrency, error) in
@@ -301,6 +301,7 @@ extension DeclarantViewController: CurrencyDelegate, ChooseCurrencyDelegate {
         }
         
         currencyView.currencyChoosingButton.setTitle(currency.symbol, for: .normal)
+        currencyView.choosenCountry.text = "Страна следования: \(country)"
     }
 }
 

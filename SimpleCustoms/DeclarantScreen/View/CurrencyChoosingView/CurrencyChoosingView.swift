@@ -94,6 +94,12 @@ class CurrencyChoosingView: UIView {
         return button
     }()
     
+    let choosenCountry: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     weak var delegate: CurrencyDelegate?
     
     override init(frame: CGRect) {
@@ -104,6 +110,7 @@ class CurrencyChoosingView: UIView {
         setupLabel()
         setupRub()
         setupButton()
+        setupCountryLabel()
         setupAnimation()
     }
     
@@ -137,11 +144,24 @@ class CurrencyChoosingView: UIView {
         titleLabel.edgesToSuperview(excluding: .bottom, insets: .top(10) + .left(20))
     }
     
+    private func setupCountryLabel() {
+        addSubview(choosenCountry)
+        
+        choosenCountry.topToBottom(of: choosenCurrencyField, offset: 20)
+        choosenCountry.leading(to: self, offset: 20)
+        choosenCountry.text = "Выберите страну, нажав на валюту"
+        if #available(iOS 13.0, *) {
+            choosenCountry.textColor = .secondaryLabel
+        } else {
+            choosenCountry.textColor = .darkGray
+        }
+    }
+    
     private func setupAnimation() {
         addSubview(doneAnimation)
         addSubview(resultLabel)
         doneAnimation.centerX(to: self)
-        doneAnimation.topToBottom(of: choosenCurrencyField, offset: 35)
+        doneAnimation.topToBottom(of: choosenCountry, offset: 45)
         doneAnimation.height(60)
         doneAnimation.width(60)
         

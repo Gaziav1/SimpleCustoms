@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 protocol ChooseCurrencyDelegate: class {
-    func userDidChooseCurrency(_ currency: Currency)
+    func userDidChooseCurrency(_ currency: Currency, for country: String)
 }
 
 class TableViewController: UITableViewController {
@@ -47,7 +47,7 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.userDidChooseCurrency(currenciesToShow[indexPath.row].currency ?? Currency())
+        delegate?.userDidChooseCurrency(currenciesToShow[indexPath.row].currency ?? Currency(), for: currenciesToShow[indexPath.row].forCountryCode ?? "Неизвестно")
     }
 
 }
