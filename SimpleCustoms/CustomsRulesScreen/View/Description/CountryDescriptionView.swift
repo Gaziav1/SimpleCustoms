@@ -9,6 +9,12 @@
 import UIKit
 import TinyConstraints
 
+enum CellType: Int, CaseIterable {
+    case capital
+    case currency
+    case language
+}
+
 class CountryDescriptionView: UIView {
     
     private var containterTableView: UITableView = {
@@ -34,18 +40,19 @@ class CountryDescriptionView: UIView {
     
     func fillCell(with info: CountryInfoForCell, cell: DescriptionTableViewCell, at indexPath: IndexPath) {
         
-        switch indexPath.row {
-        case 0:
+        let cellType = CellType(rawValue: indexPath.row)
+        
+        switch cellType {
+        case .capital:
             cell.titleDescription.text = "Столица"
             cell.descriptionAnswer.text = info.capital
-        case 1:
+        case .currency:
             cell.titleDescription.text = "Валюта"
             cell.descriptionAnswer.text = info.currency
-        case 2:
+        case .language:
             cell.titleDescription.text = "Язык"
             cell.descriptionAnswer.text = info.language
-        default:
-            print("hello there")
+        case .none: break
         }
     }
     
@@ -64,7 +71,7 @@ class CountryDescriptionView: UIView {
 extension CountryDescriptionView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return CellType.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

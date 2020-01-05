@@ -15,7 +15,6 @@ struct Country: Decodable {
     var currencies: [Currencies]
     var capital: String
     var languages: [Languages]
-    var flagImages: FlagImage?
 }
 
 struct Currencies: Decodable {

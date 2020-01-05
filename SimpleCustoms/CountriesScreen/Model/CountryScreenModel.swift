@@ -10,7 +10,7 @@ import Foundation
 
 protocol CellData {
     var countryName: String { get }
-    var imageData: Data { get }
+    var countryCode: String { get }
 }
 
 protocol ShortCountryDescription {
@@ -22,7 +22,6 @@ protocol ShortCountryDescription {
 
 struct CountryScreenModel: CellData, ShortCountryDescription {
     var countryName: String
-    var imageData: Data
     var countryCode: String
     var currency: String
     var capital: String
@@ -30,7 +29,6 @@ struct CountryScreenModel: CellData, ShortCountryDescription {
     
     init(country: Country) {
         self.countryName = country.name
-        self.imageData = country.flagImages?.flatFlagImage ?? Data()
         self.countryCode = country.alpha2Code
         self.currency = country.currencies[0].name ?? "Не определенно"
         self.capital = country.capital

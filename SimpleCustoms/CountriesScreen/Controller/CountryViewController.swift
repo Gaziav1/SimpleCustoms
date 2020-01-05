@@ -30,6 +30,7 @@ class CountryViewController: UIViewController {
         }
         return tableView
     }()
+    
     private let loadingAnimation: AnimationView = {
         let animation = Animation.named("3003-bouncy-balls")
         var load = AnimationView()
@@ -40,16 +41,20 @@ class CountryViewController: UIViewController {
         load.translatesAutoresizingMaskIntoConstraints = false
         return load
     }()
-    private let regionChooser = RegionView()
+    
+    private var networkManager: CountryFetcher?
     private let searchController = UISearchController(searchResultsController: nil)
-    private var dataHandler = DataHandler()
-    private var errorHandler = ErrorView()
+    private let regionChooser = RegionView()
+    private let dataHandler = DataProvider()
+    private let errorHandler = ErrorView()
     
     weak var delegate: CountryChooseDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        networkManager = NetworkCountryFetcher()
+    
         if #available(iOS 13.0, *) {
             navigationController?.view.backgroundColor = .tertiarySystemBackground
         } else {
@@ -108,7 +113,7 @@ class CountryViewController: UIViewController {
         
         loadingAnimation.isHidden = false
         loadingAnimation.play()
-        NetworkCountryFetcher.shared.fetchCountries { (country, error) in
+        networkManager?.fetchCountries { (country, error) in
             guard error == nil else {
                 self.loadingAnimation.isHidden = true
                 self.errorHandler.fadeIn()
@@ -176,8 +181,9 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.dismiss(animated: true, completion: nil)
         
         let country = CountryScreenModel(country: dataHandler.currentData[indexPath.row])
+        let predicate = NSPredicate(format: "forCountryCode == %@", country.countryName)
         
-        let countryInformation = RealmManager.sharedInstance.filter(NSPredicate(format: "forCountryCode == %@", country.countryName), object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее названию
+        let countryInformation = RealmManager.sharedInstance.filter(predicate, object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее названию
         
         let customsRules = CustomsRulesScreenModel(country: country, rules: countryInformation[0].customsRule)
         
@@ -185,7 +191,7 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         vc.navigationItem.title = country.countryName
         navigationController?.pushViewController(vc, animated: true)
         
-        delegate?.didChooseCountry(country.countryName, code: country.countryCode, imageData: country.imageData)
+        delegate?.didChooseCountry(country.countryName, code: country.countryCode, imageData: Data())
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -9,4 +9,5 @@ target 'SimpleCustoms' do
     pod 'lottie-ios'
     pod 'RealmSwift'
     pod 'TinyConstraints'
+    pod 'SDWebImage'
 end

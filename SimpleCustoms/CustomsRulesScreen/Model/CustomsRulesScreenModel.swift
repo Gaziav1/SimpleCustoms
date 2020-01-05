@@ -15,13 +15,7 @@ protocol CountryInfoForCell {
     var language: String { get }
 }
 
-protocol CountryInfo {
-    var countryCode: String { get }
-    var customsRules: List<CustomsRuleDescription> { get }
-}
-
-
-struct CustomsRulesScreenModel: CountryInfo, CountryInfoForCell {
+struct CustomsRulesScreenModel:  CountryInfoForCell {
     var currency: String
     var countryCode: String
     var capital: String

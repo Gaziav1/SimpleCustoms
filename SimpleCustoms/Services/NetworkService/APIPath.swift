@@ -32,10 +32,33 @@ struct APIPath: URLPath {
             urlComponents.path = path
             
             if let parameters = params {
-                urlComponents.queryItems = parameters.map( { URLQueryItem(name: $0, value: $1)} )
+                let allowedCharacterSet = CharacterSet.urlQueryAllowed
+                let encodedParams = parameters.mapValues({ $0.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) })
+                urlComponents.queryItems = encodedParams.map( { URLQueryItem(name: $0, value: $1)} )
             }
             guard let url = urlComponents.url else { return nil }
+            
             return url
+        }
+    }
+}
+
+enum FullUrl: CaseIterable {
+    case asia
+    case europe
+    
+    var fullUrlForCountries: URL? {
+        get {
+            switch self {
+            case .asia:
+                let path = APIPath(scheme: "https", endpoint: "restcountries.eu", path: "/rest/v2/region/asia", params: nil)
+                guard let url = path.fullURL else { return nil }
+                return url
+            case .europe:
+                let path = APIPath(scheme: "https", endpoint: "restcountries.eu", path: "/rest/v2/region/europe", params: nil)
+                guard let url = path.fullURL else { return nil }
+                return url
+            }
         }
     }
 }

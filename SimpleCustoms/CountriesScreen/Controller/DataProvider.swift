@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DataHandler {
+class DataProvider {
     
     fileprivate var countries = [Country]()
     fileprivate var countriesCopy = [Country]()
@@ -26,7 +26,7 @@ class DataHandler {
     
     func startSearching(_ searchText: String) {
         self.searchText = searchText
-        let someArray = someFunc()
+        let someArray = countiresForCurrentRegion()
         
         if searchText == "" {
             countries = someArray
@@ -49,7 +49,7 @@ class DataHandler {
         countriesCopy = country
     }
     
-    func someFunc() -> [Country] {
+    func countiresForCurrentRegion() -> [Country] {
         
         var arrayCopy = countriesCopy
         

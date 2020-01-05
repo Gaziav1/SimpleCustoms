@@ -37,9 +37,11 @@ class CountryTableViewCell: UITableViewCell {
     
     func fillCell(with info: CellData) {
         countryName.text = info.countryName
-        
-        let image = UIImage(data: info.imageData)
-        flagImage.image = image
+        let url = APIPath(scheme: "https", endpoint: "www.countryflags.io", path: "/\(info.countryCode.lowercased())/flat/64.png", params: nil)
+        guard let urlForImage = url.fullURL else { return }
+        flagImage.sd_setImage(with: urlForImage) { (_, _, _, _) in
+            self.flagImage.fadeIn()
+        }
         
     }
 

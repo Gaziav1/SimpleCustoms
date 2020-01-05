@@ -7,69 +7,51 @@
 //
 
 import Foundation
+import SDWebImage
 
-let networkCallGroup = DispatchGroup() //нужно для выполнения двух запросов последовательно и передачи данных по их окончанию
+protocol CountryFetcher {
+    func fetchCountries(completionHandler: @escaping ([Country]?, Error?) -> Void)
+}
 
-final class NetworkCountryFetcher {
+final class NetworkCountryFetcher: CountryFetcher {
     
-    static var shared = NetworkCountryFetcher()
-    private var apiPaths = [APIPath(scheme: "https",
-                                    endpoint: "restcountries.eu",
-                                    path: "/rest/v2/region/europe",
-                                    params: nil),
-                            APIPath(scheme: "https",
-                                    endpoint: "restcountries.eu",
-                                    path: "/rest/v2/region/asia",
-                                    params: nil)]
-    private init(){}
+    private let networkManager: Networking
+    
+    init(networkHandler: Networking = NetworkManager()) {
+        self.networkManager = networkHandler
+    }
     
     func fetchCountries(completionHandler: @escaping ([Country]?, Error?) -> Void) {
         
         var jsonData = [Country]()
-        var networkError: Error?
         
-        for region in apiPaths {
-            guard let url = region.fullURL else { return }
+        for region in FullUrl.allCases {
+            guard let url = region.fullUrlForCountries else { return }
             
-            networkCallGroup.enter()
-            NetworkManager.shared.makeRequest(url: url) { (result) in
-                
+            networkManager.getData(url: url) { (result) in
+        
                 switch result {
                 case .failure(let error):
-                    networkError = error
+                    DispatchQueue.main.async { completionHandler(nil, error) }
                 case .success(let data):
                     do {
                         let json = try JSONDecoder().decode([Country].self, from: data)
+                        
                         json.forEach { (country) in
-                            
-                            guard var countryCopy = self.filter(country) else { return }
-                            countryCopy.flagImages = FlagImage(countryCode: countryCopy.alpha2Code)
+                            guard let countryCopy = self.filter(country) else { return }
                             jsonData.append(countryCopy)
                         }
+                        DispatchQueue.main.async { completionHandler(jsonData, nil) }
                     } catch let error {
-        
-                        networkError = error
+                        DispatchQueue.main.async { completionHandler(nil, error) }
                     }
                 }
-                networkCallGroup.leave()
-            }
-        }
-        
-        networkCallGroup.notify(queue: .main) {
-            if networkError == nil {
-                completionHandler(jsonData, nil)
-            } else {
-                completionHandler(nil, networkError)
             }
         }
     }
-    
-    func fetchFlagsImages(for countryCode: String, completion: @escaping (Data?) -> Void) {
-        WebImageHandler.getImage(for: countryCode) { (data) in
-            completion(data)
-        }
-    }
-    
+}
+
+extension NetworkCountryFetcher {
     private func filter(_ country: Country) -> Country? {
         switch country.alpha2Code {
         case "UA":

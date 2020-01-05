@@ -10,6 +10,8 @@ import Foundation
 
 class CurrencyFetcher {
     
+    private var networkManager: Networking = NetworkManager()
+    
     static var shared = CurrencyFetcher()
     
     func getCurrency(currency: String, completion: @escaping (CurrencyToFetch?, Error?) -> Void) {
@@ -19,7 +21,7 @@ class CurrencyFetcher {
         
         guard let completeURL = urlPath.fullURL else { return }
 
-        NetworkManager.shared.makeRequest(url: completeURL) { (result) in
+        networkManager.getData(url: completeURL) { (result) in
             DispatchQueue.main.async {
                 
                 switch result {

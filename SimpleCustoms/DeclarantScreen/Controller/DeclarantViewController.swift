@@ -11,6 +11,12 @@ import TinyConstraints
 import Lottie
 import RealmSwift
 
+enum CellsName: Int {
+    case countryCell
+    case goodsCell
+    case resultCell
+}
+
 class DeclarantViewController: UIViewController {
     
     private var goodsInformation = [CustomsRules]()
@@ -181,19 +187,19 @@ extension DeclarantViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CountryChooserTableViewCell.cellId, for: indexPath) as! CountryChooserTableViewCell
-        
+        let cellNames = CellsName(rawValue: indexPath.row)
         cell.number.text = String(indexPath.row + 1)
         cell.indexPath = indexPath.row
         
-        switch indexPath.row {
-        case 0:
+        switch cellNames {
+        case .countryCell:
             cell.choosenEntity.text = choosenCountry["name"]
             cell.flagImage.image = flagImage
-        case 1:
+        case .goodsCell:
             if let goods = choosenGoods["goods"] {
                 cell.type.text = goods
             }
-        case 2:
+        case .resultCell:
             cell.isUserInteractionEnabled = false
             if let limitations = choosenGoods["limitations"] {
                 cell.type.text = limitations
@@ -208,15 +214,16 @@ extension DeclarantViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = CountryViewController()
         let nc = UINavigationController(rootViewController: vc)
         vc.title = "Выберите страну"
+        let cellNames = CellsName(rawValue: indexPath.row)
         
-        switch indexPath.row {
-        case 0:
+        switch cellNames {
+        case .countryCell:
             vc.delegate = self
             self.present(nc, animated: true) {
                 self.rowNumber = 1
                 self.goodsTableView.reloadData()
             }
-        case 1:
+        case .goodsCell:
             setupGoodsAlert()
             animateIn()
             

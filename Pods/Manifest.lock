@@ -1,15 +1,19 @@
 PODS:
   - lottie-ios (3.1.5)
-  - Realm (4.1.1):
-    - Realm/Headers (= 4.1.1)
-  - Realm/Headers (4.1.1)
-  - RealmSwift (4.1.1):
-    - Realm (= 4.1.1)
+  - Realm (4.3.0):
+    - Realm/Headers (= 4.3.0)
+  - Realm/Headers (4.3.0)
+  - RealmSwift (4.3.0):
+    - Realm (= 4.3.0)
+  - SDWebImage (5.4.1):
+    - SDWebImage/Core (= 5.4.1)
+  - SDWebImage/Core (5.4.1)
   - TinyConstraints (4.0.1)
 
 DEPENDENCIES:
   - lottie-ios
   - RealmSwift
+  - SDWebImage
   - TinyConstraints
 
 SPEC REPOS:
@@ -17,14 +21,16 @@ SPEC REPOS:
     - lottie-ios
     - Realm
     - RealmSwift
+    - SDWebImage
     - TinyConstraints
 
 SPEC CHECKSUMS:
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
-  Realm: 25f0a8244cbb1c2271c922963ea8666fc2d8104d
-  RealmSwift: 9e2657b33764f80e4a4dffd6d440e24715782052
+  Realm: 9357c3589555793e1860a7104a7412bca4a48d99
+  RealmSwift: 402f1e379a8ef82c635313037b043f0f06de880c
+  SDWebImage: 29c340dbdcef342bb13125553f4e19ce056b07a7
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
 
-PODFILE CHECKSUM: 63b3a3b2fa0b7e4d64435914e583d718540b0c1f
+PODFILE CHECKSUM: 6f756087677ce60b9ca35f6a2b4d993d67cf89f4
 
 COCOAPODS: 1.8.3
