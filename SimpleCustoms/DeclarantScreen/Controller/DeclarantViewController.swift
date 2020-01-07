@@ -11,7 +11,7 @@ import TinyConstraints
 import Lottie
 import RealmSwift
 
-enum CellsName: Int {
+private enum CellsName: Int {
     case countryCell
     case goodsCell
     case resultCell

@@ -14,7 +14,6 @@ class CountryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var flagImage: UIImageView! 
     @IBOutlet weak var countryName: UILabel!
-    
     @IBOutlet weak var countryView: UIView!
     
     override func awakeFromNib() {
@@ -39,10 +38,8 @@ class CountryTableViewCell: UITableViewCell {
         countryName.text = info.countryName
         let url = APIPath(scheme: "https", endpoint: "www.countryflags.io", path: "/\(info.countryCode.lowercased())/flat/64.png", params: nil)
         guard let urlForImage = url.fullURL else { return }
-        flagImage.sd_setImage(with: urlForImage) { (_, _, _, _) in
-            self.flagImage.fadeIn()
+        flagImage.sd_setImage(with: urlForImage) { [weak self] _, _, _, _ in
+            self?.flagImage.fadeIn()
         }
-        
     }
-
 }

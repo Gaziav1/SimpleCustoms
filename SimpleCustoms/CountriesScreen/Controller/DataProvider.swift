@@ -26,12 +26,12 @@ class DataProvider {
     
     func startSearching(_ searchText: String) {
         self.searchText = searchText
-        let someArray = countiresForCurrentRegion()
+        let currentDataArray = countiresForCurrentRegion()
         
         if searchText == "" {
-            countries = someArray
+            countries = currentDataArray
         } else {
-            countries = someArray.filter({ $0.name.contains(searchText) })
+            countries = currentDataArray.filter({ $0.name.contains(searchText) })
         }
     }
     
@@ -49,21 +49,20 @@ class DataProvider {
         countriesCopy = country
     }
     
-    func countiresForCurrentRegion() -> [Country] {
+    private func countiresForCurrentRegion() -> [Country] {
         
         var arrayCopy = countriesCopy
         
         switch currentRegion  {
         case .all:
             arrayCopy = countriesCopy
-            return arrayCopy
         case .europe:
             arrayCopy = countriesCopy.filter({ $0.region == "Europe" })
-            return arrayCopy
         case .asia:
             arrayCopy = countriesCopy.filter({ $0.region == "Asia" })
-            return arrayCopy
         }
+        
+        return arrayCopy
     }
 }
 

@@ -83,7 +83,7 @@ class RealmManager: NSObject {
                 try fileManager.copyItem(atPath: bundlePath, toPath: defaultPath)
                 print("Copied")
             } catch {
-                print(error)
+                print("error")
             }
         }
         

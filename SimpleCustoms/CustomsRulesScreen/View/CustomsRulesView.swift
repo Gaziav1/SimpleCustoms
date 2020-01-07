@@ -88,10 +88,10 @@ extension CustomsRulesView: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RulesCollectionViewCell.reuseId, for: indexPath) as! RulesCollectionViewCell
         
-        guard let rules = dataSource?.defineContentForCell() else { return cell }
+        guard let rules = dataSource?.defineContentForCell()[indexPath.row] else { return cell }
         
-        cell.header.text = rules[indexPath.row].header
-        cell.body.text = rules[indexPath.row].body.replacingOccurrences(of: "\\n", with: "\n")
+        cell.header.text = rules.header
+        cell.body.text = rules.body.replacingOccurrences(of: "\\n", with: "\n")
         
         return cell
     }

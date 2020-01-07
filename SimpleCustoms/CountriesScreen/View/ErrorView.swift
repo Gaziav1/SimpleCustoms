@@ -11,7 +11,7 @@ import UIKit
 
 class ErrorView: UIView {
     
-    var buttonForError: UIButton = {
+    let buttonForError: UIButton = {
         let button = UIButton()
         button.setTitle("Обновить", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.1843137255, green: 0.5529411765, blue: 0.7803921569, alpha: 1)

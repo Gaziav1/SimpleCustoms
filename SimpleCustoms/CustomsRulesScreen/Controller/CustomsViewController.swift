@@ -15,7 +15,6 @@ class CustomsViewController: UIViewController {
     var rules: CustomsRulesScreenModel! {
         didSet {
             flagImage.image = UIImage(named: rules.countryCode.lowercased())
-    
             descriptionView.infoForCell = rules
         }
     }
@@ -25,7 +24,6 @@ class CustomsViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
     
     private let descriptionView: CountryDescriptionView = {
         let view = CountryDescriptionView()
@@ -40,23 +38,18 @@ class CustomsViewController: UIViewController {
     }()
     
     private let containterView = UIView()
-    
     private let scrollView = UIScrollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
-        self.navigationItem.largeTitleDisplayMode = .always
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         setupScrollView()
         setupUIElementsInView()
+    
     }
 
     override func viewDidLayoutSubviews() {
         scrollView.layoutIfNeeded()
-        
         scrollView.contentSize.height = descriptionView.frame.height + rulesView.frame.height + flagImage.frame.height + 75
     }
     
@@ -64,7 +57,6 @@ class CustomsViewController: UIViewController {
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
-    
         scrollView.edgesToSuperview()
     }
     
@@ -88,9 +80,10 @@ class CustomsViewController: UIViewController {
         } else {
             view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         }
+        navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.topItem?.title = ""
     }
     
     private func setupUIElementsInView() {

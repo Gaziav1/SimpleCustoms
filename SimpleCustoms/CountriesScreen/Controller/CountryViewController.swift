@@ -54,22 +54,24 @@ class CountryViewController: UIViewController {
         super.viewDidLoad()
         
         networkManager = NetworkCountryFetcher()
+        handleDataDownloading()
+        setupUIElements()
+    }
     
+    private func setupUIElements() {
+        
         if #available(iOS 13.0, *) {
             navigationController?.view.backgroundColor = .tertiarySystemBackground
         } else {
             view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         }
-
         self.navigationItem.largeTitleDisplayMode = .never
-        handleDataDownloading()
         setupSearchController()
         setupTableView()
         setupRegionChooser()
         setupAnimation()
         setupErrorView()
     }
-    
     
     private func setupRegionChooser() {
         regionChooser.translatesAutoresizingMaskIntoConstraints = false
@@ -150,10 +152,8 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseId) as! CountryTableViewCell
         let cellInfo = CountryScreenModel(country: dataHandler.currentData[indexPath.row])
-        
         cell.fillCell(with: cellInfo)
         return cell
     }
@@ -182,7 +182,6 @@ extension CountryViewController: UITableViewDelegate, UITableViewDataSource {
         
         let country = CountryScreenModel(country: dataHandler.currentData[indexPath.row])
         let predicate = NSPredicate(format: "forCountryCode == %@", country.countryName)
-        
         let countryInformation = RealmManager.sharedInstance.filter(predicate, object: CustomsRules.self) as! [CustomsRules] //запрашиваем информацию о таможенных правилах страны по ее названию
         
         let customsRules = CustomsRulesScreenModel(country: country, rules: countryInformation[0].customsRule)
@@ -203,7 +202,6 @@ extension CountryViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         dataHandler.startSearching(searchText)
-        
         countriesTableView.reloadData()
     }
     
@@ -220,7 +218,6 @@ extension CountryViewController: UISearchBarDelegate {
 }
 
 extension CountryViewController: RegionChooseDelegate {
-    
     func userDidChooseRegion(_ region: Regions) {
         dataHandler.currentRegion = region
         countriesTableView.reloadData()

@@ -29,21 +29,22 @@ final class NetworkCountryFetcher: CountryFetcher {
             guard let url = region.fullUrlForCountries else { return }
             
             networkManager.getData(url: url) { (result) in
-        
-                switch result {
-                case .failure(let error):
-                    DispatchQueue.main.async { completionHandler(nil, error) }
-                case .success(let data):
-                    do {
-                        let json = try JSONDecoder().decode([Country].self, from: data)
-                        
-                        json.forEach { (country) in
-                            guard let countryCopy = self.filter(country) else { return }
-                            jsonData.append(countryCopy)
+                DispatchQueue.main.async {
+                    switch result {
+                    case .failure(let error):
+                        completionHandler(nil, error)
+                    case .success(let data):
+                        do {
+                            let json = try JSONDecoder().decode([Country].self, from: data)
+                            
+                            json.forEach { (country) in
+                                guard let countryCopy = self.filter(country) else { return }
+                                jsonData.append(countryCopy)
+                            }
+                            completionHandler(jsonData, nil)
+                        } catch let error {
+                            completionHandler(nil, error) 
                         }
-                        DispatchQueue.main.async { completionHandler(jsonData, nil) }
-                    } catch let error {
-                        DispatchQueue.main.async { completionHandler(nil, error) }
                     }
                 }
             }

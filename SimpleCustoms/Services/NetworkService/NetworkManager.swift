@@ -18,7 +18,11 @@ protocol URLSessionProtocol {
 
 class NetworkManager: Networking {
 
-    lazy var urlSession: URLSessionProtocol = URLSession.shared
+    private let urlSession: URLSessionProtocol
+    
+    init(urlSession: URLSessionProtocol = URLSession.shared) {
+        self.urlSession = urlSession
+    }
     
     func getData(url: URL, request: @escaping (Result<Data, Error>) -> Void) {
         
@@ -31,8 +35,6 @@ class NetworkManager: Networking {
         }
         dataTask.resume()
     }
-    
-   
 }
 
 extension URLSession: URLSessionProtocol { }

@@ -36,6 +36,7 @@ class GoodsChoosingAlert: UIView {
     weak var delegate: GoodsChoosingDelegate?
     weak var dataSource: GoodsChoosingDataSource?
     
+
     override func awakeFromNib() {
         goodsPickerView.delegate = self
         goodsPickerView.dataSource = self
@@ -44,6 +45,8 @@ class GoodsChoosingAlert: UIView {
         layer.cornerRadius = 15
         layer.masksToBounds = true
     }
+    
+    
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         delegate?.doneButtonTapped(choosen: choosenGoods, limitations: limitations)
     }
