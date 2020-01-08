@@ -15,7 +15,7 @@ class NetworkManagerTests: XCTestCase {
     private var mockURLSession: MockURLSession!
     private var api: URL {
         get {
-            guard let url = FullUrl.asia.fullUrlForCountries else { return URL(fileURLWithPath: "") }
+            guard let url = APIPath.FullUrl.asia.fullUrlForCountries else { return URL(fileURLWithPath: "") }
             return url
         }
         
@@ -23,8 +23,9 @@ class NetworkManagerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = NetworkManager()
+        
         mockURLSession = MockURLSession()
+        sut = NetworkManager(urlSession: mockURLSession)
     }
     
     override func tearDown() {
@@ -62,7 +63,6 @@ class NetworkManagerTests: XCTestCase {
     }
     
     private func mockRequest(url: URL) -> URLComponents? {
-        sut.urlSession = mockURLSession
         sut.getData(url: url) { _ in }
         
         return mockURLSession.urlComponents

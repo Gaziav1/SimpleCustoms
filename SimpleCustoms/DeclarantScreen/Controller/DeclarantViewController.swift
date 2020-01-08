@@ -267,7 +267,6 @@ extension DeclarantViewController: GoodsChoosingDelegate, GoodsChoosingDataSourc
         visualEffectView.fadeOut()
     }
     
-    
     func goodsToShow() -> List<GoodsWithLimitations> {
         
         // источник данных для показа элементов в пикервью алерта выбора товаров

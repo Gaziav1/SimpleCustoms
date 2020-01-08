@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DataProvider {
+final class SearchStateDataProvider {
     
     fileprivate var countries = [Country]()
     fileprivate var countriesCopy = [Country]()

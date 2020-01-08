@@ -11,7 +11,7 @@
 		A71C84F2239AB86A00EDFA67 /* GoodsChoosingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C84F1239AB86A00EDFA67 /* GoodsChoosingAlert.swift */; };
 		A7261B662329477200D4854D /* CustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7261B652329477200D4854D /* CustomsViewController.swift */; };
 		A72EBA63239160F2002DA3F0 /* 3003-bouncy-balls.json in Resources */ = {isa = PBXBuildFile; fileRef = A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */; };
-		A73EC1BC2390552700CA9DB5 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EC1BB2390552700CA9DB5 /* DataProvider.swift */; };
+		A73EC1BC2390552700CA9DB5 /* SearchStateDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EC1BB2390552700CA9DB5 /* SearchStateDataProvider.swift */; };
 		A75596C82386C2CF00DB3D26 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */; };
 		A75B350E239D3EDC00F1EA8F /* CurrencyChoosingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B350D239D3EDC00F1EA8F /* CurrencyChoosingView.swift */; };
 		A75B3510239D68A300F1EA8F /* 4964-check-mark-success-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = A75B350F239D68A200F1EA8F /* 4964-check-mark-success-animation.json */; };
@@ -75,7 +75,7 @@
 		A71C84F1239AB86A00EDFA67 /* GoodsChoosingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsChoosingAlert.swift; sourceTree = "<group>"; };
 		A7261B652329477200D4854D /* CustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsViewController.swift; sourceTree = "<group>"; };
 		A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "3003-bouncy-balls.json"; sourceTree = "<group>"; };
-		A73EC1BB2390552700CA9DB5 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		A73EC1BB2390552700CA9DB5 /* SearchStateDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStateDataProvider.swift; sourceTree = "<group>"; };
 		A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
 		A75B350D239D3EDC00F1EA8F /* CurrencyChoosingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyChoosingView.swift; sourceTree = "<group>"; };
@@ -228,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				A77A68C523203AF4005EAC5A /* CountryViewController.swift */,
-				A73EC1BB2390552700CA9DB5 /* DataProvider.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -311,6 +310,7 @@
 		A77A68D72320449F005EAC5A /* CountriesScreen */ = {
 			isa = PBXGroup;
 			children = (
+				A7CD866523C666C800812DDB /* DataProvider */,
 				A7E70DCA2321728200EFD8B0 /* Model */,
 				A751DFDF2320453A0094FAC0 /* View */,
 				A751DFDC232044F20094FAC0 /* Controller */,
@@ -405,6 +405,14 @@
 				A798F7412393F072006842AC /* CountryChooserTableViewCell.xib */,
 			);
 			path = CountryChoosingCell;
+			sourceTree = "<group>";
+		};
+		A7CD866523C666C800812DDB /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A73EC1BB2390552700CA9DB5 /* SearchStateDataProvider.swift */,
+			);
+			path = DataProvider;
 			sourceTree = "<group>";
 		};
 		A7E70DC623215FE900EFD8B0 /* Services */ = {
@@ -616,7 +624,7 @@
 			files = (
 				A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */,
 				A71C84F2239AB86A00EDFA67 /* GoodsChoosingAlert.swift in Sources */,
-				A73EC1BC2390552700CA9DB5 /* DataProvider.swift in Sources */,
+				A73EC1BC2390552700CA9DB5 /* SearchStateDataProvider.swift in Sources */,
 				A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */,
 				A7A50BC3233A6F6700C8624C /* RealmManager.swift in Sources */,
 				A7C7CA19238564E300E96B76 /* ErrorView.swift in Sources */,

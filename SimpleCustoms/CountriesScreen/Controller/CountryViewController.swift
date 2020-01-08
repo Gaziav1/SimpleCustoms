@@ -45,15 +45,24 @@ class CountryViewController: UIViewController {
     private var networkManager: CountryFetcher?
     private let searchController = UISearchController(searchResultsController: nil)
     private let regionChooser = RegionView()
-    private let dataHandler = DataProvider()
+    private let dataHandler = SearchStateDataProvider()
     private let errorHandler = ErrorView()
     
     weak var delegate: CountryChooseDelegate?
     
+    init(networkManager: CountryFetcher = NetworkCountryFetcher() ) {
+        self.networkManager = networkManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        networkManager = NetworkCountryFetcher()
+    
         handleDataDownloading()
         setupUIElements()
     }

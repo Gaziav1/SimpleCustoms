@@ -25,7 +25,7 @@ final class NetworkCountryFetcher: CountryFetcher {
         
         var jsonData = [Country]()
         
-        for region in FullUrl.allCases {
+        for region in APIPath.FullUrl.allCases {
             guard let url = region.fullUrlForCountries else { return }
             
             networkManager.getData(url: url) { (result) in
