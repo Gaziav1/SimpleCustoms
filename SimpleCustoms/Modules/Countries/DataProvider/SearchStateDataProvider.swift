@@ -8,7 +8,8 @@
 
 import Foundation
 
-final class SearchStateDataProvider {
+final class SearchStateDataProvider: SearchStateDataProtocol {
+    
     
     fileprivate var countries = [Country]()
     fileprivate var countriesCopy = [Country]()
@@ -17,7 +18,7 @@ final class SearchStateDataProvider {
         return countries
     }
     
-    var currentRegion: Regions = .all {
+    private var currentRegion: Regions = .all {
         didSet {
             startSearching(searchText)
         }
@@ -26,7 +27,7 @@ final class SearchStateDataProvider {
     
     func startSearching(_ searchText: String) {
         self.searchText = searchText
-        let currentDataArray = countiresForCurrentRegion()
+        let currentDataArray = countriesForCurrentRegion()
         
         if searchText == "" {
             countries = currentDataArray
@@ -44,13 +45,16 @@ final class SearchStateDataProvider {
         }
     }
     
-    func setCountries(_ country: [Country]) {
-        countries = country
-        countriesCopy = country
+    func setCountries(countries: [Country]) {
+        self.countries = countries
+        countriesCopy = countries
     }
     
-    private func countiresForCurrentRegion() -> [Country] {
-        
+    func setRegion(region: Regions) {
+        self.currentRegion = region
+    }
+    
+    private func countriesForCurrentRegion() -> [Country] {
         var arrayCopy = countriesCopy
         
         switch currentRegion  {
@@ -65,4 +69,5 @@ final class SearchStateDataProvider {
         return arrayCopy
     }
 }
+
 

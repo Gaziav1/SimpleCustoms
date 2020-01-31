@@ -10,8 +10,6 @@ import UIKit
 
 class CountryTableViewCell: UITableViewCell {
 
-    static let reuseId = "CountryCell"
-
     @IBOutlet weak var flagImage: UIImageView! 
     @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var countryView: UIView!
@@ -21,7 +19,6 @@ class CountryTableViewCell: UITableViewCell {
         backgroundColor = .clear
         selectionStyle = .none
     }
-    
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -34,9 +31,9 @@ class CountryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func fillCell(with info: CellData) {
-        countryName.text = info.countryName
-        let url = APIPath(scheme: "https", endpoint: "www.countryflags.io", path: "/\(info.countryCode.lowercased())/flat/64.png", params: nil)
+    func fillCell(with info: Country) {
+        countryName.text = info.name
+        let url = APIPath(scheme: "https", endpoint: "www.countryflags.io", path: "/\(info.alpha2Code.lowercased())/flat/64.png", params: nil)
         guard let urlForImage = url.fullURL else { return }
         flagImage.sd_setImage(with: urlForImage) { [weak self] _, _, _, _ in
             self?.flagImage.fadeIn()
