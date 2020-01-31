@@ -71,7 +71,7 @@ class RealmManager: NSObject {
         realmObject = try! Realm()
     }
     
-    func openRealm() {
+    private func openRealm() {
         let bundlePath = Bundle.main.path(forResource: "default", ofType: "realm")!
         guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return }
         let fileManager = FileManager.default

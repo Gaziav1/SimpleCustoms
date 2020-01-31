@@ -17,17 +17,5 @@ struct Country: Decodable {
     var languages: [Languages]
 }
 
-struct Currencies: Decodable {
-    var code: String?
-    var name: String?
-}
 
-struct Languages: Decodable {
-    var name: String
-}
 
-enum Regions: String, CaseIterable {
-    case all = "All Countries"
-    case europe = "Europe"
-    case asia = "Asia"
-}

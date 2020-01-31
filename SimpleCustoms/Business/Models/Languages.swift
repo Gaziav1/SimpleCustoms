@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct Languages: Decodable {
+    var name: String
+}

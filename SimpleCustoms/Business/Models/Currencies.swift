@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct Currencies: Decodable {
+    var code: String?
+    var name: String?
+}

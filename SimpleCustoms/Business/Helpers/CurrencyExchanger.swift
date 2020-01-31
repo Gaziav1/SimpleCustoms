@@ -22,7 +22,6 @@ final class CurrencyExchanger {
         }
     }
     
-    
     init(valueToExchange: Int = 0, permissibleValue: Int = 10000, currency: CurrencyToFetch) {
         self.valueToExchange = valueToExchange
         self.currency = currency

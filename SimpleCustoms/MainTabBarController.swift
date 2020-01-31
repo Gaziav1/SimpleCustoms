@@ -12,7 +12,9 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let navigationController = UINavigationController(rootViewController: CountryViewController())
+        let router = CountriesRouter()
+        let viewController = router.createModule()
+        let navigationController = UINavigationController(rootViewController: viewController)
 
         let dc = DeclarantViewController()
         dc.tabBarItem.image = UIImage(named: "Declarant")

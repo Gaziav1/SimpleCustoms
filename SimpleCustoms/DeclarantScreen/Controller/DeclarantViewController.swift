@@ -218,7 +218,7 @@ extension DeclarantViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch cellNames {
         case .countryCell:
-            vc.delegate = self
+            //vc.delegate = self
             self.present(nc, animated: true) {
                 self.rowNumber = 1
                 self.goodsTableView.reloadData()
