@@ -1,36 +1,54 @@
 PODS:
-  - lottie-ios (3.1.5)
-  - Realm (4.3.0):
-    - Realm/Headers (= 4.3.0)
-  - Realm/Headers (4.3.0)
-  - RealmSwift (4.3.0):
-    - Realm (= 4.3.0)
-  - SDWebImage (5.4.1):
-    - SDWebImage/Core (= 5.4.1)
-  - SDWebImage/Core (5.4.1)
+  - Alamofire (4.9.1)
+  - lottie-ios (3.1.6)
+  - Moya (13.0.1):
+    - Moya/Core (= 13.0.1)
+  - Moya/Core (13.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.1)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
+  - Result (4.1.0)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
+  - Swinject (2.7.1)
   - TinyConstraints (4.0.1)
 
 DEPENDENCIES:
   - lottie-ios
+  - Moya
   - RealmSwift
   - SDWebImage
+  - Swinject
   - TinyConstraints
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - lottie-ios
+    - Moya
     - Realm
     - RealmSwift
+    - Result
     - SDWebImage
+    - Swinject
     - TinyConstraints
 
 SPEC CHECKSUMS:
-  lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
-  Realm: 9357c3589555793e1860a7104a7412bca4a48d99
-  RealmSwift: 402f1e379a8ef82c635313037b043f0f06de880c
-  SDWebImage: 29c340dbdcef342bb13125553f4e19ce056b07a7
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
+  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
 
-PODFILE CHECKSUM: 6f756087677ce60b9ca35f6a2b4d993d67cf89f4
+PODFILE CHECKSUM: ad0c1c9cadcc856e88508fde1706224c74035307
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

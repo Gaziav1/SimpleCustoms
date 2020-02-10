@@ -26,7 +26,7 @@ class CountryDescriptionView: UIView {
         return tableView
     }()
     
-    var infoForCell: CountryInfoForCell?
+    var infoForCell: Country?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,7 +38,7 @@ class CountryDescriptionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func fillCell(with info: CountryInfoForCell, cell: DescriptionTableViewCell, at indexPath: IndexPath) {
+    func fillCell(with info: Country, cell: DescriptionTableViewCell, at indexPath: IndexPath) {
         
         let cellType = CellType(rawValue: indexPath.row)
         
@@ -48,10 +48,10 @@ class CountryDescriptionView: UIView {
             cell.descriptionAnswer.text = info.capital
         case .currency:
             cell.titleDescription.text = "Валюта"
-            cell.descriptionAnswer.text = info.currency
+            cell.descriptionAnswer.text = info.currencies[0].name
         case .language:
             cell.titleDescription.text = "Язык"
-            cell.descriptionAnswer.text = info.language
+            cell.descriptionAnswer.text = info.languages[0].name
         case .none: break
         }
     }

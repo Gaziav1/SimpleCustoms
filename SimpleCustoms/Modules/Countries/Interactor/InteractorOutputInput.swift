@@ -9,16 +9,12 @@
 //
 
 import Foundation
+import UIKit
 
-//MARK: Wireframe -
-
-//MARK: Presenter -
-
-
-//MARK: Interactor -
 protocol CountriesInteractorOutputProtocol: class {
-    func obtainCountriesSuccess(countries: [Country])
+    func obtainCountriesSuccess(countries: [Country]?)
     func obtainCountriesFailure()
+    func didGetCustomsRules(rules: CustomsRules)
     /* Interactor -> Presenter */
 }
 
@@ -26,10 +22,9 @@ protocol CountriesInteractorInputProtocol: class {
 
     var presenter: CountriesInteractorOutputProtocol?  { get set }
     
-    func fetchCountries() 
-    
+    func fetchCountries(for regions: [Regions])
+    func rulesForCountry(country: Country)
     /* Presenter -> Interactor */
 }
 
-//MARK: View -
 

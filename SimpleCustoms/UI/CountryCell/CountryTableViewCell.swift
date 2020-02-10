@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CountryTableViewCell: UITableViewCell {
 
@@ -33,8 +34,8 @@ class CountryTableViewCell: UITableViewCell {
     
     func fillCell(with info: Country) {
         countryName.text = info.name
-        let url = APIPath(scheme: "https", endpoint: "www.countryflags.io", path: "/\(info.alpha2Code.lowercased())/flat/64.png", params: nil)
-        guard let urlForImage = url.fullURL else { return }
+
+        guard let urlForImage = URL(string: "https://countryflags.io/\(info.alpha2Code.lowercased())/flat/64.png") else { return }
         flagImage.sd_setImage(with: urlForImage) { [weak self] _, _, _, _ in
             self?.flagImage.fadeIn()
         }

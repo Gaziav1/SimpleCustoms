@@ -9,27 +9,40 @@
 //
 
 import UIKit
+import Realm
+import Moya
 
 class CountriesInteractor {
-
-    var networkManager: CountryFetcher
+    
+    var provider = MoyaProvider<SimpleCustomsTarget>()
     weak var presenter: CountriesInteractorOutputProtocol?
-    
-    init(networkManager: CountryFetcher = NetworkCountryFetcher()) {
-        self.networkManager = networkManager
-    }
 }
-    
+
 extension CountriesInteractor: CountriesInteractorInputProtocol {
+    func rulesForCountry(country: Country) {
+        
+        let predicate = NSPredicate(format: "forCountryCode == %@", country.alpha2Code)
+        
+        guard let countryInformation = RealmManager.sharedInstance.filter(predicate, object: CustomsRules.self) else { return }
+        
+        presenter?.didGetCustomsRules(rules: countryInformation[0])
+    }
     
-    func fetchCountries() {
-        networkManager.fetchCountries { [weak self] (countries, error) in
-            guard let fetchedCountries = countries  else {
-                self?.presenter?.obtainCountriesFailure()
-                return
+    func fetchCountries(for regions: [Regions]) {
+        for region in regions {
+            provider.request(.country(region: region)) { [weak self] (result) in
+
+                switch result {
+                case .success(let response):
+                    guard let data = try? JSONDecoder().decode([Country].self, from: response.data) else { return }
+                    
+                    self?.presenter?.obtainCountriesSuccess(countries: data)
+                case .failure(_):
+                    self?.presenter?.obtainCountriesFailure()
+                }
             }
-            self?.presenter?.obtainCountriesSuccess(countries: fetchedCountries)
         }
     }
+    
 }
 

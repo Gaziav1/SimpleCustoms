@@ -10,7 +10,6 @@ import Foundation
 
 final class SearchStateDataProvider: SearchStateDataProtocol {
     
-    
     fileprivate var countries = [Country]()
     fileprivate var countriesCopy = [Country]()
     
@@ -46,8 +45,8 @@ final class SearchStateDataProvider: SearchStateDataProtocol {
     }
     
     func setCountries(countries: [Country]) {
-        self.countries = countries
-        countriesCopy = countries
+        self.countries.append(contentsOf: countries)
+        countriesCopy.append(contentsOf: countries)
     }
     
     func setRegion(region: Regions) {

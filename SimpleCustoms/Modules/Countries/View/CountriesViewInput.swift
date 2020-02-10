@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CountriesViewInput: class {
 
     var presenter: CountriesPresenterOutput!  { get set }
     
     func failure()
+    func reloadData()
     func success()
     /* Presenter -> ViewController */
 }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A71C84EE239AADD800EDFA67 /* GoodsChoosingAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = A71C84ED239AADD800EDFA67 /* GoodsChoosingAlert.xib */; };
 		A71C84F2239AB86A00EDFA67 /* GoodsChoosingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C84F1239AB86A00EDFA67 /* GoodsChoosingAlert.swift */; };
-		A7261B662329477200D4854D /* CustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7261B652329477200D4854D /* CustomsViewController.swift */; };
 		A72EBA63239160F2002DA3F0 /* 3003-bouncy-balls.json in Resources */ = {isa = PBXBuildFile; fileRef = A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */; };
 		A73AA33A23E4343300D0624B /* CountriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AA33423E4343300D0624B /* CountriesPresenter.swift */; };
 		A73AA33B23E4343300D0624B /* CountriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AA33523E4343300D0624B /* CountriesRouter.swift */; };
@@ -23,6 +22,15 @@
 		A73AA35523E46E3D00D0624B /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AA35423E46E3D00D0624B /* Currencies.swift */; };
 		A73AA35723E46E5300D0624B /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AA35623E46E5300D0624B /* Languages.swift */; };
 		A73AA35A23E46E9200D0624B /* Regions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AA35923E46E9200D0624B /* Regions.swift */; };
+		A73E6B4823EAF20300A48AA8 /* CustomsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E6B4223EAF20300A48AA8 /* CustomsPresenter.swift */; };
+		A73E6B4923EAF20300A48AA8 /* CustomsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E6B4323EAF20300A48AA8 /* CustomsRouter.swift */; };
+		A73E6B4A23EAF20300A48AA8 /* CustomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E6B4423EAF20300A48AA8 /* CustomsViewController.swift */; };
+		A73E6B4B23EAF20300A48AA8 /* CustomsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E6B4523EAF20300A48AA8 /* CustomsProtocols.swift */; };
+		A73E6B4C23EAF20300A48AA8 /* CustomsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E6B4623EAF20300A48AA8 /* CustomsInteractor.swift */; };
+		A73E6B5023EAF70700A48AA8 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E6B4F23EAF70700A48AA8 /* AppRouter.swift */; };
+		A73E6B7023EC3B6000A48AA8 /* CountriesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E6B6F23EC3B6000A48AA8 /* CountriesConfigurator.swift */; };
+		A73E6B7223EC411D00A48AA8 /* CustomsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E6B7123EC411D00A48AA8 /* CustomsConfigurator.swift */; };
+		A73E6B7523EC426A00A48AA8 /* Containers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E6B7423EC426A00A48AA8 /* Containers.swift */; };
 		A73EC1BC2390552700CA9DB5 /* SearchStateDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73EC1BB2390552700CA9DB5 /* SearchStateDataProvider.swift */; };
 		A75596C82386C2CF00DB3D26 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */; };
 		A75B350E239D3EDC00F1EA8F /* CurrencyChoosingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B350D239D3EDC00F1EA8F /* CurrencyChoosingView.swift */; };
@@ -32,21 +40,19 @@
 		A75B3517239D90F400F1EA8F /* 1174-warning.json in Resources */ = {isa = PBXBuildFile; fileRef = A75B3516239D90F300F1EA8F /* 1174-warning.json */; };
 		A75B3519239EDE6600F1EA8F /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B3518239EDE6600F1EA8F /* Currency.swift */; };
 		A7655FB323B7AAC100CD7120 /* SimpleCustomsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7655FB223B7AAC100CD7120 /* SimpleCustomsTests.swift */; };
-		A7655FBB23B7AB7500CD7120 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7655FBA23B7AB7500CD7120 /* NetworkManagerTests.swift */; };
 		A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */; };
 		A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743AF8238B15530076A87D /* CustomsRulesView.swift */; };
 		A7743AFC238B18010076A87D /* RulesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743AFA238B18010076A87D /* RulesCollectionViewCell.swift */; };
 		A77656F1234B93AA00F45031 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = A77656EB234B8E7300F45031 /* default.realm */; };
 		A7790323238AC03C00CD8FFE /* CountryDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7790322238AC03C00CD8FFE /* CountryDescriptionView.swift */; };
+		A7797F3623E82B1200503712 /* SimpleCustomsTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7797F3523E82B1200503712 /* SimpleCustomsTarget.swift */; };
 		A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A68C323203AF4005EAC5A /* AppDelegate.swift */; };
 		A77A68CB23203AF5005EAC5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CA23203AF5005EAC5A /* Assets.xcassets */; };
 		A77A68CE23203AF5005EAC5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A77A68CC23203AF5005EAC5A /* LaunchScreen.storyboard */; };
-		A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */; };
 		A7941127238AD8970001B402 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */; };
 		A797D0822347B6A400492849 /* DeclarantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D0812347B6A400492849 /* DeclarantViewController.swift */; };
 		A797D08A2348EE6C00492849 /* GoodsWithLimitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */; };
 		A797D08C234A22DC00492849 /* CurrencyToFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D08B234A22DC00492849 /* CurrencyToFetch.swift */; };
-		A797D08E234A23E200492849 /* CurrencyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D08D234A23E200492849 /* CurrencyFetcher.swift */; };
 		A797D096234A2C5A00492849 /* CurrencyExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D095234A2C5A00492849 /* CurrencyExchanger.swift */; };
 		A798F7422393F072006842AC /* CountryChooserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798F7402393F072006842AC /* CountryChooserTableViewCell.swift */; };
 		A798F7452394016A006842AC /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A798F7442394016A006842AC /* TableViewController.swift */; };
@@ -60,8 +66,6 @@
 		A7B9308F23954E4400011BDA /* DescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */; };
 		A7B9309023954E5200011BDA /* RulesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7743AFB238B18010076A87D /* RulesCollectionViewCell.xib */; };
 		A7C7CA19238564E300E96B76 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7CA18238564E300E96B76 /* ErrorView.swift */; };
-		A7C984C22385885800936465 /* APIPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C984C12385885800936465 /* APIPath.swift */; };
-		A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */; };
 		A7E70DCF2321780A00EFD8B0 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E70DCE2321780A00EFD8B0 /* Country.swift */; };
 		A8DEE70A6A0B4A5A7B751C90 /* Pods_SimpleCustoms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */; };
 /* End PBXBuildFile section */
@@ -82,7 +86,6 @@
 		A6ABE5E1E6A12816E6023EAC /* Pods_SimpleCustoms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleCustoms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71C84ED239AADD800EDFA67 /* GoodsChoosingAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GoodsChoosingAlert.xib; path = SimpleCustoms/UI/GoodsChoosingAlert/GoodsChoosingAlert.xib; sourceTree = SOURCE_ROOT; };
 		A71C84F1239AB86A00EDFA67 /* GoodsChoosingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsChoosingAlert.swift; sourceTree = "<group>"; };
-		A7261B652329477200D4854D /* CustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsViewController.swift; sourceTree = "<group>"; };
 		A72EBA62239160F2002DA3F0 /* 3003-bouncy-balls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "3003-bouncy-balls.json"; sourceTree = "<group>"; };
 		A73AA33423E4343300D0624B /* CountriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesPresenter.swift; sourceTree = "<group>"; };
 		A73AA33523E4343300D0624B /* CountriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesRouter.swift; sourceTree = "<group>"; };
@@ -96,6 +99,15 @@
 		A73AA35423E46E3D00D0624B /* Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currencies.swift; sourceTree = "<group>"; };
 		A73AA35623E46E5300D0624B /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		A73AA35923E46E9200D0624B /* Regions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regions.swift; sourceTree = "<group>"; };
+		A73E6B4223EAF20300A48AA8 /* CustomsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsPresenter.swift; sourceTree = "<group>"; };
+		A73E6B4323EAF20300A48AA8 /* CustomsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsRouter.swift; sourceTree = "<group>"; };
+		A73E6B4423EAF20300A48AA8 /* CustomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsViewController.swift; sourceTree = "<group>"; };
+		A73E6B4523EAF20300A48AA8 /* CustomsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsProtocols.swift; sourceTree = "<group>"; };
+		A73E6B4623EAF20300A48AA8 /* CustomsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsInteractor.swift; sourceTree = "<group>"; };
+		A73E6B4F23EAF70700A48AA8 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		A73E6B6F23EC3B6000A48AA8 /* CountriesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesConfigurator.swift; sourceTree = "<group>"; };
+		A73E6B7123EC411D00A48AA8 /* CustomsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsConfigurator.swift; sourceTree = "<group>"; };
+		A73E6B7423EC426A00A48AA8 /* Containers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Containers.swift; sourceTree = "<group>"; };
 		A73EC1BB2390552700CA9DB5 /* SearchStateDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStateDataProvider.swift; sourceTree = "<group>"; };
 		A75596C72386C2CF00DB3D26 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A75596C92386E8AB00DB3D26 /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
@@ -108,25 +120,23 @@
 		A7655FB023B7AAC100CD7120 /* SimpleCustomsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleCustomsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7655FB223B7AAC100CD7120 /* SimpleCustomsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCustomsTests.swift; sourceTree = "<group>"; };
 		A7655FB423B7AAC100CD7120 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7655FBA23B7AB7500CD7120 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		A773D41E232809E1008DA6BF /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		A7743AF8238B15530076A87D /* CustomsRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomsRulesView.swift; path = "SimpleCustoms/UI/CustomsRulesView+Cell/CustomsRulesView.swift"; sourceTree = SOURCE_ROOT; };
 		A7743AFA238B18010076A87D /* RulesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesCollectionViewCell.swift; sourceTree = "<group>"; };
 		A7743AFB238B18010076A87D /* RulesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RulesCollectionViewCell.xib; sourceTree = "<group>"; };
 		A77656EB234B8E7300F45031 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		A7790322238AC03C00CD8FFE /* CountryDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CountryDescriptionView.swift; path = "SimpleCustoms/UI/CountryDescriptionView+Cell/CountryDescriptionView.swift"; sourceTree = SOURCE_ROOT; };
+		A7797F3523E82B1200503712 /* SimpleCustomsTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCustomsTarget.swift; sourceTree = "<group>"; };
 		A77A68C023203AF4005EAC5A /* SimpleCustoms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCustoms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77A68C323203AF4005EAC5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A77A68CA23203AF5005EAC5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A77A68CD23203AF5005EAC5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A77A68CF23203AF5005EAC5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCountryFetcher.swift; sourceTree = "<group>"; };
 		A7941126238AD8970001B402 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DescriptionTableViewCell.swift; path = "SimpleCustoms/UI/CountryDescriptionView+Cell/DescriptionTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		A7941128238AD8EA0001B402 /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DescriptionTableViewCell.xib; path = "SimpleCustoms/UI/CountryDescriptionView+Cell/DescriptionTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		A797D0812347B6A400492849 /* DeclarantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeclarantViewController.swift; sourceTree = "<group>"; };
 		A797D0892348EE6C00492849 /* GoodsWithLimitations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsWithLimitations.swift; sourceTree = "<group>"; };
 		A797D08B234A22DC00492849 /* CurrencyToFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyToFetch.swift; sourceTree = "<group>"; };
-		A797D08D234A23E200492849 /* CurrencyFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFetcher.swift; sourceTree = "<group>"; };
 		A797D095234A2C5A00492849 /* CurrencyExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchanger.swift; sourceTree = "<group>"; };
 		A798F7402393F072006842AC /* CountryChooserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryChooserTableViewCell.swift; sourceTree = "<group>"; };
 		A798F7412393F072006842AC /* CountryChooserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryChooserTableViewCell.xib; sourceTree = "<group>"; };
@@ -137,8 +147,6 @@
 		A7A50BC2233A6F6700C8624C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		A7B31DF82340D46200FBC4F8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A7C7CA18238564E300E96B76 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorView.swift; path = SimpleCustoms/UI/ErrorView/ErrorView.swift; sourceTree = SOURCE_ROOT; };
-		A7C984C12385885800936465 /* APIPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIPath.swift; path = SimpleCustoms/Business/Services/NetworkService/APIPath.swift; sourceTree = SOURCE_ROOT; };
-		A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A7E70DCE2321780A00EFD8B0 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,7 +181,13 @@
 		A7261B612329473C00D4854D /* CustomsRulesScreen */ = {
 			isa = PBXGroup;
 			children = (
+				A73E6B7123EC411D00A48AA8 /* CustomsConfigurator.swift */,
 				A7261B642329475700D4854D /* Controller */,
+				A73E6B4223EAF20300A48AA8 /* CustomsPresenter.swift */,
+				A73E6B4323EAF20300A48AA8 /* CustomsRouter.swift */,
+				A73E6B4423EAF20300A48AA8 /* CustomsViewController.swift */,
+				A73E6B4523EAF20300A48AA8 /* CustomsProtocols.swift */,
+				A73E6B4623EAF20300A48AA8 /* CustomsInteractor.swift */,
 			);
 			path = CustomsRulesScreen;
 			sourceTree = "<group>";
@@ -181,29 +195,14 @@
 		A7261B642329475700D4854D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A7261B652329477200D4854D /* CustomsViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		A72A169023BF6367002BB3A5 /* NetworkService */ = {
-			isa = PBXGroup;
-			children = (
-				A7655FBA23B7AB7500CD7120 /* NetworkManagerTests.swift */,
-			);
-			path = NetworkService;
-			sourceTree = "<group>";
-		};
-		A72A169123BF6372002BB3A5 /* CountriesScreen */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CountriesScreen;
 			sourceTree = "<group>";
 		};
 		A73AA34623E46B0A00D0624B /* Countries */ = {
 			isa = PBXGroup;
 			children = (
+				A73E6B6E23EC3B3500A48AA8 /* Configurator */,
 				A7CD866523C666C800812DDB /* DataProvider */,
 				A73AA34723E46B3800D0624B /* View */,
 				A73AA34D23E46D5D00D0624B /* Presenter */,
@@ -264,6 +263,8 @@
 				A7E70DC623215FE900EFD8B0 /* Services */,
 				A797D08F234A2BC000492849 /* Helpers */,
 				A73AA35323E46E2100D0624B /* Models */,
+				A73E6B7323EC424100A48AA8 /* Factories */,
+				A73E6B5123EAF70D00A48AA8 /* AppRouter */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -379,6 +380,30 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		A73E6B5123EAF70D00A48AA8 /* AppRouter */ = {
+			isa = PBXGroup;
+			children = (
+				A73E6B4F23EAF70700A48AA8 /* AppRouter.swift */,
+			);
+			path = AppRouter;
+			sourceTree = "<group>";
+		};
+		A73E6B6E23EC3B3500A48AA8 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				A73E6B6F23EC3B6000A48AA8 /* CountriesConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		A73E6B7323EC424100A48AA8 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				A73E6B7423EC426A00A48AA8 /* Containers.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		A7506C1C2354867D0054C463 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,10 +425,8 @@
 		A7655FB123B7AAC100CD7120 /* SimpleCustomsTests */ = {
 			isa = PBXGroup;
 			children = (
-				A72A169123BF6372002BB3A5 /* CountriesScreen */,
 				A7655FB223B7AAC100CD7120 /* SimpleCustomsTests.swift */,
 				A7655FB423B7AAC100CD7120 /* Info.plist */,
-				A72A169023BF6367002BB3A5 /* NetworkService */,
 			);
 			path = SimpleCustomsTests;
 			sourceTree = "<group>";
@@ -482,17 +505,6 @@
 			path = "Lottie Animations";
 			sourceTree = "<group>";
 		};
-		A7A50BBF2339250000C8624C /* NetworkService */ = {
-			isa = PBXGroup;
-			children = (
-				A7E70DC72321600B00EFD8B0 /* NetworkManager.swift */,
-				A77E83F2232555C0009F2631 /* NetworkCountryFetcher.swift */,
-				A797D08D234A23E200492849 /* CurrencyFetcher.swift */,
-				A7C984C12385885800936465 /* APIPath.swift */,
-			);
-			path = NetworkService;
-			sourceTree = "<group>";
-		};
 		A7CD866523C666C800812DDB /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,7 +517,7 @@
 		A7E70DC623215FE900EFD8B0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A7A50BBF2339250000C8624C /* NetworkService */,
+				A7797F3523E82B1200503712 /* SimpleCustomsTarget.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -672,7 +684,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7655FBB23B7AB7500CD7120 /* NetworkManagerTests.swift in Sources */,
 				A7655FB323B7AAC100CD7120 /* SimpleCustomsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -681,45 +692,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A77E83F3232555C0009F2631 /* NetworkCountryFetcher.swift in Sources */,
 				A71C84F2239AB86A00EDFA67 /* GoodsChoosingAlert.swift in Sources */,
 				A73EC1BC2390552700CA9DB5 /* SearchStateDataProvider.swift in Sources */,
 				A773D41F232809E1008DA6BF /* CountryTableViewCell.swift in Sources */,
+				A73E6B4923EAF20300A48AA8 /* CustomsRouter.swift in Sources */,
 				A7A50BC3233A6F6700C8624C /* RealmManager.swift in Sources */,
 				A73AA34523E4572800D0624B /* SearchStateDataProtocol.swift in Sources */,
 				A7C7CA19238564E300E96B76 /* ErrorView.swift in Sources */,
-				A7E70DC82321600B00EFD8B0 /* NetworkManager.swift in Sources */,
+				A73E6B7023EC3B6000A48AA8 /* CountriesConfigurator.swift in Sources */,
 				A75596C82386C2CF00DB3D26 /* MainTabBarController.swift in Sources */,
+				A73E6B7223EC411D00A48AA8 /* CustomsConfigurator.swift in Sources */,
 				A7A50BC1233A5BF100C8624C /* CustomsRules.swift in Sources */,
 				A798F7422393F072006842AC /* CountryChooserTableViewCell.swift in Sources */,
 				A7E70DCF2321780A00EFD8B0 /* Country.swift in Sources */,
-				A7C984C22385885800936465 /* APIPath.swift in Sources */,
 				A73AA34F23E46D7100D0624B /* CountriesPresenterOutput.swift in Sources */,
 				A73AA33B23E4343300D0624B /* CountriesRouter.swift in Sources */,
 				A7941127238AD8970001B402 /* DescriptionTableViewCell.swift in Sources */,
 				A73AA35723E46E5300D0624B /* Languages.swift in Sources */,
 				A73AA33D23E4343300D0624B /* InteractorOutputInput.swift in Sources */,
-				A7261B662329477200D4854D /* CustomsViewController.swift in Sources */,
+				A7797F3623E82B1200503712 /* SimpleCustomsTarget.swift in Sources */,
 				A798F7452394016A006842AC /* TableViewController.swift in Sources */,
+				A73E6B4C23EAF20300A48AA8 /* CustomsInteractor.swift in Sources */,
 				A7743AFC238B18010076A87D /* RulesCollectionViewCell.swift in Sources */,
 				A77A68C423203AF4005EAC5A /* AppDelegate.swift in Sources */,
 				A79FA05B238D9CF5008F8076 /* RegionView.swift in Sources */,
 				A7790323238AC03C00CD8FFE /* CountryDescriptionView.swift in Sources */,
-				A797D08E234A23E200492849 /* CurrencyFetcher.swift in Sources */,
 				A73AA33A23E4343300D0624B /* CountriesPresenter.swift in Sources */,
+				A73E6B4823EAF20300A48AA8 /* CustomsPresenter.swift in Sources */,
 				A73AA33C23E4343300D0624B /* CountriesViewController.swift in Sources */,
 				A797D08A2348EE6C00492849 /* GoodsWithLimitations.swift in Sources */,
 				A73AA33E23E4343300D0624B /* CountriesInteractor.swift in Sources */,
 				A79FA05D238D9D9D008F8076 /* RegionCollectionViewCell.swift in Sources */,
+				A73E6B4A23EAF20300A48AA8 /* CustomsViewController.swift in Sources */,
 				A75B3519239EDE6600F1EA8F /* Currency.swift in Sources */,
 				A73AA34923E46BA100D0624B /* CountriesViewInput.swift in Sources */,
+				A73E6B4B23EAF20300A48AA8 /* CustomsProtocols.swift in Sources */,
 				A7B31DF92340D46200FBC4F8 /* Extensions.swift in Sources */,
 				A73AA34C23E46CC200D0624B /* CountriesRouterInput.swift in Sources */,
+				A73E6B7523EC426A00A48AA8 /* Containers.swift in Sources */,
 				A73AA35A23E46E9200D0624B /* Regions.swift in Sources */,
 				A75B350E239D3EDC00F1EA8F /* CurrencyChoosingView.swift in Sources */,
 				A797D08C234A22DC00492849 /* CurrencyToFetch.swift in Sources */,
 				A73AA35523E46E3D00D0624B /* Currencies.swift in Sources */,
 				A7743AF9238B15530076A87D /* CustomsRulesView.swift in Sources */,
+				A73E6B5023EAF70700A48AA8 /* AppRouter.swift in Sources */,
 				A797D096234A2C5A00492849 /* CurrencyExchanger.swift in Sources */,
 				A797D0822347B6A400492849 /* DeclarantViewController.swift in Sources */,
 				A75B3514239D8B1300F1EA8F /* CurrencyChoosingableViewCell.swift in Sources */,

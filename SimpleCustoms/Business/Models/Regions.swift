@@ -12,4 +12,6 @@ enum Regions: String, CaseIterable {
     case all = "All Countries"
     case europe = "Europe"
     case asia = "Asia"
+    
+    
 }

@@ -19,7 +19,7 @@ private enum CellsName: Int {
 
 class DeclarantViewController: UIViewController {
     
-    private var goodsInformation = [CustomsRules]()
+    private var goodsInformation: Results<CustomsRules>?
     
     private var currencyExchanger: CurrencyExchanger?
     
@@ -90,17 +90,17 @@ class DeclarantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CurrencyFetcher.shared.getCurrency(currency: "EUR") { (curr, error) in
-            guard curr != nil else { return }
-            self.currencyExchanger = CurrencyExchanger(currency: curr!)
-        }
+//        CurrencyFetcher.shared.getCurrency(currency: "EUR") { (curr, error) in
+//            guard curr != nil else { return }
+//            self.currencyExchanger = CurrencyExchanger(currency: curr!)
+//        }
         
         if #available(iOS 13.0, *) {
             view.backgroundColor = .secondarySystemBackground
         } else {
             view.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.8862745098, blue: 0.9137254902, alpha: 1)
         }
-        goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
+        goodsInformation = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) 
         
         setupSegmentedControl()
         setupGoodsView()
@@ -211,7 +211,7 @@ extension DeclarantViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = CountryViewController()
+        let vc = CountriesViewController()
         let nc = UINavigationController(rootViewController: vc)
         vc.title = "Выберите страну"
         let cellNames = CellsName(rawValue: indexPath.row)
@@ -236,20 +236,20 @@ extension DeclarantViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension DeclarantViewController: CountryChooseDelegate {
-    
-    func didChooseCountry(_ name: String, code: String, imageData: Data) {
-        self.choosenCountry["name"] = name
-        self.choosenCountry["countryCode"] = code
-        self.choosenGoods["goods"] = "Товары"
-        self.choosenGoods["limitations"] = ""
-        guard let dataForImage = UIImage(data: imageData) else { return }
-        flagImage = dataForImage
-        self.rowNumber = 2
-        goodsTableView.reloadData()
-        dismiss(animated: true)
-    }
-}
+//extension DeclarantViewController: CountryChooseDelegate {
+//
+//    func didChooseCountry(_ name: String, code: String, imageData: Data) {
+//        self.choosenCountry["name"] = name
+//        self.choosenCountry["countryCode"] = code
+//        self.choosenGoods["goods"] = "Товары"
+//        self.choosenGoods["limitations"] = ""
+//        guard let dataForImage = UIImage(data: imageData) else { return }
+//        flagImage = dataForImage
+//        self.rowNumber = 2
+//        goodsTableView.reloadData()
+//        dismiss(animated: true)
+//    }
+//}
 
 extension DeclarantViewController: GoodsChoosingDelegate, GoodsChoosingDataSource {
     func doneButtonTapped(choosen goods: String, limitations: String) {
@@ -270,7 +270,7 @@ extension DeclarantViewController: GoodsChoosingDelegate, GoodsChoosingDataSourc
     func goodsToShow() -> List<GoodsWithLimitations> {
         
         // источник данных для показа элементов в пикервью алерта выбора товаров
-        return goodsInformation.first(where: { $0.forCountryCode == choosenCountry["name"] })?.goodsLimitations ?? List<GoodsWithLimitations>()
+        return goodsInformation?.first(where: { $0.forCountryCode == choosenCountry["name"] })?.goodsLimitations ?? List<GoodsWithLimitations>()
     }
 }
 
@@ -300,11 +300,11 @@ extension DeclarantViewController: CurrencyDelegate, ChooseCurrencyDelegate {
     func userDidChooseCurrency(_ currency: Currency, for country: String) {
         //срабатывает при выборе определенной валюты в тейбл вью
         dismiss(animated: true, completion: nil)
-        CurrencyFetcher.shared.getCurrency(currency: currency.symbol!) { (currentCurrency, error) in
-            guard currentCurrency != nil else { return }
-            self.currencyExchanger?.setCurrentRates(currentCurrency!)
-            self.currencyExchanger?.setPermissibleValue(currency.limit)
-        }
+//        CurrencyFetcher.shared.getCurrency(currency: currency.symbol!) { (currentCurrency, error) in
+//            guard currentCurrency != nil else { return }
+//            self.currencyExchanger?.setCurrentRates(currentCurrency!)
+//            self.currencyExchanger?.setPermissibleValue(currency.limit)
+//        }
         
         currencyView.currencyChoosingButton.setTitle(currency.symbol, for: .normal)
         currencyView.choosenCountry.text = "Страна следования: \(country)"

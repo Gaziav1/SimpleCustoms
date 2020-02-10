@@ -16,7 +16,7 @@ final class CurrencyExchanger {
     
    private var declarantValue: Int = 0
     
-    public var isDeclarationNeeded: Bool {
+   public var isDeclarationNeeded: Bool {
         get {
             return declarantValue > permissibleValue
         }

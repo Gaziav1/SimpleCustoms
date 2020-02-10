@@ -22,47 +22,48 @@ class RealmManager: NSObject {
     }
     static let sharedInstance = RealmManager()
     
-    func retrieveAllDataForObject(_ T : Object.Type) -> [Object] {
-        
-        var objects = [Object]()
-        guard let realm = realmObject else { return objects }
-        for result in realm.objects(T) {
-            objects.append(result)
-        }
-        
-        return objects
+    func retrieveAllDataForObject<T: Object>(_ element: T.Type) -> Results<T> {
+        guard let realm = realmObject else { fatalError("Unable to create realm instance") }
+        return realm.objects(element)
     }
     
-    func filter(_ predicate: NSPredicate, object: Object.Type) -> [Object] {
-        var objects = [Object]()
-        guard let realm = realmObject else { return objects }
-        for result in realm.objects(object).filter(predicate) {
-            objects.append(result)
-        }
-        return objects
-    }
     
-    func add(_ objects : [Object]) {
+    func add<T: Object>(_ objects: [T]) {
         
         guard let realm = realmObject else { return }
+        
         try! realm.write {
-            
             realm.add(objects)
         }
     }
     
-    func delete(_ objects : [Object]) {
-        guard let realm = realmObject else { return  }
-        try! realm.write{
+    func update(_ block: @escaping ()-> Void) {
+        
+        guard let realm = realmObject else { return }
+        try! realm.write(block)
+    }
+    
+    func delete<T: Object>(_ objects : [T]) {
+        
+        guard let realm = realmObject else { return }
+        
+        try! realm.write {
             realm.delete(objects)
         }
     }
+    
+    func filter<T: Object>(_ predicate: NSPredicate, object: T.Type) -> Results<T>? {
+    
+          guard let realm = realmObject else { return nil }
+          let result = realm.objects(object).filter(predicate)
+          return result
+      }
     
     func realmMigrateIfNeeded(to version: UInt64) {
         
         let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < version {
-             
+                
             }
         })
         
@@ -75,7 +76,7 @@ class RealmManager: NSObject {
         let bundlePath = Bundle.main.path(forResource: "default", ofType: "realm")!
         guard let defaultPath = Realm.Configuration.defaultConfiguration.fileURL?.path else { return }
         let fileManager = FileManager.default
-     
+        
         if !fileManager.fileExists(atPath: defaultPath) {
             print("use pre-populated database")
             do {

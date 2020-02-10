@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CountriesPresenterOutput: class {
 
@@ -21,4 +22,5 @@ protocol CountriesPresenterOutput: class {
     func stopSearching()
     func setCurrentRegion(_ region: Regions)
     func fetchCountries()
+    func didSelectCountry(atIndexPath indexPath: IndexPath)
 }

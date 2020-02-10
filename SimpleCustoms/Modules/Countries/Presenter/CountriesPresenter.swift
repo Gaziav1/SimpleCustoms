@@ -15,7 +15,7 @@ class CountriesPresenter {
     weak private var view: CountriesViewInput?
     var interactor: CountriesInteractorInputProtocol?
     let searchStateDataProvider: SearchStateDataProtocol
-    private let router: CountriesWireframeInput
+    private let router: CountriesRouterInput
     
     var countriesCount: Int {
         return searchStateDataProvider.currentData.count
@@ -23,7 +23,7 @@ class CountriesPresenter {
     
     init(interface: CountriesViewInput,
          interactor: CountriesInteractorInputProtocol?,
-         router: CountriesWireframeInput,
+         router: CountriesRouterInput,
          searchDataProvider: SearchStateDataProtocol = SearchStateDataProvider()) {
         
         self.view = interface
@@ -35,8 +35,16 @@ class CountriesPresenter {
 
 extension CountriesPresenter: CountriesInteractorOutputProtocol {
     
-    func obtainCountriesSuccess(countries: [Country]) {
-        searchStateDataProvider.setCountries(countries: countries)
+    func didGetCustomsRules(rules: CustomsRules) {
+        router.performTransitionToCustoms(data: rules)
+    }
+    
+    func obtainCountriesSuccess(countries: [Country]?) {
+        guard countries != nil else {
+            view?.failure()
+            return
+        }
+        searchStateDataProvider.setCountries(countries: countries!)
         view?.success()
     }
     
@@ -47,7 +55,7 @@ extension CountriesPresenter: CountriesInteractorOutputProtocol {
 
 extension CountriesPresenter: CountriesPresenterOutput {
     func fetchCountries() {
-        interactor?.fetchCountries()
+        interactor?.fetchCountries(for: [.europe, .asia])
     }
     
     func setCurrentRegion(_ region: Regions) {
@@ -64,5 +72,22 @@ extension CountriesPresenter: CountriesPresenterOutput {
     
     func country(atIndexPath indexPath: IndexPath) -> Country {
         return searchStateDataProvider.currentData[indexPath.row]
+    }
+    
+    func didSelectCountry(atIndexPath indexPath: IndexPath) {
+        let choosenCountry = country(atIndexPath: indexPath)
+        interactor?.rulesForCountry(country: choosenCountry)
+        
+        //
+                 
+        //
+        //        let customsRules = CustomsRulesScreenModel(country: country, rules: countryInformation[0].customsRule)
+        //
+        //        vc.rules = customsRules
+        //        vc.navigationItem.title = country.countryName
+        //        navigationController?.pushViewController(vc, animated: true)
+        //
+        //        delegate?.didChooseCountry(country.countryName, code: country.countryCode, imageData: country.imageData)
+
     }
 }

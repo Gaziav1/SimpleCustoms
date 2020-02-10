@@ -16,12 +16,11 @@ protocol ChooseCurrencyDelegate: class {
 class TableViewController: UITableViewController {
 
     weak var delegate: ChooseCurrencyDelegate?
-    private var currenciesToShow = [CustomsRules]()
+    private var currenciesToShow: Results<CustomsRules>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currenciesToShow = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self) as! [CustomsRules]
-        currenciesToShow.removeAll(where: { $0.currency == nil })
+        currenciesToShow = RealmManager.sharedInstance.retrieveAllDataForObject(CustomsRules.self)
         
         self.tableView.register(UINib(nibName: "CurrencyChoosingableViewCell", bundle: nil), forCellReuseIdentifier: "CurrencyChoosing")
         self.title = "Выберите валюту"
@@ -30,15 +29,15 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currenciesToShow.count
+        return currenciesToShow?.count ?? 0
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyChoosing", for: indexPath) as! CurrencyChoosingableViewCell
-        guard let currency = currenciesToShow[indexPath.row].currency?.name else { return cell }
+        guard let currency = currenciesToShow?[indexPath.row].currency?.name else { return cell }
         cell.currencyName.text = currency
-        cell.countryName.text = currenciesToShow[indexPath.row].forCountryCode
+        cell.countryName.text = currenciesToShow?[indexPath.row].forCountryCode
         return cell
     }
 
@@ -47,7 +46,7 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.userDidChooseCurrency(currenciesToShow[indexPath.row].currency ?? Currency(), for: currenciesToShow[indexPath.row].forCountryCode ?? "Неизвестно")
+        delegate?.userDidChooseCurrency(currenciesToShow?[indexPath.row].currency ?? Currency(), for: currenciesToShow?[indexPath.row].forCountryCode ?? "Неизвестно")
     }
 
 }

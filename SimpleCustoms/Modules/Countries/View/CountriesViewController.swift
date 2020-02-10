@@ -132,6 +132,10 @@ class CountriesViewController: UIViewController {
 //MARK: - CountriesViewProtocol
 extension CountriesViewController: CountriesViewInput {
     
+    func reloadData() {
+        self.countriesTableView.reloadData()
+    }
+    
     func success() {
         self.loadingAnimation.stop()
         self.countriesTableView.fadeIn()
@@ -161,6 +165,10 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - UITableViewDelegate
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.didSelectCountry(atIndexPath: indexPath)
+    }
+
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CountryTableViewCell
         

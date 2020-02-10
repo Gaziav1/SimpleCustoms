@@ -10,22 +10,12 @@
 
 import UIKit
 
-class CountriesRouter: CountriesWireframeInput {
+class CountriesRouter: CountriesRouterInput {
 
-    weak var viewController: UIViewController?
+   // var appRouter: AppRouterProtocol?
+    
+    func performTransitionToCustoms(data: CustomsRules) {
 
-    func createModule() -> UIViewController {
-        // Change to get view from storyboard if not using progammatic UI
-        let view = CountriesViewController(nibName: nil, bundle: nil)
-        let interactor = CountriesInteractor()
-        let router = CountriesRouter()
-        let presenter = CountriesPresenter(interface: view, interactor: interactor, router: router)
-
-        view.presenter = presenter
-        interactor.presenter = presenter
-        
-        router.viewController = view
-
-        return view
+        AppRouter.shared.performTransition(to: .customs(rules: data))
     }
 }

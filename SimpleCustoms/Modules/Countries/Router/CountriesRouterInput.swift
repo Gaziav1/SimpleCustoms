@@ -8,6 +8,7 @@
 
 import Foundation
 
-protocol CountriesWireframeInput: class {
-
+protocol CountriesRouterInput: class {
+    func performTransitionToCustoms(data: CustomsRules)
+    
 }

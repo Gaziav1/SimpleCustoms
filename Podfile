@@ -10,4 +10,6 @@ target 'SimpleCustoms' do
     pod 'RealmSwift'
     pod 'TinyConstraints'
     pod 'SDWebImage'
+    pod 'Moya'
+    pod 'Swinject'
 end
